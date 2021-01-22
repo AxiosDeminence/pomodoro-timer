@@ -10,7 +10,7 @@
 
 ### Start Time: 5PM PST
 
-### End Time: 
+### End Time: 5:08PM PST
 
 Notetaker name: Hemanth Battu
 
@@ -52,4 +52,4 @@ Notetaker name: Hemanth Battu
 * Message the TA to attend Sunday's meeting
 
 ## Decisions
-* No decisions were made so far
+* No decisions were made in today's meeting
