@@ -8,7 +8,7 @@
 
 ### Meeting Medium: Zoom
 
-### External Tools Used: Miro?
+### External Tools Used: Miro
 
 ### Start Time: 5PM PST
 
