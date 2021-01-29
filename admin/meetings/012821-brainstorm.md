@@ -42,6 +42,7 @@ Notetaker name: Hemanth Battu
 
 ## Agenda
 
+- [ ] Logistic Announcements Regarding Discussion Sections
 - [ ] Finalize team roles
 - [ ] Brainstorming Activity
 
