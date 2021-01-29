@@ -50,6 +50,18 @@ Notetaker name: Hemanth Battu
 * Finalized team roles that were tentatively assigned during the previous meeting
 
 ## Content
+* Discussion Logistics
+  * Wednesdays at 9 AM
+  * 5 people from our group are expected to attend and TA WILL take attendance 
+  * Team is expected to present a short slide presentation on what was accomplished the previous week
+   * Each team member is expected to attend at least 4 times
+  * Presenter role is expected to be rotated amongst team members
+   * Slides will be prepared by Patrick in compensation for Patrick's wack sleep schedule and his subsequent absences
+  * A #Discussion channel will be created on Slack to organize Discussion attendance among members
+   * A spreadsheet/sign-up sheet will be uploaded and members are expected to sign up if they can attend discussion
+* Other Logistic Notes
+  * No other concrete group assignments will be given from course staff
+  * Responsibility of planning of project approach and design is now largely given to us
 * Commenced preliminary brainstorm of project approach, specs, and overall theme
 ## Plan
 * 
