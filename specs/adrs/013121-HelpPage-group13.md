@@ -14,7 +14,6 @@
 
 ## Decision Outcome
 
-Chosen option: "[option 3]", because [Instead of building another site or adding resources-consuming actions, an annotated picture is much more faster and easier to implement. It doesn't
-require a lot resources nor computation, just download an extra png/pdf with details instruction to fulfill the task].
+Chosen option: "[option 3]", because [Instead of building another site or adding resources-consuming actions, an annotated picture is much more faster and is easier to implement. It doesn't require a lot resources nor computations, just an extra png/pdf with details instruction to fulfill the task].
 
 <!-- markdownlint-disable-file MD013 -->
