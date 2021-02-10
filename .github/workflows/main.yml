@@ -14,8 +14,8 @@ jobs:
 
       # installs the yarn modules
       - name: Install modules
-        run: yarn
+        run: yarn --cwd ./source
 
       # run the test suite
       - name: Run tests
-        run: yarn test
+        run: yarn --cwd ./source test
