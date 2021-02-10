@@ -7,14 +7,14 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jackie1342/cse110-w21-group13.git"
   },
   "author": "Kenneth Chen <efeichen@gmail.com>",
-  "license": "",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/Jackie1342/cse110-w21-group13/issues"
   },
@@ -23,17 +23,9 @@
     "eslint": "^7.19.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.3",
     "husky": "^4.3.8",
+    "jest": "^26.6.3",
     "lint-staged": "^10.5.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*.js": [
-      "eslint --fix"
-    ]
   }
 }
