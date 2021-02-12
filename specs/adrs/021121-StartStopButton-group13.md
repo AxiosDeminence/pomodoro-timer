@@ -13,6 +13,6 @@
 
 ## Decision Outcome
 
-Chosen option: "[2]", because [It's easier for the users to understand the webpage and the users will have a less chance to get confused. We shouldn't have too many buttons in the page.].
+Chosen option: "[2]", because [It's easier for the users to understand the webpage and the users will have a less chance to get confused. We shouldn't have too many buttons in the page. We will also make the help page clear to inform the user what the Start/Stop button and Reset button do respectively].
 
 <!-- markdownlint-disable-file MD013 -->
