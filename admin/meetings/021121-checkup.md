@@ -10,11 +10,11 @@ Notetaker name: Patrick Chiang
 
 ## Present
 
-- [] Arjun Tapde
+- [ ] Arjun Tapde
 - [x] Benjiamin Gu
-- [] Hemanth Battu
+- [ ] Hemanth Battu
 - [x] Jackie Li
-- [] Jasmine Thompson
+- [ ] Jasmine Thompson
 - [x] Kenneth Chen
 - [x] Patrick Chiang
 - [x] Yuefeng Huang
@@ -23,14 +23,14 @@ Notetaker name: Patrick Chiang
 ## Absent
 
 - [x] Arjun Tapde
-- [] Benjiamin Gu
+- [ ] Benjiamin Gu
 - [x] Hemanth Battu
-- [] Jackie Li
+- [ ] Jackie Li
 - [x] Jasmine Thompson
-- [] Kenneth Chen
-- [] Patrick Chiang
-- [] Yuefeng Huang
-- [] HanJie Zhan
+- [ ] Kenneth Chen
+- [ ] Patrick Chiang
+- [ ] Yuefeng Huang
+- [ ] HanJie Zhan
 
 ## Agenda
 
