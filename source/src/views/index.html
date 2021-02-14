@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="header-name">Pomodoro Timer</h1>
+        </header>
+        <div id="pomodoro-timer">
+            <!--Adds Pomo and Break buttons-->
+            <div style="text-align: center;" id = "timer-btns" class="timer-buttons">
+                <button id = "pomo-btn"> Pomo</button>
+                <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
+            </div>
+
+            <!--Adds empty border to create distance between Pomo/Break buttons and Timer display-->
+            <div style="text-align: center;" class="empty-space-border">
+            </div>
+
+            <!--Adds Timer display-->
+            <div style="text-align: center;" id="timer_display" class="timer-value">
+                <div id="timer_display_duration">25:00</div>
+            </div>
+        
+            <!--Adds Start and Reset buttons-->
+            <div style="text-align: center;" id = "timer-control-btns" class="timer-control-buttons">
+                <button id = "start-btn"> Start</button> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--These values add spacing between Start and Reset buttons-->
+                <button id = "Reset-btn"> Reset</button>
+            </div>
+        </div>
+
+        <!--Task List-->
+        <div id="task-list">
+            <h2 id="up-next">Up Next</h2>
+            <ul id="list-elements">
+                <li class="checked">Finish Chemistry HW</li>
+                <li>Read Article</li>
+                <li>Start CSE HW</li>
+            </ul>
+            <div id="input-and-button">
+                <input type="text" id="task-input" placeholder="What are you working on?">
+                <button onclick="addTask()" class="add-button"> <img src="../icons/plus.svg" id="plus" alt="plus"> Add Task</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
