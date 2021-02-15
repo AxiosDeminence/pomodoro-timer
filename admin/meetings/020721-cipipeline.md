@@ -2,7 +2,7 @@
 
 ## Meeting Minutes: 
 
-### Meeting type: Preliminary Brainstorm
+### Meeting type: Pipeline Formulation
 
 ### Date: 2/07/21
 
