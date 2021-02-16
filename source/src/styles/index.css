@@ -177,14 +177,16 @@ div.timer-value
 /* CSS for Start/Reset Buttons */
 .timer-control-buttons button
 {
+
     margin-top: 21px;
     background-color: #f36060; 
-    border: 1px solid #ffd5ca; 
+    border: 0px solid #ffd5ca; 
     color: white; 
-    padding: 10px 24px; 
+    padding: .5em 1.5em; 
     cursor: pointer; 
-    font-size: x-large;
+    font-size: large;
     border-radius: 8px;
+
 }
 
 
