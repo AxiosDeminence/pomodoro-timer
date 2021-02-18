@@ -49,3 +49,5 @@ async function timer_function() {
 function reset_time() {
     timer_display_duration.innerHTML = DEFAULT_TIME;
 }
+
+module.exports = timer_function;
