@@ -14,6 +14,6 @@
 
 ## Decision Outcome
 
-Chosen option: "[option 2]", because [Although it's not a frequently used button, it's still needed for better flexibility for users. Putting it right next to the stop button might confuse the users and since it's not a frequent used button, it doesn't have to be at the center right next to our timer, which should be less noticable but still there to provide an option. Putting it next to the setting should make sense].
+Chosen option: "[option 2]", because [Although it's not a frequently used button, it's still needed for better flexibility for users. Putting it right next to the stop button might confuse the users and since it's not a frequent used button, it doesn't have to be at the center right next to our timer, which should be less noticable but still there to provide an option. Putting it next to the setting should make more sense. It can also distinguish itself from start/stop by sitting in the corner].
 
 <!-- markdownlint-disable-file MD013 -->
