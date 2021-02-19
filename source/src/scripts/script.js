@@ -1,8 +1,11 @@
 let startButton = document.getElementById("start-btn");
 let timerDisplayDuration = document.getElementById("timer_display_duration");
-const DEFAULT_TIME = "25:00";
-const SECOND = 1000;
 let timer;
+let thisStorage = window.localStorage;
+const POMO_TIME = "25:00";
+const BREAK_TIME = "5:00"
+const SECOND = 1000;
+thisStorage.setItem("status", "pomo");
 
 startButton.onclick = startAndStopButton;
 
@@ -19,13 +22,14 @@ async function startAndStopButton() {
 
 async function timer_function() {
     let timer_text = timerDisplayDuration.innerHTML;
-    let minutes = Number(timer_text.substring(0, timer_text.length - 3));
-    let seconds = Number(timer_text.substring(timer_text.length - 2));
 
     if (timer_text == "0:00") {
-        await startAndStopButton();
-        return;
+        switch_time();
+        timer_text = timerDisplayDuration.innerHTML;
     }
+
+    let minutes = Number(timer_text.substring(0, timer_text.length - 3));
+    let seconds = Number(timer_text.substring(timer_text.length - 2));
 
     if (!seconds == 0) {
         seconds--;
@@ -43,5 +47,16 @@ async function timer_function() {
 }
 
 function reset_time() {
-    timerDisplayDuration.innerHTML = DEFAULT_TIME;
+    timerDisplayDuration.innerHTML = POMO_TIME;
+    thisStorage.setItem("status", "pomo");
+}
+
+function switch_time() {
+    if (thisStorage.getItem("status") == "pomo") {
+        timerDisplayDuration.innerHTML = BREAK_TIME;
+        thisStorage.setItem("status", "break");
+    } else {
+        timerDisplayDuration.innerHTML = POMO_TIME;
+        thisStorage.setItem("status", "pomo");
+    }
 }
