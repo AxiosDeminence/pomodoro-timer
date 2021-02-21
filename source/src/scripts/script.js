@@ -1,3 +1,4 @@
+
 let startButton = document.getElementById("start-btn");
 let timerDisplayDuration = document.getElementById("timer_display_duration");
 const DEFAULT_TIME = "25:00";
@@ -5,6 +6,7 @@ const SECOND = 1000;
 let timer;
 
 startButton.onclick = startAndStopButton;
+
 
 async function startAndStopButton() {
     if (startButton.innerHTML == "Start") {
@@ -35,7 +37,7 @@ async function timer_function() {
     }
 
     if (seconds < 10) {
-        seconds = "0" + String(seconds);
+        seconds = `0${String(seconds)}`;
     }
     minutes = String(minutes);
 
@@ -45,3 +47,4 @@ async function timer_function() {
 function reset_time() {
     timerDisplayDuration.innerHTML = DEFAULT_TIME;
 }
+
