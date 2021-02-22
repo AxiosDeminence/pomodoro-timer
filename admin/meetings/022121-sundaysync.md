@@ -12,7 +12,7 @@
 
 ### Start Time: 5PM PST
 
-### End Time: 5:PM PST
+### End Time: 5:15PM PST
 
 Notetaker name: Hemanth Battu
 
