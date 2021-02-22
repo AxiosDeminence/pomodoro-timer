@@ -1,11 +1,12 @@
 let startButton = document.getElementById("start-btn");
 let timerDisplayDuration = document.getElementById("timer_display_duration");
 let timer;
-let thisStorage = window.localStorage;
+let timerStatus = "pomo"
 const POMO_TIME = "25:00";
 const BREAK_TIME = "5:00"
 const SECOND = 1000;
-thisStorage.setItem("status", "pomo");
+const LIGHT_COLOR = "#f3606060";
+const DARK_COLOR = "#f36060";
 
 startButton.onclick = startAndStopButton;
 
@@ -15,7 +16,7 @@ async function startAndStopButton() {
         timer = setInterval(timer_function, SECOND);
     } else {
         clearInterval(timer);
-        setTimeout(reset_time, SECOND/10);
+        setTimeout(reset_timer, SECOND/10);
         startButton.innerHTML = "Start";
     }
 }
@@ -24,7 +25,7 @@ async function timer_function() {
     let timer_text = timerDisplayDuration.innerHTML;
 
     if (timer_text == "0:00") {
-        switch_time();
+        switch_mode();
         timer_text = timerDisplayDuration.innerHTML;
     }
 
@@ -41,22 +42,27 @@ async function timer_function() {
     if (seconds < 10) {
         seconds = "0" + String(seconds);
     }
-    minutes = String(minutes);
 
     timerDisplayDuration.innerHTML = minutes + ":" + seconds;
 }
 
-function reset_time() {
+function reset_timer() {
     timerDisplayDuration.innerHTML = POMO_TIME;
-    thisStorage.setItem("status", "pomo");
+    timerStatus = "pomo";
 }
 
-function switch_time() {
-    if (thisStorage.getItem("status") == "pomo") {
+function switch_mode() {
+    let pomoButton = document.getElementById("pomo-btn");
+    let breakButton = document.getElementById("break-btn");
+    if (timerStatus == "pomo") {
         timerDisplayDuration.innerHTML = BREAK_TIME;
-        thisStorage.setItem("status", "break");
+        pomoButton.style.backgroundColor = LIGHT_COLOR;
+        breakButton.style.backgroundColor = DARK_COLOR;
+        timerStatus = "break";
     } else {
         timerDisplayDuration.innerHTML = POMO_TIME;
-        thisStorage.setItem("status", "pomo");
+        pomoButton.style.backgroundColor = DARK_COLOR;
+        breakButton.style.backgroundColor = LIGHT_COLOR;
+        timerStatus = "pomo";
     }
 }
