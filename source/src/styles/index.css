@@ -41,21 +41,19 @@ h1#header-name {
     font-weight: 500;
     outline: none;
     margin-left: 5px;
+    height: 35px;
 }
 .top-buttons:hover {
     filter: brightness(105%);
     transform: scale(1.1);
 }
 #setting-button {
-    height: 35px;
-    width: 85px;
+    width: 87px;
 }
 #help-button {
-    height: 35px;
-    width: 70px;
+    width: 67px;
 }
 #reset-button {
-    height: 35px;
     width: 80px;
 }
 .top-button-img {
@@ -64,11 +62,18 @@ h1#header-name {
     width: 20px;
     height: 20px;
 }
+img#help {
+    width: 15px;
+    height: 15px;
+}
+img#reset {
+    padding-right: 2px;
+}
 .top-button-text {
     display: inline-block;
     vertical-align: middle;
     margin: 0;
-    font-size: 14px;
+    font-size: 1.05em;
 }
 #text-help {
     padding-right: 2px;
@@ -163,6 +168,7 @@ img#dash {
     width: 12px;
     position: absolute;
     right: 52%;
+    left: 48%;
 }
 /* Code BELOW is for Clock */
 /* CSS for Pomo/Break button dispaly */
@@ -235,4 +241,36 @@ div.timer-value
 .timer-control-buttons button:hover {
     transform: scale(1.1);
     filter: brightness(105%);
+}
+
+/* Added after pull request */
+@media screen and (max-width: 1000px) {
+    .top-button-text {
+        display: none;
+    }
+    #setting-button {
+        width: 40px;
+    }
+    #help-button {
+        width: 40px;
+    }
+    #reset-button {
+        width: 40px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    header {
+        margin-top: 10px;
+        height: 15vh;
+        text-align: initial;
+    }
+    h1#header-name {
+        display: inline-block;
+        position: relative;
+        color: #f36060;
+        font-size: 30px;
+        margin-bottom: 10px;
+        margin-left: 10%;
+    }
 }
