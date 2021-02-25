@@ -1,50 +1,22 @@
-
-let startButton = document.getElementById("start-btn");
-let timerDisplayDuration = document.getElementById("timer_display_duration");
-const DEFAULT_TIME = "25:00";
-const SECOND = 1000;
-let timer;
-
-startButton.onclick = startAndStopButton;
-
-
-async function startAndStopButton() {
-    if (startButton.innerHTML == "Start") {
-        startButton.innerHTML = "Stop";
-        timer = setInterval(timer_function, SECOND);
-    } else {
-        clearInterval(timer);
-        setTimeout(reset_time, SECOND/10);
-        startButton.innerHTML = "Start";
+window.addEventListener('DOMContentLoaded', () => {
+    var tasks; // holds list nodes in local storage
+    if (localStorage.getItem('tasks') === null) {
+        tasks = [];
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        console.log('no local storage');
     }
-}
-
-async function timer_function() {
-    let timer_text = timerDisplayDuration.innerHTML;
-    let minutes = Number(timer_text.substring(0, timer_text.length - 3));
-    let seconds = Number(timer_text.substring(timer_text.length - 2));
-
-    if (timer_text == "0:00") {
-        await startAndStopButton();
-        return;
+    else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
     }
-
-    if (!seconds == 0) {
-        seconds--;
-    } else {
-        seconds = 59;
-        minutes--;
+    for (let i = 0; i < tasks.length; i++) {
+        var task = new TaskItem(tasks[i]);
+        document.getElementById("task-list-elements").appendChild(task);
     }
-
-    if (seconds < 10) {
-        seconds = `0${String(seconds)}`;
-    }
-    minutes = String(minutes);
-
-    timerDisplayDuration.innerHTML = minutes + ":" + seconds;
-}
-
-function reset_time() {
-    timerDisplayDuration.innerHTML = DEFAULT_TIME;
-}
-
+});
+// button that opens the custom popup component to DOM
+var popupBtn = document.getElementById('task-popup-btn');
+var popUp = document.createElement('task-popup');
+document.body.appendChild(popUp);
+popupBtn.addEventListener('click', function() {
+    popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
+});
