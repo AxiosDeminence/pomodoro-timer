@@ -14,8 +14,10 @@ jobs:
 
       # installs the yarn modules
       - name: Install modules
-        run: yarn --cwd ./source
+        run: npm install ./source
 
       # run the test suite
       - name: Run tests
-        run: yarn --cwd ./source test
+        run: npm test
+
+      - name: 
