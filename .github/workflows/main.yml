@@ -20,4 +20,5 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: 
+      - name: Generate jsdocs
+        run: jsdoc -d source/jsdocs -r source/src/scripts/
