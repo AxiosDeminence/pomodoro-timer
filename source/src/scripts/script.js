@@ -7,7 +7,9 @@ let timer;
 
 startButton.onclick = startAndStopButton;
 
-
+/**
+ * Test header for automatic jsdoc generation
+ */
 async function startAndStopButton() {
     if (startButton.innerHTML == "Start") {
         startButton.innerHTML = "Stop";
