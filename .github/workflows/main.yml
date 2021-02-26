@@ -21,4 +21,4 @@ jobs:
         run: npm --prefix source/ test
 
       - name: Generate jsdocs
-        run: jsdoc -d source/jsdocs -r source/src/scripts/
+        run: ./source/node_modules/.bin/jsdoc -d source/jsdocs -r source/src/scripts/
