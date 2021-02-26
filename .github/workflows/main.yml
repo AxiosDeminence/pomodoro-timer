@@ -11,18 +11,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with: 
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
       # installs the yarn modules
       - name: Install modules
-        run: npm --prefix source/ install 
+        run: npm --prefix source/ -g install 
 
       # run the test suite
       - name: Run tests
         run: npm --prefix source/ test
+          
+      - name: Generate JSDocs
+        run: jsdoc -d source/jsdocs -r soruce/src/scripts/
         
-      - name: JSDoc Action
-        uses: andstor/jsdoc-action@v1.2.0
+      - name: Commit JSDocs
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add source/jsdocs
+          git commit -m "Updated JSDocs"
+          
+      - name: Push JSDocs
+        uses: ad-m/github-push-action@master
         with:
-          source_dir: ./source/src
-          recurse: true
-          output_dir: ./source/jsdoc
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+      
