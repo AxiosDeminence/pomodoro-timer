@@ -24,7 +24,7 @@ jobs:
         run: npm --prefix source/ test
           
       - name: Generate JSDocs
-        run: ./source/node-modules/.bin/jsdoc -d source/jsdocs -r soruce/src/scripts/
+        run: ./source/node_modules/.bin/jsdoc -d source/jsdocs -r soruce/src/scripts/
         
       - name: Commit JSDocs
         run: |
