@@ -1,4 +1,4 @@
-name: CI
+name: Run Tests
 on:
   # Triggers the workflow on push to any branch or pull request on master
   push:
@@ -12,10 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # installs the yarn modules
+      # installs the npm modules
       - name: Install modules
-        run: yarn --cwd ./source
+        run: npm --prefix source/ install 
 
       # run the test suite
       - name: Run tests
-        run: yarn --cwd ./source test
+        run: npm --prefix source/ test
