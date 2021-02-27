@@ -1,9 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
     var tasks; // holds list nodes in local storage
-    if (localStorage.getItem('tasks') === null) {
+    var id; // id counter for task items
+    if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
         tasks = [];
+        id = 0;
         localStorage.setItem('tasks', JSON.stringify(tasks));
-        console.log('no local storage');
+        localStorage.setItem('id', '' + id);
+        console.log('tasks:',localStorage.getItem('tasks'),'\nid:',localStorage.getItem('id'));
     }
     else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -13,6 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById("task-list-elements").appendChild(task);
     }
 });
+
 // button that opens the custom popup component to DOM
 var popupBtn = document.getElementById('task-popup-btn');
 var popUp = document.createElement('task-popup');
@@ -20,3 +24,9 @@ document.body.appendChild(popUp);
 popupBtn.addEventListener('click', function() {
     popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
 });
+
+// Uncomment below code to clear local storage on refresh -- Useful for debugging
+// window.onbeforeunload = function() {
+//     localStorage.removeItem('tasks');
+//     return '';
+// };

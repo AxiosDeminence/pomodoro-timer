@@ -108,7 +108,7 @@ header:after {
 #task-list ul {
     list-style-type: none;
 }
-/* #task-list ul li {
+task-item {
     cursor: pointer;
     height: 50px;
     position: relative;
@@ -125,15 +125,15 @@ header:after {
     font-size: larger;
     font-weight: 500;
     border-style:none;
-} */
-/* #task-list ul li:hover {
+}
+task-item:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-} */
-/* #task-list ul li.checked {
+}
+[checked = 'true'] {
     background: #f3606060;
     color: rgba(255, 255, 255, 0.651);
     text-decoration: line-through;
-} */
+}
 #popup-button {
     float: right;
     width: 30%;
@@ -175,7 +175,6 @@ img#dash {
     border: 0px solid #ffd5ca;
     color: white; 
     padding: 10px 24px;
-    cursor: pointer; 
     font-size: larger;
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
@@ -237,7 +236,7 @@ div.timer-value
     transform: scale(1.1);
     filter: brightness(105%);
 }
-/* Added after pull request */
+/* Animations */
 @media screen and (max-width: 1000px) {
     .top-button-text {
         display: none;
