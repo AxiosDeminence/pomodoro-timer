@@ -1,9 +1,7 @@
-name: CI
+name: Generate Documentation
 on:
-  # Triggers the workflow on push to any branch or pull request on master
+  # Triggers the workflow on push to any branch
   push:
-  pull_request:
-    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -15,25 +13,23 @@ jobs:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
-      # installs the yarn modules
+      # installs the npm modules
       - name: Install modules
         run: npm --prefix source/ install 
 
-      # run the test suite
-      - name: Run tests
-        run: npm --prefix source/ test
-          
+      # generate JSDocs 
       - name: Generate JSDocs
         run: ./source/node_modules/.bin/jsdoc -d source/jsdocs -r source/src/scripts/
-        
-      - name: Commit JSDocs
+      
+      # commit generated docs
+      - name: Commit Docs
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add source/jsdocs
           git commit -m "Updated JSDocs"
           
-      - name: Push JSDocs
+      - name: Push Generated Docs
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
