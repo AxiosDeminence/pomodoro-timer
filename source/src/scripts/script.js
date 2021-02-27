@@ -1,68 +1,32 @@
-let startButton = document.getElementById("start-btn");
-let timerDisplayDuration = document.getElementById("timer_display_duration");
-let timer;
-let timerStatus = "pomo"
-const POMO_TIME = "25:00";
-const BREAK_TIME = "5:00"
-const SECOND = 1000;
-const LIGHT_COLOR = "#f3606060";
-const DARK_COLOR = "#f36060";
-
-startButton.onclick = startAndStopButton;
-
-async function startAndStopButton() {
-    if (startButton.innerHTML == "Start") {
-        startButton.innerHTML = "Stop";
-        timer = setInterval(timer_function, SECOND);
-    } else {
-        clearInterval(timer);
-        setTimeout(reset_timer, SECOND/10);
-        startButton.innerHTML = "Start";
+window.addEventListener('DOMContentLoaded', () => {
+    var tasks; // holds list nodes in local storage
+    var id; // id counter for task items
+    if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
+        tasks = [];
+        id = 0;
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('id', '' + id);
+        console.log('tasks:',localStorage.getItem('tasks'),'\nid:',localStorage.getItem('id'));
     }
-}
-
-async function timer_function() {
-    let timer_text = timerDisplayDuration.innerHTML;
-
-    if (timer_text == "0:00") {
-        switch_mode();
-        timer_text = timerDisplayDuration.innerHTML;
+    else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
     }
-
-    let minutes = Number(timer_text.substring(0, timer_text.length - 3));
-    let seconds = Number(timer_text.substring(timer_text.length - 2));
-
-    if (!seconds == 0) {
-        seconds--;
-    } else {
-        seconds = 59;
-        minutes--;
+    for (let i = 0; i < tasks.length; i++) {
+        var task = new TaskItem(tasks[i]);
+        document.getElementById("task-list-elements").appendChild(task);
     }
+});
 
-    if (seconds < 10) {
-        seconds = "0" + String(seconds);
-    }
+// button that opens the custom popup component to DOM
+var popupBtn = document.getElementById('task-popup-btn');
+var popUp = document.createElement('task-popup');
+document.body.appendChild(popUp);
+popupBtn.addEventListener('click', function() {
+    popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
+});
 
-    timerDisplayDuration.innerHTML = minutes + ":" + seconds;
-}
-
-function reset_timer() {
-    timerDisplayDuration.innerHTML = POMO_TIME;
-    timerStatus = "pomo";
-}
-
-function switch_mode() {
-    let pomoButton = document.getElementById("pomo-btn");
-    let breakButton = document.getElementById("break-btn");
-    if (timerStatus == "pomo") {
-        timerDisplayDuration.innerHTML = BREAK_TIME;
-        pomoButton.style.backgroundColor = LIGHT_COLOR;
-        breakButton.style.backgroundColor = DARK_COLOR;
-        timerStatus = "break";
-    } else {
-        timerDisplayDuration.innerHTML = POMO_TIME;
-        pomoButton.style.backgroundColor = DARK_COLOR;
-        breakButton.style.backgroundColor = LIGHT_COLOR;
-        timerStatus = "pomo";
-    }
-}
+// Uncomment below code to clear local storage on refresh -- Useful for debugging
+// window.onbeforeunload = function() {
+//     localStorage.removeItem('tasks');
+//     return '';
+// };

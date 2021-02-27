@@ -4,21 +4,96 @@ body {
     margin: 0; 
     font-family: 'Quicksand', sans-serif;
     background-color: #ffd5ca;
+    box-sizing: border-box;
 }
 header {
     text-align: center;
     margin-top: 10px;
+    height: 15vh;
 }
 h1#header-name {
     display: inline-block;
     position: relative;
     color: #f36060;
-    font-size: 40px;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+#header-buttons {
+    display: inline-block;
+    position:absolute;
+    right: 10%;
+}
+#header-buttons  ul {
+    list-style-type: none;
+}
+#header-buttons ul li {
+    display: inline-block;
+    margin-top: 3px;
+}
+.top-buttons {
+    cursor: pointer;
+    border-style: none;
+    border-radius: 4px;
+    text-align: center;
+    background-color:#f36060;
+    color:#fff;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    outline: none;
+    margin-left: 5px;
+    height: 35px;
+}
+.top-buttons:hover {
+    filter: brightness(105%);
+    transform: scale(1.1);
+}
+#setting-button {
+    width: 87px;
+}
+#help-button {
+    width: 67px;
+}
+#reset-button {
+    width: 80px;
+}
+.top-button-img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+img#help {
+    width: 15px;
+    height: 15px;
+}
+img#reset {
+    padding-right: 2px;
+}
+.top-button-text {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    font-size: 1.05em;
+}
+#text-help {
+    padding-right: 2px;
+}
+header:after {
+    content:' ';
+    display: block;
+    border-bottom: 1px solid #7b0c0c4f;
+    border-radius: 4px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 #task-list {
     float: right;
     width: 50%;
-
+    min-height: 0;
+    max-height: 400px;
+    margin-bottom: 10px;
+    overflow: auto;
 }
 #up-next {
     color: #f36060;
@@ -28,13 +103,12 @@ h1#header-name {
 #pomodoro-timer {
     float: left;
     width: 50%;
+    min-height: 420px;
 }
-
-
-ul {
+#task-list ul {
     list-style-type: none;
 }
-ul li {
+task-item {
     cursor: pointer;
     height: 50px;
     position: relative;
@@ -49,71 +123,49 @@ ul li {
     background-color: #f36060;
     color: white;
     font-size: larger;
+    font-weight: 500;
     border-style:none;
-    /* border-width: 1px; */
-    
 }
-
-ul li:hover {
+task-item:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-
-ul li.checked {
+[checked = 'true'] {
     background: #f3606060;
     color: rgba(255, 255, 255, 0.651);
     text-decoration: line-through;
 }
-
-ul li.checked::before {
-    content: '';
-    position: absolute;
-    border-color: #fff;
-    border-style: solid;
-    border-width: 0 2px 2px 0;
-    top: auto;
-    right: 15px;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 7px;
+#popup-button {
+    float: right;
+    width: 30%;
 }
-
-#input-and-button {
-    padding-left: 40px;
-}
-#task-input {
-    height: 50px;
-    padding-left: 10px;
-    font-family: 'Quicksand', sans-serif;
-    font-size: larger;
-    width: 300px;
-    background-color: white;
-    color: #f36060;
-    border-style: hidden;
-    border-radius: 5px;
-}
-::placeholder {
-    color: #f36060;
-}
-.add-button {
+#task-popup-btn {
     cursor: pointer;
-    margin-left: 10px;
-    height: 45px;
-    width: 100px;
+    height: 40px;
+    width: 40px;
     border-style: none;
-    border-radius: 5%;
+    border-radius: 50%;
     text-align: center;
     color: rgba(255, 255, 255);
     font-family: 'Quicksand', sans-serif;
     background-color: #f36060;
+    outline: none;
 }
-.add-button:hover {
+#task-popup-btn:hover {
+    filter: brightness(105%);
     transform: scale(1.1);
 }
-
 #plus {
-    width: 10px;
+    width: 20px;
+    vertical-align: middle;
+    color: #fff;
 }
-
+img#dash {
+    height: 500px;
+    width: 12px;
+    position: absolute;
+    right: 52%;
+    left: 48%;
+}
 /* Code BELOW is for Clock */
 /* CSS for Pomo/Break button dispaly */
 .timer-buttons button
@@ -123,22 +175,14 @@ ul li.checked::before {
     border: 0px solid #ffd5ca;
     color: white; 
     padding: 10px 24px;
-    cursor: pointer; 
     font-size: larger;
-    /*border-radius: 8px;*/
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    outline: none;
     display: inline;
     margin-right: -4.5px;
     margin-left: -0px;
-
 }
-
-
-/* CSS Code for diff color when hover over Start/Reset Button*/
-.timer-buttons button:hover {
-    background-color: #f3606060;
-}
-
-
 /* This is here to create spacing between Pomo/Break and Timer Display */
 div.empty-space-border
 {
@@ -153,8 +197,6 @@ div.empty-space-border
     max-width:325px;
     margin:0 auto;
 }
-
-
 /* CSS for Clock Test and Border Surrounding it */
 div.timer-value
 {
@@ -172,25 +214,55 @@ div.timer-value
     margin:0 auto;
 
 }
-
-
 /* CSS for Start/Reset Buttons */
 .timer-control-buttons button
 {
-
     margin-top: 21px;
     background-color: #f36060; 
-    border: 0px solid #ffd5ca; 
+    border: 1px solid #ffd5ca; 
     color: white; 
-    padding: .5em 1.5em; 
+    padding: 10px 24px; 
     cursor: pointer; 
-    font-size: large;
+    font-size: x-large;
+    font-weight: 500;
     border-radius: 8px;
+    outline: none;
+    font-family: 'Quicksand', sans-serif;
+    width: 200px;
 
 }
-
-
 /* CSS Code for diff color when hover over Start/Reset Button*/
 .timer-control-buttons button:hover {
-    background-color: #f3606060;
+    transform: scale(1.1);
+    filter: brightness(105%);
+}
+/* Animations */
+@media screen and (max-width: 1000px) {
+    .top-button-text {
+        display: none;
+    }
+    #setting-button {
+        width: 40px;
+    }
+    #help-button {
+        width: 40px;
+    }
+    #reset-button {
+        width: 40px;
+    }
+}
+@media screen and (max-width: 700px) {
+    header {
+        margin-top: 10px;
+        height: 15vh;
+        text-align: initial;
+    }
+    h1#header-name {
+        display: inline-block;
+        position: relative;
+        color: #f36060;
+        font-size: 30px;
+        margin-bottom: 10px;
+        margin-left: 10%;
+    }
 }
