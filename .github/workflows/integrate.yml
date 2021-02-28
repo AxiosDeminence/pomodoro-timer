@@ -3,7 +3,6 @@
 name: Integrate
 on:
   push:
-  pull_request:
 
 jobs:
   test:
@@ -23,3 +22,5 @@ jobs:
         uses: mattallty/jest-github-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          test-command: "npm --prefix source/ test"
