@@ -1,0 +1,39 @@
+# Deploy JS and coverage doc to master
+
+name: Deploy
+on:
+  # Triggers the workflow on push to any branch
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  doc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build JSDoc
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./source/src/scripts
+          output_dir: ./source/docs
+          template: minami
+          front_page: README.md
+
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+      #     publish_dir: ./source/docs
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install modules
+        run: npm --prefix source/ install 
+
+      - name: Generate coverage docs
+        run: npm --prefix source/ test
