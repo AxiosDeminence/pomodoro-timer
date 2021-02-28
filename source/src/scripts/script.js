@@ -1,6 +1,5 @@
-
-let startButton = document.getElementById("start-btn");
-let timerDisplayDuration = document.getElementById("timer_display_duration");
+const startButton = document.getElementById("start-btn");
+const timerDisplayDuration = document.getElementById("timer_display_duration");
 const DEFAULT_TIME = "25:00";
 const SECOND = 1000;
 let timer;
@@ -16,13 +15,13 @@ async function startAndStopButton() {
         timer = setInterval(timer_function, SECOND);
     } else {
         clearInterval(timer);
-        setTimeout(reset_time, SECOND/10);
+        setTimeout(reset_time, SECOND / 10);
         startButton.innerHTML = "Start";
     }
 }
 
 async function timer_function() {
-    let timer_text = timerDisplayDuration.innerHTML;
+    const timer_text = timerDisplayDuration.innerHTML;
     let minutes = Number(timer_text.substring(0, timer_text.length - 3));
     let seconds = Number(timer_text.substring(timer_text.length - 2));
 
@@ -43,10 +42,9 @@ async function timer_function() {
     }
     minutes = String(minutes);
 
-    timerDisplayDuration.innerHTML = minutes + ":" + seconds;
+    timerDisplayDuration.innerHTML = `${minutes}:${seconds}`;
 }
 
 function reset_time() {
     timerDisplayDuration.innerHTML = DEFAULT_TIME;
 }
-

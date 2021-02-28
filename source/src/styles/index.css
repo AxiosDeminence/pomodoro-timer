@@ -1,7 +1,7 @@
 html,
 body {
     padding: 0;
-    margin: 0; 
+    margin: 0;
     font-family: 'Quicksand', sans-serif;
     background-color: #ffd5ca;
     box-sizing: border-box;
@@ -175,18 +175,18 @@ img#dash {
 .timer-buttons button
 {
     margin-top: 19px;
-    background-color: #f36060; 
-    border: 0px solid #ffd5ca;
-    color: white; 
+    background-color: #f36060;
+    border: 0 solid #ffd5ca;
+    color: white;
     padding: 10px 24px;
-    cursor: pointer; 
+    cursor: pointer;
     font-size: larger;
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
     outline: none;
     display: inline;
     margin-right: -4.5px;
-    margin-left: -0px;
+    margin-left: 0;
 }
 /* This is here to create spacing between Pomo/Break and Timer Display */
 div.empty-space-border
@@ -198,7 +198,7 @@ div.empty-space-border
     border-width: thick;
     border-radius: 50px;
 
-    padding: 2px 2px 2px 2px;
+    padding: 2px;
     max-width:325px;
     margin:0 auto;
 }
@@ -213,8 +213,8 @@ div.timer-value
     border-width: thick;
     border-radius: 50px;
 
-    margin: 100px 100px 100px 100px;
-    padding: 50px 50px 50px 50px;
+    margin: 100px;
+    padding: 50px;
     max-width:325px;
     margin:0 auto;
 
@@ -223,11 +223,11 @@ div.timer-value
 .timer-control-buttons button
 {
     margin-top: 21px;
-    background-color: #f36060; 
-    border: 1px solid #ffd5ca; 
-    color: white; 
-    padding: 10px 24px; 
-    cursor: pointer; 
+    background-color: #f36060;
+    border: 1px solid #ffd5ca;
+    color: white;
+    padding: 10px 24px;
+    cursor: pointer;
     font-size: x-large;
     font-weight: 500;
     border-radius: 8px;
