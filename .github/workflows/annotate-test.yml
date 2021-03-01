@@ -1,0 +1,16 @@
+# Annotate PRs with Jest test and coverage information
+
+name: Jest test annotations & coverage
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Annotate tests on PR
+        uses: mattallty/jest-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          test-command: "npm --prefix source/ test"
