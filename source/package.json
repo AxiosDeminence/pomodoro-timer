@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/Jackie1342/cse110-w21-group13#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.13.8",
+    "babel-jest": "^26.6.3",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
@@ -30,8 +32,16 @@
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4"
   },
-  "jest":{
-    "collectCoverage": true
-    
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "testEnvironment": "jest-environment-jsdom-sixteen",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "dependencies": {
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "regenerator-runtime": "^0.13.7"
   }
 }

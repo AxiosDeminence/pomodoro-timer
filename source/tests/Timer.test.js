@@ -1,3 +1,5 @@
+require('regenerator-runtime/runtime');
+
 beforeEach(() => {
     jest.useFakeTimers();
 });

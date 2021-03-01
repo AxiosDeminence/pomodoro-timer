@@ -2,25 +2,23 @@
 class TaskItem extends HTMLElement {
     // toggles custom attribute 'checked' for this element
     toggle() {
-        var tasks = JSON.parse(localStorage.getItem('tasks'));
+        const tasks = JSON.parse(localStorage.getItem('tasks'));
         // update checked attribute
-        let checked = this.getAttribute('checked').toLowerCase() == 'true';
+        const checked = this.getAttribute('checked').toLowerCase() == 'true';
         this.setAttribute('checked', !checked);
         // update task item in localStorage
-        let task = tasks.find(task => 
-            task['id'] == this.getAttribute('id') && task['text'] == this.getAttribute('text'));
+        const task = tasks.find((task) => task.id == this.getAttribute('id') && task.text == this.getAttribute('text'));
         if (typeof task !== 'undefined') {
-            task['checked'] = !task['checked'];
+            task.checked = !task.checked;
             localStorage.setItem('tasks', JSON.stringify(tasks));
         }
     }
 
     // removes custom element from DOM and deletes task from localStorage
     removeTask() {
-        var tasks = JSON.parse(localStorage.getItem('tasks')); 
+        const tasks = JSON.parse(localStorage.getItem('tasks'));
         // find and remove task from localStorage
-        tasks.splice(tasks.findIndex(task => 
-            task['id'] == this.getAttribute('id') && task['text'] == this.getAttribute('text')), 1);
+        tasks.splice(tasks.findIndex((task) => task.id == this.getAttribute('id') && task.text == this.getAttribute('text')), 1);
         localStorage.setItem('tasks', JSON.stringify(tasks));
         // remove this element from DOM
         this.parentNode.removeChild(this);
@@ -29,26 +27,26 @@ class TaskItem extends HTMLElement {
     /* create task list item by building custom component */
     constructor(task) {
         super();
-        let shadow = this.attachShadow({mode: 'open'});
+        const shadow = this.attachShadow({ mode: 'open' });
         // set attributes
-        this.setAttribute('id', task['id']);
-        this.setAttribute('checked', task['checked']);
-        this.setAttribute('text', task['text']);
+        this.setAttribute('id', task.id);
+        this.setAttribute('checked', task.checked);
+        this.setAttribute('text', task.text);
         // create list node
-        let li = document.createElement('li');
-        let text = document.createTextNode(task['text']);
+        const li = document.createElement('li');
+        const text = document.createTextNode(task.text);
         li.append(text);
         // add event listener such that clicking on element crosses out task
         this.addEventListener('click', this.toggle);
         // create delete icon
-        let icon = document.createElement('img');
+        const icon = document.createElement('img');
         icon.setAttribute('src', '../icons/delete.svg');
         icon.setAttribute('class', 'delete-icon');
         li.appendChild(icon);
         // add event listener to image to remove task
         icon.addEventListener('click', this.removeTask.bind(this));
         // CSS styling
-        let style = document.createElement('style');
+        const style = document.createElement('style');
         style.textContent = `
         :host(:hover) .delete-icon {
             visibility: visible;
@@ -67,10 +65,12 @@ class TaskItem extends HTMLElement {
         .delete-icon:hover {
             transform: scale(1.3);
             filter:brightness(105%)
-        }`
+        }`;
         shadow.appendChild(li);
         shadow.appendChild(style);
     }
 }
 
 customElements.define('task-item', TaskItem);
+
+module.exports = TaskItem;
