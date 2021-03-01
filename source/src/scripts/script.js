@@ -1,6 +1,13 @@
 window.addEventListener('DOMContentLoaded', () => {
     var tasks; // holds list nodes in local storage
     var id; // id counter for task items
+
+    if (localStorage.getItem('pomo-length') === null) {
+        localStorage.setItem('pomo-length', '25');
+        localStorage.setItem('short-break-length', '5');
+        localStorage.setItem('long-break-length', '15');
+    }
+
     if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
         tasks = [];
         id = 0;
