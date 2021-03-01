@@ -1,6 +1,6 @@
 # Deploy JS and coverage doc to master
 
-name: Deploy
+name: Continuous Deployment
 on:
   # Triggers the workflow on push to any branch
   push:
