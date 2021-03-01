@@ -18,8 +18,8 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // button that opens the custom popup component to DOM
-var popupBtn = document.getElementById('task-popup-btn');
-var popUp = document.createElement('task-popup');
+const popupBtn = document.getElementById('task-popup-btn');
+const popUp = document.createElement('task-popup');
 document.body.appendChild(popUp);
 popupBtn.addEventListener('click', function() {
     popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
