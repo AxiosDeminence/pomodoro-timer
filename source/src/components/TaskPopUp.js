@@ -1,20 +1,23 @@
+import TaskItem from './TaskItem';
 // create class for popup to add task
 class TaskPopUp extends HTMLElement {
     // add TaskItem element to DOM
     addTask() {
-        var tasks = JSON.parse(localStorage.getItem('tasks'));
-        var input = this.shadowRoot.getElementById('task-input').value;
+        const tasks = JSON.parse(localStorage.getItem('tasks'));
+        const input = this.shadowRoot.getElementById('task-input').value;
         if (input != '') {
             // create TaskItem and append to DOM
-            let task = {id: localStorage.getItem('id'),
-                        checked: false,
-                        text: input};
-            document.getElementById("task-list-elements").appendChild(new TaskItem(task));
+            const task = {
+                id: localStorage.getItem('id'),
+                checked: false,
+                text: input,
+            };
+            document.getElementById('task-list-elements').appendChild(new TaskItem(task));
             // update localStorage
             tasks.push(task);
             localStorage.setItem('tasks', JSON.stringify(tasks));
-            let id = parseInt(localStorage.getItem('id')) + 1;
-            localStorage.setItem('id', '' + id);
+            const id = parseInt(localStorage.getItem('id')) + 1;
+            localStorage.setItem('id', `${id}`);
             // hide popup
             this.closePopUp();
         }
@@ -22,8 +25,8 @@ class TaskPopUp extends HTMLElement {
 
     // closes popup
     closePopUp() {
-        let wrapper = this.shadowRoot.getElementById('add-task-popup');
-        let input = this.shadowRoot.getElementById('task-input');
+        const wrapper = this.shadowRoot.getElementById('add-task-popup');
+        const input = this.shadowRoot.getElementById('task-input');
         wrapper.style.display = 'none';
         input.value = '';
     }
@@ -31,24 +34,24 @@ class TaskPopUp extends HTMLElement {
     /* create popup item to add tasks by building a custom component */
     constructor() {
         super();
-        let shadow = this.attachShadow({mode: 'open'});
+        const shadow = this.attachShadow({ mode: 'open' });
         // use div as wrapper
-        let wrapper = document.createElement('div');
+        const wrapper = document.createElement('div');
         wrapper.setAttribute('id', 'add-task-popup');
-        let title = wrapper.appendChild(document.createElement('h3'));
+        const title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Add Task';
         // append an input form
-        let input = wrapper.appendChild(document.createElement('input'));
+        const input = wrapper.appendChild(document.createElement('input'));
         input.setAttribute('type', 'text');
         input.setAttribute('id', 'task-input');
         input.setAttribute('placeholder', 'What are you working on today?');
         input.setAttribute('maxlength', '42');
         // append add and cancel buttons
-        let addBtn = wrapper.appendChild(document.createElement('button'));
+        const addBtn = wrapper.appendChild(document.createElement('button'));
         addBtn.setAttribute('class', 'popup-btns');
         addBtn.setAttribute('id', 'add-task-btn');
         addBtn.innerHTML = 'Add';
-        let cancelBtn = wrapper.appendChild(document.createElement('button'));
+        const cancelBtn = wrapper.appendChild(document.createElement('button'));
         cancelBtn.setAttribute('class', 'popup-btns');
         cancelBtn.setAttribute('id', 'cancel-task-btn');
         cancelBtn.innerHTML = 'Cancel';
@@ -56,7 +59,7 @@ class TaskPopUp extends HTMLElement {
         addBtn.addEventListener('click', this.addTask.bind(this));
         cancelBtn.addEventListener('click', this.closePopUp.bind(this));
         // CSS styling
-        let style = document.createElement('style');
+        const style = document.createElement('style');
         style.textContent = `
         #add-task-popup {
             display: none;
@@ -137,7 +140,7 @@ class TaskPopUp extends HTMLElement {
             float:right;
             right: 5em;
             bottom: 2em;
-        }`
+        }`;
         shadow.appendChild(wrapper);
         shadow.appendChild(style);
     }
