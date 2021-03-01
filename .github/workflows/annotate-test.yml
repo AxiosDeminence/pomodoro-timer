@@ -8,7 +8,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      # installs the npm modules
+      - name: Install modules
+        run: npm --prefix source/ install 
+
 
       - name: Annotate tests on PR
         uses: mattallty/jest-github-action@v1
