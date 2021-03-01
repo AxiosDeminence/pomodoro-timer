@@ -39,9 +39,11 @@
     "testEnvironment": "jest-environment-jsdom-sixteen",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
-    }, 
+    },
     "resetMocks": false,
-    "setupFiles": ["jest-localstorage-mock"]
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   },
   "dependencies": {
     "jest-environment-jsdom-sixteen": "^1.0.3",
