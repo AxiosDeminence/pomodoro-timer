@@ -1,6 +1,6 @@
 # Run checks (tests, linting, etc.) on push
 
-name: Continuous Integration
+name: CI
 on:
   push:
 
