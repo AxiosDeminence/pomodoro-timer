@@ -144,3 +144,5 @@ class TaskPopUp extends HTMLElement {
 }
 
 customElements.define('task-popup', TaskPopUp);
+
+module.exports = TaskPopUp;
