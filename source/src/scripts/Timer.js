@@ -74,7 +74,6 @@ async function timer_function() {
 }
 
 function reset_timer() {
-    btnSound.play();
     timerDisplayDuration.innerHTML = pomoTime + ":00";
     timerStatus = "pomo";
 }
@@ -106,7 +105,7 @@ startButton.addEventListener('click', startAndStopButton);
 
 window.addEventListener("keydown", function(event){
     if(event.code=='KeyS'){
-        startAndStopButton();
+        startButton.click();
     }
     else if(event.code=='KeyR'){
         document.getElementById("reset-button").click();

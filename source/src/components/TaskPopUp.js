@@ -176,6 +176,7 @@ var popupBtn = document.getElementById('task-popup-btn');
 var popUp = document.createElement('task-popup');
 document.body.appendChild(popUp);
 popupBtn.addEventListener('click', function() {
+    btnSound.play();
     popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
 });
 

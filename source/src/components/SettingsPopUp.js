@@ -100,5 +100,6 @@ var settingsPopUp = document.createElement('settings-popup');
 document.body.appendChild(settingsPopUp);
 settingsButton = document.getElementById("setting-button");
 settingsButton.addEventListener('click', function() {
+    btnSound.play();
     settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
 });
