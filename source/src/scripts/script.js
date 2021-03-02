@@ -1,4 +1,6 @@
-import TaskItem from '../components/TaskItem';
+// require('../components/TaskItem');
+
+// const TaskItem = require('../components/TaskItem');
 
 window.addEventListener('DOMContentLoaded', () => {
     let tasks; // holds list nodes in local storage
@@ -14,7 +16,11 @@ window.addEventListener('DOMContentLoaded', () => {
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
     for (let i = 0; i < tasks.length; i++) {
-        const task = new TaskItem(tasks[i]);
+        const task = document.createElement('task-item');
+        task.setAttribute('id', tasks[i].id);
+        task.setAttribute('checked', tasks[i].checked);
+        task.setAttribute('text', tasks[i].text);
+        // new TaskItem(tasks[i]);
         document.getElementById('task-list-elements').appendChild(task);
     }
 });

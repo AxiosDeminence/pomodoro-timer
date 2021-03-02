@@ -18,14 +18,14 @@ test('Initializes localStorage correctly', () => {
 
     localStorage.clear();
 
-    window.document.dispatchEvent(new Event("DOMContentLoaded", {
+    window.document.dispatchEvent(new Event('DOMContentLoaded', {
         bubbles: true,
-        cancelable: true
+        cancelable: true,
     }));
 
     expect(localStorage.getItem('tasks')).toBe('[]');
     expect(localStorage.getItem('id')).toBe('0');
-    expect(document.getElementById("task-list-elements").children.length).toBe(0);
+    expect(document.getElementById('task-list-elements').children).toHaveLength(0);
 });
 
 test('Reads task list and creates tasks correctly', () => {
@@ -34,15 +34,15 @@ test('Reads task list and creates tasks correctly', () => {
         </ul>      
     `;
 
-    localStorage.setItem('tasks', "[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\"}]");
+    localStorage.setItem('tasks', '[{"id":"0","checked":false,"text":"test_task"}]');
 
-    window.document.dispatchEvent(new Event("DOMContentLoaded", {
+    window.document.dispatchEvent(new Event('DOMContentLoaded', {
         bubbles: true,
-        cancelable: true
+        cancelable: true,
     }));
 
-    expect(document.getElementById("task-list-elements").children.length).toBe(1);
-    
+    expect(document.getElementById('task-list-elements').children).toHaveLength(1);
+
     // let tasks = JSON.parse(localStorage.getItem('tasks'));
     // let taskItem = new TaskItem(tasks[0]);
     // expect(document.getElementById("task-list-elements").children[0]).toBe(taskItem);
@@ -60,6 +60,5 @@ test('Reads task list and creates tasks correctly', () => {
 //     popupBtn.click();
 
 //     expect(popUp.shadowRoot.querySelector('add-task-popup').getAttribute('style')).toBe('display:block');
-
 
 // });

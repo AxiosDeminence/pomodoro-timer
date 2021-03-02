@@ -1,38 +1,38 @@
 class ResetPopUp extends HTMLElement {
     reset() {
-        stop();
-        let taskList = Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item'));
+        window.stop();
+        const taskList = Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item'));
         for (let i = 0; i < taskList.length; i++) {
             taskList[i].removeTask();
         }
-        localStorage.setItem('id', '' + 0);
+        localStorage.setItem('id', `${0}`);
         this.closePopUp();
     }
-    
+
     closePopUp() {
-        let wrapper = this.shadowRoot.getElementById('reset-confirm-popup');
+        const wrapper = this.shadowRoot.getElementById('reset-confirm-popup');
         wrapper.style.display = 'none';
     }
 
     constructor() {
-        super();   
-        let shadow = this.attachShadow({mode: 'open'});
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
         // use div as wrapper
-        let wrapper = document.createElement('div');
+        const wrapper = document.createElement('div');
         wrapper.setAttribute('id', 'reset-confirm-popup');
         // close icon
-        let close = wrapper.appendChild(document.createElement('img'));
+        const close = wrapper.appendChild(document.createElement('img'));
         close.setAttribute('src', '../icons/close.svg');
         close.setAttribute('id', 'close-icon');
-        let title = wrapper.appendChild(document.createElement('h3'));
+        const title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Are you sure?';
-        let content = wrapper.appendChild(document.createElement('h5'));
+        const content = wrapper.appendChild(document.createElement('h5'));
         content.setAttribute('id', 'reset-content');
         content.innerHTML = 'This will reset your current pomodoro session and wipe out your jotted tasks!';
-        let footer = wrapper.appendChild(document.createElement('div'));
+        const footer = wrapper.appendChild(document.createElement('div'));
         footer.setAttribute('class', 'button-footer');
         // confirm button
-        let confirmBtn = footer.appendChild(document.createElement('button'));
+        const confirmBtn = footer.appendChild(document.createElement('button'));
         confirmBtn.setAttribute('class', 'reset-popup-btns');
         confirmBtn.setAttribute('id', 'confirm-reset-btn');
         confirmBtn.innerHTML = 'Confirm';
@@ -40,7 +40,7 @@ class ResetPopUp extends HTMLElement {
         confirmBtn.addEventListener('click', this.reset.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
         // CSS styling
-        let style = document.createElement('style');
+        const style = document.createElement('style');
         style.textContent = `
         .button-footer {
             background-color: rgb(234 234 234);
@@ -131,16 +131,20 @@ class ResetPopUp extends HTMLElement {
             float:right;
             right: 5em;
             bottom: 2em;
-        }`
+        }`;
         shadow.appendChild(wrapper);
         shadow.appendChild(style);
     }
 }
 customElements.define('reset-popup', ResetPopUp);
-    
-var resetPopUp = document.createElement('reset-popup');
+
+// window.onload = function () {
+const resetPopUp = document.createElement('reset-popup');
 document.body.appendChild(resetPopUp);
-resetBtn = document.getElementById("reset-button");
-resetBtn.addEventListener('click', function() {
+const resetBtn = document.getElementById('reset-button');
+resetBtn.addEventListener('click', () => {
     resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
 });
+// };
+
+module.exports = ResetPopUp;

@@ -29,13 +29,14 @@ class TaskItem extends HTMLElement {
         super();
         const shadow = this.attachShadow({ mode: 'open' });
         // set attributes
-        this.setAttribute('id', task.id);
-        this.setAttribute('checked', task.checked);
-        this.setAttribute('text', task.text);
+        // this.setAttribute('id', task.id);
+        // this.setAttribute('checked', task.checked);
+        // this.setAttribute('text', task.text);
         // create list node
         const li = document.createElement('li');
-        const text = document.createTextNode(task.text);
-        li.append(text);
+        li.setAttribute('id', 'li');
+        // const text = document.createTextNode(this.getAttribute('text'));
+        // li.append(text);
         // add event listener such that clicking on element crosses out task
         this.addEventListener('click', this.toggle);
         // create delete icon
@@ -68,6 +69,17 @@ class TaskItem extends HTMLElement {
         }`;
         shadow.appendChild(li);
         shadow.appendChild(style);
+    }
+
+    static get observedAttributes() {
+        return ['text'];
+    }
+
+    attributeChangedCallback(attrName, oldVal, newVal) {
+        const shadow = this.shadowRoot;
+        console.log(newVal);
+        const text = document.createTextNode(newVal);
+        shadow.getElementById('li').append(text);
     }
 }
 

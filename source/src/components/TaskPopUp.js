@@ -1,4 +1,5 @@
-import TaskItem from './TaskItem';
+// const TaskItem = require('./TaskItem');
+
 // create class for popup to add task
 class TaskPopUp extends HTMLElement {
     // add TaskItem element to DOM
@@ -12,7 +13,11 @@ class TaskPopUp extends HTMLElement {
                 checked: false,
                 text: input,
             };
-            document.getElementById('task-list-elements').appendChild(new TaskItem(task));
+            const taskItem = document.createElement('task-item');
+            taskItem.setAttribute('id', task.id);
+            taskItem.setAttribute('checked', task.checked);
+            taskItem.setAttribute('text', task.text);
+            document.getElementById('task-list-elements').appendChild(taskItem);
             // update localStorage
             tasks.push(task);
             localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -179,14 +184,13 @@ customElements.define('task-popup', TaskPopUp);
 //     popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
 // });
 
-window.onload = function() {
-    var popupBtn = document.getElementById('task-popup-btn');
-    var popUp = document.createElement('task-popup');
+window.onload = function () {
+    const popupBtn = document.getElementById('task-popup-btn');
+    const popUp = document.createElement('task-popup');
     document.body.appendChild(popUp);
-    popupBtn.addEventListener('click', function() {
+    popupBtn.addEventListener('click', () => {
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
     });
-}
+};
 
 module.exports = TaskPopUp;
-

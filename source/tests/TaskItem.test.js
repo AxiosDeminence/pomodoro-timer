@@ -1,4 +1,4 @@
-import TaskItem from '../src/components/TaskItem';
+import TaskItem from '../src/components/TaskItem.js';
 
 beforeEach(() => {
     const tasks = [];
@@ -16,23 +16,35 @@ afterEach(() => [
 ]);
 test(('toggle checked from false to true'), () => {
     let tasks = JSON.parse(localStorage.getItem('tasks'));
-    let taskItem = new TaskItem(tasks[0]);
+    let taskItem = new TaskItem();
+    taskItem.setAttribute('id', tasks[0].id);
+    taskItem.setAttribute('checked', tasks[0].checked);
+    taskItem.setAttribute('text', tasks[0].text);
     taskItem.click();
     expect(taskItem.getAttribute('checked')).toBe('true');
     // localstorage is updated
     tasks = JSON.parse(localStorage.getItem('tasks'));
-    taskItem = new TaskItem(tasks[0]);
+    taskItem = new TaskItem();
+    taskItem.setAttribute('id', tasks[0].id);
+    taskItem.setAttribute('checked', tasks[0].checked);
+    taskItem.setAttribute('text', tasks[0].text);
     expect(taskItem.getAttribute('checked')).toBe('true');
 });
 
 test(('toggle checked from true to false'), () => {
     let tasks = JSON.parse(localStorage.getItem('tasks'));
-    let taskItem = new TaskItem(tasks[1]);
+    let taskItem = new TaskItem();
+    taskItem.setAttribute('id', tasks[1].id);
+    taskItem.setAttribute('checked', tasks[1].checked);
+    taskItem.setAttribute('text', tasks[1].text);
     taskItem.click();
     expect(taskItem.getAttribute('checked')).toBe('false');
     // localstorage is updated
     tasks = JSON.parse(localStorage.getItem('tasks'));
-    taskItem = new TaskItem(tasks[0]);
+    taskItem = new TaskItem();
+    taskItem.setAttribute('id', tasks[0].id);
+    taskItem.setAttribute('checked', tasks[0].checked);
+    taskItem.setAttribute('text', tasks[0].text);
     expect(taskItem.getAttribute('checked')).toBe('false');
 });
 
@@ -42,7 +54,10 @@ test(('remove a task'), () => {
     </ul> 
     `;
     let tasks = JSON.parse(localStorage.getItem('tasks'));
-    const taskItem = new TaskItem(tasks[0]);
+    const taskItem = new TaskItem();
+    taskItem.setAttribute('id', tasks[0].id);
+    taskItem.setAttribute('checked', tasks[0].checked);
+    taskItem.setAttribute('text', tasks[0].text);
     const list = document.getElementById('task-list-elements');
     list.appendChild(taskItem);
     expect(list.childElementCount).toBe(1);
