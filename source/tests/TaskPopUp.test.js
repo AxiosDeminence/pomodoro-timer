@@ -94,6 +94,8 @@ test('Pop up button works correctly', () => {
     // const testTaskPopUp = new TaskPopUp();
     // const shadow = testTaskPopUp.shadowRoot;
 
+    dispatchEvent(new Event('load'));
+
     const popupBtn = document.getElementById('task-popup-btn');
     const popUp = document.createElement('task-popup');
     document.body.appendChild(popUp);
@@ -102,7 +104,7 @@ test('Pop up button works correctly', () => {
 
     const shadow = popUp.shadowRoot;
 
-    const dispaly = getComputedStyle(shadow.getElementById('add-task-popup'));
+    const display = getComputedStyle(shadow.getElementById('add-task-popup'));
 
-    expect(dispaly.display).toBe('block');
+    expect(display.display).toBe('block');
 });
