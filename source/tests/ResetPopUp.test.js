@@ -1,4 +1,5 @@
 import ResetPopUp from '../src/components/ResetPopUp';
+import TaskItem from '../src/components/TaskItem';
 
 beforeEach(() => {
     const tasks = [];
@@ -15,10 +16,19 @@ beforeEach(() => {
         <p class="top-button-text">Reset</p>
     </button>
     <ul id="task-list-elements">
-        <task-item id=0 checked=false test="First Item" />
-        <task-item id=1 checked=true test="Second Item" />
     </ul>
     `;
+    const list = document.getElementById('task-list-elements');
+    const taskItemF = new TaskItem();
+    taskItemF.setAttribute('id', taskF.id);
+    taskItemF.setAttribute('checked', taskF.checked);
+    taskItemF.setAttribute('text', taskF.text);
+    const taskItemT = new TaskItem();
+    taskItemT.setAttribute('id', taskT.id);
+    taskItemT.setAttribute('checked', taskT.checked);
+    taskItemT.setAttribute('text', taskT.text);
+    list.appendChild(taskItemF);
+    list.appendChild(taskItemT);
 });
 
 afterEach(() => [
@@ -29,6 +39,10 @@ test(('reset button pops the window'), () => {
     const resetPopUp = document.createElement('reset-popup');
     document.body.appendChild(resetPopUp);
     const resetBtn = document.getElementById('reset-button');
+    window.document.dispatchEvent(new Event('DOMContentLoaded', {
+        bubbles: true,
+        cancelable: true,
+    }));
     resetBtn.click();
     const dispaly = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
     expect(dispaly.display).toBe('block');

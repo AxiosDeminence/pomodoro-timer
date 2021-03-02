@@ -3,6 +3,7 @@ class ResetPopUp extends HTMLElement {
         window.stop();
         const taskList = Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item'));
         for (let i = 0; i < taskList.length; i++) {
+            console.log(taskList[i]);
             taskList[i].removeTask();
         }
         localStorage.setItem('id', `${0}`);
@@ -138,13 +139,13 @@ class ResetPopUp extends HTMLElement {
 }
 customElements.define('reset-popup', ResetPopUp);
 
-// window.onload = function () {
-const resetPopUp = document.createElement('reset-popup');
-document.body.appendChild(resetPopUp);
-const resetBtn = document.getElementById('reset-button');
-resetBtn.addEventListener('click', () => {
-    resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
+window.addEventListener('DOMContentLoaded', () => {
+    const resetPopUp = document.createElement('reset-popup');
+    document.body.appendChild(resetPopUp);
+    const resetBtn = document.getElementById('reset-button');
+    resetBtn.addEventListener('click', () => {
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
+    });
 });
-// };
 
 module.exports = ResetPopUp;
