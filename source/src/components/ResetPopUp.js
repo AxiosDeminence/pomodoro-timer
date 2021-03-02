@@ -142,5 +142,6 @@ var resetPopUp = document.createElement('reset-popup');
 document.body.appendChild(resetPopUp);
 resetBtn = document.getElementById("reset-button");
 resetBtn.addEventListener('click', function() {
+    btnSound.play();
     resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
 });

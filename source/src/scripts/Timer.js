@@ -8,6 +8,8 @@ let timerStatus = "pomo"
 // let longBreakTime = localStorage.getItem('long-break-length');
 let breakCounter = 0;
 const SECOND = 1000;
+let btnSound = new Audio("../icons/btnClick.mp3");
+let alarmSound = new Audio("../icons/alarm.mp3");
 const LIGHT_COLOR = "#f3606060";
 const DARK_COLOR = "#f36060";
 
@@ -23,6 +25,7 @@ let longBreakTime = localStorage.getItem('long-break-length');
 timerDisplayDuration.innerHTML = pomoTime + ":00";
 
 async function startAndStopButton() {
+    btnSound.play();
     if (startButton.innerHTML == "Start") {
         start();
     } else {
@@ -48,6 +51,7 @@ async function timer_function() {
     let timer_text = timerDisplayDuration.innerHTML;
 
     if (timer_text == "0:00") {
+        alarmSound.play();
         switch_mode();
         timer_text = timerDisplayDuration.innerHTML;
     }
@@ -70,6 +74,7 @@ async function timer_function() {
 }
 
 function reset_timer() {
+    btnSound.play();
     timerDisplayDuration.innerHTML = pomoTime + ":00";
     timerStatus = "pomo";
 }
@@ -98,3 +103,18 @@ function switch_mode() {
 }
 
 startButton.addEventListener('click', startAndStopButton);
+
+window.addEventListener("keydown", function(event){
+    if(event.code=='KeyS'){
+        startAndStopButton();
+    }
+    else if(event.code=='KeyR'){
+        document.getElementById("reset-button").click();
+    }
+    else if(event.code=='KeyH'){
+        document.getElementById("help-button").click();
+    }
+    else if(event.code=='Escape'){
+        document.getElementById('setting-button').click();
+    }
+});
