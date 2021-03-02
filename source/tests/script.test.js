@@ -2,6 +2,7 @@ const TaskItem = require('../src/components/TaskItem');
 
 beforeEach(() => {
     require('../src/scripts/script');
+    require('../src/components/TaskItem');
     localStorage.setItem('tasks', '[]');
     localStorage.setItem('id', '0');
 });
@@ -43,23 +44,11 @@ test('Reads task list and creates tasks correctly', () => {
 
     expect(document.getElementById("task-list-elements").children.length).toBe(1);
     
+    let taskItem = document.getElementById("task-list-elements").children[0];
+    let task = JSON.stringify(taskItem);
+
     // let tasks = JSON.parse(localStorage.getItem('tasks'));
     // let taskItem = new TaskItem(tasks[0]);
-    // expect(document.getElementById("task-list-elements").children[0]).toBe(taskItem);
+    expect(task).toBe("tasks[0]");
 });
 
-// test('Pop up button works correctly', () => {
-//     document.body.innerHTML = `
-//         <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
-//     `;
-
-//     const popupBtn = document.getElementById('task-popup-btn');
-//     const popUp = document.createElement('task-popup');
-//     document.body.appendChild(popUp);
-
-//     popupBtn.click();
-
-//     expect(popUp.shadowRoot.querySelector('add-task-popup').getAttribute('style')).toBe('display:block');
-
-
-// });

@@ -1,4 +1,5 @@
 import TaskItem from '../components/TaskItem';
+require('../components/TaskItem');
 
 window.addEventListener('DOMContentLoaded', () => {
     let tasks; // holds list nodes in local storage
