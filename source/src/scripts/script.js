@@ -41,12 +41,9 @@ async function timer_function() {
         await startAndStopButton();
         return;
     }
-
-    if (!seconds == 0) {
-        seconds--;
-    } else {
-        seconds = 59;
-        minutes--;
+    for (let i = 0; i < tasks.length; i++) {
+        let task = new TaskItem(tasks[i]);
+        document.getElementById("task-list-elements").appendChild(task);
     }
 
     if (seconds < 10) {

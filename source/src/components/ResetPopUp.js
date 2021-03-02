@@ -1,0 +1,146 @@
+class ResetPopUp extends HTMLElement {
+    reset() {
+        stop();
+        let taskList = Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item'));
+        for (let i = 0; i < taskList.length; i++) {
+            taskList[i].removeTask();
+        }
+        localStorage.setItem('id', '' + 0);
+        this.closePopUp();
+    }
+    
+    closePopUp() {
+        let wrapper = this.shadowRoot.getElementById('reset-confirm-popup');
+        wrapper.style.display = 'none';
+    }
+
+    constructor() {
+        super();   
+        let shadow = this.attachShadow({mode: 'open'});
+        // use div as wrapper
+        let wrapper = document.createElement('div');
+        wrapper.setAttribute('id', 'reset-confirm-popup');
+        // close icon
+        let close = wrapper.appendChild(document.createElement('img'));
+        close.setAttribute('src', '../icons/close.svg');
+        close.setAttribute('id', 'close-icon');
+        let title = wrapper.appendChild(document.createElement('h3'));
+        title.innerHTML = 'Are you sure?';
+        let content = wrapper.appendChild(document.createElement('h5'));
+        content.setAttribute('id', 'reset-content');
+        content.innerHTML = 'This will reset your current pomodoro session and wipe out your jotted tasks!';
+        let footer = wrapper.appendChild(document.createElement('div'));
+        footer.setAttribute('class', 'button-footer');
+        // confirm button
+        let confirmBtn = footer.appendChild(document.createElement('button'));
+        confirmBtn.setAttribute('class', 'reset-popup-btns');
+        confirmBtn.setAttribute('id', 'confirm-reset-btn');
+        confirmBtn.innerHTML = 'Confirm';
+        // event listeners for confirm button and close icon
+        confirmBtn.addEventListener('click', this.reset.bind(this));
+        close.addEventListener('click', this.closePopUp.bind(this));
+        // CSS styling
+        let style = document.createElement('style');
+        style.textContent = `
+        .button-footer {
+            background-color: rgb(234 234 234);
+            padding: 14px 20px;
+            text-align: right;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        #close-icon {
+            width: 15px;
+            margin-top: 10px;
+            margin-right: 10px;
+            position:absolute;
+            top:0;
+            right:0;
+            cursor: pointer;
+            opacity: 0.33;
+        }
+        #close-icon:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        #reset-content {
+            color: rgb(85, 85, 85);
+            width: 85%;
+            margin: 20px auto 0 auto;
+        }
+        #reset-confirm-popup {
+            display: none;
+            position: fixed;
+            width: 30%;
+            height: 30%;
+            border-radius: 4px;
+            top:25%;
+            left: 34%;
+            border: 3px solid #f1f1f1;
+            z-index: 1;
+            background-color: whitesmoke;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop; 
+            -webkit-animation-duration: 0.3s;
+            animation-name: animatetop;
+            animation-duration: 0.3s
+          }
+          @-webkit-keyframes animatetop {
+            from {top:-200px; opacity:0} 
+            to {top:70; opacity:1}
+          }
+          @keyframes animatetop {
+            from {top:-200px; opacity:0}
+            to {top:70; opacity:1}
+          }
+        #reset-confirm-popup > h3{
+            font-size: 1.6vw;
+            color: #f36060;
+            border-bottom: solid 1px #d2d2d2;
+            padding-bottom: 5px;
+            width: 85%;
+            margin: 20px auto 10px auto;
+        }
+        .reset-popup-btns {
+            cursor: pointer;
+            border-style: none;
+            border-radius: 4px;
+            text-align: center;
+            background-color:#f36060;
+            color:#fff;
+            font-family: 'Quicksand', sans-serif;
+            height: 17%;
+            width: 27%;
+            font-size: 1em;
+            font-weight: 500;
+            outline: none;
+        }
+        .reset-popup-btns:hover {
+            filter: brightness(105%);
+            transform: scale(1.1);
+        }
+        #confirm-reset-btn {
+            padding: 8px 12px;
+        }
+        #cancel-reset-btn {
+            position: absolute;
+            float:right;
+            right: 5em;
+            bottom: 2em;
+        }`
+        shadow.appendChild(wrapper);
+        shadow.appendChild(style);
+    }
+}
+customElements.define('reset-popup', ResetPopUp);
+    
+var resetPopUp = document.createElement('reset-popup');
+document.body.appendChild(resetPopUp);
+resetBtn = document.getElementById("reset-button");
+resetBtn.addEventListener('click', function() {
+    resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
+});
