@@ -105,12 +105,10 @@ header:after {
     width: 50%;
     min-height: 420px;
 }
-
-
 #task-list ul {
     list-style-type: none;
 }
-#task-list ul li {
+task-item {
     cursor: pointer;
     height: 50px;
     position: relative;
@@ -128,16 +126,14 @@ header:after {
     font-weight: 500;
     border-style:none;
 }
-#task-list ul li:hover {
+task-item:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-
-#task-list ul li.checked {
+[checked = 'true'] {
     background: #f3606060;
     color: rgba(255, 255, 255, 0.651);
     text-decoration: line-through;
 }
-
 #popup-button {
     float: right;
     width: 30%;
@@ -179,14 +175,13 @@ img#dash {
     border: 0 solid #ffd5ca;
     color: white;
     padding: 10px 24px;
-    cursor: pointer;
     font-size: larger;
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
     outline: none;
     display: inline;
     margin-right: -4.5px;
-    margin-left: 0;
+    margin-left: -0px;
 }
 /* This is here to create spacing between Pomo/Break and Timer Display */
 div.empty-space-border
@@ -223,11 +218,11 @@ div.timer-value
 .timer-control-buttons button
 {
     margin-top: 21px;
-    background-color: #f36060;
-    border: 1px solid #ffd5ca;
-    color: white;
-    padding: 10px 24px;
-    cursor: pointer;
+    background-color: #f36060; 
+    border: 1px solid #ffd5ca; 
+    color: white; 
+    padding: 10px 24px; 
+    cursor: pointer; 
     font-size: x-large;
     font-weight: 500;
     border-radius: 8px;
@@ -236,14 +231,12 @@ div.timer-value
     width: 200px;
 
 }
-
 /* CSS Code for diff color when hover over Start/Reset Button*/
 .timer-control-buttons button:hover {
     transform: scale(1.1);
     filter: brightness(105%);
 }
-
-/* Added after pull request */
+/* Animations */
 @media screen and (max-width: 1000px) {
     .top-button-text {
         display: none;
@@ -258,7 +251,6 @@ div.timer-value
         width: 40px;
     }
 }
-
 @media screen and (max-width: 700px) {
     header {
         margin-top: 10px;

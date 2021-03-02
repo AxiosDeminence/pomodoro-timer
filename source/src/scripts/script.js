@@ -1,50 +1,27 @@
-const startButton = document.getElementById("start-btn");
-const timerDisplayDuration = document.getElementById("timer_display_duration");
-const DEFAULT_TIME = "25:00";
-const SECOND = 1000;
-let timer;
+window.addEventListener('DOMContentLoaded', () => {
+    var tasks; // holds list nodes in local storage
+    var id; // id counter for task items
 
-startButton.onclick = startAndStopButton;
-
-/**
- * Test header for automatic jsdoc generation
- */
-async function startAndStopButton() {
-    if (startButton.innerHTML == "Start") {
-        startButton.innerHTML = "Stop";
-        timer = setInterval(timer_function, SECOND);
-    } else {
-        clearInterval(timer);
-        setTimeout(reset_time, SECOND / 10);
-        startButton.innerHTML = "Start";
+    if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
+        tasks = [];
+        id = 0;
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('id', '' + id);
+        console.log('tasks:',localStorage.getItem('tasks'),'\nid:',localStorage.getItem('id'));
     }
-}
-
-async function timer_function() {
-    const timer_text = timerDisplayDuration.innerHTML;
-    let minutes = Number(timer_text.substring(0, timer_text.length - 3));
-    let seconds = Number(timer_text.substring(timer_text.length - 2));
-
-    if (timer_text == "0:00") {
-        await startAndStopButton();
-        return;
+    else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
     }
-
-    if (!seconds == 0) {
-        seconds--;
-    } else {
-        seconds = 59;
-        minutes--;
+    for (let i = 0; i < tasks.length; i++) {
+        var task = new TaskItem(tasks[i]);
+        document.getElementById("task-list-elements").appendChild(task);
     }
+});
 
-    if (seconds < 10) {
-        seconds = `0${String(seconds)}`;
-    }
-    minutes = String(minutes);
 
-    timerDisplayDuration.innerHTML = `${minutes}:${seconds}`;
-}
-
-function reset_time() {
-    timerDisplayDuration.innerHTML = DEFAULT_TIME;
-}
+// Uncomment below code to clear local storage on refresh -- Useful for debugging
+// window.onbeforeunload = function() {
+//     // localStorage.removeItem('tasks');
+//     localStorage.clear();
+//     return '';
+// };
