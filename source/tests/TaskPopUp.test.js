@@ -5,6 +5,13 @@ import TaskPopUp from '../src/components/TaskPopUp';
 beforeEach(() => {
     localStorage.setItem('tasks', '[]');
     localStorage.setItem('id', '0');
+    document.body.innerHTML = `
+        <ul id="task-list-elements">
+        </ul>
+        <div id="popup-button">
+            <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+        </div>
+    `;
 });
 
 afterEach(() => {
@@ -12,19 +19,14 @@ afterEach(() => {
 });
 
 test('Adding a task called test_task with the addButton correctly updates localStorage', () => {
-    document.body.innerHTML = `
-        <ul id="task-list-elements">
-        </ul>
-    `;
-
     const testTaskPopUp = new TaskPopUp();
     const shadow = testTaskPopUp.shadowRoot;
 
     const input = shadow.querySelector('input');
     input.value = 'test_task';
 
-    const button = shadow.querySelectorAll('button');
-    button[0].click();
+    const button = shadow.querySelector('button');
+    button.click();
 
     // new task test_task is added to list of tasks
     expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\"}]');
@@ -35,20 +37,14 @@ test('Adding a task called test_task with the addButton correctly updates localS
 });
 
 test('Adding empty task does not change localStorage', () => {
-
-    document.body.innerHTML = `
-        <ul id="task-list-elements">
-        </ul>
-    `;
-
     const testTaskPopUp = new TaskPopUp();
     const shadow = testTaskPopUp.shadowRoot;
 
     const input = shadow.querySelector('input');
     input.value = '';
 
-    const button = shadow.querySelectorAll('button');
-    button[0].click();
+    const button = shadow.querySelector('button');
+    button.click();
 
     // localStorage remains the same
     expect(localStorage.getItem('tasks')).toBe('[]');
@@ -57,17 +53,11 @@ test('Adding empty task does not change localStorage', () => {
 });
 
 test('cancelButton works correctly', () => {
-
-    document.body.innerHTML = `
-        <ul id="task-list-elements">
-        </ul>
-    `;
-
     const testTaskPopUp = new TaskPopUp();
     const shadow = testTaskPopUp.shadowRoot;
 
-    const button = shadow.querySelectorAll('button');
-    button[1].click();
+    const close = shadow.querySelector('img');
+    close.click();
 
     expect(shadow.querySelector('div').style.display).toBe('none');
     expect(shadow.querySelector('input').value).toBe('');
@@ -90,13 +80,31 @@ test('All attributes set correctly', () => {
     expect(shadow.querySelector('input').getAttribute('maxlength')).toBe('42');
 
     // add button attributes set correctly
-    expect(shadow.querySelectorAll('button')[0].getAttribute('class')).toBe('popup-btns');
-    expect(shadow.querySelectorAll('button')[0].getAttribute('id')).toBe('add-task-btn');
-    expect(shadow.querySelectorAll('button')[0].innerHTML).toBe('Add');
+    expect(shadow.querySelector('button').getAttribute('class')).toBe('popup-btns');
+    expect(shadow.querySelector('button').getAttribute('id')).toBe('add-task-btn');
+    expect(shadow.querySelector('button').innerHTML).toBe('Add');
 
-    // cancel button attributes set correctly
-    expect(shadow.querySelectorAll('button')[1].getAttribute('class')).toBe('popup-btns');
-    expect(shadow.querySelectorAll('button')[1].getAttribute('id')).toBe('cancel-task-btn');
-    expect(shadow.querySelectorAll('button')[1].innerHTML).toBe('Cancel');
+    // close icon attributes set correctly
+    expect(shadow.querySelector('img').getAttribute('src')).toBe('../icons/close.svg');
+    expect(shadow.querySelector('img').getAttribute('id')).toBe('close-icon');
+
+});
+
+test('Pop up button works correctly', () => {
+
+    // const testTaskPopUp = new TaskPopUp();
+    // const shadow = testTaskPopUp.shadowRoot;
+
+    const popupBtn = document.getElementById('task-popup-btn');
+    const popUp = document.createElement('task-popup');
+    document.body.appendChild(popUp);
+
+    popupBtn.click();
+
+    const shadow = popUp.shadowRoot;
+    
+
+    expect(shadow.getElementById('add-task-popup').getAttribute('style')).toBe('display:block');
+
 
 });
