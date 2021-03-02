@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<coverage generated="1614663116563" clover="3.2.0">
-  <project timestamp="1614663116563" name="All files">
-    <metrics statements="102" coveredstatements="82" conditionals="26" coveredconditionals="19" methods="12" coveredmethods="11" elements="140" coveredelements="112" complexity="0" loc="102" ncloc="102" packages="2" files="3" classes="3"/>
+<coverage generated="1614665034267" clover="3.2.0">
+  <project timestamp="1614665034267" name="All files">
+    <metrics statements="150" coveredstatements="129" conditionals="28" coveredconditionals="21" methods="17" coveredmethods="15" elements="195" coveredelements="165" complexity="0" loc="150" ncloc="150" packages="2" files="4" classes="4"/>
     <package name="components">
-      <metrics statements="31" coveredstatements="31" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
+      <metrics statements="79" coveredstatements="78" conditionals="8" coveredconditionals="8" methods="10" coveredmethods="9"/>
       <file name="TaskItem.js" path="D:\学习\21WI\CSE110\cse110-w21-group13\source\src\components\TaskItem.js">
         <metrics statements="31" coveredstatements="31" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
         <line num="5" count="3" type="stmt"/>
@@ -18,26 +17,77 @@
         <line num="21" count="1" type="cond" truecount="2" falsecount="0"/>
         <line num="22" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
-        <line num="29" count="6" type="stmt"/>
-        <line num="30" count="6" type="stmt"/>
-        <line num="32" count="6" type="stmt"/>
-        <line num="33" count="6" type="stmt"/>
-        <line num="34" count="6" type="stmt"/>
+        <line num="29" count="7" type="stmt"/>
+        <line num="30" count="7" type="stmt"/>
+        <line num="32" count="7" type="stmt"/>
+        <line num="33" count="7" type="stmt"/>
+        <line num="34" count="7" type="stmt"/>
+        <line num="36" count="7" type="stmt"/>
+        <line num="37" count="7" type="stmt"/>
+        <line num="38" count="7" type="stmt"/>
+        <line num="40" count="7" type="stmt"/>
+        <line num="42" count="7" type="stmt"/>
+        <line num="43" count="7" type="stmt"/>
+        <line num="44" count="7" type="stmt"/>
+        <line num="45" count="7" type="stmt"/>
+        <line num="47" count="7" type="stmt"/>
+        <line num="49" count="7" type="stmt"/>
+        <line num="50" count="7" type="stmt"/>
+        <line num="69" count="7" type="stmt"/>
+        <line num="70" count="7" type="stmt"/>
+        <line num="74" count="3" type="stmt"/>
+        <line num="76" count="3" type="stmt"/>
+      </file>
+      <file name="TaskPopUp.js" path="D:\学习\21WI\CSE110\cse110-w21-group13\source\src\components\TaskPopUp.js">
+        <metrics statements="48" coveredstatements="47" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="4"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
         <line num="36" count="6" type="stmt"/>
         <line num="37" count="6" type="stmt"/>
-        <line num="38" count="6" type="stmt"/>
+        <line num="39" count="6" type="stmt"/>
         <line num="40" count="6" type="stmt"/>
         <line num="42" count="6" type="stmt"/>
         <line num="43" count="6" type="stmt"/>
         <line num="44" count="6" type="stmt"/>
         <line num="45" count="6" type="stmt"/>
-        <line num="47" count="6" type="stmt"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="48" count="6" type="stmt"/>
         <line num="49" count="6" type="stmt"/>
         <line num="50" count="6" type="stmt"/>
-        <line num="69" count="6" type="stmt"/>
-        <line num="70" count="6" type="stmt"/>
-        <line num="74" count="2" type="stmt"/>
-        <line num="76" count="2" type="stmt"/>
+        <line num="51" count="6" type="stmt"/>
+        <line num="52" count="6" type="stmt"/>
+        <line num="54" count="6" type="stmt"/>
+        <line num="55" count="6" type="stmt"/>
+        <line num="56" count="6" type="stmt"/>
+        <line num="57" count="6" type="stmt"/>
+        <line num="58" count="6" type="stmt"/>
+        <line num="59" count="6" type="stmt"/>
+        <line num="61" count="6" type="stmt"/>
+        <line num="62" count="6" type="stmt"/>
+        <line num="64" count="6" type="stmt"/>
+        <line num="65" count="6" type="stmt"/>
+        <line num="168" count="6" type="stmt"/>
+        <line num="169" count="6" type="stmt"/>
+        <line num="173" count="1" type="stmt"/>
+        <line num="182" count="1" type="stmt"/>
+        <line num="183" count="1" type="stmt"/>
+        <line num="184" count="1" type="stmt"/>
+        <line num="185" count="1" type="stmt"/>
+        <line num="186" count="1" type="stmt"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="191" count="1" type="stmt"/>
       </file>
     </package>
     <package name="scripts">
@@ -120,95 +170,5 @@
         <line num="19" count="1" type="stmt"/>
       </file>
     </package>
-=======
-<coverage generated="1614663789654" clover="3.2.0">
-  <project timestamp="1614663789655" name="All files">
-    <metrics statements="79" coveredstatements="63" conditionals="8" coveredconditionals="2" methods="10" coveredmethods="4" elements="97" coveredelements="69" complexity="0" loc="79" ncloc="79" packages="1" files="2" classes="2"/>
-    <file name="TaskItem.js" path="C:\Users\BenG\git\cse110-w21-group13\source\src\components\TaskItem.js">
-      <metrics statements="31" coveredstatements="20" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="1"/>
-      <line num="5" count="0" type="stmt"/>
-      <line num="7" count="0" type="stmt"/>
-      <line num="8" count="0" type="stmt"/>
-      <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="12" count="0" type="stmt"/>
-      <line num="13" count="0" type="stmt"/>
-      <line num="19" count="0" type="stmt"/>
-      <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="22" count="0" type="stmt"/>
-      <line num="24" count="0" type="stmt"/>
-      <line num="29" count="1" type="stmt"/>
-      <line num="30" count="1" type="stmt"/>
-      <line num="32" count="1" type="stmt"/>
-      <line num="33" count="1" type="stmt"/>
-      <line num="34" count="1" type="stmt"/>
-      <line num="36" count="1" type="stmt"/>
-      <line num="37" count="1" type="stmt"/>
-      <line num="38" count="1" type="stmt"/>
-      <line num="40" count="1" type="stmt"/>
-      <line num="42" count="1" type="stmt"/>
-      <line num="43" count="1" type="stmt"/>
-      <line num="44" count="1" type="stmt"/>
-      <line num="45" count="1" type="stmt"/>
-      <line num="47" count="1" type="stmt"/>
-      <line num="49" count="1" type="stmt"/>
-      <line num="50" count="1" type="stmt"/>
-      <line num="69" count="1" type="stmt"/>
-      <line num="70" count="1" type="stmt"/>
-      <line num="74" count="1" type="stmt"/>
-      <line num="76" count="1" type="stmt"/>
-    </file>
-    <file name="TaskPopUp.js" path="C:\Users\BenG\git\cse110-w21-group13\source\src\components\TaskPopUp.js">
-      <metrics statements="48" coveredstatements="43" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="3"/>
-      <line num="6" count="2" type="stmt"/>
-      <line num="7" count="2" type="stmt"/>
-      <line num="8" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="10" count="1" type="stmt"/>
-      <line num="15" count="1" type="stmt"/>
-      <line num="17" count="1" type="stmt"/>
-      <line num="18" count="1" type="stmt"/>
-      <line num="19" count="1" type="stmt"/>
-      <line num="20" count="1" type="stmt"/>
-      <line num="22" count="1" type="stmt"/>
-      <line num="28" count="2" type="stmt"/>
-      <line num="29" count="2" type="stmt"/>
-      <line num="30" count="2" type="stmt"/>
-      <line num="31" count="2" type="stmt"/>
-      <line num="36" count="5" type="stmt"/>
-      <line num="37" count="5" type="stmt"/>
-      <line num="39" count="5" type="stmt"/>
-      <line num="40" count="5" type="stmt"/>
-      <line num="42" count="5" type="stmt"/>
-      <line num="43" count="5" type="stmt"/>
-      <line num="44" count="5" type="stmt"/>
-      <line num="45" count="5" type="stmt"/>
-      <line num="46" count="5" type="stmt"/>
-      <line num="48" count="5" type="stmt"/>
-      <line num="49" count="5" type="stmt"/>
-      <line num="50" count="5" type="stmt"/>
-      <line num="51" count="5" type="stmt"/>
-      <line num="52" count="5" type="stmt"/>
-      <line num="54" count="5" type="stmt"/>
-      <line num="55" count="5" type="stmt"/>
-      <line num="56" count="5" type="stmt"/>
-      <line num="57" count="5" type="stmt"/>
-      <line num="58" count="5" type="stmt"/>
-      <line num="59" count="5" type="stmt"/>
-      <line num="61" count="5" type="stmt"/>
-      <line num="62" count="5" type="stmt"/>
-      <line num="64" count="5" type="stmt"/>
-      <line num="65" count="5" type="stmt"/>
-      <line num="168" count="5" type="stmt"/>
-      <line num="169" count="5" type="stmt"/>
-      <line num="173" count="1" type="stmt"/>
-      <line num="182" count="1" type="stmt"/>
-      <line num="183" count="0" type="stmt"/>
-      <line num="184" count="0" type="stmt"/>
-      <line num="185" count="0" type="stmt"/>
-      <line num="186" count="0" type="stmt"/>
-      <line num="187" count="0" type="stmt"/>
-      <line num="191" count="1" type="stmt"/>
-    </file>
->>>>>>> a0264a1c32fd1862fe9984e05344e94042d91b30
   </project>
 </coverage>

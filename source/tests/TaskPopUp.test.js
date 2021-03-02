@@ -15,6 +15,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+    jest.resetModules();
     localStorage.clear();
 });
 
@@ -33,7 +34,7 @@ test('Adding a task called test_task with the addButton correctly updates localS
     // id is updated
     expect(localStorage.getItem('id')).toBe('1');
     // input is set back to empty string
-    expect(input.value).toBe("");
+    expect(input.value).toBe('');
 });
 
 test('Adding empty task does not change localStorage', () => {
@@ -87,11 +88,9 @@ test('All attributes set correctly', () => {
     // close icon attributes set correctly
     expect(shadow.querySelector('img').getAttribute('src')).toBe('../icons/close.svg');
     expect(shadow.querySelector('img').getAttribute('id')).toBe('close-icon');
-
 });
 
 test('Pop up button works correctly', () => {
-
     // const testTaskPopUp = new TaskPopUp();
     // const shadow = testTaskPopUp.shadowRoot;
 
@@ -102,9 +101,8 @@ test('Pop up button works correctly', () => {
     popupBtn.click();
 
     const shadow = popUp.shadowRoot;
-    
 
-    expect(shadow.getElementById('add-task-popup').getAttribute('style')).toBe('display:block');
+    const dispaly = getComputedStyle(shadow.getElementById('add-task-popup'));
 
-
+    expect(dispaly.display).toBe('block');
 });
