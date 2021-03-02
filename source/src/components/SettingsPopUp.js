@@ -11,7 +11,7 @@ class SettingsPopUp extends HTMLElement {
         localStorage.setItem('pomo-length', pomoLength);
         localStorage.setItem('short-break-length', shortBreak);
         localStorage.setItem('long-break-length', longBreak);
-        stop();
+        // stop();
         this.closePopUp();
     }
 
@@ -96,9 +96,13 @@ class SettingsPopUp extends HTMLElement {
 }
 customElements.define('settings-popup', SettingsPopUp);
 
-const settingsPopUp = document.createElement('settings-popup');
-document.body.appendChild(settingsPopUp);
-settingsButton = document.getElementById('setting-button');
-settingsButton.addEventListener('click', () => {
-    settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
+window.addEventListener('load', () => {
+    const settingsButton = document.getElementById('setting-button');
+    const settingsPopUp = document.createElement('settings-popup');
+    document.body.appendChild(settingsPopUp);
+    settingsButton.addEventListener('click', () => {
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
+    });
 });
+
+module.exports = SettingsPopUp;

@@ -184,13 +184,13 @@ customElements.define('task-popup', TaskPopUp);
 //     popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
 // });
 
-window.onload = function () {
+window.addEventListener('load', () => {
     const popupBtn = document.getElementById('task-popup-btn');
     const popUp = document.createElement('task-popup');
     document.body.appendChild(popUp);
     popupBtn.addEventListener('click', () => {
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
     });
-};
+});
 
 module.exports = TaskPopUp;
