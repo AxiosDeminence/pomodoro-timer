@@ -3,6 +3,7 @@ import TaskItem from '../components/TaskItem';
 window.addEventListener('DOMContentLoaded', () => {
     let tasks; // holds list nodes in local storage
     let id; // id counter for task items
+
     if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
         tasks = [];
         id = 0;
@@ -18,20 +19,9 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById("task-list-elements").appendChild(task);
     }
 });
-
-// button that opens the custom popup component to DOM
-const popupBtn = document.getElementById('task-popup-btn');
-const popUp = document.createElement('task-popup');
-document.body.appendChild(popUp);
-
-if (popupBtn) {
-    popupBtn.addEventListener('click', function() {
-        popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
-    });
-}
-
 // Uncomment below code to clear local storage on refresh -- Useful for debugging
 // window.onbeforeunload = function() {
-//     localStorage.removeItem('tasks');
+//     // localStorage.removeItem('tasks');
+//     localStorage.clear();
 //     return '';
 // };

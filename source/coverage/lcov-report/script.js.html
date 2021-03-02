@@ -123,20 +123,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">window.addEventListener('DOMContentLoaded', () =&gt; {
-    let tasks = [{}]; // holds list nodes in local storage
-    var id; // id counter for task items
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (localStorage.getItem('tasks') == null || <span class="branch-1 cbranch-no" title="branch not covered" >localStorage.getItem('id') === null)</span> {
-        tasks = [{}];
-        id = 0;
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        localStorage.setItem('id', '' + id);
-        console.log('tasks:',localStorage.getItem('tasks'),'\nid:',localStorage.getItem('id'));
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const startButton = document.getElementById("start-btn");
+const timerDisplayDuration = document.getElementById("timer_display_duration");
+const DEFAULT_TIME = "25:00";
+const SECOND = 1000;
+let timer;
+&nbsp;
+startButton.onclick = startAndStopButton;
+&nbsp;
+/**
+ * Test header for automatic jsdoc generation
+ */
+async function startAndStopButton() {
+    if (startButton.innerHTML == "Start") {
+        startButton.innerHTML = "Stop";
+        timer = setInterval(timer_function, SECOND);
+    } else {
+        clearInterval(timer);
+        setTimeout(reset_time, SECOND / 10);
+        startButton.innerHTML = "Start";
     }
-    else {
-<span class="cstat-no" title="statement not covered" >        tasks = JSON.parse(localStorage.getItem('tasks'));</span>
+}
+&nbsp;
+async function timer_function() {
+    const timer_text = timerDisplayDuration.innerHTML;
+    let minutes = Number(timer_text.substring(0, timer_text.length - 3));
+    let seconds = Number(timer_text.substring(timer_text.length - 2));
+&nbsp;
+    if (timer_text == "0:00") {
+        await startAndStopButton();
+        return;
     }
     for (let i = 0; i &lt; tasks.length; i++) {
         var task = new TaskItem(tasks[i]);
@@ -144,22 +160,18 @@
     }
 });
 &nbsp;
-// button that opens the custom popup component to DOM
-const popupBtn = document.getElementById('task-popup-btn');
-const popUp = document.createElement('task-popup');
-document.body.appendChild(popUp);
+    if (seconds &lt; 10) {
+        seconds = `0${String(seconds)}`;
+    }
+    minutes = String(minutes);
 &nbsp;
-<span class="missing-if-branch" title="if path not taken" >I</span>if (popupBtn) {
-<span class="cstat-no" title="statement not covered" >    popupBtn.addEventListener('click', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-<span class="cstat-no" title="statement not covered" >        popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');</span>
-    });
+    timerDisplayDuration.innerHTML = `${minutes}:${seconds}`;
 }
 &nbsp;
-// Uncomment below code to clear local storage on refresh -- Useful for debugging
-// window.onbeforeunload = function() {
-//     localStorage.removeItem('tasks');
-//     return '';
-// };</pre></td></tr></table></pre>
+function reset_time() {
+    timerDisplayDuration.innerHTML = DEFAULT_TIME;
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

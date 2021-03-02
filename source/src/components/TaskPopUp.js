@@ -38,6 +38,10 @@ class TaskPopUp extends HTMLElement {
         // use div as wrapper
         const wrapper = document.createElement('div');
         wrapper.setAttribute('id', 'add-task-popup');
+        // close icon
+        const close = wrapper.appendChild(document.createElement('img'));
+        close.setAttribute('src', '../icons/close.svg');
+        close.setAttribute('id', 'close-icon');
         const title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Add Task';
         // append an input form
@@ -46,21 +50,44 @@ class TaskPopUp extends HTMLElement {
         input.setAttribute('id', 'task-input');
         input.setAttribute('placeholder', 'What are you working on today?');
         input.setAttribute('maxlength', '42');
-        // append add and cancel buttons
-        const addBtn = wrapper.appendChild(document.createElement('button'));
+        // wrap add button in a footer
+        const footer = wrapper.appendChild(document.createElement('div'));
+        footer.setAttribute('class', 'button-footer');
+        const addBtn = footer.appendChild(document.createElement('button'));
         addBtn.setAttribute('class', 'popup-btns');
         addBtn.setAttribute('id', 'add-task-btn');
         addBtn.innerHTML = 'Add';
-        const cancelBtn = wrapper.appendChild(document.createElement('button'));
-        cancelBtn.setAttribute('class', 'popup-btns');
-        cancelBtn.setAttribute('id', 'cancel-task-btn');
-        cancelBtn.innerHTML = 'Cancel';
-        // add event listeners to both buttons
+        // event listeners for close icon and add button
         addBtn.addEventListener('click', this.addTask.bind(this));
-        cancelBtn.addEventListener('click', this.closePopUp.bind(this));
+        close.addEventListener('click', this.closePopUp.bind(this));
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `
+        .button-footer {
+            background-color: rgb(234 234 234);
+            padding: 14px 20px;
+            text-align: right;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        #close-icon {
+            width: 15px;
+            margin-top: 10px;
+            margin-right: 10px;
+            position:absolute;
+            top:0;
+            right:0;
+            cursor: pointer;
+            opacity: 0.33;
+        }
+        #close-icon:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
         #add-task-popup {
             display: none;
             position: fixed;
@@ -98,7 +125,7 @@ class TaskPopUp extends HTMLElement {
             border-radius: 5px;
             outline: none;
             display: block;
-            margin:20px auto 10px auto;
+            margin:20px auto 0 auto;
         }
         ::placeholder {
             color: rgba(85, 85, 85, 0.336);
@@ -130,10 +157,7 @@ class TaskPopUp extends HTMLElement {
             transform: scale(1.1);
         }
         #add-task-btn {
-            position: absolute;
-            float:left;
-            left: 5em;
-            bottom: 2em;
+            padding: 8px 12px;
         }
         #cancel-task-btn {
             position: absolute;
@@ -148,4 +172,12 @@ class TaskPopUp extends HTMLElement {
 
 customElements.define('task-popup', TaskPopUp);
 
+var popupBtn = document.getElementById('task-popup-btn');
+var popUp = document.createElement('task-popup');
+document.body.appendChild(popUp);
+popupBtn.addEventListener('click', function() {
+    popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
+});
+
 module.exports = TaskPopUp;
+
