@@ -117,4 +117,7 @@ window.addEventListener("keydown", function(event){
     else if(event.code=='Semicolon'&& typing == false){
         document.getElementById('setting-button').click();
     }
+    else if(event.code=='KeyA' && typing == false){
+        document.getElementById('task-popup-btn').click();
+    }
 });
