@@ -31,22 +31,9 @@ jobs:
           template: minami
           front_page: README.md
 
-      - name: Commit Docs
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git status
-          git commit -m "Update JSDocs & Jest coverage report" -a
-
-      - name: Push Generated Docs
-        uses: ad-m/github-push-action@master
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-      #     publish_dir: ./source/docs
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./source/docs
       
