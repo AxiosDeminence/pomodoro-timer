@@ -16,7 +16,7 @@ jobs:
         
       # lint
       - name: Run linter
-        run: npm --prefix source/ lint
+        run: npm --prefix source/ run lint
 
       # run the test suite
       - name: Run tests
