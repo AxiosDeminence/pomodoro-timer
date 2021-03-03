@@ -177,14 +177,6 @@ class TaskPopUp extends HTMLElement {
 
 customElements.define('task-popup', TaskPopUp);
 
-<<<<<<< HEAD
-var popupBtn = document.getElementById('task-popup-btn');
-var popUp = document.createElement('task-popup');
-document.body.appendChild(popUp);
-popupBtn.addEventListener('click', function() {
-    btnSound.play();
-    popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
-=======
 // var popupBtn = document.getElementById('task-popup-btn');
 // var popUp = document.createElement('task-popup');
 // document.body.appendChild(popUp);
@@ -197,9 +189,9 @@ window.addEventListener('load', () => {
     const popUp = document.createElement('task-popup');
     document.body.appendChild(popUp);
     popupBtn.addEventListener('click', () => {
+        btnSound.play();
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
     });
->>>>>>> 5a36a42a04cb802444175bd695b4b6072baecec2
 });
 
 module.exports = TaskPopUp;

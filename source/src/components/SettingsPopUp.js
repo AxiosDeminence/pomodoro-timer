@@ -95,25 +95,15 @@ class SettingsPopUp extends HTMLElement {
     }
 }
 customElements.define('settings-popup', SettingsPopUp);
-<<<<<<< HEAD
-    
-var settingsPopUp = document.createElement('settings-popup');
-document.body.appendChild(settingsPopUp);
-settingsButton = document.getElementById("setting-button");
-settingsButton.addEventListener('click', function() {
-    btnSound.play();
-    settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
-});
-=======
 
 window.addEventListener('load', () => {
     const settingsButton = document.getElementById('setting-button');
     const settingsPopUp = document.createElement('settings-popup');
     document.body.appendChild(settingsPopUp);
     settingsButton.addEventListener('click', () => {
+        btnSound.play();
         settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
     });
 });
 
 module.exports = SettingsPopUp;
->>>>>>> 5a36a42a04cb802444175bd695b4b6072baecec2

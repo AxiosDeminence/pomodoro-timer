@@ -37,6 +37,13 @@ class ResetPopUp extends HTMLElement {
         confirmBtn.setAttribute('class', 'reset-popup-btns');
         confirmBtn.setAttribute('id', 'confirm-reset-btn');
         confirmBtn.innerHTML = 'Confirm';
+        //keyboard access for confirm btn
+        window.addEventListener("keydown", function(event){
+            if (event.code=="Enter"){
+                confirmBtn.click();
+                btnSound.play();
+            }
+        });
         // event listeners for confirm button and close icon
         confirmBtn.addEventListener('click', this.reset.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
@@ -138,25 +145,15 @@ class ResetPopUp extends HTMLElement {
     }
 }
 customElements.define('reset-popup', ResetPopUp);
-<<<<<<< HEAD
-    
-var resetPopUp = document.createElement('reset-popup');
-document.body.appendChild(resetPopUp);
-resetBtn = document.getElementById("reset-button");
-resetBtn.addEventListener('click', function() {
-    btnSound.play();
-    resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
-});
-=======
 
 window.addEventListener('DOMContentLoaded', () => {
     const resetPopUp = document.createElement('reset-popup');
     document.body.appendChild(resetPopUp);
     const resetBtn = document.getElementById('reset-button');
     resetBtn.addEventListener('click', () => {
+        btnSound.play();
         resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
     });
 });
 
 module.exports = ResetPopUp;
->>>>>>> 5a36a42a04cb802444175bd695b4b6072baecec2
