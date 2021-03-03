@@ -2,7 +2,7 @@
 
 name: CI
 on:
-  push:
+  pull_request:
 
 jobs:
   test:
@@ -13,7 +13,18 @@ jobs:
       # installs the npm modules
       - name: Install modules
         run: npm --prefix source/ install 
+        
+      # lint
+      - name: Run linter
+        run: npm --prefix source/ run lint
 
       # run the test suite
       - name: Run tests
         run: npm --prefix source/ test
+
+      - name: Annotate tests on PR
+        uses: mattallty/jest-github-action@v1.0.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          test-command: "npm --prefix source/ test"
