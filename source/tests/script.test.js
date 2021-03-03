@@ -1,102 +1,69 @@
-/* eslint-disable global-require */
-/* eslint-disable camelcase */
-
 beforeEach(() => {
-    jest.useFakeTimers();
-    // expect.hasAssertions();
+    require('../src/scripts/script');
+    require('../src/components/TaskItem');
+    localStorage.setItem('tasks', '[]');
+    localStorage.setItem('id', '0');
+    document.body.innerHTML = `
+        <ul id="task-list-elements">
+        </ul>      
+    `;
 });
 
 afterEach(() => {
-    jest.resetModules();
-    jest.clearAllTimers();
+    localStorage.clear();
 });
 
-test('start timer function', () => {
-    document.body.innerHTML = `
-        <button id = "start-btn">Start</button>
-        <div id="timer_display_duration">25:00</div>
-    `;
+test('Initializes localStorage correctly', () => {
+    localStorage.clear();
 
-    require('../src/scripts/script');
+    window.document.dispatchEvent(new Event('DOMContentLoaded', {
+        bubbles: true,
+        cancelable: true,
+    }));
 
-    const start_button = document.getElementById('start-btn');
-    const display = document.getElementById('timer_display_duration');
-
-    start_button.click();
-
-    jest.advanceTimersByTime(5000);
-
-    expect(start_button.innerHTML).toBe('Stop');
-    expect(display.innerHTML).toBe('24:55');
+    expect(localStorage.getItem('tasks')).toBe('[]');
+    expect(localStorage.getItem('id')).toBe('0');
+    expect(document.getElementById('task-list-elements').children).toHaveLength(0);
 });
 
-test('Stop and reset function', () => {
-    document.body.innerHTML = `
-        <button id = "start-btn">Stop</button>
-        <div id="timer_display_duration">13:00</div>
-    `;
+// taskItem.checked and taskItem.text are undefined, but taskItem.id is set properly...
+test('Reads task list and creates one task correctly', () => {
+    localStorage.setItem('tasks', '[{"id":"0","checked":false,"text":"test_task"}]');
 
-    require('../src/scripts/script');
+    window.document.dispatchEvent(new Event('DOMContentLoaded', {
+        bubbles: true,
+        cancelable: true,
+    }));
 
-    const start_button = document.getElementById('start-btn');
-    const display = document.getElementById('timer_display_duration');
+    expect(document.getElementById('task-list-elements').children).toHaveLength(1);
 
-    start_button.click();
-    jest.advanceTimersByTime(100);
-
-    expect(start_button.innerHTML).toBe('Start');
-    expect(display.innerHTML).toBe('25:00');
+    const taskItem = document.getElementById('task-list-elements').children[0];
+    // expect(taskItem).toBe("");
+    // expect(taskItem.checked).toBe("false");
+    expect(taskItem.id).toBe('0');
+    // expect(taskItem.text).toBe("test_task");
 });
 
-test('advance in time', () => {
-    document.body.innerHTML = `
-        <button id = "start-btn">Start</button>
-        <div id="timer_display_duration">25:00</div>
-    `;
+test('Reads task list and creates multiple tasks correctly', () => {
+    localStorage.setItem('tasks', '[{"id":"0","checked":false,"text":"test_task"},'
+    + '{"id":"1","checked":false,"text":"test_task1"}]');
 
-    require('../src/scripts/script');
+    window.document.dispatchEvent(new Event('DOMContentLoaded', {
+        bubbles: true,
+        cancelable: true,
+    }));
 
-    // const mockStart = jest.fn();
-    const start_button = document.getElementById('start-btn');
-    const display = document.getElementById('timer_display_duration');
+    expect(document.getElementById('task-list-elements').children).toHaveLength(2);
 
-    start_button.click();
+    const taskItem = document.getElementById('task-list-elements').children[0];
+    // expect(taskItem).toBe("");
+    expect(taskItem.getAttribute('checked')).toBe('false');
+    expect(taskItem.id).toBe('0');
+    expect(taskItem.getAttribute('text')).toBe('test_task');
 
-    // advance by 00:05
-    jest.advanceTimersByTime(5000);
-    expect(display.innerHTML).toBe('24:55');
-
-    // advance by 00:55
-    jest.advanceTimersByTime(55000);
-    expect(display.innerHTML).toBe('24:00');
-
-    jest.advanceTimersByTime(1000);
-    expect(display.innerHTML).toBe('23:59');
-
-    // advance by 23:00
-    jest.advanceTimersByTime(1380000);
-    expect(display.innerHTML).toBe('0:59');
-
-    jest.advanceTimersByTime(59000);
-    expect(display.innerHTML).toBe('0:00');
-});
-
-test('times up', async () => {
-    document.body.innerHTML = `
-        <button id = "start-btn">Start</button>
-        <div id="timer_display_duration">0:01</div>
-    `;
-
-    require('../src/scripts/script');
-
-    const start_button = document.getElementById('start-btn');
-    const display = document.getElementById('timer_display_duration');
-
-    start_button.click();
-    jest.advanceTimersByTime(1000);
-    expect(display.innerHTML).toBe('0:00');
-
-    jest.advanceTimersByTime(1100);
-    // expect(start_button.innerHTML).toBe('Start');
-    expect(display.innerHTML).toBe('25:00');
+    const taskItem1 = document.getElementById('task-list-elements').children[1];
+    // expect(taskItem1).toBe("");
+    expect(taskItem1.getAttribute('checked')).toBe('false');
+    expect(taskItem1.id).toBe('1');
+    expect(taskItem1.getAttribute('text')).toBe('test_task1');
 });

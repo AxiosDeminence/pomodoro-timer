@@ -1,50 +1,32 @@
-const startButton = document.getElementById("start-btn");
-const timerDisplayDuration = document.getElementById("timer_display_duration");
-const DEFAULT_TIME = "25:00";
-const SECOND = 1000;
-let timer;
+// require('../components/TaskItem');
 
-startButton.onclick = startAndStopButton;
+// const TaskItem = require('../components/TaskItem');
 
-/**
- * Test header for automatic jsdoc generation
- */
-async function startAndStopButton() {
-    if (startButton.innerHTML == "Start") {
-        startButton.innerHTML = "Stop";
-        timer = setInterval(timer_function, SECOND);
+window.addEventListener('DOMContentLoaded', () => {
+    let tasks; // holds list nodes in local storage
+    let id; // id counter for task items
+
+    if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
+        tasks = [];
+        id = 0;
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('id', `${id}`);
+        // console.log('tasks:',localStorage.getItem('tasks'),'\nid:',localStorage.getItem('id'));
     } else {
-        clearInterval(timer);
-        setTimeout(reset_time, SECOND / 10);
-        startButton.innerHTML = "Start";
+        tasks = JSON.parse(localStorage.getItem('tasks'));
     }
-}
-
-async function timer_function() {
-    const timer_text = timerDisplayDuration.innerHTML;
-    let minutes = Number(timer_text.substring(0, timer_text.length - 3));
-    let seconds = Number(timer_text.substring(timer_text.length - 2));
-
-    if (timer_text == "0:00") {
-        await startAndStopButton();
-        return;
+    for (let i = 0; i < tasks.length; i++) {
+        const task = document.createElement('task-item');
+        task.setAttribute('id', tasks[i].id);
+        task.setAttribute('checked', tasks[i].checked);
+        task.setAttribute('text', tasks[i].text);
+        // new TaskItem(tasks[i]);
+        document.getElementById('task-list-elements').appendChild(task);
     }
-
-    if (!seconds == 0) {
-        seconds--;
-    } else {
-        seconds = 59;
-        minutes--;
-    }
-
-    if (seconds < 10) {
-        seconds = `0${String(seconds)}`;
-    }
-    minutes = String(minutes);
-
-    timerDisplayDuration.innerHTML = `${minutes}:${seconds}`;
-}
-
-function reset_time() {
-    timerDisplayDuration.innerHTML = DEFAULT_TIME;
-}
+});
+// Uncomment below code to clear local storage on refresh -- Useful for debugging
+// window.onbeforeunload = function() {
+//     // localStorage.removeItem('tasks');
+//     localStorage.clear();
+//     return '';
+// };
