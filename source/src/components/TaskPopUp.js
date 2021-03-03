@@ -30,6 +30,7 @@ class TaskPopUp extends HTMLElement {
 
     // closes popup
     closePopUp() {
+        typing = false;
         const wrapper = this.shadowRoot.getElementById('add-task-popup');
         const input = this.shadowRoot.getElementById('task-input');
         wrapper.style.display = 'none';
@@ -65,6 +66,18 @@ class TaskPopUp extends HTMLElement {
         // event listeners for close icon and add button
         addBtn.addEventListener('click', this.addTask.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
+        //prevent keyboard
+        window.addEventListener("keydown", function(event){
+            if (event.code=="Enter" && wrapper.style.display != 'none'){
+                addBtn.click();
+                btnSound.play();
+            }
+            if (event.code=='Escape' && wrapper.style.display != 'none'){
+                close.click();
+                btnSound.play();
+            }
+        });
+
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `
@@ -190,6 +203,7 @@ window.addEventListener('load', () => {
     document.body.appendChild(popUp);
     popupBtn.addEventListener('click', () => {
         btnSound.play();
+        typing = true; //mine
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
     });
 });

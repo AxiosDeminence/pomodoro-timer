@@ -1,6 +1,7 @@
 let startButton = document.getElementById("start-btn");
 let timerDisplayDuration = document.getElementById("timer_display_duration");
 let timer;
+let typing = false;
 let timerStatus = "pomo"
 // let pomoTime = localStorage.getItem('pomo-length');
 // let breakTime = localStorage.getItem('short-break-length');
@@ -104,16 +105,16 @@ function switch_mode() {
 startButton.addEventListener('click', startAndStopButton);
 
 window.addEventListener("keydown", function(event){
-    if(event.code=='KeyS'){
+    if(event.code=='KeyS' && typing == false){
         startButton.click();
     }
-    else if(event.code=='KeyR'){
+    else if(event.code=='KeyR'&& typing == false){
         document.getElementById("reset-button").click();
     }
-    else if(event.code=='KeyH'){
+    else if(event.code=='KeyH'&& typing == false){
         document.getElementById("help-button").click();
     }
-    else if(event.code=='Escape'){
+    else if(event.code=='Semicolon'&& typing == false){
         document.getElementById('setting-button').click();
     }
 });
