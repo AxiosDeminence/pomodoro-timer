@@ -1,4 +1,3 @@
-
 let startButton = document.getElementById("start-btn");
 let timerDisplayDuration = document.getElementById("timer_display_duration");
 let timer;
@@ -26,6 +25,7 @@ timerDisplayDuration.innerHTML = pomoTime + ":00";
 
 async function startAndStopButton() {
     btnSound.play();
+    
     if (startButton.innerHTML == "Start") {
         start();
     } else {
