@@ -7,15 +7,23 @@
 We are Runtime Terror!
 
 KeyBoard Events:
+
 main page:
+
 's' --Start/Stop the timer
+
 'h' --open the help pop-up
+
 'r' --open the reset pop-up
+
 ';' --open the setting pop-up
+
 'a' --open the add task pop-up
 
 in pop-ups:
+
 'Enter' --confirm your setting
+
 'Escape' --cancel the change and close the pop-up
 
 
