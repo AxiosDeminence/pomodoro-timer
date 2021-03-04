@@ -30,7 +30,6 @@ class TaskPopUp extends HTMLElement {
 
     // closes popup
     closePopUp() {
-        typing = false;
         const wrapper = this.shadowRoot.getElementById('add-task-popup');
         const input = this.shadowRoot.getElementById('task-input');
         wrapper.style.display = 'none';
@@ -203,7 +202,6 @@ window.addEventListener('load', () => {
     document.body.appendChild(popUp);
     popupBtn.addEventListener('click', () => {
         btnSound.play();
-        typing = true;
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
         popUp.shadowRoot.getElementById('task-input').focus();
     });

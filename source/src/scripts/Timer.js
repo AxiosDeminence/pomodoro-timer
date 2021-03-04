@@ -1,7 +1,6 @@
 const startButton = document.getElementById("start-btn");
 const timerDisplayDuration = document.getElementById("timer_display_duration");
 let timer;
-var typing = false;
 let timerStatus = "pomo";
 // let pomoTime = localStorage.getItem('pomo-length');
 // let breakTime = localStorage.getItem('short-break-length');
@@ -104,18 +103,24 @@ function switch_mode() {
 startButton.addEventListener('click', startAndStopButton);
 
 window.addEventListener("keydown", (event) => {
-    if (event.code == 'KeyS' && typing == false) {
-        startButton.click();
-    } else if (event.code == 'KeyR' && typing == false) {
-        document.getElementById("reset-button").click();
-    } else if (event.code == 'KeyH' && typing == false) {
-        document.getElementById("help-button").click();
-    } else if (event.code == 'Semicolon' && typing == false) {
-        document.getElementById('setting-button').click();
+    let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
+    if (!dis || dis == 'none'){
+        if (event.code == 'KeyS') {
+            startButton.click();
+        } else if (event.code == 'KeyR') {
+            document.getElementById("reset-button").click();
+        } else if (event.code == 'KeyH') {
+            document.getElementById("help-button").click();
+        } else if (event.code == 'Semicolon') {
+            document.getElementById('setting-button').click();
+        }
     }
 });
 window.addEventListener("keyup", (event) => {
-    if (event.code == 'KeyA' && typing == false) {
-        document.getElementById('task-popup-btn').click();
+    let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
+    if (!dis || dis == 'none'){
+        if (event.code == 'KeyA') {
+            document.getElementById('task-popup-btn').click();
+        }
     }
 });
