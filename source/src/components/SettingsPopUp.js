@@ -52,13 +52,13 @@ class SettingsPopUp extends HTMLElement {
         cancelBtn.setAttribute('id', 'cancel-settings-btn');
         cancelBtn.innerHTML = 'Cancel';
         // event listeners
-        //keyboard access for confirm/close btn
-        window.addEventListener("keydown", function(event){
-            if (event.code=="Enter" && wrapper.style.display != 'none'){
+        // keyboard access for confirm/close btn
+        window.addEventListener("keydown", (event) => {
+            if (event.code == "Enter" && wrapper.style.display != 'none') {
                 confirmBtn.click();
                 btnSound.play();
             }
-            if (event.code=='Escape' && wrapper.style.display != 'none'){
+            if (event.code == 'Escape' && wrapper.style.display != 'none') {
                 cancelBtn.click();
                 btnSound.play();
             }
