@@ -4,10 +4,10 @@ class TaskItem extends HTMLElement {
     toggle() {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         // update checked attribute
-        const checked = this.getAttribute('checked').toLowerCase() === 'true';
+        const checked = this.getAttribute('checked').toLowerCase() == 'true';
         this.setAttribute('checked', !checked);
         // update task item in localStorage
-        const task = tasks.find((task) => task.id === this.getAttribute('id') && task.text === this.getAttribute('text'));
+        const task = tasks.find((task) => task.id == this.getAttribute('id') && task.text == this.getAttribute('text'));
         if (typeof task !== 'undefined') {
             task.checked = !task.checked;
             localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -18,7 +18,7 @@ class TaskItem extends HTMLElement {
     removeTask() {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         // find and remove task from localStorage
-        tasks.splice(tasks.findIndex((task) => task.id === this.getAttribute('id') && task.text === this.getAttribute('text')), 1);
+        tasks.splice(tasks.findIndex((task) => task.id == this.getAttribute('id') && task.text == this.getAttribute('text')), 1);
         localStorage.setItem('tasks', JSON.stringify(tasks));
         // remove this element from DOM
         this.parentNode.removeChild(this);
