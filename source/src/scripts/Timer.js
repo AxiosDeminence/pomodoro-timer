@@ -7,7 +7,7 @@ let timerStatus = 'pomo';
 // let longBreakTime = localStorage.getItem('long-break-length');
 let breakCounter = 0;
 const SECOND = 1000;
-const alarmSound = new Audio(''../icons/alarm.mp3');
+const alarmSound = new Audio('../icons/alarm.mp3');
 const LIGHT_COLOR = '#f3606060';
 const DARK_COLOR = '#f36060';
 
