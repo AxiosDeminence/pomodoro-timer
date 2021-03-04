@@ -49,7 +49,7 @@ async function stop() {
 async function timer_function() {
     let timer_text = timerDisplayDuration.innerHTML;
 
-    if (timer_text === '0:00') {
+    if (timer_text == '0:00') {
         alarmSound.play();
         switch_mode();
         timer_text = timerDisplayDuration.innerHTML;
@@ -58,11 +58,11 @@ async function timer_function() {
     let minutes = Number(timer_text.substring(0, timer_text.length - 3));
     let seconds = Number(timer_text.substring(timer_text.length - 2));
 
-    if (!seconds === 0) {
-        seconds-=1;
+    if (!seconds == 0) {
+        seconds--;
     } else {
         seconds = 59;
-        minutes-=1;
+        minutes--;
     }
 
     if (seconds < 10) {
@@ -91,7 +91,7 @@ function switch_mode() {
         pomoButton.style.backgroundColor = LIGHT_COLOR;
         breakButton.style.backgroundColor = DARK_COLOR;
         timerStatus = 'break';
-        breakCounter+=1;
+        breakCounter++;
     } else {
         timerDisplayDuration.innerHTML = `${pomoTime}:00`;
         pomoButton.style.backgroundColor = DARK_COLOR;
@@ -103,7 +103,7 @@ function switch_mode() {
 startButton.addEventListener('click', startAndStopButton);
 
 window.addEventListener('keydown', (event) => {
-    const dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
+    let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
     if (!dis || dis === 'none'){
         if (event.code === 'KeyS') {
             startButton.click();
@@ -117,7 +117,7 @@ window.addEventListener('keydown', (event) => {
     }
 });
 window.addEventListener('keyup', (event) => {
-    const dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
+    let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
     if (!dis || dis === 'none') {
         if (event.code === 'KeyA') {
             document.getElementById('task-popup-btn').click();
