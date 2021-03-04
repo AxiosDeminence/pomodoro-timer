@@ -1,15 +1,15 @@
-const startButton = document.getElementById("start-btn");
-const timerDisplayDuration = document.getElementById("timer_display_duration");
+const startButton = document.getElementById('start-btn');
+const timerDisplayDuration = document.getElementById('timer_display_duration');
 let timer;
-let timerStatus = "pomo";
+let timerStatus = 'pomo';
 // let pomoTime = localStorage.getItem('pomo-length');
 // let breakTime = localStorage.getItem('short-break-length');
 // let longBreakTime = localStorage.getItem('long-break-length');
 let breakCounter = 0;
 const SECOND = 1000;
-const alarmSound = new Audio("../icons/alarm.mp3");
-const LIGHT_COLOR = "#f3606060";
-const DARK_COLOR = "#f36060";
+const alarmSound = new Audio(''../icons/alarm.mp3');
+const LIGHT_COLOR = '#f3606060';
+const DARK_COLOR = '#f36060';
 
 if (localStorage.getItem('pomo-length') === null) {
     localStorage.setItem('pomo-length', '25');
@@ -23,9 +23,9 @@ let longBreakTime = localStorage.getItem('long-break-length');
 timerDisplayDuration.innerHTML = `${pomoTime}:00`;
 
 async function startAndStopButton() {
-    var btnSound = new Audio("../icons/btnClick.mp3");
+    var btnSound = new Audio('../icons/btnClick.mp3');
     btnSound.play();
-    if (startButton.innerHTML == "Start") {
+    if (startButton.innerHTML == 'Start') {
         start();
     } else {
         stop();
@@ -33,7 +33,7 @@ async function startAndStopButton() {
 }
 
 async function start() {
-    startButton.innerHTML = "Stop";
+    startButton.innerHTML = 'Stop';
     timer = setInterval(timer_function, SECOND);
 }
 
@@ -43,13 +43,13 @@ async function stop() {
     longBreakTime = localStorage.getItem('long-break-length');
     clearInterval(timer);
     setTimeout(reset_timer, SECOND / 10);
-    startButton.innerHTML = "Start";
+    startButton.innerHTML = 'Start';
 }
 
 async function timer_function() {
     let timer_text = timerDisplayDuration.innerHTML;
 
-    if (timer_text == "0:00") {
+    if (timer_text == '0:00') {
         alarmSound.play();
         switch_mode();
         timer_text = timerDisplayDuration.innerHTML;
@@ -74,49 +74,49 @@ async function timer_function() {
 
 function reset_timer() {
     timerDisplayDuration.innerHTML = `${pomoTime}:00`;
-    timerStatus = "pomo";
+    timerStatus = 'pomo';
 }
 
 function switch_mode() {
-    const pomoButton = document.getElementById("pomo-btn");
-    const breakButton = document.getElementById("break-btn");
-    if (timerStatus == "pomo" && breakCounter >= 3) {
+    const pomoButton = document.getElementById('pomo-btn');
+    const breakButton = document.getElementById('break-btn');
+    if (timerStatus == 'pomo' && breakCounter >= 3) {
         timerDisplayDuration.innerHTML = `${longBreakTime}:00`;
         pomoButton.style.backgroundColor = LIGHT_COLOR;
         breakButton.style.backgroundColor = DARK_COLOR;
-        timerStatus = "break";
+        timerStatus = 'break';
         breakCounter = 0;
-    } else if (timerStatus == "pomo") {
+    } else if (timerStatus == 'pomo') {
         timerDisplayDuration.innerHTML = `${breakTime}:00`;
         pomoButton.style.backgroundColor = LIGHT_COLOR;
         breakButton.style.backgroundColor = DARK_COLOR;
-        timerStatus = "break";
+        timerStatus = 'break';
         breakCounter++;
     } else {
         timerDisplayDuration.innerHTML = `${pomoTime}:00`;
         pomoButton.style.backgroundColor = DARK_COLOR;
         breakButton.style.backgroundColor = LIGHT_COLOR;
-        timerStatus = "pomo";
+        timerStatus = 'pomo';
     }
 }
 
 startButton.addEventListener('click', startAndStopButton);
 
-window.addEventListener("keydown", (event) => {
+window.addEventListener('keydown', (event) => {
     let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
     if (!dis || dis == 'none'){
         if (event.code == 'KeyS') {
             startButton.click();
         } else if (event.code == 'KeyR') {
-            document.getElementById("reset-button").click();
+            document.getElementById('reset-button').click();
         } else if (event.code == 'KeyH') {
-            document.getElementById("help-button").click();
+            document.getElementById('help-button').click();
         } else if (event.code == 'Semicolon') {
             document.getElementById('setting-button').click();
         }
     }
 });
-window.addEventListener("keyup", (event) => {
+window.addEventListener('keyup', (event) => {
     let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
     if (!dis || dis == 'none'){
         if (event.code == 'KeyA') {
