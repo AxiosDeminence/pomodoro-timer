@@ -49,7 +49,7 @@ async function stop() {
 async function timer_function() {
     let timer_text = timerDisplayDuration.innerHTML;
 
-    if (timer_text == '0:00') {
+    if (timer_text === '0:00') {
         alarmSound.play();
         switch_mode();
         timer_text = timerDisplayDuration.innerHTML;
@@ -58,11 +58,11 @@ async function timer_function() {
     let minutes = Number(timer_text.substring(0, timer_text.length - 3));
     let seconds = Number(timer_text.substring(timer_text.length - 2));
 
-    if (!seconds == 0) {
-        seconds--;
+    if (!seconds === 0) {
+        seconds-=1;
     } else {
         seconds = 59;
-        minutes--;
+        minutes-=1;
     }
 
     if (seconds < 10) {
@@ -80,18 +80,18 @@ function reset_timer() {
 function switch_mode() {
     const pomoButton = document.getElementById('pomo-btn');
     const breakButton = document.getElementById('break-btn');
-    if (timerStatus == 'pomo' && breakCounter >= 3) {
+    if (timerStatus === 'pomo' && breakCounter >= 3) {
         timerDisplayDuration.innerHTML = `${longBreakTime}:00`;
         pomoButton.style.backgroundColor = LIGHT_COLOR;
         breakButton.style.backgroundColor = DARK_COLOR;
         timerStatus = 'break';
         breakCounter = 0;
-    } else if (timerStatus == 'pomo') {
+    } else if (timerStatus === 'pomo') {
         timerDisplayDuration.innerHTML = `${breakTime}:00`;
         pomoButton.style.backgroundColor = LIGHT_COLOR;
         breakButton.style.backgroundColor = DARK_COLOR;
         timerStatus = 'break';
-        breakCounter++;
+        breakCounter+=1;
     } else {
         timerDisplayDuration.innerHTML = `${pomoTime}:00`;
         pomoButton.style.backgroundColor = DARK_COLOR;
@@ -103,23 +103,23 @@ function switch_mode() {
 startButton.addEventListener('click', startAndStopButton);
 
 window.addEventListener('keydown', (event) => {
-    let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
-    if (!dis || dis == 'none'){
-        if (event.code == 'KeyS') {
+    const dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
+    if (!dis || dis === 'none'){
+        if (event.code === 'KeyS') {
             startButton.click();
-        } else if (event.code == 'KeyR') {
+        } else if (event.code === 'KeyR') {
             document.getElementById('reset-button').click();
-        } else if (event.code == 'KeyH') {
+        } else if (event.code === 'KeyH') {
             document.getElementById('help-button').click();
-        } else if (event.code == 'Semicolon') {
+        } else if (event.code === 'Semicolon') {
             document.getElementById('setting-button').click();
         }
     }
 });
 window.addEventListener('keyup', (event) => {
-    let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
-    if (!dis || dis == 'none'){
-        if (event.code == 'KeyA') {
+    const dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
+    if (!dis || dis === 'none') {
+        if (event.code === 'KeyA') {
             document.getElementById('task-popup-btn').click();
         }
     }
