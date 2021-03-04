@@ -27,19 +27,19 @@ class SettingsPopUp extends HTMLElement {
         const pomoInput = wrapper.appendChild(document.createElement('input'));
         pomoInput.setAttribute('type', 'number'); // TODO: handle negatives
         pomoInput.setAttribute('id', 'pomo-length-input');
-        pomoInput.setAttribute('value', parseInt(localStorage.getItem('pomo-length')));
+        pomoInput.setAttribute('value', parseInt(localStorage.getItem('pomo-length'), 10));
         pomoInput.setAttribute('min', 1); // values subj. to change
         pomoInput.setAttribute('max', 60); // values subj. to change
         const shortBreakInput = wrapper.appendChild(document.createElement('input'));
         shortBreakInput.setAttribute('type', 'number'); // TODO: handle negatives
         shortBreakInput.setAttribute('id', 'short-break-input');
-        shortBreakInput.setAttribute('value', parseInt(localStorage.getItem('short-break-length')));
+        shortBreakInput.setAttribute('value', parseInt(localStorage.getItem('short-break-length'), 10));
         shortBreakInput.setAttribute('min', 1); // values subj. to change
         shortBreakInput.setAttribute('max', 60); // values subj. to change
         const longBreakInput = wrapper.appendChild(document.createElement('input'));
         longBreakInput.setAttribute('type', 'number'); // TODO: handle negatives
         longBreakInput.setAttribute('id', 'long-break-input');
-        longBreakInput.setAttribute('value', parseInt(localStorage.getItem('long-break-length')));
+        longBreakInput.setAttribute('value', parseInt(localStorage.getItem('long-break-length'), 10));
         longBreakInput.setAttribute('min', 1); // values subj. to change
         longBreakInput.setAttribute('max', 60); // values subj. to change
         // append confirm and cancel buttons
@@ -113,7 +113,7 @@ window.addEventListener('load', () => {
     const settingsPopUp = document.createElement('settings-popup');
     document.body.appendChild(settingsPopUp);
     settingsButton.addEventListener('click', () => {
-        let btnSound = new Audio('../icons/btnClick.mp3');
+        const btnSound = new Audio('../icons/btnClick.mp3');
         btnSound.play();
         settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
     });
