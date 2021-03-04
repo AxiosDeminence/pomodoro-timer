@@ -22,16 +22,6 @@ let longBreakTime = localStorage.getItem('long-break-length');
 
 timerDisplayDuration.innerHTML = `${pomoTime}:00`;
 
-async function startAndStopButton() {
-    var btnSound = new Audio('../icons/btnClick.mp3');
-    btnSound.play();
-    if (startButton.innerHTML == 'Start') {
-        start();
-    } else {
-        stop();
-    }
-}
-
 async function start() {
     startButton.innerHTML = 'Stop';
     timer = setInterval(timer_function, SECOND);
@@ -46,10 +36,20 @@ async function stop() {
     startButton.innerHTML = 'Start';
 }
 
+async function startAndStopButton() {
+    const btnSound = new Audio('../icons/btnClick.mp3');
+    btnSound.play();
+    if (startButton.innerHTML === 'Start') {
+        start();
+    } else {
+        stop();
+    }
+}
+
 async function timer_function() {
     let timer_text = timerDisplayDuration.innerHTML;
 
-    if (timer_text == '0:00') {
+    if (timer_text === '0:00') {
         alarmSound.play();
         switch_mode();
         timer_text = timerDisplayDuration.innerHTML;
@@ -103,7 +103,7 @@ function switch_mode() {
 startButton.addEventListener('click', startAndStopButton);
 
 window.addEventListener('keydown', (event) => {
-    let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
+    const dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
     if (!dis || dis === 'none'){
         if (event.code === 'KeyS') {
             startButton.click();
@@ -117,7 +117,7 @@ window.addEventListener('keydown', (event) => {
     }
 });
 window.addEventListener('keyup', (event) => {
-    let dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
+    const dis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
     if (!dis || dis === 'none') {
         if (event.code === 'KeyA') {
             document.getElementById('task-popup-btn').click();

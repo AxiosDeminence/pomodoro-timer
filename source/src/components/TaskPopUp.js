@@ -67,7 +67,7 @@ class TaskPopUp extends HTMLElement {
         close.addEventListener('click', this.closePopUp.bind(this));
         // prevent keyboard press & focus on input field
         window.addEventListener('keydown', (event) => {
-            let btnSound = new Audio('../icons/btnClick.mp3');
+            const btnSound = new Audio('../icons/btnClick.mp3');
             if (event.code === 'Enter' && wrapper.style.display !== 'none') {
                 addBtn.click();
                 btnSound.play();
@@ -202,7 +202,7 @@ window.addEventListener('load', () => {
     const popUp = document.createElement('task-popup');
     document.body.appendChild(popUp);
     popupBtn.addEventListener('click', () => {
-        let btnSound = new Audio('../icons/btnClick.mp3');
+        const btnSound = new Audio('../icons/btnClick.mp3');
         btnSound.play();
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
         popUp.shadowRoot.getElementById('task-input').focus();

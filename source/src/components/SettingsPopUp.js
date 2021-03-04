@@ -1,5 +1,4 @@
 class SettingsPopUp extends HTMLElement {
-    
     closePopUp() {
         const wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
         wrapper.style.display = 'none';
@@ -55,7 +54,7 @@ class SettingsPopUp extends HTMLElement {
         // event listeners
         // keyboard access for confirm/close btn
         window.addEventListener('keydown', (event) => {
-            var btnSound = new Audio("../icons/btnClick.mp3");
+            const btnSound = new Audio('../icons/btnClick.mp3');
             if (event.code === 'Enter' && wrapper.style.display !== 'none') {
                 confirmBtn.click();
                 btnSound.play();

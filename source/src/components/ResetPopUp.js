@@ -2,7 +2,7 @@ class ResetPopUp extends HTMLElement {
     reset() {
         window.stop();
         const taskList = Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item'));
-        for (let i = 0; i < taskList.length; i+=1) {
+        for (let i = 0; i < taskList.length; i += 1) {
             console.log(taskList[i]);
             taskList[i].removeTask();
         }
@@ -39,7 +39,7 @@ class ResetPopUp extends HTMLElement {
         confirmBtn.innerHTML = 'Confirm';
         // keyboard access for confirm/close btn
         window.addEventListener('keydown', (event) => {
-            let btnSound = new Audio('../icons/btnClick.mp3');
+            const btnSound = new Audio('../icons/btnClick.mp3');
             if (event.code === 'Enter' && wrapper.style.display !== 'none') {
                 confirmBtn.click();
                 btnSound.play();
@@ -151,13 +151,12 @@ class ResetPopUp extends HTMLElement {
 }
 customElements.define('reset-popup', ResetPopUp);
 
-
 window.addEventListener('DOMContentLoaded', () => {
     const resetPopUp = document.createElement('reset-popup');
     document.body.appendChild(resetPopUp);
     const resetBtn = document.getElementById('reset-button');
     resetBtn.addEventListener('click', () => {
-        let btnSound = new Audio('../icons/btnClick.mp3');
+        const btnSound = new Audio('../icons/btnClick.mp3');
         btnSound.play();
         resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
     });
