@@ -1,14 +1,13 @@
 const startButton = document.getElementById("start-btn");
 const timerDisplayDuration = document.getElementById("timer_display_duration");
 let timer;
-const typing = false;
+var typing = false;
 let timerStatus = "pomo";
 // let pomoTime = localStorage.getItem('pomo-length');
 // let breakTime = localStorage.getItem('short-break-length');
 // let longBreakTime = localStorage.getItem('long-break-length');
 let breakCounter = 0;
 const SECOND = 1000;
-const btnSound = new Audio("../icons/btnClick.mp3");
 const alarmSound = new Audio("../icons/alarm.mp3");
 const LIGHT_COLOR = "#f3606060";
 const DARK_COLOR = "#f36060";
@@ -25,11 +24,8 @@ let longBreakTime = localStorage.getItem('long-break-length');
 timerDisplayDuration.innerHTML = `${pomoTime}:00`;
 
 async function startAndStopButton() {
+    var btnSound = new Audio("../icons/btnClick.mp3");
     btnSound.play();
-<<<<<<< HEAD
-=======
-
->>>>>>> dab38c62e316ff0793e50290012b0d5c46d42e06
     if (startButton.innerHTML == "Start") {
         start();
     } else {

@@ -1,4 +1,4 @@
-window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+
 beforeEach(() => {
     require('../src/scripts/script');
     require('../src/components/TaskItem');

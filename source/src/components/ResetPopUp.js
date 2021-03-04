@@ -38,8 +38,8 @@ class ResetPopUp extends HTMLElement {
         confirmBtn.setAttribute('id', 'confirm-reset-btn');
         confirmBtn.innerHTML = 'Confirm';
         // keyboard access for confirm/close btn
-        window.addEventListener("keydown", (event) => {
-            if (event.code == "Enter" && wrapper.style.display != 'none') {
+        window.addEventListener('keydown', (event) => {
+            if (event.code == 'Enter' && wrapper.style.display != 'none') {
                 confirmBtn.click();
                 btnSound.play();
             }
@@ -149,6 +149,7 @@ class ResetPopUp extends HTMLElement {
     }
 }
 customElements.define('reset-popup', ResetPopUp);
+var btnSound = new Audio("../icons/btnClick.mp3");
 
 window.addEventListener('DOMContentLoaded', () => {
     const resetPopUp = document.createElement('reset-popup');

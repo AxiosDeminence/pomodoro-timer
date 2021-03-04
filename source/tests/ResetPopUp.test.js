@@ -1,6 +1,6 @@
 import ResetPopUp from '../src/components/ResetPopUp';
 import TaskItem from '../src/components/TaskItem';
-window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+
 beforeEach(() => {
     const tasks = [];
     const id = 2;

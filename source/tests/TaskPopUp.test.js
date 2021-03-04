@@ -1,5 +1,5 @@
 import TaskPopUp from '../src/components/TaskPopUp.js';
-window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+
 // jest.mock('../src/components/TaskItem');
 
 beforeEach(() => {

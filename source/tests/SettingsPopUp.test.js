@@ -1,5 +1,5 @@
 import SettingsPopUp from '../src/components/SettingsPopUp';
-window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+
 beforeEach(() => {
     localStorage.clear();
     localStorage.setItem('pomo-length', '25');

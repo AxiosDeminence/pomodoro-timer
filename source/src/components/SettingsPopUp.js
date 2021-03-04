@@ -53,8 +53,8 @@ class SettingsPopUp extends HTMLElement {
         cancelBtn.innerHTML = 'Cancel';
         // event listeners
         // keyboard access for confirm/close btn
-        window.addEventListener("keydown", (event) => {
-            if (event.code == "Enter" && wrapper.style.display != 'none') {
+        window.addEventListener('keydown', (event) => {
+            if (event.code == 'Enter' && wrapper.style.display != 'none') {
                 confirmBtn.click();
                 btnSound.play();
             }
@@ -106,6 +106,7 @@ class SettingsPopUp extends HTMLElement {
     }
 }
 customElements.define('settings-popup', SettingsPopUp);
+var btnSound = new Audio("../icons/btnClick.mp3");
 
 window.addEventListener('load', () => {
     const settingsButton = document.getElementById('setting-button');
