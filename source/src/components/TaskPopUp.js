@@ -66,13 +66,13 @@ class TaskPopUp extends HTMLElement {
         // event listeners for close icon and add button
         addBtn.addEventListener('click', this.addTask.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
-        //prevent keyboard press & focus on input field
-        window.addEventListener("keydown", function(event){
-            if (event.code=="Enter" && wrapper.style.display != 'none'){
+        // prevent keyboard press & focus on input field
+        window.addEventListener("keydown", (event) => {
+            if (event.code == "Enter" && wrapper.style.display != 'none') {
                 addBtn.click();
                 btnSound.play();
             }
-            if (event.code=='Escape' && wrapper.style.display != 'none'){
+            if (event.code == 'Escape' && wrapper.style.display != 'none') {
                 close.click();
                 btnSound.play();
             }
@@ -207,7 +207,6 @@ window.addEventListener('load', () => {
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
         popUp.shadowRoot.getElementById('task-input').focus();
     });
-
 });
 
 module.exports = TaskPopUp;

@@ -1,15 +1,15 @@
-let startButton = document.getElementById("start-btn");
-let timerDisplayDuration = document.getElementById("timer_display_duration");
+const startButton = document.getElementById("start-btn");
+const timerDisplayDuration = document.getElementById("timer_display_duration");
 let timer;
-let typing = false;
-let timerStatus = "pomo"
+const typing = false;
+let timerStatus = "pomo";
 // let pomoTime = localStorage.getItem('pomo-length');
 // let breakTime = localStorage.getItem('short-break-length');
 // let longBreakTime = localStorage.getItem('long-break-length');
 let breakCounter = 0;
 const SECOND = 1000;
-let btnSound = new Audio("../icons/btnClick.mp3");
-let alarmSound = new Audio("../icons/alarm.mp3");
+const btnSound = new Audio("../icons/btnClick.mp3");
+const alarmSound = new Audio("../icons/alarm.mp3");
 const LIGHT_COLOR = "#f3606060";
 const DARK_COLOR = "#f36060";
 
@@ -22,10 +22,14 @@ let pomoTime = localStorage.getItem('pomo-length');
 let breakTime = localStorage.getItem('short-break-length');
 let longBreakTime = localStorage.getItem('long-break-length');
 
-timerDisplayDuration.innerHTML = pomoTime + ":00";
+timerDisplayDuration.innerHTML = `${pomoTime}:00`;
 
 async function startAndStopButton() {
     btnSound.play();
+<<<<<<< HEAD
+=======
+
+>>>>>>> dab38c62e316ff0793e50290012b0d5c46d42e06
     if (startButton.innerHTML == "Start") {
         start();
     } else {
@@ -43,7 +47,7 @@ async function stop() {
     breakTime = localStorage.getItem('short-break-length');
     longBreakTime = localStorage.getItem('long-break-length');
     clearInterval(timer);
-    setTimeout(reset_timer, SECOND/10);
+    setTimeout(reset_timer, SECOND / 10);
     startButton.innerHTML = "Start";
 }
 
@@ -70,31 +74,31 @@ async function timer_function() {
         seconds = `0${String(seconds)}`;
     }
 
-    timerDisplayDuration.innerHTML = minutes + ":" + seconds;
+    timerDisplayDuration.innerHTML = `${minutes}:${seconds}`;
 }
 
 function reset_timer() {
-    timerDisplayDuration.innerHTML = pomoTime + ":00";
+    timerDisplayDuration.innerHTML = `${pomoTime}:00`;
     timerStatus = "pomo";
 }
 
 function switch_mode() {
-    let pomoButton = document.getElementById("pomo-btn");
-    let breakButton = document.getElementById("break-btn");
+    const pomoButton = document.getElementById("pomo-btn");
+    const breakButton = document.getElementById("break-btn");
     if (timerStatus == "pomo" && breakCounter >= 3) {
-        timerDisplayDuration.innerHTML = longBreakTime + ":00";
+        timerDisplayDuration.innerHTML = `${longBreakTime}:00`;
         pomoButton.style.backgroundColor = LIGHT_COLOR;
         breakButton.style.backgroundColor = DARK_COLOR;
         timerStatus = "break";
         breakCounter = 0;
     } else if (timerStatus == "pomo") {
-        timerDisplayDuration.innerHTML = breakTime + ":00";
+        timerDisplayDuration.innerHTML = `${breakTime}:00`;
         pomoButton.style.backgroundColor = LIGHT_COLOR;
         breakButton.style.backgroundColor = DARK_COLOR;
         timerStatus = "break";
         breakCounter++;
     } else {
-        timerDisplayDuration.innerHTML = pomoTime + ":00";
+        timerDisplayDuration.innerHTML = `${pomoTime}:00`;
         pomoButton.style.backgroundColor = DARK_COLOR;
         breakButton.style.backgroundColor = LIGHT_COLOR;
         timerStatus = "pomo";
@@ -103,22 +107,19 @@ function switch_mode() {
 
 startButton.addEventListener('click', startAndStopButton);
 
-window.addEventListener("keydown", function(event){
-    if(event.code=='KeyS' && typing == false){
+window.addEventListener("keydown", (event) => {
+    if (event.code == 'KeyS' && typing == false) {
         startButton.click();
-    }
-    else if(event.code=='KeyR'&& typing == false){
+    } else if (event.code == 'KeyR' && typing == false) {
         document.getElementById("reset-button").click();
-    }
-    else if(event.code=='KeyH'&& typing == false){
+    } else if (event.code == 'KeyH' && typing == false) {
         document.getElementById("help-button").click();
-    }
-    else if(event.code=='Semicolon'&& typing == false){
+    } else if (event.code == 'Semicolon' && typing == false) {
         document.getElementById('setting-button').click();
     }
 });
-window.addEventListener("keyup", function(event){
-    if(event.code=='KeyA' && typing == false){
+window.addEventListener("keyup", (event) => {
+    if (event.code == 'KeyA' && typing == false) {
         document.getElementById('task-popup-btn').click();
     }
 });

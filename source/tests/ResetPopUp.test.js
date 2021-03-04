@@ -12,7 +12,7 @@ beforeEach(() => {
     localStorage.setItem('id', `${id}`);
     document.body.innerHTML = `
     <button class="top-buttons" id="reset-button">
-        <img src="../icons/reset.svg" id="reset" class="top-button-img" alt="reset">
+        <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
         <p class="top-button-text">Reset</p>
     </button>
     <ul id="task-list-elements">
