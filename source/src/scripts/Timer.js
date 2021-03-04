@@ -26,7 +26,6 @@ timerDisplayDuration.innerHTML = pomoTime + ":00";
 
 async function startAndStopButton() {
     btnSound.play();
-    
     if (startButton.innerHTML == "Start") {
         start();
     } else {

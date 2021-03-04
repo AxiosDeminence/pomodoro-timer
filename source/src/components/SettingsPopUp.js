@@ -53,8 +53,8 @@ class SettingsPopUp extends HTMLElement {
         cancelBtn.innerHTML = 'Cancel';
         // event listeners
         //keyboard access for confirm/close btn
-        window.addEventListener("keydown", function(event){
-            if (event.code=="Enter" && wrapper.style.display != 'none'){
+        window.addEventListener('keydown', function(event){
+            if (event.code=='Enter' && wrapper.style.display != 'none'){
                 confirmBtn.click();
                 btnSound.play();
             }
