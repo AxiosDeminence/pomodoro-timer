@@ -1,4 +1,4 @@
-import TaskItem from '../src/components/TaskItem.js';
+import TaskItem from '../../src/components/TaskItem';
 
 beforeEach(() => {
     const tasks = [];
@@ -51,7 +51,7 @@ test(('toggle checked from true to false'), () => {
 test(('remove a task'), () => {
     document.body.innerHTML = `
     <ul id="task-list-elements">
-    </ul> 
+    </ul>
     `;
     let tasks = JSON.parse(localStorage.getItem('tasks'));
     const taskItem = new TaskItem();

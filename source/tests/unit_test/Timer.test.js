@@ -15,7 +15,7 @@ test('start timer function', () => {
         <div id="timer_display_duration">25:00</div>
     `;
 
-    require('../src/scripts/Timer');
+    require('../../src/scripts/Timer');
 
     const start_button = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
@@ -34,7 +34,7 @@ test('Stop and reset function', () => {
         <div id="timer_display_duration">13:00</div>
     `;
 
-    require('../src/scripts/Timer');
+    require('../../src/scripts/Timer');
 
     const start_button = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
@@ -52,7 +52,7 @@ test('advance in time', () => {
         <div id="timer_display_duration">25:00</div>
     `;
 
-    require('../src/scripts/Timer');
+    require('../../src/scripts/Timer');
 
     const start_button = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
@@ -100,7 +100,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');
@@ -128,7 +128,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');
@@ -158,7 +158,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');

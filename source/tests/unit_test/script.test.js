@@ -1,6 +1,6 @@
 beforeEach(() => {
-    require('../src/scripts/script');
-    require('../src/components/TaskItem');
+    require('../../src/scripts/script');
+    require('../../src/components/TaskItem');
     localStorage.setItem('tasks', '[]');
     localStorage.setItem('id', '0');
     document.body.innerHTML = `
@@ -20,7 +20,6 @@ test('Initializes localStorage correctly', () => {
         bubbles: true,
         cancelable: true,
     }));
-
     expect(localStorage.getItem('tasks')).toBe('[]');
     expect(localStorage.getItem('id')).toBe('0');
     expect(document.getElementById('task-list-elements').children).toHaveLength(0);

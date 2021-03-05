@@ -1,4 +1,4 @@
-import TaskPopUp from '../src/components/TaskPopUp.js';
+import TaskPopUp from '../../src/components/TaskPopUp';
 
 // jest.mock('../src/components/TaskItem');
 

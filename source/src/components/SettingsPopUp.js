@@ -11,7 +11,7 @@ class SettingsPopUp extends HTMLElement {
         localStorage.setItem('pomo-length', pomoLength);
         localStorage.setItem('short-break-length', shortBreak);
         localStorage.setItem('long-break-length', longBreak);
-        // stop();
+        window.stop();
         this.closePopUp();
     }
 

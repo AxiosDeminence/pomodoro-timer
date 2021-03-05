@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1614688650973" clover="3.2.0">
-  <project timestamp="1614688650973" name="All files">
-    <metrics statements="253" coveredstatements="253" conditionals="28" coveredconditionals="28" methods="29" coveredmethods="29" elements="310" coveredelements="310" complexity="0" loc="253" ncloc="253" packages="2" files="6" classes="6"/>
+<coverage generated="1614851176123" clover="3.2.0">
+  <project timestamp="1614851176123" name="All files">
+    <metrics statements="252" coveredstatements="252" conditionals="28" coveredconditionals="28" methods="29" coveredmethods="29" elements="309" coveredelements="309" complexity="0" loc="252" ncloc="252" packages="2" files="6" classes="6"/>
     <package name="components">
-      <metrics statements="180" coveredstatements="180" conditionals="8" coveredconditionals="8" methods="22" coveredmethods="22"/>
+      <metrics statements="179" coveredstatements="179" conditionals="8" coveredconditionals="8" methods="22" coveredmethods="22"/>
       <file name="ResetPopUp.js" path="D:\学习\21WI\CSE110\cse110-w21-group13\source\src\components\ResetPopUp.js">
-        <metrics statements="41" coveredstatements="41" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <metrics statements="40" coveredstatements="40" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
         <line num="14" count="2" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
         <line num="19" count="4" type="stmt"/>
-        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
         <line num="22" count="4" type="stmt"/>
-        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
         <line num="25" count="4" type="stmt"/>
         <line num="26" count="4" type="stmt"/>
         <line num="27" count="4" type="stmt"/>
@@ -28,28 +28,27 @@
         <line num="31" count="4" type="stmt"/>
         <line num="32" count="4" type="stmt"/>
         <line num="33" count="4" type="stmt"/>
-        <line num="34" count="4" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
         <line num="36" count="4" type="stmt"/>
         <line num="37" count="4" type="stmt"/>
         <line num="38" count="4" type="stmt"/>
-        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="4" type="stmt"/>
         <line num="41" count="4" type="stmt"/>
-        <line num="42" count="4" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
         <line num="44" count="4" type="stmt"/>
-        <line num="45" count="4" type="stmt"/>
+        <line num="135" count="4" type="stmt"/>
         <line num="136" count="4" type="stmt"/>
-        <line num="137" count="4" type="stmt"/>
-        <line num="140" count="1" type="stmt"/>
+        <line num="139" count="1" type="stmt"/>
+        <line num="141" count="1" type="stmt"/>
         <line num="142" count="1" type="stmt"/>
         <line num="143" count="1" type="stmt"/>
         <line num="144" count="1" type="stmt"/>
         <line num="145" count="1" type="stmt"/>
         <line num="146" count="1" type="stmt"/>
-        <line num="147" count="1" type="stmt"/>
-        <line num="151" count="1" type="stmt"/>
+        <line num="150" count="1" type="stmt"/>
       </file>
       <file name="SettingsPopUp.js" path="D:\学习\21WI\CSE110\cse110-w21-group13\source\src\components\SettingsPopUp.js">
-        <metrics statements="55" coveredstatements="55" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <metrics statements="56" coveredstatements="56" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="3" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -58,6 +57,7 @@
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="19" count="6" type="stmt"/>
         <line num="20" count="6" type="stmt"/>
@@ -107,7 +107,7 @@
         <line num="108" count="1" type="stmt"/>
       </file>
       <file name="TaskItem.js" path="D:\学习\21WI\CSE110\cse110-w21-group13\source\src\components\TaskItem.js">
-        <metrics statements="32" coveredstatements="32" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="7"/>
+        <metrics statements="31" coveredstatements="31" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="7"/>
         <line num="5" count="3" type="stmt"/>
         <line num="7" count="3" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
@@ -137,9 +137,8 @@
         <line num="79" count="14" type="stmt"/>
         <line num="80" count="14" type="stmt"/>
         <line num="81" count="14" type="stmt"/>
-        <line num="82" count="14" type="stmt"/>
-        <line num="86" count="3" type="stmt"/>
-        <line num="88" count="3" type="stmt"/>
+        <line num="85" count="3" type="stmt"/>
+        <line num="87" count="3" type="stmt"/>
       </file>
       <file name="TaskPopUp.js" path="D:\学习\21WI\CSE110\cse110-w21-group13\source\src\components\TaskPopUp.js">
         <metrics statements="52" coveredstatements="52" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>

@@ -77,7 +77,6 @@ class TaskItem extends HTMLElement {
 
     attributeChangedCallback(attrName, oldVal, newVal) {
         const shadow = this.shadowRoot;
-        console.log(newVal);
         const text = document.createTextNode(newVal);
         shadow.getElementById('li').append(text);
     }

@@ -1,5 +1,5 @@
-import ResetPopUp from '../src/components/ResetPopUp';
-import TaskItem from '../src/components/TaskItem';
+import ResetPopUp from '../../src/components/ResetPopUp';
+import TaskItem from '../../src/components/TaskItem';
 
 beforeEach(() => {
     const tasks = [];
