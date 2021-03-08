@@ -46,7 +46,10 @@
     ]
   },
   "dependencies": {
+    "babel-plugin-istanbul": "^6.0.0",
+    "istanbul-lib-coverage": "^3.0.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
+    "nyc": "^15.1.0",
     "regenerator-runtime": "^0.13.7"
   }
 }

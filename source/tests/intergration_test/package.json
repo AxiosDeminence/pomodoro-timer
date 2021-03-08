@@ -12,5 +12,8 @@
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.2",
     "cypress": "^6.6.0"
+  },
+  "dependencies": {
+    "cypress-localstorage-commands": "^1.4.1"
   }
 }

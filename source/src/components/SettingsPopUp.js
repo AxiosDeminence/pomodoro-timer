@@ -1,3 +1,5 @@
+// require('../scripts/Timer.js');
+
 class SettingsPopUp extends HTMLElement {
     closePopUp() {
         const wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
@@ -11,7 +13,7 @@ class SettingsPopUp extends HTMLElement {
         localStorage.setItem('pomo-length', pomoLength);
         localStorage.setItem('short-break-length', shortBreak);
         localStorage.setItem('long-break-length', longBreak);
-        window.stop();
+        stop();
         this.closePopUp();
     }
 
