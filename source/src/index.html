@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Pomodoro Timer</title>
-    <link rel="icon" href= "../icons/favicon.ico">
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="styles/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,18 +14,19 @@
             <!-- Header Buttons -->
             <div id="header-buttons">
                 <ul>
-                    <li><button class="top-buttons" id="reset-button">
-                            <img src="../icons/reset.svg" id="reset" class="top-button-img" alt="reset">
+                    <li>
+                        <button class="top-buttons" id="reset-button">
+                            <img src="icons/reset.svg" id="reset" class="top-button-img" alt="reset">
                             <p class="top-button-text">Reset</p>
                         </button>
                     </li>
                     <li><button class="top-buttons" id="setting-button">
-                            <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                            <img src="icons/settings.svg" id="gear" class="top-button-img" alt="gear">
                             <p class="top-button-text">Setting</p>
                         </button>
                     </li>
                     <li><button class="top-buttons" id="help-button">
-                            <img src="../icons/help.svg" id="help" class="top-button-img" alt="help">
+                            <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
                             <p class="top-button-text" id="text-help">Help</p>
                         </button>
                     </li>
@@ -52,7 +52,7 @@
             </div>
         </div>
         <!-- Divider -->
-        <img src="../icons/dash.svg" id="dash">
+        <img src="icons/dash.svg" id="dash">
         <!--Task List-->
         <div id="task-list">
             <h2 id="up-next">Up Next</h2>
@@ -61,13 +61,14 @@
         </div>
         <!-- Popup button opens popup to add task -->
         <div id="popup-button">
-            <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            <button id="task-popup-btn"> <img src="icons/plus.svg" id="plus"></button>
         </div>
     </div>
-    <script src="../scripts/Timer.js"></script>
-    <script src="../components/TaskItem.js"></script>
-    <script src="../components/TaskPopUp.js"></script>
-    <script src="../components/ResetPopUp.js"></script>
-    <script src="../components/SettingsPopUp.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/Timer.js"></script>
+    <script src="components/TaskItem.js"></script>
+    <script src="components/TaskPopUp.js"></script>
+    <script src="components/ResetPopUp.js"></script>
+    <script src="components/SettingsPopUp.js"></script>
 </body>
 </html>
