@@ -39,6 +39,7 @@ class TaskPopUp extends HTMLElement {
         let close = wrapper.appendChild(document.createElement('img'));
         close.setAttribute('src', '../icons/close.svg');
         close.setAttribute('id', 'close-icon');
+        // title 
         let title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Add Task';
         // append an input form
@@ -46,7 +47,8 @@ class TaskPopUp extends HTMLElement {
         input.setAttribute('type', 'text');
         input.setAttribute('id', 'task-input');
         input.setAttribute('placeholder', 'What are you working on today?');
-        input.setAttribute('maxlength', '42');
+        input.setAttribute('maxlength', '48');
+        input.setAttribute('spellcheck', 'false');
         // wrap add button in a footer
         let footer = wrapper.appendChild(document.createElement('div'));
         footer.setAttribute('class', 'button-footer');
@@ -57,6 +59,13 @@ class TaskPopUp extends HTMLElement {
         // event listeners for close icon and add button
         addBtn.addEventListener('click', this.addTask.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
+        // use ::part pseudo-element to style element outside of shadow tree -- for dark mode
+        wrapper.setAttribute('part', 'popup-wrapper');
+        close.setAttribute('part', 'close-icon');
+        title.setAttribute('part', 'add-task-h3');
+        input.setAttribute('part', 'task-input');
+        footer.setAttribute('part', 'btn-footer');
+        addBtn.setAttribute('part', 'add-btn');
         // CSS styling
         let style = document.createElement('style');
         style.textContent = `
@@ -93,8 +102,7 @@ class TaskPopUp extends HTMLElement {
             border-radius: 4px;
             top:25%;
             left: 34%;
-            border: 3px solid #f1f1f1;
-            z-index: 1;
+            z-index: 999;
             background-color: whitesmoke;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
             -webkit-animation-name: animatetop; 
@@ -123,12 +131,14 @@ class TaskPopUp extends HTMLElement {
             outline: none;
             display: block;
             margin:20px auto 0 auto;
+            font-weight: 500;
         }
-        ::placeholder {
+        input[type='text']::placeholder {
             color: rgba(85, 85, 85, 0.336);
         }
         #add-task-popup > h3{
             font-size: 1.6vw;
+            font-weight: 500;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
             padding-bottom: 5px;
@@ -171,7 +181,13 @@ customElements.define('task-popup', TaskPopUp);
 
 var popupBtn = document.getElementById('task-popup-btn');
 var popUp = document.createElement('task-popup');
+popUp.setAttribute('class', 'popup');
 document.body.appendChild(popUp);
 popupBtn.addEventListener('click', function() {
+    // this makes sure any popup is closed before opening current popup
+    var popups = Array.from(document.getElementsByClassName('popup'));
+    for (let i = 0; i < popups.length; i++) {
+        popups[i].closePopUp();
+    }
     popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
 });

@@ -6,6 +6,13 @@
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="../styles/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- <script>
+    // Render blocking JS:
+    if (localStorage.getItem("theme") == 'dark') {
+            document.body.classList.add("dark-theme");
+            console.log('here');
+    }
+    </script> -->
 </head>
 <body>
     <div id="container">
@@ -36,7 +43,7 @@
             <!--Adds Pomo and Break buttons-->
             <div style="text-align: center;" id = "timer-btns" class="timer-buttons">
                 <button id = "pomo-btn"> Pomo</button>
-                <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
+                <button id = "break-btn"> Break</button>
             </div>
             <!--Adds empty border to create distance between Pomo/Break buttons and Timer display-->
             <div style="text-align: center;" class="empty-space-border">
@@ -51,18 +58,25 @@
             </div>
         </div>
         <!-- Divider -->
-        <img src="../icons/dash.svg" id="dash">
+        <!-- <img src="../icons/dash.svg" id="dash"> -->
         <!--Task List-->
         <div id="task-list">
             <h2 id="up-next">Up Next</h2>
             <ul id="task-list-elements">
-            </ul>             
+            </ul>   
         </div>
         <!-- Popup button opens popup to add task -->
         <div id="popup-button">
             <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
         </div>
     </div>
+    <script>
+        // Render blocking JS:
+        if (localStorage.getItem("theme") == 'dark') {
+                document.body.classList.add("dark-theme");
+                console.log('here');
+        }
+    </script>
     <script src="../scripts/script.js"></script>
     <script src="../scripts/Timer.js"></script>
     <script src="../components/TaskItem.js"></script>

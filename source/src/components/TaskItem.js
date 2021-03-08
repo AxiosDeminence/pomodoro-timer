@@ -34,6 +34,11 @@ class TaskItem extends HTMLElement {
         this.setAttribute('text', task.text);
         // create list node
         const li = document.createElement('li');
+        const check = document.createElement('img');
+        check.setAttribute('src', '../icons/check.svg');
+        check.setAttribute('class', 'check-icon');
+        check.setAttribute('part', 'test');
+        li.appendChild(check);
         const text = document.createTextNode(task.text);
         li.append(text);
         // add event listener such that clicking on element crosses out task
@@ -48,6 +53,44 @@ class TaskItem extends HTMLElement {
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `
+        :host {
+            cursor: pointer;
+            height: 50px;
+            position: relative;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            margin-right: 20%;
+            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            padding-left: 37px;
+            background-color: #f36060;
+            color: white;
+            font-size: medium;
+            font-weight: 500;
+            border-style:none;
+            user-select: none;
+        }
+        :host(:hover) {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        :host([checked = 'true']) {
+            background: #f3606060;
+            text-decoration: line-through;
+        }
+        :host([checked = 'true']) .check-icon {
+            visibility: visible;
+        }
+        .check-icon {
+            position: absolute;
+            left: 10px;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            visibility: hidden;
+        }
         :host(:hover) .delete-icon {
             visibility: visible;
         }
@@ -59,13 +102,13 @@ class TaskItem extends HTMLElement {
             width: 20px;
             height: 20px;
             margin: 0;
-            padding: 0;
             visibility: hidden;
         }
         .delete-icon:hover {
             transform: scale(1.3);
             filter:brightness(105%)
-        }`;
+        }
+        `;
         shadow.appendChild(li);
         shadow.appendChild(style);
     }

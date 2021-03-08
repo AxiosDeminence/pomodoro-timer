@@ -3,9 +3,6 @@ let startButton = document.getElementById("start-btn");
 let timerDisplayDuration = document.getElementById("timer_display_duration");
 let timer;
 let timerStatus = "pomo"
-// let pomoTime = localStorage.getItem('pomo-length');
-// let breakTime = localStorage.getItem('short-break-length');
-// let longBreakTime = localStorage.getItem('long-break-length');
 let breakCounter = 0;
 const SECOND = 1000;
 const LIGHT_COLOR = "#f3606060";
@@ -77,24 +74,53 @@ function reset_timer() {
 function switch_mode() {
     let pomoButton = document.getElementById("pomo-btn");
     let breakButton = document.getElementById("break-btn");
+
     if (timerStatus == "pomo" && breakCounter >= 3) {
         timerDisplayDuration.innerHTML = longBreakTime + ":00";
-        pomoButton.style.backgroundColor = LIGHT_COLOR;
-        breakButton.style.backgroundColor = DARK_COLOR;
+        if (pomoButton.getAttribute('class') != 'toggle') {
+            pomoButton.classList.toggle('toggle');
+            breakButton.classList.toggle('toggle');
+        }
         timerStatus = "break";
         breakCounter = 0;
     } else if (timerStatus == "pomo") {
         timerDisplayDuration.innerHTML = breakTime + ":00";
-        pomoButton.style.backgroundColor = LIGHT_COLOR;
-        breakButton.style.backgroundColor = DARK_COLOR;
+        if (pomoButton.getAttribute('class') != 'toggle') {
+            pomoButton.classList.toggle('toggle');
+            breakButton.classList.toggle('toggle');
+        }
         timerStatus = "break";
         breakCounter++;
     } else {
         timerDisplayDuration.innerHTML = pomoTime + ":00";
-        pomoButton.style.backgroundColor = DARK_COLOR;
-        breakButton.style.backgroundColor = LIGHT_COLOR;
+        if (pomoButton.getAttribute('class') == 'toggle') {
+            pomoButton.classList.toggle('toggle');
+            breakButton.classList.toggle('toggle');
+        }
         timerStatus = "pomo";
     }
 }
+// function switch_mode() {
+//     let pomoButton = document.getElementById("pomo-btn");
+//     let breakButton = document.getElementById("break-btn");
+//     if (timerStatus == "pomo" && breakCounter >= 3) {
+//         timerDisplayDuration.innerHTML = longBreakTime + ":00";
+//         pomoButton.style.backgroundColor = LIGHT_COLOR;
+//         breakButton.style.backgroundColor = DARK_COLOR;
+//         timerStatus = "break";
+//         breakCounter = 0;
+//     } else if (timerStatus == "pomo") {
+//         timerDisplayDuration.innerHTML = breakTime + ":00";
+//         pomoButton.style.backgroundColor = LIGHT_COLOR;
+//         breakButton.style.backgroundColor = DARK_COLOR;
+//         timerStatus = "break";
+//         breakCounter++;
+//     } else {
+//         timerDisplayDuration.innerHTML = pomoTime + ":00";
+//         pomoButton.style.backgroundColor = DARK_COLOR;
+//         breakButton.style.backgroundColor = LIGHT_COLOR;
+//         timerStatus = "pomo";
+//     }
+// }
 
 startButton.addEventListener('click', startAndStopButton);
