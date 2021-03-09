@@ -15,14 +15,13 @@ beforeEach(() => {
 });
 
 test('Confirm Button functions as intended', () => {
-
     const testSettingsPopUp = new SettingsPopUp();
     const shadow = testSettingsPopUp.shadowRoot;
 
     const pomoLength = shadow.querySelectorAll('input')[0];
     const shortBreakLength = shadow.querySelectorAll('input')[1];
     const longBreakLength = shadow.querySelectorAll('input')[2];
-   
+
     pomoLength.value = '30';
     shortBreakLength.value = '10';
     longBreakLength.value = '20';
@@ -37,7 +36,6 @@ test('Confirm Button functions as intended', () => {
 
     // closes pop up
     expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
-
 });
 
 // edge case for settings not implemented yet, ignore for now.
@@ -50,7 +48,7 @@ test('Confirm Button functions as intended', () => {
 //     const pomoLength = shadow.querySelectorAll('input')[0];
 //     const shortBreakLength = shadow.querySelectorAll('input')[1];
 //     const longBreakLength = shadow.querySelectorAll('input')[2];
-   
+
 //     pomoLength.value = '100';
 //     shortBreakLength.value = '200';
 //     longBreakLength.value = '300';
@@ -75,7 +73,7 @@ test('Cancel Button functions as intended', () => {
     const pomoLength = shadow.querySelectorAll('input')[0];
     const shortBreakLength = shadow.querySelectorAll('input')[1];
     const longBreakLength = shadow.querySelectorAll('input')[2];
-   
+
     pomoLength.value = '30';
     shortBreakLength.value = '10';
     longBreakLength.value = '20';
@@ -136,7 +134,7 @@ test('All attributes set correctly', () => {
 test('Pop up button works correctly', () => {
     dispatchEvent(new Event('load'));
 
-    const settingsButton = document.getElementById("setting-button");
+    const settingsButton = document.getElementById('setting-button');
     const settingsPopUp = document.createElement('settings-popup');
     document.body.appendChild(settingsPopUp);
 

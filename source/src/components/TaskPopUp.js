@@ -6,7 +6,7 @@ class TaskPopUp extends HTMLElement {
     addTask() {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         const input = this.shadowRoot.getElementById('task-input').value;
-        if (input != '') {
+        if (input !== '') {
             // create TaskItem and append to DOM
             const task = {
                 id: localStorage.getItem('id'),
