@@ -2,6 +2,8 @@ class SettingsPopUp extends HTMLElement {
     closePopUp() {
         const wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
         wrapper.style.display = 'none';
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.play();
     }
 
     confirmSettings() {
@@ -51,19 +53,6 @@ class SettingsPopUp extends HTMLElement {
         cancelBtn.setAttribute('class', 'settings-popup-btns');
         cancelBtn.setAttribute('id', 'cancel-settings-btn');
         cancelBtn.innerHTML = 'Cancel';
-        // event listeners
-        // keyboard access for confirm/close btn
-        window.addEventListener('keydown', (event) => {
-            const btnSound = new Audio('../icons/btnClick.mp3');
-            if (event.code === 'Enter' && wrapper.style.display !== 'none') {
-                confirmBtn.click();
-                btnSound.play();
-            }
-            if (event.code === 'Escape' && wrapper.style.display !== 'none') {
-                cancelBtn.click();
-                btnSound.play();
-            }
-        });
         confirmBtn.addEventListener('click', this.confirmSettings.bind(this));
         cancelBtn.addEventListener('click', this.closePopUp.bind(this));
 
@@ -113,7 +102,7 @@ window.addEventListener('load', () => {
     const settingsPopUp = document.createElement('settings-popup');
     document.body.appendChild(settingsPopUp);
     settingsButton.addEventListener('click', () => {
-        const btnSound = new Audio('../icons/btnClick.mp3');
+        const btnSound = new Audio('./icons/btnClick.mp3');
         btnSound.play();
         settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
     });

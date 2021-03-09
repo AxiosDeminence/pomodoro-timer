@@ -11,6 +11,8 @@ class ResetPopUp extends HTMLElement {
     }
 
     closePopUp() {
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.play();
         const wrapper = this.shadowRoot.getElementById('reset-confirm-popup');
         wrapper.style.display = 'none';
     }
@@ -23,7 +25,7 @@ class ResetPopUp extends HTMLElement {
         wrapper.setAttribute('id', 'reset-confirm-popup');
         // close icon
         const close = wrapper.appendChild(document.createElement('img'));
-        close.setAttribute('src', '../icons/close.svg');
+        close.setAttribute('src', './icons/close.svg');
         close.setAttribute('id', 'close-icon');
         const title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Are you sure?';
@@ -37,18 +39,6 @@ class ResetPopUp extends HTMLElement {
         confirmBtn.setAttribute('class', 'reset-popup-btns');
         confirmBtn.setAttribute('id', 'confirm-reset-btn');
         confirmBtn.innerHTML = 'Confirm';
-        // keyboard access for confirm/close btn
-        window.addEventListener('keydown', (event) => {
-            const btnSound = new Audio('../icons/btnClick.mp3');
-            if (event.code === 'Enter' && wrapper.style.display !== 'none') {
-                confirmBtn.click();
-                btnSound.play();
-            }
-            if (event.code === 'Escape' && wrapper.style.display !== 'none') {
-                close.click();
-                btnSound.play();
-            }
-        });
         // event listeners for confirm button and close icon
         confirmBtn.addEventListener('click', this.reset.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
@@ -156,7 +146,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(resetPopUp);
     const resetBtn = document.getElementById('reset-button');
     resetBtn.addEventListener('click', () => {
-        const btnSound = new Audio('../icons/btnClick.mp3');
+        const btnSound = new Audio('./icons/btnClick.mp3');
         btnSound.play();
         resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
     });

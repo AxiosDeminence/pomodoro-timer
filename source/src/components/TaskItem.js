@@ -41,7 +41,7 @@ class TaskItem extends HTMLElement {
         this.addEventListener('click', this.toggle);
         // create delete icon
         const icon = document.createElement('img');
-        icon.setAttribute('src', '../icons/delete.svg');
+        icon.setAttribute('src', './icons/delete.svg');
         icon.setAttribute('class', 'delete-icon');
         li.appendChild(icon);
         // add event listener to image to remove task

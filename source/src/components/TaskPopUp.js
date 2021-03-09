@@ -1,5 +1,4 @@
 // const TaskItem = require('./TaskItem');
-
 // create class for popup to add task
 class TaskPopUp extends HTMLElement {
     // add TaskItem element to DOM
@@ -30,6 +29,8 @@ class TaskPopUp extends HTMLElement {
 
     // closes popup
     closePopUp() {
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.play();
         const wrapper = this.shadowRoot.getElementById('add-task-popup');
         const input = this.shadowRoot.getElementById('task-input');
         wrapper.style.display = 'none';
@@ -45,7 +46,7 @@ class TaskPopUp extends HTMLElement {
         wrapper.setAttribute('id', 'add-task-popup');
         // close icon
         const close = wrapper.appendChild(document.createElement('img'));
-        close.setAttribute('src', '../icons/close.svg');
+        close.setAttribute('src', './icons/close.svg');
         close.setAttribute('id', 'close-icon');
         const title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Add Task';
@@ -67,14 +68,12 @@ class TaskPopUp extends HTMLElement {
         close.addEventListener('click', this.closePopUp.bind(this));
         // prevent keyboard press & focus on input field
         window.addEventListener('keydown', (event) => {
-            const btnSound = new Audio('../icons/btnClick.mp3');
+            const btnSound = new Audio('./icons/btnClick.mp3');
             if (event.code === 'Enter' && wrapper.style.display !== 'none') {
                 addBtn.click();
-                btnSound.play();
             }
             if (event.code === 'Escape' && wrapper.style.display !== 'none') {
                 close.click();
-                btnSound.play();
             }
         });
 
@@ -202,7 +201,7 @@ window.addEventListener('load', () => {
     const popUp = document.createElement('task-popup');
     document.body.appendChild(popUp);
     popupBtn.addEventListener('click', () => {
-        const btnSound = new Audio('../icons/btnClick.mp3');
+        const btnSound = new Audio('./icons/btnClick.mp3');
         btnSound.play();
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
         popUp.shadowRoot.getElementById('task-input').focus();
