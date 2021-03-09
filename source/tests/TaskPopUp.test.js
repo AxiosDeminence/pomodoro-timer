@@ -12,6 +12,7 @@ beforeEach(() => {
             <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
         </div>
     `;
+    window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 });
 
 afterEach(() => {
@@ -107,4 +108,50 @@ test('Pop up button works correctly', () => {
     const display = getComputedStyle(shadow.getElementById('add-task-popup'));
 
     expect(display.display).toBe('block');
+});
+
+test('Key press ENTER adds a task correctly', () => {
+
+    const testTaskPopUp = new TaskPopUp();
+    const shadow = testTaskPopUp.shadowRoot;
+
+    const input = shadow.querySelector('input');
+    input.value = 'test_task';
+
+    let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+    if (eventObj.initEvent) {
+        eventObj.initEvent('keydown', true, true);
+    }
+    eventObj.code = 'Enter';
+
+    document.body.dispatchEvent(eventObj);   
+
+
+
+    // new task test_task is added to list of tasks
+    expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\"}]');
+    // id is updated
+    expect(localStorage.getItem('id')).toBe('1');
+    // input is set back to empty string
+    expect(input.value).toBe('');
+
+});
+
+test('Key press ESCAPE exits task pop up correctly', () => {
+
+    const shadow = new TaskPopUp().shadowRoot;
+    const input = shadow.querySelector('input');
+    input.value = 'test_task';
+        
+    let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+    if (eventObj.initEvent) {
+        eventObj.initEvent('keydown', true, true);
+    }
+    eventObj.code = 'Escape';
+
+    document.body.dispatchEvent(eventObj);
+
+    expect(shadow.querySelector('div').style.display).toBe('none');
+    expect(shadow.querySelector('input').value).toBe('');
+
 });

@@ -12,6 +12,7 @@ beforeEach(() => {
             <p class="top-button-text">Setting</p>
         </button>
     `;
+    window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 });
 
 test('Confirm Button functions as intended', () => {
@@ -40,33 +41,35 @@ test('Confirm Button functions as intended', () => {
 
 });
 
-// edge case for settings not implemented yet, ignore for now.
+/*
+edge case for settings not implemented yet, ignore for now.
 
-// test('Confirm Button edge cases functions as intended', () => {
+test('Confirm Button edge cases functions as intended', () => {
 
-//     const testSettingsPopUp = new SettingsPopUp();
-//     const shadow = testSettingsPopUp.shadowRoot;
+    const testSettingsPopUp = new SettingsPopUp();
+    const shadow = testSettingsPopUp.shadowRoot;
 
-//     const pomoLength = shadow.querySelectorAll('input')[0];
-//     const shortBreakLength = shadow.querySelectorAll('input')[1];
-//     const longBreakLength = shadow.querySelectorAll('input')[2];
+    const pomoLength = shadow.querySelectorAll('input')[0];
+    const shortBreakLength = shadow.querySelectorAll('input')[1];
+    const longBreakLength = shadow.querySelectorAll('input')[2];
    
-//     pomoLength.value = '100';
-//     shortBreakLength.value = '200';
-//     longBreakLength.value = '300';
+    pomoLength.value = '100';
+    shortBreakLength.value = '200';
+    longBreakLength.value = '300';
 
-//     const confirmBtn = shadow.querySelectorAll('button')[0];
+    const confirmBtn = shadow.querySelectorAll('button')[0];
 
-//     confirmBtn.click();
+    confirmBtn.click();
 
-//     expect(localStorage.getItem('pomo-length')).toBe('60');
-//     expect(localStorage.getItem('short-break-length')).toBe('60');
-//     expect(localStorage.getItem('long-break-length')).toBe('600');
+    expect(localStorage.getItem('pomo-length')).toBe('60');
+    expect(localStorage.getItem('short-break-length')).toBe('60');
+    expect(localStorage.getItem('long-break-length')).toBe('600');
 
-//     // closes pop up
-//     expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
+    // closes pop up
+    expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
 
-// });
+});
+*/
 
 test('Cancel Button functions as intended', () => {
     const testSettingsPopUp = new SettingsPopUp();
@@ -147,4 +150,59 @@ test('Pop up button works correctly', () => {
     const display = getComputedStyle(shadow.getElementById('settings-confirm-popup'));
 
     expect(display.display).toBe('block');
+});
+
+test('Key press ENTER confirms settings correctly', () => {
+
+    const shadow = new SettingsPopUp().shadowRoot;
+    const pomoLength = shadow.querySelectorAll('input')[0];
+    const shortBreakLength = shadow.querySelectorAll('input')[1];
+    const longBreakLength = shadow.querySelectorAll('input')[2];
+   
+    pomoLength.value = '30';
+    shortBreakLength.value = '10';
+    longBreakLength.value = '20';
+
+    let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+    if (eventObj.initEvent) {
+        eventObj.initEvent('keydown', true, true);
+    }
+    eventObj.code = 'Enter';
+
+    document.body.dispatchEvent(eventObj);   
+
+    expect(localStorage.getItem('pomo-length')).toBe('30');
+    expect(localStorage.getItem('short-break-length')).toBe('10');
+    expect(localStorage.getItem('long-break-length')).toBe('20');
+
+    // closes pop up
+    expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
+
+});
+
+test('Key press ESCAPE exits settings correctly', () => {
+    
+    const shadow = new SettingsPopUp().shadowRoot;
+    const pomoLength = shadow.querySelectorAll('input')[0];
+    const shortBreakLength = shadow.querySelectorAll('input')[1];
+    const longBreakLength = shadow.querySelectorAll('input')[2];
+
+    pomoLength.value = '30';
+    shortBreakLength.value = '10';
+    longBreakLength.value = '20';
+    
+    let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+    if (eventObj.initEvent) {
+        eventObj.initEvent('keydown', true, true);
+    }
+    eventObj.code = 'Escape';
+
+    document.body.dispatchEvent(eventObj);
+
+    expect(localStorage.getItem('pomo-length')).toBe('25');
+    expect(localStorage.getItem('short-break-length')).toBe('5');
+    expect(localStorage.getItem('long-break-length')).toBe('15');
+
+    expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
+
 });
