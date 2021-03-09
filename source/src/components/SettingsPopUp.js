@@ -2,7 +2,8 @@ class SettingsPopUp extends HTMLElement {
     closePopUp() {
         const wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
         wrapper.style.display = 'none';
-		console.log('here');
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.play();
     }
 
     confirmSettings() {
@@ -139,18 +140,18 @@ class SettingsPopUp extends HTMLElement {
         // event listeners
 		confirmBtn.addEventListener('click', this.confirmSettings.bind(this));
 		close.addEventListener('click', this.closePopUp.bind(this));
-        // keyboard access for confirm/close btn
-        window.addEventListener('keydown', (event) => {
-            const btnSound = new Audio('../icons/btnClick.mp3');
-            if (event.code === 'Enter' && wrapper.style.display !== 'none') {
-                confirmBtn.click();
-                btnSound.play();
-            }
-            if (event.code === 'Escape' && wrapper.style.display !== 'none') {
-                close.click();
-                btnSound.play();
-            }
-        });
+        // // keyboard access for confirm/close btn
+        // window.addEventListener('keydown', (event) => {
+        //     const btnSound = new Audio('../icons/btnClick.mp3');
+        //     if (event.code === 'Enter' && wrapper.style.display !== 'none') {
+        //         confirmBtn.click();
+        //         btnSound.play();
+        //     }
+        //     if (event.code === 'Escape' && wrapper.style.display !== 'none') {
+        //         close.click();
+        //         btnSound.play();
+        //     }
+        // });
         
 		// use ::part pseudo-element to style element outside of shadow tree -- for dark mode
 		wrapper.setAttribute('part', 'settings-confirm-popup');
@@ -414,13 +415,13 @@ class SettingsPopUp extends HTMLElement {
 }
 customElements.define('settings-popup', SettingsPopUp);
 
-// window.addEventListener('load', () => {
+window.addEventListener('load', () => {
     const settingsButton = document.getElementById('setting-button');
     const settingsPopUp = document.createElement('settings-popup');
 	settingsPopUp.setAttribute('class', 'popup');
     document.body.appendChild(settingsPopUp);
     settingsButton.addEventListener('click', () => {
-		const btnSound = new Audio('../icons/btnClick.mp3');
+        const btnSound = new Audio('./icons/btnClick.mp3');
         btnSound.play();
 		const popups = Array.from(document.getElementsByClassName('popup'));
     	for (let i = 0; i < popups.length; i++) {
@@ -429,6 +430,6 @@ customElements.define('settings-popup', SettingsPopUp);
     	}
         settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
     });
-// });
+});
 
 module.exports = SettingsPopUp;

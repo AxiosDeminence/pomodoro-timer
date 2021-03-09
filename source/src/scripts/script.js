@@ -1,7 +1,6 @@
 // require('../components/TaskItem');
 
 // const TaskItem = require('../components/TaskItem');
-
 window.addEventListener('DOMContentLoaded', () => {
     let tasks; // holds list nodes in local storage
     let id; // id counter for task items
