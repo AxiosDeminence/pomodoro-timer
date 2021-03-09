@@ -1,13 +1,14 @@
 class SettingsPopUp extends HTMLElement {
     closePopUp() {
-        let wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
+        const wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
         wrapper.style.display = 'none';
+		console.log('here');
     }
 
     confirmSettings() {
-        var pomoLength = this.shadowRoot.getElementById('pomo-length-input').value;
-        var shortBreak = this.shadowRoot.getElementById('short-break-input').value;
-        var longBreak = this.shadowRoot.getElementById('long-break-input').value;
+        const pomoLength = this.shadowRoot.getElementById('pomo-length-input').value;
+        const shortBreak = this.shadowRoot.getElementById('short-break-input').value;
+        const longBreak = this.shadowRoot.getElementById('long-break-input').value;
         localStorage.setItem('pomo-length', pomoLength);
         localStorage.setItem('short-break-length', shortBreak);
         localStorage.setItem('long-break-length', longBreak);
@@ -25,106 +26,132 @@ class SettingsPopUp extends HTMLElement {
       document.body.classList.toggle('dark-theme');
     }
 
+	setVolume() {
+		const volume = this.shadowRoot.getElementById('range').value;
+		localStorage.setItem('volume', '' + volume);
+	}
+
     constructor() {
         super();
-        let shadow = this.attachShadow({mode: 'open'});
+        const shadow = this.attachShadow({ mode: 'open' });
         // use div as wrapper
-        let wrapper = document.createElement('div');
+        const wrapper = document.createElement('div');
         wrapper.setAttribute('id', 'settings-confirm-popup');
 		// close icon
-        let close = wrapper.appendChild(document.createElement('img'));
+        const close = wrapper.appendChild(document.createElement('img'));
         close.setAttribute('src', '../icons/close.svg');
         close.setAttribute('id', 'close-icon');
 		// title
-        let title = wrapper.appendChild(document.createElement('h3'));
+        const title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Settings';
 		// session title
-        let sessionTitle = wrapper.appendChild(document.createElement('h4'));
+        const sessionTitle = wrapper.appendChild(document.createElement('h4'));
 		sessionTitle.setAttribute('id', 'timer-settings');
         sessionTitle.innerHTML = 'Session Length (minutes)';
 		// session div
-		let session = wrapper.appendChild(document.createElement('div'));
+		const session = wrapper.appendChild(document.createElement('div'));
 		session.setAttribute('id', 'session');
         // append input forms
-		let pomoWrapper = session.appendChild(document.createElement('div'));
+		const pomoWrapper = session.appendChild(document.createElement('div'));
 		pomoWrapper.setAttribute('class', 'session-inputs');
-		let pomoLabel = pomoWrapper.appendChild(document.createElement('label'));
+		const pomoLabel = pomoWrapper.appendChild(document.createElement('label'));
 		pomoLabel.setAttribute('for', 'pomo');
 		pomoLabel.innerHTML = 'Pomo';
-        let pomoInput = pomoWrapper.appendChild(document.createElement('input'));
+        const pomoInput = pomoWrapper.appendChild(document.createElement('input'));
         pomoInput.setAttribute('type', 'number'); //TODO: handle negatives
         pomoInput.setAttribute('id', 'pomo-length-input');
-        pomoInput.setAttribute('value', parseInt(localStorage.getItem('pomo-length')));
+        pomoInput.setAttribute('value', parseInt(localStorage.getItem('pomo-length'), 10));
         pomoInput.setAttribute('min', 1); // values subj. to change
         pomoInput.setAttribute('max', 60); // values subj. to change
-		let shortBreakWrapper = session.appendChild(document.createElement('div'));
+		const shortBreakWrapper = session.appendChild(document.createElement('div'));
 		shortBreakWrapper.setAttribute('class', 'session-inputs');
-		let shortBreakLabel = shortBreakWrapper.appendChild(document.createElement('label'));
+		const shortBreakLabel = shortBreakWrapper.appendChild(document.createElement('label'));
 		shortBreakLabel.setAttribute('for', 'short-break');
 		shortBreakLabel.innerHTML = 'Short Break'
-        let shortBreakInput = shortBreakWrapper.appendChild(document.createElement('input'));
+        const shortBreakInput = shortBreakWrapper.appendChild(document.createElement('input'));
         shortBreakInput.setAttribute('type', 'number'); //TODO: handle negatives
         shortBreakInput.setAttribute('id', 'short-break-input');
-        shortBreakInput.setAttribute('value', parseInt(localStorage.getItem('short-break-length')));
+        shortBreakInput.setAttribute('value', parseInt(localStorage.getItem('short-break-length'), 10));
         shortBreakInput.setAttribute('min', 1); // values subj. to change
         shortBreakInput.setAttribute('max', 60); // values subj. to change
-		let longBreakWrapper = session.appendChild(document.createElement('div'));
+		const longBreakWrapper = session.appendChild(document.createElement('div'));
 		longBreakWrapper.setAttribute('class', 'session-inputs');
-		let longBreakLabel = longBreakWrapper.appendChild(document.createElement('label'));
+		const longBreakLabel = longBreakWrapper.appendChild(document.createElement('label'));
 		longBreakLabel.setAttribute('for', 'long-break');
 		longBreakLabel.innerHTML = 'Long Break'
-        let longBreakInput = longBreakWrapper.appendChild(document.createElement('input'));
+        const longBreakInput = longBreakWrapper.appendChild(document.createElement('input'));
         longBreakInput.setAttribute('type', 'number'); //TODO: handle negatives
         longBreakInput.setAttribute('id', 'long-break-input');
-        longBreakInput.setAttribute('value', parseInt(localStorage.getItem('long-break-length')));
+        longBreakInput.setAttribute('value', parseInt(localStorage.getItem('long-break-length'), 10));
         longBreakInput.setAttribute('min', 1); // values subj. to change
         longBreakInput.setAttribute('max', 60); // values subj. to change
-		let darkModeDiv = wrapper.appendChild(document.createElement('div'));
+		const darkModeDiv = wrapper.appendChild(document.createElement('div'));
 		darkModeDiv.setAttribute('id', 'dark-mode');
-		let darkModeTitle = darkModeDiv.appendChild(document.createElement('h4'));
+		const darkModeTitle = darkModeDiv.appendChild(document.createElement('h4'));
 		darkModeTitle.setAttribute('id', 'enable-dark-mode');
 		darkModeTitle.innerHTML = 'Enable Dark Mode?';
-		let modeSwitch = darkModeDiv.appendChild(document.createElement('label'));
+		const modeSwitch = darkModeDiv.appendChild(document.createElement('label'));
 		modeSwitch.setAttribute('class', 'switch');
-		let checkboxInput = modeSwitch.appendChild(document.createElement('input'));
+		const checkboxInput = modeSwitch.appendChild(document.createElement('input'));
 		checkboxInput.setAttribute('type', 'checkbox');
 		if (localStorage.getItem('theme') == 'dark') { 
 			checkboxInput.checked = 'checked';
 		}
-		let slider = modeSwitch.appendChild(document.createElement('span'));
+		const slider = modeSwitch.appendChild(document.createElement('span'));
 		slider.setAttribute('class', 'slider'); 
 		slider.addEventListener('click', this.toggleMode.bind(this));
-		let volumeDiv = wrapper.appendChild(document.createElement('div'));
+		const volumeDiv = wrapper.appendChild(document.createElement('div'));
 		volumeDiv.setAttribute('id', 'volume-div');
-		let volumeTitle = volumeDiv.appendChild(document.createElement('h4'));
+		const volumeTitle = volumeDiv.appendChild(document.createElement('h4'));
 		volumeTitle.setAttribute('id', 'sound-volume');
 		volumeTitle.innerHTML = 'Audio Volume';
-		let sliderDiv = volumeDiv.appendChild(document.createElement('div'));
+		const volP = volumeDiv.appendChild(document.createElement('p'));
+		const volSpan = volP.appendChild(document.createElement('span'));
+		volSpan.setAttribute('id', 'volume-number');
+		const sliderDiv = volumeDiv.appendChild(document.createElement('div'));
 		sliderDiv.setAttribute('class', 'slider-div');
-		let rangeInput = sliderDiv.appendChild(document.createElement('input'));
+		const rangeInput = sliderDiv.appendChild(document.createElement('input'));
 		rangeInput.setAttribute('type', 'range');
 		rangeInput.setAttribute('min', 0);
 		rangeInput.setAttribute('max', 100);
-		rangeInput.setAttribute('value', 50);
+		rangeInput.setAttribute('value', parseInt(localStorage.getItem('volume'), 10));
 		rangeInput.setAttribute('class', 'vol-slider');
 		rangeInput.setAttribute('id', 'range');
-		let volP = volumeDiv.appendChild(document.createElement('p'));
-		let volSpan = volP.appendChild(document.createElement('span'));
-		volSpan.setAttribute('id', 'volume-number');
+		
+		// rangeInput.addEventListener('change', function() {
+		// 	let volume = this.value;
+		// 	localStorage.setItem('volume', '' + volume);
+		// })
+		rangeInput.addEventListener('change', this.setVolume.bind(this));
+		
+		
 		volSpan.innerHTML = rangeInput.value;
 		rangeInput.oninput = function() {	// add event listener maybe?
 			volSpan.innerHTML = this.value;
 		}
-        let footer = wrapper.appendChild(document.createElement('div'));
+        const footer = wrapper.appendChild(document.createElement('div'));
         footer.setAttribute('class', 'button-footer');
         // append confirm button
-        let confirmBtn = footer.appendChild(document.createElement('button'));
+        const confirmBtn = footer.appendChild(document.createElement('button'));
         confirmBtn.setAttribute('class', 'settings-popup-btns');
         confirmBtn.setAttribute('id', 'confirm-settings-btn');
         confirmBtn.innerHTML = 'Confirm';
         // event listeners
-        confirmBtn.addEventListener('click', this.confirmSettings.bind(this));
-        close.addEventListener('click', this.closePopUp.bind(this));
+		confirmBtn.addEventListener('click', this.confirmSettings.bind(this));
+		close.addEventListener('click', this.closePopUp.bind(this));
+        // keyboard access for confirm/close btn
+        window.addEventListener('keydown', (event) => {
+            const btnSound = new Audio('../icons/btnClick.mp3');
+            if (event.code === 'Enter' && wrapper.style.display !== 'none') {
+                confirmBtn.click();
+                btnSound.play();
+            }
+            if (event.code === 'Escape' && wrapper.style.display !== 'none') {
+                close.click();
+                btnSound.play();
+            }
+        });
+        
 		// use ::part pseudo-element to style element outside of shadow tree -- for dark mode
 		wrapper.setAttribute('part', 'settings-confirm-popup');
 		close.setAttribute('part', 'close-icon');
@@ -142,7 +169,7 @@ class SettingsPopUp extends HTMLElement {
 		rangeInput.setAttribute('part', 'range-slider');
 		footer.setAttribute('part', 'btn-footer');
 		confirmBtn.setAttribute('part', 'confirm-btn');
-        let style = document.createElement('style');
+        const style = document.createElement('style');
         style.textContent = `
         p {
 			display: flex;
@@ -386,15 +413,22 @@ class SettingsPopUp extends HTMLElement {
     }
 }
 customElements.define('settings-popup', SettingsPopUp);
-    
-var settingsPopUp = document.createElement('settings-popup');
-settingsPopUp.setAttribute('class', 'popup');
-document.body.appendChild(settingsPopUp);
-settingsButton = document.getElementById("setting-button");
-settingsButton.addEventListener('click', function() {
-	var popups = Array.from(document.getElementsByClassName('popup'));
-    for (let i = 0; i < popups.length; i++) {
-        popups[i].closePopUp();
-    }
-    settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
-});
+
+// window.addEventListener('load', () => {
+    const settingsButton = document.getElementById('setting-button');
+    const settingsPopUp = document.createElement('settings-popup');
+	settingsPopUp.setAttribute('class', 'popup');
+    document.body.appendChild(settingsPopUp);
+    settingsButton.addEventListener('click', () => {
+		const btnSound = new Audio('../icons/btnClick.mp3');
+        btnSound.play();
+		const popups = Array.from(document.getElementsByClassName('popup'));
+    	for (let i = 0; i < popups.length; i++) {
+			console.log('in weird place');
+        	popups[i].closePopUp();
+    	}
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
+    });
+// });
+
+module.exports = SettingsPopUp;
