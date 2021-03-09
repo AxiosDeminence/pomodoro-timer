@@ -1,5 +1,5 @@
 import TaskPopUp from '../src/components/TaskPopUp.js';
-
+window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 // jest.mock('../src/components/TaskItem');
 
 beforeEach(() => {
@@ -86,7 +86,7 @@ test('All attributes set correctly', () => {
     expect(shadow.querySelector('button').innerHTML).toBe('Add');
 
     // close icon attributes set correctly
-    expect(shadow.querySelector('img').getAttribute('src')).toBe('../icons/close.svg');
+    expect(shadow.querySelector('img').getAttribute('src')).toBe('./icons/close.svg');
     expect(shadow.querySelector('img').getAttribute('id')).toBe('close-icon');
 });
 
