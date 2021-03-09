@@ -17,14 +17,14 @@ test('start timer function', () => {
 
     require('../src/scripts/Timer');
 
-    const start_button = document.getElementById('start-btn');
+    const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
 
-    start_button.click();
+    startButton.click();
 
     jest.advanceTimersByTime(5000);
 
-    expect(start_button.innerHTML).toBe('Stop');
+    expect(startButton.innerHTML).toBe('Stop');
     expect(display.innerHTML).toBe('24:55');
 });
 
@@ -36,13 +36,13 @@ test('Stop and reset function', () => {
 
     require('../src/scripts/Timer');
 
-    const start_button = document.getElementById('start-btn');
+    const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
 
-    start_button.click();
+    startButton.click();
     jest.advanceTimersByTime(100);
 
-    expect(start_button.innerHTML).toBe('Start');
+    expect(startButton.innerHTML).toBe('Start');
     expect(display.innerHTML).toBe('25:00');
 });
 
@@ -54,10 +54,10 @@ test('advance in time', () => {
 
     require('../src/scripts/Timer');
 
-    const start_button = document.getElementById('start-btn');
+    const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
 
-    start_button.click();
+    startButton.click();
 
     // advance by 00:05
     jest.advanceTimersByTime(5000);

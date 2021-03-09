@@ -2,8 +2,8 @@ class ResetPopUp extends HTMLElement {
     reset() {
         window.stop();
         const taskList = Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item'));
-        for (let i = 0; i < taskList.length; i++) {
-            console.log(taskList[i]);
+        for (let i = 0; i < taskList.length; i += 1) {
+            // console.log(taskList[i]);
             taskList[i].removeTask();
         }
         localStorage.setItem('id', `${0}`);
