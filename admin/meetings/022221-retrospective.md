@@ -21,3 +21,5 @@
 - make daily update in progress-update channel
 - more communication within the team
 - Kenneth moves to the CI team
+
+![retrospective 1](/specs/retrospective/022221-retrospective.jpg)
