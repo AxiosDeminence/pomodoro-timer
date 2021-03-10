@@ -7,12 +7,12 @@ class ResetPopUp extends HTMLElement {
             taskList[i].removeTask();
         }
         localStorage.setItem('id', `${0}`);
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.play();
         this.closePopUp();
     }
 
     closePopUp() {
-        const btnSound = new Audio('./icons/btnClick.mp3');
-        btnSound.play();
         const wrapper = this.shadowRoot.getElementById('reset-confirm-popup');
         wrapper.style.display = 'none';
         console.log('here');

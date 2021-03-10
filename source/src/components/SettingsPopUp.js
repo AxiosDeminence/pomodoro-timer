@@ -2,8 +2,6 @@ class SettingsPopUp extends HTMLElement {
     closePopUp() {
         const wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
         wrapper.style.display = 'none';
-        const btnSound = new Audio('./icons/btnClick.mp3');
-        btnSound.play();
     }
 
     confirmSettings() {
@@ -13,6 +11,8 @@ class SettingsPopUp extends HTMLElement {
         localStorage.setItem('pomo-length', pomoLength);
         localStorage.setItem('short-break-length', shortBreak);
         localStorage.setItem('long-break-length', longBreak);
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.play();
         stop();
         this.closePopUp();
     }

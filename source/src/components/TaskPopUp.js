@@ -22,6 +22,8 @@ class TaskPopUp extends HTMLElement {
             localStorage.setItem('tasks', JSON.stringify(tasks));
             const id = parseInt(localStorage.getItem('id'), 10) + 1;
             localStorage.setItem('id', `${id}`);
+            const btnSound = new Audio('./icons/btnClick.mp3');
+            btnSound.play();
             // hide popup
             this.closePopUp();
         }
@@ -29,8 +31,6 @@ class TaskPopUp extends HTMLElement {
 
     // closes popup
     closePopUp() {
-        const btnSound = new Audio('./icons/btnClick.mp3');
-        btnSound.play();
         const wrapper = this.shadowRoot.getElementById('add-task-popup');
         const input = this.shadowRoot.getElementById('task-input');
         wrapper.style.display = 'none';

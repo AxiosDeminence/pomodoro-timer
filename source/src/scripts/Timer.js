@@ -132,8 +132,20 @@ function switch_mode() {
 // }
 
 startButton.addEventListener('click', startAndStopButton);
-
+/*
 window.addEventListener('keydown', (event) => {
+    const addDis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
+    const setDis = document.querySelector('settings-popup').shadowRoot.getElementById('settings-confirm-popup').style.display;
+    const resDis = document.querySelector('reset-popup').shadowRoot.getElementById('reset-confirm-popup').style.display;
+    if (!addDis || addDis === 'none') {
+        switch (event.code) {
+        
+        default:
+        }
+    }
+});
+*/
+window.addEventListener('keyup', (event) => {
     const addDis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
     const setDis = document.querySelector('settings-popup').shadowRoot.getElementById('settings-confirm-popup').style.display;
     const resDis = document.querySelector('reset-popup').shadowRoot.getElementById('reset-confirm-popup').style.display;
@@ -158,17 +170,6 @@ window.addEventListener('keydown', (event) => {
                 document.querySelector('body > reset-popup').shadowRoot.querySelector('#close-icon').click();
             }
             break;
-        default:
-        }
-    }
-});
-
-window.addEventListener('keyup', (event) => {
-    const addDis = document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display;
-    const setDis = document.querySelector('settings-popup').shadowRoot.getElementById('settings-confirm-popup').style.display;
-    const resDis = document.querySelector('reset-popup').shadowRoot.getElementById('reset-confirm-popup').style.display;
-    if (!addDis || addDis === 'none') {
-        switch (event.code) {
         case 'KeyA':
             document.getElementById('task-popup-btn').click();
             break;
