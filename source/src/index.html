@@ -1,19 +1,14 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Pomodoro Timer</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="styles/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- <script>
-    // Render blocking JS:
-    if (localStorage.getItem("theme") == 'dark') {
-            document.body.classList.add("dark-theme");
-            console.log('here');
-    }
-    </script> -->
 </head>
+
 <body>
     <div id="container">
         <header>
@@ -21,18 +16,19 @@
             <!-- Header Buttons -->
             <div id="header-buttons">
                 <ul>
-                    <li><button class="top-buttons" id="reset-button">
-                            <img src="../icons/reset.svg" id="reset" class="top-button-img" alt="reset">
+                    <li>
+                        <button class="top-buttons" id="reset-button">
+                            <img src="icons/reset.svg" id="reset" class="top-button-img" alt="reset">
                             <p class="top-button-text">Reset</p>
                         </button>
                     </li>
                     <li><button class="top-buttons" id="setting-button">
-                            <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                            <img src="icons/settings.svg" id="gear" class="top-button-img" alt="gear">
                             <p class="top-button-text">Setting</p>
                         </button>
                     </li>
                     <li><button class="top-buttons" id="help-button">
-                            <img src="../icons/help.svg" id="help" class="top-button-img" alt="help">
+                            <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
                             <p class="top-button-text" id="text-help">Help</p>
                         </button>
                     </li>
@@ -41,9 +37,9 @@
         </header>
         <div id="pomodoro-timer">
             <!--Adds Pomo and Break buttons-->
-            <div style="text-align: center;" id = "timer-btns" class="timer-buttons">
-                <button id = "pomo-btn"> Pomo</button>
-                <button id = "break-btn"> Break</button>
+            <div style="text-align: center;" id="timer-btns" class="timer-buttons">
+                <button id="pomo-btn"> Pomo</button>
+                <button id="break-btn"> Break</button>
             </div>
             <!--Adds empty border to create distance between Pomo/Break buttons and Timer display-->
             <div style="text-align: center;" class="empty-space-border">
@@ -53,8 +49,8 @@
                 <div id="timer_display_duration">25:00</div>
             </div>
             <!--Adds Start and Reset buttons-->
-            <div style="text-align: center;" id = "timer-control-btns" class="timer-control-buttons">
-                <button id = "start-btn">Start</button> 
+            <div style="text-align: center;" id="timer-control-btns" class="timer-control-buttons">
+                <button id="start-btn">Start</button>
             </div>
         </div>
         <!-- Divider -->
@@ -63,25 +59,26 @@
         <div id="task-list">
             <h2 id="up-next">Up Next</h2>
             <ul id="task-list-elements">
-            </ul>   
+            </ul>
         </div>
         <!-- Popup button opens popup to add task -->
         <div id="popup-button">
-            <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            <button id="task-popup-btn"> <img src="icons/plus.svg" id="plus"></button>
         </div>
     </div>
     <script>
         // Render blocking JS:
         if (localStorage.getItem("theme") == 'dark') {
-                document.body.classList.add("dark-theme");
-                console.log('here');
+            document.body.classList.add("dark-theme");
+            console.log('here');
         }
     </script>
-    <script src="../scripts/script.js"></script>
-    <script src="../scripts/Timer.js"></script>
-    <script src="../components/TaskItem.js"></script>
-    <script src="../components/TaskPopUp.js"></script>
-    <script src="../components/ResetPopUp.js"></script>
-    <script src="../components/SettingsPopUp.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/Timer.js"></script>
+    <script src="./components/TaskItem.js"></script>
+    <script src="./components/TaskPopUp.js"></script>
+    <script src="./components/ResetPopUp.js"></script>
+    <script src="./components/SettingsPopUp.js"></script>
 </body>
+
 </html>

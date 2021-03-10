@@ -4,10 +4,10 @@ class TaskItem extends HTMLElement {
     toggle() {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         // update checked attribute
-        const checked = this.getAttribute('checked').toLowerCase() == 'true';
+        const checked = this.getAttribute('checked').toLowerCase() === 'true';
         this.setAttribute('checked', !checked);
         // update task item in localStorage
-        const task = tasks.find((task) => task.id == this.getAttribute('id') && task.text == this.getAttribute('text'));
+        const task = tasks.find((t) => t.id === this.getAttribute('id') && t.text === this.getAttribute('text'));
         if (typeof task !== 'undefined') {
             task.checked = !task.checked;
             localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -18,34 +18,33 @@ class TaskItem extends HTMLElement {
     removeTask() {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         // find and remove task from localStorage
-        tasks.splice(tasks.findIndex((task) => task.id == this.getAttribute('id') && task.text == this.getAttribute('text')), 1);
+        tasks.splice(tasks.findIndex((task) => task.id === this.getAttribute('id') && task.text === this.getAttribute('text')), 1);
         localStorage.setItem('tasks', JSON.stringify(tasks));
         // remove this element from DOM
         this.parentNode.removeChild(this);
     }
 
     /* create task list item by building custom component */
-    constructor(task) {
+    constructor() {
         super();
         const shadow = this.attachShadow({ mode: 'open' });
         // set attributes
-        this.setAttribute('id', task.id);
-        this.setAttribute('checked', task.checked);
-        this.setAttribute('text', task.text);
+        // this.setAttribute('id', task.id);
+        // this.setAttribute('checked', task.checked);
+        // this.setAttribute('text', task.text);
         // create list node
         const li = document.createElement('li');
+        li.setAttribute('id', 'li');
         const check = document.createElement('img');
-        check.setAttribute('src', '../icons/check.svg');
+        check.setAttribute('src', 'icons/check.svg');
         check.setAttribute('class', 'check-icon');
         check.setAttribute('part', 'test');
         li.appendChild(check);
-        const text = document.createTextNode(task.text);
-        li.append(text);
         // add event listener such that clicking on element crosses out task
         this.addEventListener('click', this.toggle);
         // create delete icon
         const icon = document.createElement('img');
-        icon.setAttribute('src', '../icons/delete.svg');
+        icon.setAttribute('src', 'icons/delete.svg');
         icon.setAttribute('class', 'delete-icon');
         li.appendChild(icon);
         // add event listener to image to remove task
@@ -111,6 +110,17 @@ class TaskItem extends HTMLElement {
         `;
         shadow.appendChild(li);
         shadow.appendChild(style);
+    }
+
+    static get observedAttributes() {
+        return ['text'];
+    }
+
+    attributeChangedCallback(attrName, oldVal, newVal) {
+        const shadow = this.shadowRoot;
+        console.log(newVal);
+        const text = document.createTextNode(newVal);
+        shadow.getElementById('li').append(text);
     }
 }
 
