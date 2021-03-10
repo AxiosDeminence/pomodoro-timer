@@ -261,7 +261,7 @@ describe('setting popup and timer', () => {
     //     cy.get('#timer_display_duration').should('have.text', '3:00');
     // });
 
-    it.only(('set time while timer is runing, stop and reset the timer'), () => {
+    it(('set time while timer is runing, stop and reset the timer'), () => {
         cy.get('#start-btn').trigger('click');
         cy.tick(5000);
         cy.clock().then((clock) => {
@@ -278,7 +278,7 @@ describe('setting popup and timer', () => {
         cy.get('#start-btn').should('have.text', 'Start');
     });
 
-    it.only(('set time then cancel while timer is runing'), () => {
+    it(('set time then cancel while timer is runing'), () => {
         cy.get('#start-btn').trigger('click');
         cy.tick(5000);
         cy.clock().then((clock) => {

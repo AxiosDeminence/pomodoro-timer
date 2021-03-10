@@ -1,5 +1,3 @@
-// require('../scripts/Timer.js');
-
 class SettingsPopUp extends HTMLElement {
     closePopUp() {
         const wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
