@@ -370,7 +370,6 @@ body.dark-theme settings-popup::part(settings-confirm-popup) {
 }
 body.dark-theme settings-popup::part(settings-h3) {
     color: #f5f6f7;
-    /* border-bottom: solid 1px #ebebeb; */
 }
 body.dark-theme settings-popup::part(timer-settings) {
     color: #f5f6f7;
@@ -399,4 +398,14 @@ body.dark-theme settings-popup::part(volume-number) {
 }
 body.dark-theme settings-popup::part(range-slider) {
     background-color: #6a6a6a;
+}
+/* Help Popup */
+body.dark-theme help-popup::part(close-icon) {
+    opacity: 1;
+}
+body.dark-theme help-popup::part(popup-wrapper) {
+    background-color: #3a4556;
+}
+body.dark-theme help-popup::part(help-h3) {
+    color: #f5f6f7;
 }

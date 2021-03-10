@@ -1,5 +1,7 @@
 require('regenerator-runtime/runtime');
 
+window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+
 beforeEach(() => {
     jest.useFakeTimers();
 });

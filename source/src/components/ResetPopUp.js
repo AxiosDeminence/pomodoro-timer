@@ -7,6 +7,9 @@ class ResetPopUp extends HTMLElement {
             taskList[i].removeTask();
         }
         localStorage.setItem('id', `${0}`);
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+        btnSound.play();
         this.closePopUp();
     }
 
@@ -98,15 +101,15 @@ class ResetPopUp extends HTMLElement {
             -webkit-animation-duration: 0.3s;
             animation-name: animatetop;
             animation-duration: 0.3s
-          }
-          @-webkit-keyframes animatetop {
+        }
+        @-webkit-keyframes animatetop {
             from {top:-200px; opacity:0} 
             to {top:70; opacity:1}
-          }
-          @keyframes animatetop {
+        }
+        @keyframes animatetop {
             from {top:-200px; opacity:0}
             to {top:70; opacity:1}
-          }
+        }
         #reset-confirm-popup > h3{
             font-size: 1.6vw;
             color: #f36060;
@@ -149,15 +152,18 @@ class ResetPopUp extends HTMLElement {
 }
 customElements.define('reset-popup', ResetPopUp);
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     const resetPopUp = document.createElement('reset-popup');
     resetPopUp.setAttribute('class', 'popup');
     document.body.appendChild(resetPopUp);
     const resetBtn = document.getElementById('reset-button');
     resetBtn.addEventListener('click', () => {
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+        btnSound.play();
         // this makes sure any popup is closed before opening current popup
         const popups = Array.from(document.getElementsByClassName('popup'));
-        for (let i = 0; i < popups.length; i += 1) {
+        for (let i = 0; i < popups.length; i++) {
             popups[i].closePopUp();
         }
         resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');

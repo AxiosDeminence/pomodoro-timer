@@ -1,5 +1,4 @@
 // const TaskItem = require('./TaskItem');
-
 // create class for popup to add task
 class TaskPopUp extends HTMLElement {
     // add TaskItem element to DOM
@@ -23,6 +22,9 @@ class TaskPopUp extends HTMLElement {
             localStorage.setItem('tasks', JSON.stringify(tasks));
             const id = parseInt(localStorage.getItem('id'), 10) + 1;
             localStorage.setItem('id', `${id}`);
+            const btnSound = new Audio('./icons/btnClick.mp3');
+            btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+            btnSound.play();
             // hide popup
             this.closePopUp();
         }
@@ -64,8 +66,8 @@ class TaskPopUp extends HTMLElement {
         addBtn.setAttribute('id', 'add-task-btn');
         addBtn.innerHTML = 'Add';
         // event listeners for close icon and add button
-        addBtn.addEventListener('click', this.addTask.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
+        addBtn.addEventListener('click', this.addTask.bind(this));
         // use ::part pseudo-element to style element outside of shadow tree -- for dark mode
         wrapper.setAttribute('part', 'popup-wrapper');
         close.setAttribute('part', 'close-icon');
@@ -73,6 +75,15 @@ class TaskPopUp extends HTMLElement {
         input.setAttribute('part', 'task-input');
         footer.setAttribute('part', 'btn-footer');
         addBtn.setAttribute('part', 'add-btn');
+        // prevent keyboard press & focus on input field
+        window.addEventListener('keydown', (event) => {
+            if (event.code === 'Enter' && wrapper.style.display !== 'none') {
+                addBtn.click();
+            }
+            if (event.code === 'Escape' && wrapper.style.display !== 'none') {
+                close.click();
+            }
+        });
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `
@@ -116,16 +127,16 @@ class TaskPopUp extends HTMLElement {
             -webkit-animation-duration: 0.3s;
             animation-name: animatetop;
             animation-duration: 0.3s
-          }
-          @-webkit-keyframes animatetop {
+        }
+        @-webkit-keyframes animatetop {
             from {top:-200px; opacity:0} 
             to {top:70; opacity:1}
-          }
-          @keyframes animatetop {
+        }
+        @keyframes animatetop {
             from {top:-200px; opacity:0}
             to {top:70; opacity:1}
-          }
-          #task-input {
+        }
+        #task-input {
             font-family: 'Quicksand', sans-serif;
             font-size: 1.5vw;
             font-weight: 600;
@@ -183,7 +194,6 @@ class TaskPopUp extends HTMLElement {
         shadow.appendChild(style);
     }
 }
-
 customElements.define('task-popup', TaskPopUp);
 
 window.addEventListener('load', () => {
@@ -192,12 +202,16 @@ window.addEventListener('load', () => {
     popUp.setAttribute('class', 'popup');
     document.body.appendChild(popUp);
     popupBtn.addEventListener('click', () => {
-        // this makes sure any popup is closed before opening current popup
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+        btnSound.play();
+        // make sure any popup is closed before opening current popup
         const popups = Array.from(document.getElementsByClassName('popup'));
-        for (let i = 0; i < popups.length; i += 1) {
+        for (let i = 0; i < popups.length; i++) {
             popups[i].closePopUp();
         }
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
+        popUp.shadowRoot.getElementById('task-input').focus();
     });
 });
 

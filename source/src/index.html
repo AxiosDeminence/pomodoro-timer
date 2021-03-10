@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="styles/index.css">
+    <!-- Below is temporary solution to avoid 404 error on Chrome -->
+    <link rel="shortcut icon" href="#">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div id="container">
         <header>
@@ -70,7 +70,6 @@
         // Render blocking JS:
         if (localStorage.getItem("theme") == 'dark') {
             document.body.classList.add("dark-theme");
-            console.log('here');
         }
     </script>
     <script src="./scripts/script.js"></script>
@@ -79,6 +78,7 @@
     <script src="./components/TaskPopUp.js"></script>
     <script src="./components/ResetPopUp.js"></script>
     <script src="./components/SettingsPopUp.js"></script>
+    <script src="./components/HelpPopUp.js"></script>
 </body>
 
 </html>
