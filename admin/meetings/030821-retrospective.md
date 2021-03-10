@@ -19,3 +19,5 @@
 
 - Jackie is working on the coverage report now. Seek help from TA if needed
 - We have HanJie keeping track of the assignment ddl now
+
+![Retrospective 2](/specs/retrospective/030821-retrospective.jpg)
