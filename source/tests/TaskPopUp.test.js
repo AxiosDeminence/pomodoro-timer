@@ -1,8 +1,10 @@
 import TaskPopUp from '../src/components/TaskPopUp.js';
+
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 // jest.mock('../src/components/TaskItem');
 
 beforeEach(() => {
+    localStorage.setItem('volume', 50);
     localStorage.setItem('tasks', '[]');
     localStorage.setItem('id', '0');
     document.body.innerHTML = `
@@ -78,7 +80,7 @@ test('All attributes set correctly', () => {
     expect(shadow.querySelector('input').getAttribute('type')).toBe('text');
     expect(shadow.querySelector('input').getAttribute('id')).toBe('task-input');
     expect(shadow.querySelector('input').getAttribute('placeholder')).toBe('What are you working on today?');
-    expect(shadow.querySelector('input').getAttribute('maxlength')).toBe('42');
+    expect(shadow.querySelector('input').getAttribute('maxlength')).toBe('48');
 
     // add button attributes set correctly
     expect(shadow.querySelector('button').getAttribute('class')).toBe('popup-btns');
@@ -86,7 +88,7 @@ test('All attributes set correctly', () => {
     expect(shadow.querySelector('button').innerHTML).toBe('Add');
 
     // close icon attributes set correctly
-    expect(shadow.querySelector('img').getAttribute('src')).toBe('./icons/close.svg');
+    expect(shadow.querySelector('img').getAttribute('src')).toBe('icons/close.svg');
     expect(shadow.querySelector('img').getAttribute('id')).toBe('close-icon');
 });
 

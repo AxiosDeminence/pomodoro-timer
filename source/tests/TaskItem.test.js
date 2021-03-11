@@ -1,10 +1,11 @@
 import TaskItem from '../src/components/TaskItem.js';
+
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {
     const tasks = [];
     const id = 2;
-    const taskF = { id: 0, checked: false, text: 'First Item' };
-    const taskT = { id: 1, checked: true, text: 'Second Item' };
+    const taskF = { id: '0', checked: false, text: 'First Item' };
+    const taskT = { id: '1', checked: true, text: 'Second Item' };
     tasks.push(taskF);
     tasks.push(taskT);
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -61,9 +62,9 @@ test(('remove a task'), () => {
     const list = document.getElementById('task-list-elements');
     list.appendChild(taskItem);
     expect(list.childElementCount).toBe(1);
-    const icon = taskItem.shadowRoot.querySelector('img');
+    const icon = taskItem.shadowRoot.querySelector("img[src='icons/delete.svg']");
     icon.click();
     tasks = JSON.parse(localStorage.getItem('tasks'));
-    expect(tasks).toEqual([{ checked: true, id: 1, text: 'Second Item' }]);
+    expect(tasks).toEqual([{ checked: true, id: '1', text: 'Second Item' }]);
     expect(list.childElementCount).toBe(0);
 });
