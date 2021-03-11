@@ -4,9 +4,8 @@
 Cypress.on('uncaught:exception', (err, runnable) => false);
 describe(('task list and timer'), () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/views/index.html');
+        cy.visit('http://127.0.0.1:5500/source/src/index.html');
     });
-
     it('add task when timer has started', () => {
         // start timer
         cy.get('#start-btn').trigger('click');
@@ -17,7 +16,7 @@ describe(('task list and timer'), () => {
             .should('have.css', 'display', 'block');
         cy.get('task-popup').shadow()
             .find('#task-input')
-            .type('test item 1');
+            .type('test item 1', { force: true });
         cy.get('task-popup').shadow()
             .find('#add-task-btn').trigger('click');
         // task is added successfully
@@ -36,7 +35,7 @@ describe(('task list and timer'), () => {
         cy.get('#timer_display_duration').should('not.have.text', '25:00');
         cy.get('task-popup').shadow()
             .find('#task-input')
-            .type('test item 1');
+            .type('test item 1', { force: true });
         cy.get('task-popup').shadow()
             .find('#add-task-btn').trigger('click');
         // task is added successfully
@@ -76,14 +75,14 @@ describe(('task list and timer'), () => {
         cy.get('#task-popup-btn').trigger('click');
         cy.get('task-popup').shadow()
             .find('#task-input')
-            .type('test item 1');
+            .type('test item 1', { force: true });
         cy.get('task-popup').shadow()
             .find('#add-task-btn').trigger('click');
         cy.get('#start-btn').trigger('click');
         cy.get('#0').trigger('click');
-        cy.get('#0').should('have.css', 'text-decoration', 'line-through solid rgba(255, 255, 255, 0.65)');
+        cy.get('#0').should('have.css', 'text-decoration', 'line-through solid rgb(255, 255, 255)');
         cy.get('#0').trigger('click');
-        cy.get('#0').should('not.have.css', 'text-decoration', 'line-through solid rgba(255, 255, 255, 0.65)');
+        cy.get('#0').should('have.css', 'text-decoration', 'none solid rgb(255, 255, 255)');
         cy.get('#timer_display_duration').should('not.have.text', '25:00');
     });
 
@@ -91,12 +90,12 @@ describe(('task list and timer'), () => {
         cy.get('#task-popup-btn').trigger('click');
         cy.get('task-popup').shadow()
             .find('#task-input')
-            .type('test item 1');
+            .type('test item 1', { force: true });
         cy.get('task-popup').shadow()
             .find('#add-task-btn').trigger('click');
         cy.get('#start-btn').trigger('click');
         cy.get('#0').shadow()
-            .find('img').click({ force: true });
+            .find('img[src="icons/delete.svg"]').click({ force: true });
         cy.get('#0').should('have.length', 0);
         cy.get('#timer_display_duration').should('not.have.text', '25:00');
     });
@@ -104,19 +103,19 @@ describe(('task list and timer'), () => {
 
 describe('reset popup and timer', () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/views/index.html');
+        cy.visit('http://127.0.0.1:5500/source/src/index.html');
         // add task 1
         cy.get('#task-popup-btn').trigger('click');
         cy.get('task-popup').shadow()
             .find('#task-input')
-            .type('test item 1');
+            .type('test item 1', { force: true });
         cy.get('task-popup').shadow()
             .find('#add-task-btn').trigger('click');
         // add task 2
         cy.get('#task-popup-btn').trigger('click');
         cy.get('task-popup').shadow()
             .find('#task-input')
-            .type('test item 2');
+            .type('test item 2', { force: true });
         cy.get('task-popup').shadow()
             .find('#add-task-btn').trigger('click');
     });
@@ -177,7 +176,7 @@ describe('reset popup and timer', () => {
 describe('setting popup and timer', () => {
     beforeEach(() => {
         cy.clock();
-        cy.visit('http://127.0.0.1:5500/source/src/views/index.html');
+        cy.visit('http://127.0.0.1:5500/source/src/index.html');
     });
 
     afterEach(() => {
