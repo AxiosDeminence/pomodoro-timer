@@ -1,3 +1,4 @@
+window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {
     require('../../src/scripts/script');
     require('../../src/components/TaskItem');
@@ -22,10 +23,11 @@ test('Initializes localStorage correctly', () => {
     }));
     expect(localStorage.getItem('tasks')).toBe('[]');
     expect(localStorage.getItem('id')).toBe('0');
+    expect(localStorage.getItem('theme')).toBe('light');
+    expect(localStorage.getItem('volume')).toBe('50');
     expect(document.getElementById('task-list-elements').children).toHaveLength(0);
 });
 
-// taskItem.checked and taskItem.text are undefined, but taskItem.id is set properly...
 test('Reads task list and creates one task correctly', () => {
     localStorage.setItem('tasks', '[{"id":"0","checked":false,"text":"test_task"}]');
 
@@ -65,4 +67,10 @@ test('Reads task list and creates multiple tasks correctly', () => {
     expect(taskItem1.getAttribute('checked')).toBe('false');
     expect(taskItem1.id).toBe('1');
     expect(taskItem1.getAttribute('text')).toBe('test_task1');
+});
+
+test(('save dark theme'), () => {
+    localStorage.setItem('theme', 'dark');
+    dispatchEvent(new Event('DOMContentLoaded'));
+    expect(document.body.classList).toContain('dark-theme');
 });

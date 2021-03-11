@@ -1,7 +1,9 @@
 import SettingsPopUp from '../../src/components/SettingsPopUp';
 
+window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {
     localStorage.clear();
+    localStorage.setItem('volume', 50);
     localStorage.setItem('pomo-length', '25');
     localStorage.setItem('short-break-length', '5');
     localStorage.setItem('long-break-length', '15');
@@ -80,7 +82,7 @@ test('Cancel Button functions as intended', () => {
     shortBreakLength.value = '10';
     longBreakLength.value = '20';
 
-    const cancelBtn = shadow.querySelectorAll('button')[1];
+    const cancelBtn = shadow.querySelector("img[src='icons/close.svg']");
 
     cancelBtn.click();
 
@@ -96,10 +98,17 @@ test('All attributes set correctly', () => {
     const shadow = testSettingsPopUp.shadowRoot;
 
     // wrapper attributes set correctly
-    expect(shadow.querySelector('div').getAttribute('id')).toBe('settings-confirm-popup');
+    expect(shadow.querySelectorAll('div')[0].getAttribute('id')).toBe('settings-confirm-popup');
 
     // title set correctly
     expect(shadow.querySelector('h3').innerHTML).toBe('Settings');
+
+    // session title set correctly
+    expect(shadow.querySelectorAll('h4')[0].getAttribute('id')).toBe('timer-settings');
+    expect(shadow.querySelectorAll('h4')[0].innerHTML).toBe('Session Length (minutes)');
+
+    // session dic set correctly
+    expect(shadow.querySelectorAll('div')[1].getAttribute('id')).toBe('session');
 
     // pomo input attributes set correctly
     expect(shadow.querySelectorAll('input')[0].getAttribute('type')).toBe('number');
@@ -122,15 +131,30 @@ test('All attributes set correctly', () => {
     expect(shadow.querySelectorAll('input')[2].getAttribute('min')).toBe('1');
     expect(shadow.querySelectorAll('input')[2].getAttribute('max')).toBe('60');
 
+    // dark mode session set correctly
+    expect(shadow.querySelectorAll('h4')[1].getAttribute('id')).toBe('enable-dark-mode');
+    expect(shadow.querySelectorAll('h4')[1].innerHTML).toBe('Enable Dark Mode?');
+    // dark mode switch, default in light mode
+    expect(shadow.querySelectorAll('input')[3].getAttribute('type')).toBe('checkbox');
+    localStorage.setItem('theme', 'light');
+    expect(shadow.querySelectorAll('input')[3].checked).toBe(false);
+    expect(shadow.querySelector('span').getAttribute('class')).toBe('slider');
+
+    // volume session set correctly, default volume 50
+    expect(shadow.querySelectorAll('input')[4].getAttribute('type')).toBe('range');
+    expect(shadow.querySelectorAll('input')[4].getAttribute('id')).toBe('range');
+    expect(shadow.querySelectorAll('input')[4].getAttribute('value')).toBe('50');
+    expect(shadow.querySelectorAll('input')[4].getAttribute('min')).toBe('0');
+    expect(shadow.querySelectorAll('input')[4].getAttribute('max')).toBe('100');
+
     // confirm button attributes set correctly
     expect(shadow.querySelectorAll('button')[0].getAttribute('class')).toBe('settings-popup-btns');
     expect(shadow.querySelectorAll('button')[0].getAttribute('id')).toBe('confirm-settings-btn');
     expect(shadow.querySelectorAll('button')[0].innerHTML).toBe('Confirm');
 
-    // cancel button attributes set correctly
-    expect(shadow.querySelectorAll('button')[1].getAttribute('class')).toBe('settings-popup-btns');
-    expect(shadow.querySelectorAll('button')[1].getAttribute('id')).toBe('cancel-settings-btn');
-    expect(shadow.querySelectorAll('button')[1].innerHTML).toBe('Cancel');
+    // cancel icon attributes set correctly
+    expect(shadow.querySelector('img').getAttribute('id')).toBe('close-icon');
+    expect(shadow.querySelector('img').getAttribute('src')).toBe('icons/close.svg');
 });
 
 test('Pop up button works correctly', () => {
@@ -147,4 +171,50 @@ test('Pop up button works correctly', () => {
     const display = getComputedStyle(shadow.getElementById('settings-confirm-popup'));
 
     expect(display.display).toBe('block');
+});
+
+test(('the page is in dark mode'), () => {
+    localStorage.setItem('theme', 'dark');
+    const testSettingsPopUp = new SettingsPopUp();
+    const shadow = testSettingsPopUp.shadowRoot;
+    expect(shadow.querySelector('input[type="checkbox"]').checked).toBe(true);
+});
+
+test(('toggle from light to dark mode'), () => {
+    localStorage.setItem('theme', 'light');
+    const testSettingsPopUp = new SettingsPopUp();
+    const shadow = testSettingsPopUp.shadowRoot;
+    const mode = shadow.querySelector('span[class="slider"]');
+    mode.click();
+    expect(localStorage.getItem('theme')).toBe('dark');
+    expect(document.body.classList).toContain('dark-theme');
+});
+
+test(('toggle from dark to light mode'), () => {
+    localStorage.setItem('theme', 'dark');
+    const testSettingsPopUp = new SettingsPopUp();
+    const shadow = testSettingsPopUp.shadowRoot;
+    const mode = shadow.querySelector('span[class="slider"]');
+    mode.click();
+    expect(localStorage.getItem('theme')).toBe('light');
+});
+
+test(('set volume'), () => {
+    const testSettingsPopUp = new SettingsPopUp();
+    const shadow = testSettingsPopUp.shadowRoot;
+    const slider = shadow.querySelector('input[type="range"]');
+    slider.value = 60;
+    const event = new Event('change');
+    slider.dispatchEvent(event);
+    expect(localStorage.getItem('volume')).toBe('60');
+});
+
+test(('volume label consist with slider value'), () => {
+    const testSettingsPopUp = new SettingsPopUp();
+    const shadow = testSettingsPopUp.shadowRoot;
+    const slider = shadow.querySelector('input[type="range"]');
+    slider.value = 60;
+    const event = new Event('input');
+    slider.dispatchEvent(event);
+    expect(shadow.querySelector('span[id="volume-number"]').innerHTML).toBe('60');
 });

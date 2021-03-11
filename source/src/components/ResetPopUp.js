@@ -1,11 +1,14 @@
 class ResetPopUp extends HTMLElement {
     reset() {
-        window.stop();
+        stop(); // global func
         const taskList = Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item'));
         for (let i = 0; i < taskList.length; i++) {
             taskList[i].removeTask();
         }
         localStorage.setItem('id', `${0}`);
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
+        btnSound.play();
         this.closePopUp();
     }
 
@@ -22,16 +25,18 @@ class ResetPopUp extends HTMLElement {
         wrapper.setAttribute('id', 'reset-confirm-popup');
         // close icon
         const close = wrapper.appendChild(document.createElement('img'));
-        close.setAttribute('src', '../icons/close.svg');
+        close.setAttribute('src', 'icons/close.svg');
         close.setAttribute('id', 'close-icon');
+        // title
         const title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Are you sure?';
+        // content
         const content = wrapper.appendChild(document.createElement('h5'));
         content.setAttribute('id', 'reset-content');
         content.innerHTML = 'This will reset your current pomodoro session and wipe out your jotted tasks!';
+        // wrap confirm button in a footer
         const footer = wrapper.appendChild(document.createElement('div'));
         footer.setAttribute('class', 'button-footer');
-        // confirm button
         const confirmBtn = footer.appendChild(document.createElement('button'));
         confirmBtn.setAttribute('class', 'reset-popup-btns');
         confirmBtn.setAttribute('id', 'confirm-reset-btn');
@@ -39,6 +44,13 @@ class ResetPopUp extends HTMLElement {
         // event listeners for confirm button and close icon
         confirmBtn.addEventListener('click', this.reset.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
+        // use ::part pseudo-element to style element outside of shadow tree -- for dark mode
+        wrapper.setAttribute('part', 'popup-wrapper');
+        close.setAttribute('part', 'close-icon');
+        title.setAttribute('part', 'reset-confirm-h3');
+        content.setAttribute('part', 'reset-content');
+        footer.setAttribute('part', 'btn-footer');
+        confirmBtn.setAttribute('part', 'confirm-btn');
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `
@@ -70,6 +82,7 @@ class ResetPopUp extends HTMLElement {
         #reset-content {
             color: rgb(85, 85, 85);
             width: 85%;
+            font-weight: 500;
             margin: 20px auto 0 auto;
         }
         #reset-confirm-popup {
@@ -80,29 +93,29 @@ class ResetPopUp extends HTMLElement {
             border-radius: 4px;
             top:25%;
             left: 34%;
-            border: 3px solid #f1f1f1;
-            z-index: 1;
+            z-index: 999;
             background-color: whitesmoke;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
             -webkit-animation-name: animatetop; 
             -webkit-animation-duration: 0.3s;
             animation-name: animatetop;
             animation-duration: 0.3s
-          }
-          @-webkit-keyframes animatetop {
+        }
+        @-webkit-keyframes animatetop {
             from {top:-200px; opacity:0} 
             to {top:70; opacity:1}
-          }
-          @keyframes animatetop {
+        }
+        @keyframes animatetop {
             from {top:-200px; opacity:0}
             to {top:70; opacity:1}
-          }
+        }
         #reset-confirm-popup > h3{
             font-size: 1.6vw;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
             padding-bottom: 5px;
             width: 85%;
+            font-weight: 500;
             margin: 20px auto 10px auto;
         }
         .reset-popup-btns {
@@ -138,11 +151,20 @@ class ResetPopUp extends HTMLElement {
 }
 customElements.define('reset-popup', ResetPopUp);
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     const resetPopUp = document.createElement('reset-popup');
+    resetPopUp.setAttribute('class', 'popup');
     document.body.appendChild(resetPopUp);
     const resetBtn = document.getElementById('reset-button');
     resetBtn.addEventListener('click', () => {
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
+        btnSound.play();
+        // this makes sure any popup is closed before opening current popup
+        const popups = Array.from(document.getElementsByClassName('popup'));
+        for (let i = 0; i < popups.length; i++) {
+            popups[i].closePopUp();
+        }
         resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
     });
 });

@@ -1,10 +1,19 @@
-html,
+html {
+    height: 100%;
+}
 body {
     padding: 0;
     margin: 0;
     font-family: 'Quicksand', sans-serif;
     background-color: #ffd5ca;
     box-sizing: border-box;
+    min-height: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#container {
+    min-height: 100%;
+    overflow: hidden;
 }
 header {
     text-align: center;
@@ -16,6 +25,7 @@ h1#header-name {
     position: relative;
     color: #f36060;
     font-size: 30px;
+    font-weight: 500;
     margin-bottom: 10px;
 }
 #header-buttons {
@@ -98,6 +108,7 @@ header:after {
 #up-next {
     color: #f36060;
     text-align: center;
+    font-weight: 500;
     margin-right: 15%;
 }
 #pomodoro-timer {
@@ -107,32 +118,6 @@ header:after {
 }
 #task-list ul {
     list-style-type: none;
-}
-task-item {
-    cursor: pointer;
-    height: 50px;
-    position: relative;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    margin-right: 20%;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    padding-left: 10px  ;
-    background-color: #f36060;
-    color: white;
-    font-size: larger;
-    font-weight: 500;
-    border-style:none;
-}
-task-item:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-[checked = 'true'] {
-    background: #f3606060;
-    color: rgba(255, 255, 255, 0.651);
-    text-decoration: line-through;
 }
 #popup-button {
     float: right;
@@ -171,8 +156,7 @@ img#dash {
 .timer-buttons button
 {
     margin-top: 19px;
-    background-color: #f36060;
-    border: 0 solid #ffd5ca;
+    border: none;
     color: white;
     padding: 10px 24px;
     font-size: larger;
@@ -182,6 +166,18 @@ img#dash {
     display: inline;
     margin-right: -4.5px;
     margin-left: -0px;
+}
+#pomo-btn {
+    background-color: #f36060;
+}
+#pomo-btn.toggle {
+    background-color: #f3606060;
+}
+#break-btn {
+    background-color: #f3606060;
+}
+#break-btn.toggle {
+    background-color: #f36060;
 }
 /* This is here to create spacing between Pomo/Break and Timer Display */
 div.empty-space-border
@@ -219,7 +215,7 @@ div.timer-value
 {
     margin-top: 21px;
     background-color: #f36060; 
-    border: 1px solid #ffd5ca; 
+    border: none; 
     color: white; 
     padding: 10px 24px; 
     cursor: pointer; 
@@ -265,4 +261,151 @@ div.timer-value
         margin-bottom: 10px;
         margin-left: 10%;
     }
+}
+
+
+/* Dark Mode Styles */
+body.dark-theme {
+    background-color: #232b32;
+}
+body.dark-theme h1#header-name {
+    color: #f5f6f7;
+}
+body.dark-theme .top-buttons {
+    background-color: #4a5568;
+    color: #f5f6f7;
+}
+body.dark-theme header:after {
+    /* border-bottom: 1px solid #cbd5df; */
+    border-bottom: solid 1px #d2d2d2;
+}
+body.dark-theme .timer-buttons button {
+    color: #f5f6f7;
+}
+body.dark-theme #pomo-btn {
+    background-color: #4a5568;
+}
+body.dark-theme #pomo-btn.toggle {
+    background-color: #2d3848bf;
+}
+body.dark-theme #break-btn {
+    background-color: #2d3848bf;
+}
+body.dark-theme #break-btn.toggle {
+    background-color: #4a5568;
+}
+body.dark-theme div.empty-space-border {
+    background: #232b32;
+    border-color: #232b32;
+}
+body.dark-theme div.timer-value {
+    background: #4a5568;
+    color: #f5f6f7;
+    border-color: #232b32;
+}
+body.dark-theme .timer-control-buttons button{
+    background-color: #4a5568;
+    color: #f5f6f7;
+}
+body.dark-theme #up-next {
+    color: #f5f6f7;
+}
+body.dark-theme #task-popup-btn {
+    background-color: #4a5568;
+}
+/* Task Items */
+body.dark-theme task-item {
+    color: #f5f6f7;
+    background-color: #4a5568;
+}
+body.dark-theme [checked='true'] {
+    background-color: #2d3848bf;
+    text-decoration: line-through;
+}
+/* Task Popup */
+body.dark-theme task-popup::part(close-icon) {
+    opacity: 1;
+}
+body.dark-theme task-popup::part(popup-wrapper) {
+    background-color: #3a4556;
+}
+body.dark-theme task-popup::part(add-task-h3) {
+    color: #f5f6f7;
+}
+body.dark-theme task-popup::part(task-input) {
+    background-color: #3a4556;
+    color: #f5f6f791;
+}
+body.dark-theme task-popup::part(btn-footer) {
+    background-color: #2d3848;
+}
+body.dark-theme task-popup::part(add-btn) {
+    background-color: #4a5568;
+}
+/* Reset Popup */
+body.dark-theme reset-popup::part(close-icon) {
+    opacity: 1;
+}
+body.dark-theme reset-popup::part(popup-wrapper) {
+    background-color: #3a4556;
+}
+body.dark-theme reset-popup::part(reset-confirm-h3) {
+    color: #f5f6f7;
+}
+body.dark-theme reset-popup::part(reset-content) {
+    color: #f5f6f7;
+}
+body.dark-theme reset-popup::part(btn-footer) {
+    background-color: #2d3848;
+}
+body.dark-theme reset-popup::part(confirm-btn) {
+    background-color: #4a5568;
+}
+/* Settings Popup */
+body.dark-theme settings-popup::part(close-icon) {
+    opacity: 1;
+}
+body.dark-theme settings-popup::part(settings-confirm-popup) {
+    background-color: #3a4556;
+}
+body.dark-theme settings-popup::part(settings-h3) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(timer-settings) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(session-labels) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(enable-dark-mode) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(btn-footer) {
+    background-color: #2d3848;
+}
+body.dark-theme settings-popup::part(confirm-btn) {
+    background-color: #4a5568;
+}
+body.dark-theme settings-popup::part(length-inputs) {
+    background-color: #4a5568;
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(sound-volume) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(volume-number) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(range-slider) {
+    background-color: #6a6a6a;
+}
+/* Help Popup */
+body.dark-theme help-popup::part(close-icon) {
+    opacity: 1;
+}
+body.dark-theme help-popup::part(popup-wrapper) {
+    background-color: #3a4556;
+}
+body.dark-theme help-popup::part(help-h3) {
+    color: #f5f6f7;
 }

@@ -1,7 +1,10 @@
 require('regenerator-runtime/runtime');
 
+window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+
 beforeEach(() => {
     jest.useFakeTimers();
+    localStorage.setItem('volume', 50);
 });
 
 afterEach(() => {
@@ -17,32 +20,34 @@ test('start timer function', () => {
 
     require('../../src/scripts/Timer');
 
-    const start_button = document.getElementById('start-btn');
+    const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
 
-    start_button.click();
+    startButton.click();
 
     jest.advanceTimersByTime(5000);
 
-    expect(start_button.innerHTML).toBe('Stop');
+    expect(startButton.innerHTML).toBe('Stop');
     expect(display.innerHTML).toBe('24:55');
 });
 
 test('Stop and reset function', () => {
     document.body.innerHTML = `
         <button id = "start-btn">Stop</button>
+        <button id="pomo-btn"> Pomo</button>
+        <button id="break-btn"> Break</button>
         <div id="timer_display_duration">13:00</div>
     `;
 
     require('../../src/scripts/Timer');
 
-    const start_button = document.getElementById('start-btn');
+    const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
 
-    start_button.click();
+    startButton.click();
     jest.advanceTimersByTime(100);
 
-    expect(start_button.innerHTML).toBe('Start');
+    expect(startButton.innerHTML).toBe('Start');
     expect(display.innerHTML).toBe('25:00');
 });
 
@@ -54,10 +59,10 @@ test('advance in time', () => {
 
     require('../../src/scripts/Timer');
 
-    const start_button = document.getElementById('start-btn');
+    const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
 
-    start_button.click();
+    startButton.click();
 
     // advance by 00:05
     jest.advanceTimersByTime(5000);
@@ -95,7 +100,7 @@ describe(('switch mode'), () => {
     test('pomo section ends', async () => {
         document.body.innerHTML = `
             <button id = "start-btn">Start</button>
-            <div id="timer_display_duration">0:01</div>
+            <div id="timer_display_duration">3:00</div>
             <button id = "pomo-btn"> Pomo</button>
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
@@ -113,11 +118,8 @@ describe(('switch mode'), () => {
         jest.runOnlyPendingTimers();
         expect(display.innerHTML).toBe('0:59');
 
-        const pomoColor = getComputedStyle(pomoButton);
-        const breakColor = getComputedStyle(breakButton);
-
-        expect(breakColor.backgroundColor).toBe('rgb(243, 96, 96)');
-        expect(pomoColor.backgroundColor).toBe('rgba(243, 96, 96, 0.376)');
+        expect(breakButton.classList).toContain('toggle');
+        expect(pomoButton.classList).toContain('toggle');
     });
 
     test('break section ends', async () => {
@@ -143,11 +145,8 @@ describe(('switch mode'), () => {
         jest.runOnlyPendingTimers();
         expect(display.innerHTML).toBe('2:59');
 
-        const pomoColor = getComputedStyle(pomoButton);
-        const breakColor = getComputedStyle(breakButton);
-
-        expect(pomoColor.backgroundColor).toBe('rgb(243, 96, 96)');
-        expect(breakColor.backgroundColor).toBe('rgba(243, 96, 96, 0.376)');
+        expect(pomoButton.classList).not.toContain('toggle');
+        expect(breakButton.classList).not.toContain('toggle');
     });
 
     test('switch to long break', () => {

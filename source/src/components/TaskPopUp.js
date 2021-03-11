@@ -1,12 +1,11 @@
 // const TaskItem = require('./TaskItem');
-
 // create class for popup to add task
 class TaskPopUp extends HTMLElement {
     // add TaskItem element to DOM
     addTask() {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         const input = this.shadowRoot.getElementById('task-input').value;
-        if (input != '') {
+        if (input !== '') {
             // create TaskItem and append to DOM
             const task = {
                 id: localStorage.getItem('id'),
@@ -21,8 +20,11 @@ class TaskPopUp extends HTMLElement {
             // update localStorage
             tasks.push(task);
             localStorage.setItem('tasks', JSON.stringify(tasks));
-            const id = parseInt(localStorage.getItem('id')) + 1;
+            const id = parseInt(localStorage.getItem('id'), 10) + 1;
             localStorage.setItem('id', `${id}`);
+            const btnSound = new Audio('./icons/btnClick.mp3');
+            btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+            btnSound.play();
             // hide popup
             this.closePopUp();
         }
@@ -45,7 +47,7 @@ class TaskPopUp extends HTMLElement {
         wrapper.setAttribute('id', 'add-task-popup');
         // close icon
         const close = wrapper.appendChild(document.createElement('img'));
-        close.setAttribute('src', '../icons/close.svg');
+        close.setAttribute('src', 'icons/close.svg');
         close.setAttribute('id', 'close-icon');
         const title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Add Task';
@@ -54,7 +56,8 @@ class TaskPopUp extends HTMLElement {
         input.setAttribute('type', 'text');
         input.setAttribute('id', 'task-input');
         input.setAttribute('placeholder', 'What are you working on today?');
-        input.setAttribute('maxlength', '42');
+        input.setAttribute('maxlength', '48');
+        input.setAttribute('spellcheck', 'false');
         // wrap add button in a footer
         const footer = wrapper.appendChild(document.createElement('div'));
         footer.setAttribute('class', 'button-footer');
@@ -63,8 +66,24 @@ class TaskPopUp extends HTMLElement {
         addBtn.setAttribute('id', 'add-task-btn');
         addBtn.innerHTML = 'Add';
         // event listeners for close icon and add button
-        addBtn.addEventListener('click', this.addTask.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
+        addBtn.addEventListener('click', this.addTask.bind(this));
+        // use ::part pseudo-element to style element outside of shadow tree -- for dark mode
+        wrapper.setAttribute('part', 'popup-wrapper');
+        close.setAttribute('part', 'close-icon');
+        title.setAttribute('part', 'add-task-h3');
+        input.setAttribute('part', 'task-input');
+        footer.setAttribute('part', 'btn-footer');
+        addBtn.setAttribute('part', 'add-btn');
+        // prevent keyboard press & focus on input field
+        window.addEventListener('keydown', (event) => {
+            if (event.code === 'Enter' && wrapper.style.display !== 'none') {
+                addBtn.click();
+            }
+            if (event.code === 'Escape' && wrapper.style.display !== 'none') {
+                close.click();
+            }
+        });
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `
@@ -101,24 +120,23 @@ class TaskPopUp extends HTMLElement {
             border-radius: 4px;
             top:25%;
             left: 34%;
-            border: 3px solid #f1f1f1;
-            z-index: 1;
+            z-index: 999;
             background-color: whitesmoke;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
             -webkit-animation-name: animatetop; 
             -webkit-animation-duration: 0.3s;
             animation-name: animatetop;
             animation-duration: 0.3s
-          }
-          @-webkit-keyframes animatetop {
+        }
+        @-webkit-keyframes animatetop {
             from {top:-200px; opacity:0} 
             to {top:70; opacity:1}
-          }
-          @keyframes animatetop {
+        }
+        @keyframes animatetop {
             from {top:-200px; opacity:0}
             to {top:70; opacity:1}
-          }
-          #task-input {
+        }
+        #task-input {
             font-family: 'Quicksand', sans-serif;
             font-size: 1.5vw;
             font-weight: 600;
@@ -131,12 +149,14 @@ class TaskPopUp extends HTMLElement {
             outline: none;
             display: block;
             margin:20px auto 0 auto;
+            font-weight: 500;
         }
-        ::placeholder {
+        input[type='text']::placeholder {
             color: rgba(85, 85, 85, 0.336);
         }
         #add-task-popup > h3{
             font-size: 1.6vw;
+            font-weight: 500;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
             padding-bottom: 5px;
@@ -174,22 +194,24 @@ class TaskPopUp extends HTMLElement {
         shadow.appendChild(style);
     }
 }
-
 customElements.define('task-popup', TaskPopUp);
-
-// var popupBtn = document.getElementById('task-popup-btn');
-// var popUp = document.createElement('task-popup');
-// document.body.appendChild(popUp);
-// popupBtn.addEventListener('click', function() {
-//     popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
-// });
 
 window.addEventListener('load', () => {
     const popupBtn = document.getElementById('task-popup-btn');
     const popUp = document.createElement('task-popup');
+    popUp.setAttribute('class', 'popup');
     document.body.appendChild(popUp);
     popupBtn.addEventListener('click', () => {
+        const btnSound = new Audio('./icons/btnClick.mp3');
+        btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+        btnSound.play();
+        // make sure any popup is closed before opening current popup
+        const popups = Array.from(document.getElementsByClassName('popup'));
+        for (let i = 0; i < popups.length; i++) {
+            popups[i].closePopUp();
+        }
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
+        popUp.shadowRoot.getElementById('task-input').focus();
     });
 });
 
