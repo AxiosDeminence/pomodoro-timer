@@ -23,6 +23,15 @@ let longBreakTime = localStorage.getItem('long-break-length');
 
 timerDisplayDuration.innerHTML = `${pomoTime}:00`;
 
+let stopCheck = setInterval(stopChecker, 500);
+
+async function stopChecker() {
+    if (localStorage.getItem('stop') == 'true') {
+        stop();
+        localStorage.setItem('stop', 'false');
+    } 
+}
+
 async function start() {
     startButton.innerHTML = 'Stop';
     timer = setInterval(timer_function, SECOND);
