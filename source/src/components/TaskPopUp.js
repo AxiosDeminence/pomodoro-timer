@@ -66,17 +66,6 @@ class TaskPopUp extends HTMLElement {
         // event listeners for close icon and add button
         addBtn.addEventListener('click', this.addTask.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
-        // prevent keyboard press & focus on input field
-        window.addEventListener('keydown', (event) => {
-            const btnSound = new Audio('./icons/btnClick.mp3');
-            if (event.code === 'Enter' && wrapper.style.display !== 'none') {
-                addBtn.click();
-            }
-            if (event.code === 'Escape' && wrapper.style.display !== 'none') {
-                close.click();
-            }
-        });
-
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `

@@ -154,4 +154,14 @@ window.addEventListener('keyup', (event) => {
         default:
         }
     }
+    else if (addDis === 'block'){
+        window.addEventListener('keyup', (event) => {
+            if (event.code === 'Enter') {
+                document.querySelector("body > task-popup").shadowRoot.querySelector("#add-task-btn").click();
+            }
+            if (event.code === 'Escape') {
+                document.querySelector("body > task-popup").shadowRoot.querySelector("#close-icon").click();
+            }
+        });
+    }
 });
