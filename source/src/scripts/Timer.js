@@ -58,11 +58,10 @@ async function timerFunction() {
     }
 
     if (timerText === '0:01') {
-        alarmSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
-        console.log(alarmSound.volume);
+        alarmSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
+        // console.log(alarmSound.volume);
         alarmSound.play();
     }
-
 
     let minutes = Number(timerText.substring(0, timerText.length - 3));
     let seconds = Number(timerText.substring(timerText.length - 2));
@@ -98,7 +97,7 @@ async function stop() {
 }
 
 async function startAndStopButton() {
-    btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+    btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
     btnSound.play();
     if (startButton.innerHTML === 'Start') {
         start();
@@ -130,11 +129,9 @@ window.addEventListener('keyup', (event) => {
         case 'Escape':
             if (setDis === 'block') {
                 document.querySelector('body > settings-popup').shadowRoot.querySelector('#close-icon').click();
-            } 
-            else if (resDis === 'block') {
+            } else if (resDis === 'block') {
                 document.querySelector('body > reset-popup').shadowRoot.querySelector('#close-icon').click();
-            }
-            else if (helpDis === 'block') {
+            } else if (helpDis === 'block') {
                 document.querySelector('body > help-popup').shadowRoot.querySelector('#close-icon').click();
             }
             break;
@@ -144,8 +141,7 @@ window.addEventListener('keyup', (event) => {
         case 'Enter':
             if (setDis === 'block') {
                 document.querySelector('body > settings-popup').shadowRoot.querySelector('#confirm-settings-btn').click();
-            } 
-            else if (resDis === 'block') {
+            } else if (resDis === 'block') {
                 document.querySelector('body > reset-popup').shadowRoot.querySelector('#confirm-reset-btn').click();
             }
             break;
