@@ -128,7 +128,7 @@ window.addEventListener('keyup', (event) => {
         case 'KeyR':
             document.getElementById('reset-button').click();
             break;
-        case 'keyH':
+        case 'KeyH':
             document.getElementById('help-button').click();
             break;
         case 'Semicolon':
