@@ -12,6 +12,7 @@ beforeEach(() => {
             <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
         </div>
     `;
+    window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 });
 
 afterEach(() => {

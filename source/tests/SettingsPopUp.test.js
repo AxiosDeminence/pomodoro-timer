@@ -12,6 +12,7 @@ beforeEach(() => {
             <p class="top-button-text">Setting</p>
         </button>
     `;
+    window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 });
 
 test('Confirm Button functions as intended', () => {
@@ -40,33 +41,35 @@ test('Confirm Button functions as intended', () => {
 
 });
 
-// edge case for settings not implemented yet, ignore for now.
+/*
+edge case for settings not implemented yet, ignore for now.
 
-// test('Confirm Button edge cases functions as intended', () => {
+test('Confirm Button edge cases functions as intended', () => {
 
-//     const testSettingsPopUp = new SettingsPopUp();
-//     const shadow = testSettingsPopUp.shadowRoot;
+    const testSettingsPopUp = new SettingsPopUp();
+    const shadow = testSettingsPopUp.shadowRoot;
 
-//     const pomoLength = shadow.querySelectorAll('input')[0];
-//     const shortBreakLength = shadow.querySelectorAll('input')[1];
-//     const longBreakLength = shadow.querySelectorAll('input')[2];
+    const pomoLength = shadow.querySelectorAll('input')[0];
+    const shortBreakLength = shadow.querySelectorAll('input')[1];
+    const longBreakLength = shadow.querySelectorAll('input')[2];
    
-//     pomoLength.value = '100';
-//     shortBreakLength.value = '200';
-//     longBreakLength.value = '300';
+    pomoLength.value = '100';
+    shortBreakLength.value = '200';
+    longBreakLength.value = '300';
 
-//     const confirmBtn = shadow.querySelectorAll('button')[0];
+    const confirmBtn = shadow.querySelectorAll('button')[0];
 
-//     confirmBtn.click();
+    confirmBtn.click();
 
-//     expect(localStorage.getItem('pomo-length')).toBe('60');
-//     expect(localStorage.getItem('short-break-length')).toBe('60');
-//     expect(localStorage.getItem('long-break-length')).toBe('600');
+    expect(localStorage.getItem('pomo-length')).toBe('60');
+    expect(localStorage.getItem('short-break-length')).toBe('60');
+    expect(localStorage.getItem('long-break-length')).toBe('600');
 
-//     // closes pop up
-//     expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
+    // closes pop up
+    expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
 
-// });
+});
+*/
 
 test('Cancel Button functions as intended', () => {
     const testSettingsPopUp = new SettingsPopUp();

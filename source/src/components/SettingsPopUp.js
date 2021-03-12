@@ -13,6 +13,7 @@ class SettingsPopUp extends HTMLElement {
         localStorage.setItem('long-break-length', longBreak);
         const btnSound = new Audio('./icons/btnClick.mp3');
         btnSound.play();
+        localStorage.setItem('stop', 'true');
         // stop();
         this.closePopUp();
     }

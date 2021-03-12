@@ -1,4 +1,10 @@
 require('regenerator-runtime/runtime');
+import ResetPopUp from '../src/components/ResetPopUp';
+import SettingsPopUp from '../src/components/SettingsPopUp';
+import TaskPopUp from '../src/components/TaskPopUp.js';
+import TaskItem from '../src/components/TaskItem';
+
+
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 
@@ -180,4 +186,655 @@ describe(('switch mode'), () => {
         jest.runOnlyPendingTimers();
         expect(display.innerHTML).toBe('1:59');
     });
+});
+
+describe(('keyboard input'), () => {
+    beforeEach(() => {
+        jest.useFakeTimers();
+    });
+    
+    afterEach(() => {
+        jest.resetModules();
+        jest.clearAllTimers();
+    });
+
+    test(('key press S starts the timer'), () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Start</button>
+            <div id="timer_display_duration">25:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyS';
+        document.body.dispatchEvent(eventObj);   
+
+        const start_button = document.getElementById('start-btn');
+        const display = document.getElementById('timer_display_duration');
+
+        jest.advanceTimersByTime(5000);
+
+        expect(start_button.innerHTML).toBe('Stop');
+        expect(display.innerHTML).toBe('24:55');
+    });
+
+    test(('key press S stops the timer'), () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Stop</button>
+            <div id="timer_display_duration">23:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyS';
+        document.body.dispatchEvent(eventObj);   
+
+        const start_button = document.getElementById('start-btn');
+        const display = document.getElementById('timer_display_duration');
+
+        jest.advanceTimersByTime(5000);
+
+        expect(start_button.innerHTML).toBe('Start');
+        expect(display.innerHTML).toBe('25:00');
+    });
+
+    /*
+    help button has not been implemented yet
+    */
+    test(('key press H opens help pop-up'), () => {
+
+        document.body.innerHTML = `
+            <button id = "start-btn">Stop</button>
+            <div id="timer_display_duration">23:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+            <button class="top-buttons" id="help-button">
+                <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
+                <p class="top-button-text" id="text-help">Help</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyH';
+        document.body.dispatchEvent(eventObj);   
+
+        expect(true).toBe(true);
+
+    });
+
+    test(('key press R opens reset pop-up'), () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Stop</button>
+            <div id="timer_display_duration">23:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        document.body.appendChild(resetPopUp);
+
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyR';
+        document.body.dispatchEvent(eventObj);   
+        
+        const dispaly = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
+        expect(dispaly.display).toBe('block');
+
+    });
+
+    test(('key press ; opens setting pop-up'), () => {
+
+        document.body.innerHTML = `
+            <button id = "start-btn">Stop</button>
+            <div id="timer_display_duration">23:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+
+
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'Semicolon';
+        document.body.dispatchEvent(eventObj); 
+
+        const display = getComputedStyle(settingsPopUp.shadowRoot.getElementById('settings-confirm-popup'));
+
+        expect(display.display).toBe('block');
+
+    });
+
+    test(('key press A opens add-task pop-up'), () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Stop</button>
+            <div id="timer_display_duration">23:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyA';
+        document.body.dispatchEvent(eventObj); 
+
+        const display = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
+
+        expect(display.display).toBe('block');
+
+    });
+
+    test(('key press Enter confirms reset correctly'), () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Stop</button>
+            <div id="timer_display_duration">23:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        const tasks = [];
+        const id = 2;
+        const taskF = { id: 0, checked: false, text: 'First Item' };
+        const taskT = { id: 1, checked: true, text: 'Second Item' };
+        tasks.push(taskF);
+        tasks.push(taskT);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('id', `${id}`);
+        const list = document.getElementById('task-list-elements');
+        const taskItemF = new TaskItem();
+        taskItemF.setAttribute('id', taskF.id);
+        taskItemF.setAttribute('checked', taskF.checked);
+        taskItemF.setAttribute('text', taskF.text);
+        const taskItemT = new TaskItem();
+        taskItemT.setAttribute('id', taskT.id);
+        taskItemT.setAttribute('checked', taskT.checked);
+        taskItemT.setAttribute('text', taskT.text);
+        list.appendChild(taskItemF);
+        list.appendChild(taskItemT);
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
+        document.body.appendChild(resetPopUp);
+    
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'Enter';
+    
+        document.body.dispatchEvent(eventObj);   
+    
+        const dispaly = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
+        
+        expect(dispaly.display).toBe('none');
+        expect(localStorage.getItem('id')).toBe('0');
+        expect(localStorage.getItem('tasks')).toBe('[]');
+    
+    });
+    
+    test(('key press Escape exits reset correctly'), () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Stop</button>
+            <div id="timer_display_duration">23:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        const tasks = [];
+        const id = 2;
+        const taskF = { id: 0, checked: false, text: 'First Item' };
+        const taskT = { id: 1, checked: true, text: 'Second Item' };
+        tasks.push(taskF);
+        tasks.push(taskT);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('id', `${id}`);
+        const list = document.getElementById('task-list-elements');
+        const taskItemF = new TaskItem();
+        taskItemF.setAttribute('id', taskF.id);
+        taskItemF.setAttribute('checked', taskF.checked);
+        taskItemF.setAttribute('text', taskF.text);
+        const taskItemT = new TaskItem();
+        taskItemT.setAttribute('id', taskT.id);
+        taskItemT.setAttribute('checked', taskT.checked);
+        taskItemT.setAttribute('text', taskT.text);
+        list.appendChild(taskItemF);
+        list.appendChild(taskItemT);
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
+        document.body.appendChild(resetPopUp);
+        
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'Escape';
+    
+        document.body.dispatchEvent(eventObj);
+        
+        const dispaly = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
+        
+        expect(dispaly.display).toBe('none');
+        expect(localStorage.getItem('id')).toBe('2');
+        expect(localStorage.getItem('tasks')).toBe('[{"id":0,"checked":false,"text":"First Item"},{"id":1,"checked":true,"text":"Second Item"}]');
+    
+    });
+
+    test('Key press ENTER confirms settings correctly', () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Stop</button>
+            <div id="timer_display_duration">23:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        localStorage.clear();
+        localStorage.setItem('pomo-length', '25');
+        localStorage.setItem('short-break-length', '5');
+        localStorage.setItem('long-break-length', '15');
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+
+        const shadow = settingsPopUp.shadowRoot;
+        const pomoLength = shadow.querySelectorAll('input')[0];
+        const shortBreakLength = shadow.querySelectorAll('input')[1];
+        const longBreakLength = shadow.querySelectorAll('input')[2];
+    
+        pomoLength.value = '30';
+        shortBreakLength.value = '10';
+        longBreakLength.value = '20';
+
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'Enter';
+
+        document.body.dispatchEvent(eventObj);   
+
+        expect(localStorage.getItem('pomo-length')).toBe('30');
+        expect(localStorage.getItem('short-break-length')).toBe('10');
+        expect(localStorage.getItem('long-break-length')).toBe('20');
+
+        // closes pop up
+        expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
+
+    });
+
+    test('Key press ESCAPE exits settings correctly', () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Stop</button>
+            <div id="timer_display_duration">23:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        localStorage.clear();
+        localStorage.setItem('pomo-length', '25');
+        localStorage.setItem('short-break-length', '5');
+        localStorage.setItem('long-break-length', '15');
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+
+        const shadow = settingsPopUp.shadowRoot;
+        const pomoLength = shadow.querySelectorAll('input')[0];
+        const shortBreakLength = shadow.querySelectorAll('input')[1];
+        const longBreakLength = shadow.querySelectorAll('input')[2];
+
+        pomoLength.value = '30';
+        shortBreakLength.value = '10';
+        longBreakLength.value = '20';
+        
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'Escape';
+
+        document.body.dispatchEvent(eventObj);
+
+        expect(localStorage.getItem('pomo-length')).toBe('25');
+        expect(localStorage.getItem('short-break-length')).toBe('5');
+        expect(localStorage.getItem('long-break-length')).toBe('15');
+
+        expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
+
+    });
+
+    /*
+    test.only('Key press ENTER adds a task correctly', () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Start</button>
+            <div id="timer_display_duration">25:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+
+        localStorage.setItem('tasks', '[]');
+        localStorage.setItem('id', '0');
+
+        const testTaskPopUp = new TaskPopUp();
+        const shadow = taskPopUp.shadowRoot;
+    
+        const input = shadow.querySelector('input');
+        input.value = 'test_task';
+    
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keydown', true, true);
+        }
+        eventObj.code = 'Enter';
+    
+        document.body.dispatchEvent(eventObj);   
+    
+    
+    
+        // new task test_task is added to list of tasks
+        expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\"}]');
+        // id is updated
+        expect(localStorage.getItem('id')).toBe('1');
+        // input is set back to empty string
+        expect(input.value).toBe('');
+    
+    });
+    
+    test('Key press ESCAPE exits task pop up correctly', () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Start</button>
+            <div id="timer_display_duration">25:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+        
+        localStorage.setItem('tasks', '[]');
+        localStorage.setItem('id', '0');
+
+        const testTaskPopUp = new TaskPopUp();
+        const shadow = taskPopUp.shadowRoot;
+        const input = shadow.querySelector('input');
+        input.value = 'test_task';
+            
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keydown', true, true);
+        }
+        eventObj.code = 'Escape';
+    
+        document.body.dispatchEvent(eventObj);
+    
+        expect(shadow.querySelector('div').style.display).toBe('none');
+        expect(shadow.querySelector('input').value).toBe('');
+    
+    });
+    */
 });
