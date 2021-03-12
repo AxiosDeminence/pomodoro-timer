@@ -11,11 +11,13 @@ class TaskPopUp extends HTMLElement {
                 id: localStorage.getItem('id'),
                 checked: false,
                 text: input,
+                focused: false,
             };
             const taskItem = document.createElement('task-item');
             taskItem.setAttribute('id', task.id);
             taskItem.setAttribute('checked', task.checked);
             taskItem.setAttribute('text', task.text);
+            taskItem.setAttribute('focused', task.focused);
             document.getElementById('task-list-elements').appendChild(taskItem);
             // update localStorage
             tasks.push(task);

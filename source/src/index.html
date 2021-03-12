@@ -17,19 +17,21 @@
             <div id="header-buttons">
                 <ul>
                     <li>
+                        <button class='top-buttons' id='focus-button'>
+                            <img src="icons/half-moon.svg" id="focus" class="top-button-img" alt="focus">
+                        </button>
+                    </li>
+                    <li>
                         <button class="top-buttons" id="reset-button">
                             <img src="icons/reset.svg" id="reset" class="top-button-img" alt="reset">
-                            <p class="top-button-text">Reset</p>
                         </button>
                     </li>
                     <li><button class="top-buttons" id="setting-button">
                             <img src="icons/settings.svg" id="gear" class="top-button-img" alt="gear">
-                            <p class="top-button-text">Setting</p>
                         </button>
                     </li>
                     <li><button class="top-buttons" id="help-button">
                             <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
-                            <p class="top-button-text" id="text-help">Help</p>
                         </button>
                     </li>
                 </ul>
@@ -37,20 +39,23 @@
         </header>
         <div id="pomodoro-timer">
             <!--Adds Pomo and Break buttons-->
-            <div style="text-align: center;" id="timer-btns" class="timer-buttons">
+            <div id="timer-btns" class="timer-buttons">
                 <button id="pomo-btn"> Pomo</button>
                 <button id="break-btn"> Break</button>
             </div>
             <!--Adds empty border to create distance between Pomo/Break buttons and Timer display-->
-            <div style="text-align: center;" class="empty-space-border">
+            <div class="empty-space-border">
             </div>
             <!--Adds Timer display-->
-            <div style="text-align: center;" id="timer_display" class="timer-value">
+            <div id="timer_display" class="timer-value">
                 <div id="timer_display_duration">25:00</div>
             </div>
             <!--Adds Start and Reset buttons-->
-            <div style="text-align: center;" id="timer-control-btns" class="timer-control-buttons">
+            <div id="timer-control-btns" class="timer-control-buttons">
                 <button id="start-btn">Start</button>
+            </div>
+            <div id='focus-task'>
+                <h2 id='select-focus'></h2>
             </div>
         </div>
         <!-- Divider -->
@@ -74,6 +79,7 @@
     </script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/Timer.js"></script>
+    <script src="./scripts/FocusMode.js"></script>
     <script src="./components/TaskItem.js"></script>
     <script src="./components/TaskPopUp.js"></script>
     <script src="./components/ResetPopUp.js"></script>

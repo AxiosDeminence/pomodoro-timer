@@ -22,6 +22,53 @@ class TaskItem extends HTMLElement {
         localStorage.setItem('tasks', JSON.stringify(tasks));
         // remove this element from DOM
         this.parentNode.removeChild(this);
+        // update focus task title if focus task no longer exists
+        const focusDiv = document.getElementById('focus-task');
+        if (focusDiv.querySelector('task-item') === null) {
+            const title = document.getElementById('select-focus');
+            title.innerHTML = '';
+        }
+    }
+
+    // allows user to focus on a task item
+    focus(event) {
+        // stop default 'checked' action
+        event.stopPropagation(); 
+        // remove task item from parent 
+        this.parentNode.removeChild(this);
+        // update focused attribute
+        this.setAttribute('focused', true);
+        // update local storage
+        const tasks = JSON.parse(localStorage.getItem('tasks'));
+        const task = tasks.find((t) => t.id === this.getAttribute('id') && t.text === this.getAttribute('text'));
+        if (typeof task !== 'undefined') {
+            task.focused = true;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+        // add to div below clock
+        const focusDiv = document.getElementById('focus-task');
+        const focusTask = focusDiv.querySelector('task-item');
+        const ul = document.getElementById('task-list-elements');
+        const title = document.getElementById('select-focus');
+        // if there doesn't exist a focus task yet
+        if (focusTask === null) {
+            focusDiv.appendChild(this);
+        }
+        // else, remove existing focus task and add 'this' one
+        else {
+            focusDiv.removeChild(focusTask);
+            ul.appendChild(focusTask);
+            focusTask.setAttribute('focused', false);
+            const unfocus = tasks.find((t) => t.id === focusTask.getAttribute('id') && t.text === focusTask.getAttribute('text'));
+            if (typeof unfocus !== 'undefined') {
+                unfocus.focused = false;
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
+            // add 'this' task item to under clock display
+            focusDiv.appendChild(this);
+        }
+        // update title
+        title.innerHTML = 'Focusing on:';
     }
 
     /* create task list item by building custom component */
@@ -42,13 +89,19 @@ class TaskItem extends HTMLElement {
         li.appendChild(check);
         // add event listener such that clicking on element crosses out task
         this.addEventListener('click', this.toggle);
+        const focus = document.createElement('img');
+        focus.setAttribute('src', 'icons/focus.svg');
+        focus.setAttribute('class', 'focus-icon');
+        li.appendChild(focus);
+        // add event listener to image to focus a task
+        focus.addEventListener('click', this.focus.bind(this));
         // create delete icon
-        const icon = document.createElement('img');
-        icon.setAttribute('src', 'icons/delete.svg');
-        icon.setAttribute('class', 'delete-icon');
-        li.appendChild(icon);
+        const trash = document.createElement('img');
+        trash.setAttribute('src', 'icons/delete.svg');
+        trash.setAttribute('class', 'delete-icon');
+        li.appendChild(trash);
         // add event listener to image to remove task
-        icon.addEventListener('click', this.removeTask.bind(this));
+        trash.addEventListener('click', this.removeTask.bind(this));
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `
@@ -60,7 +113,6 @@ class TaskItem extends HTMLElement {
             border-radius: 5px;
             margin-right: 20%;
             box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
-            transition: 0.3s;
             display: flex;
             align-items: center;
             padding-left: 37px;
@@ -73,6 +125,7 @@ class TaskItem extends HTMLElement {
         }
         :host(:hover) {
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
         }
         :host([checked = 'true']) {
             background: #f3606060;
@@ -104,6 +157,23 @@ class TaskItem extends HTMLElement {
             visibility: hidden;
         }
         .delete-icon:hover {
+            transform: scale(1.3);
+            filter:brightness(105%)
+        }
+        :host(:hover) .focus-icon {
+            visibility: visible;
+        }
+        .focus-icon {
+            position: absolute;
+            color: #fff;
+            right: 40px;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            visibility: hidden;
+        }
+        .focus-icon:hover {
             transform: scale(1.3);
             filter:brightness(105%)
         }
