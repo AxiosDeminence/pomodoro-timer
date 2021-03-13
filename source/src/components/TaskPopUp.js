@@ -11,11 +11,13 @@ class TaskPopUp extends HTMLElement {
                 id: localStorage.getItem('id'),
                 checked: false,
                 text: input,
+                focused: false,
             };
             const taskItem = document.createElement('task-item');
             taskItem.setAttribute('id', task.id);
             taskItem.setAttribute('checked', task.checked);
             taskItem.setAttribute('text', task.text);
+            taskItem.setAttribute('focused', task.focused);
             document.getElementById('task-list-elements').appendChild(taskItem);
             // update localStorage
             tasks.push(task);
@@ -75,15 +77,6 @@ class TaskPopUp extends HTMLElement {
         input.setAttribute('part', 'task-input');
         footer.setAttribute('part', 'btn-footer');
         addBtn.setAttribute('part', 'add-btn');
-        // prevent keyboard press & focus on input field
-        window.addEventListener('keydown', (event) => {
-            if (event.code === 'Enter' && wrapper.style.display !== 'none') {
-                addBtn.click();
-            }
-            if (event.code === 'Escape' && wrapper.style.display !== 'none') {
-                close.click();
-            }
-        });
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `

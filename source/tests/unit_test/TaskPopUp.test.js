@@ -14,6 +14,7 @@ beforeEach(() => {
             <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
         </div>
     `;
+    window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 });
 
 afterEach(() => {
@@ -32,7 +33,7 @@ test('Adding a task called test_task with the addButton correctly updates localS
     button.click();
 
     // new task test_task is added to list of tasks
-    expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\"}]');
+    expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\",\"focused\":false}]');
     // id is updated
     expect(localStorage.getItem('id')).toBe('1');
     // input is set back to empty string

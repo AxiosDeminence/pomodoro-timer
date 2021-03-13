@@ -16,7 +16,7 @@ body {
     overflow: hidden;
 }
 header {
-    text-align: center;
+    /* text-align: center; */
     margin-top: 10px;
     height: 15vh;
 }
@@ -24,6 +24,7 @@ h1#header-name {
     display: inline-block;
     position: relative;
     color: #f36060;
+    left: 10%;
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -47,17 +48,16 @@ h1#header-name {
     text-align: center;
     background-color:#f36060;
     color:#fff;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
     outline: none;
     margin-left: 5px;
     height: 35px;
+    width: 40px;
 }
 .top-buttons:hover {
     filter: brightness(105%);
     transform: scale(1.1);
 }
-#setting-button {
+/* #setting-button {
     width: 87px;
 }
 #help-button {
@@ -65,7 +65,7 @@ h1#header-name {
 }
 #reset-button {
     width: 80px;
-}
+} */
 .top-button-img {
     display: inline-block;
     vertical-align: middle;
@@ -76,18 +76,19 @@ img#help {
     width: 15px;
     height: 15px;
 }
-img#reset {
-    padding-right: 2px;
+img#focus {
+    width: 30px;
+    height: 30px;
 }
-.top-button-text {
+/* .top-button-text {
     display: inline-block;
     vertical-align: middle;
     margin: 0;
     font-size: 1.05em;
-}
-#text-help {
+} */
+/* #text-help {
     padding-right: 2px;
-}
+} */
 header:after {
     content:' ';
     display: block;
@@ -104,6 +105,7 @@ header:after {
     max-height: 400px;
     margin-bottom: 10px;
     overflow: auto;
+    display: block;
 }
 #up-next {
     color: #f36060;
@@ -122,6 +124,7 @@ header:after {
 #popup-button {
     float: right;
     width: 30%;
+    display: block;
 }
 #task-popup-btn {
     cursor: pointer;
@@ -153,6 +156,9 @@ img#dash {
 }
 /* Code BELOW is for Clock */
 /* CSS for Pomo/Break button dispaly */
+.timer-buttons {
+    text-align: center;
+}
 .timer-buttons button
 {
     margin-top: 19px;
@@ -188,7 +194,7 @@ div.empty-space-border
     border-color: #ffd5ca;
     border-width: thick;
     border-radius: 50px;
-
+    text-align: center;
     padding: 2px;
     max-width:325px;
     margin:0 auto;
@@ -203,7 +209,7 @@ div.timer-value
     border-color: #ffd5ca;
     border-width: thick;
     border-radius: 50px;
-
+    text-align: center;
     margin: 100px;
     padding: 50px;
     max-width:325px;
@@ -211,6 +217,9 @@ div.timer-value
 
 }
 /* CSS for Start/Reset Buttons */
+.timer-control-buttons {
+    text-align: center;
+}
 .timer-control-buttons button
 {
     margin-top: 21px;
@@ -232,8 +241,8 @@ div.timer-value
     transform: scale(1.1);
     filter: brightness(105%);
 }
-/* Animations */
-@media screen and (max-width: 1000px) {
+/* Media Queries */
+/* @media screen and (max-width: 1000px) {
     .top-button-text {
         display: none;
     }
@@ -246,8 +255,8 @@ div.timer-value
     #reset-button {
         width: 40px;
     }
-}
-@media screen and (max-width: 700px) {
+} */
+/* @media screen and (max-width: 700px) {
     header {
         margin-top: 10px;
         height: 15vh;
@@ -261,7 +270,7 @@ div.timer-value
         margin-bottom: 10px;
         margin-left: 10%;
     }
-}
+} */
 
 
 /* Dark Mode Styles */
@@ -305,6 +314,9 @@ body.dark-theme div.timer-value {
 }
 body.dark-theme .timer-control-buttons button{
     background-color: #4a5568;
+    color: #f5f6f7;
+}
+body.dark-theme #select-focus {
     color: #f5f6f7;
 }
 body.dark-theme #up-next {
@@ -408,4 +420,36 @@ body.dark-theme help-popup::part(popup-wrapper) {
 }
 body.dark-theme help-popup::part(help-h3) {
     color: #f5f6f7;
+}
+
+/* Focus Task */
+#focus-task {
+    text-align: center;
+    width: 75%;
+    margin: 40px auto;
+    list-style-type: none;
+}
+#select-focus {
+    font-weight: 500;
+    color:#f36060;  
+}
+#focus-task task-item {
+    margin: 0 auto;
+    border-left: solid 6px #eaeaea;
+    /* height: 60px;
+    font-size: larger; */
+}
+/*Focus mode toggles*/
+#popup-button.state {
+    display: none;
+}
+#task-list.state {
+    display: none;
+}
+#pomodoro-timer.state {
+    float: none;
+    width: auto;
+}
+#focus-task.state {
+    width: 45%;
 }
