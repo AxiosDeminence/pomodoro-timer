@@ -12,12 +12,15 @@ beforeEach(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     localStorage.setItem('id', `${id}`);
     document.body.innerHTML = `
-    <button class="top-buttons" id="reset-button">
-        <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
-        <p class="top-button-text">Reset</p>
-    </button>
-    <ul id="task-list-elements">
-    </ul>
+        <button class="top-buttons" id="reset-button">
+            <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+            <p class="top-button-text">Reset</p>
+        </button>
+        <ul id="task-list-elements">
+        </ul>
+        <div id='focus-task'>
+            <h2 id='select-focus'></h2>
+        </div>
     `;
     const list = document.getElementById('task-list-elements');
     const taskItemF = new TaskItem();
@@ -30,6 +33,7 @@ beforeEach(() => {
     taskItemT.setAttribute('text', taskT.text);
     list.appendChild(taskItemF);
     list.appendChild(taskItemT);
+    localStorage.setItem('volume', 50);
     window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 });
 
@@ -60,13 +64,13 @@ test(('close without reset'), () => {
     expect(localStorage.getItem('tasks')).toBe('[{"id":0,"checked":false,"text":"First Item"},{"id":1,"checked":true,"text":"Second Item"}]');
 });
 
-// test(('confirm and reset'), () => {
-//     const popUP = new ResetPopUp();
-//     popUP.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
-//     const confirm = popUP.shadowRoot.getElementById('confirm-reset-btn');
-//     confirm.click();
-//     const dispaly = getComputedStyle(popUP.shadowRoot.getElementById('reset-confirm-popup'));
-//     expect(dispaly.display).toBe('none');
-//     expect(localStorage.getItem('id')).toBe('0');
-//     expect(localStorage.getItem('tasks')).toBe('[]');
-// });
+test(('confirm and reset'), () => {
+    const popUP = new ResetPopUp();
+    popUP.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
+    const confirm = popUP.shadowRoot.getElementById('confirm-reset-btn');
+    confirm.click();
+    const dispaly = getComputedStyle(popUP.shadowRoot.getElementById('reset-confirm-popup'));
+    expect(dispaly.display).toBe('none');
+    expect(localStorage.getItem('id')).toBe('0');
+    expect(localStorage.getItem('tasks')).toBe('[]');
+});

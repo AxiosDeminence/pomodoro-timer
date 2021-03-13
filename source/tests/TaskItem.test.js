@@ -51,8 +51,15 @@ test(('toggle checked from true to false'), () => {
 
 test(('remove a task'), () => {
     document.body.innerHTML = `
-    <ul id="task-list-elements">
-    </ul> 
+        <button class="top-buttons" id="reset-button">
+            <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+            <p class="top-button-text">Reset</p>
+        </button>
+        <ul id="task-list-elements">
+        </ul>
+        <div id='focus-task'>
+            <h2 id='select-focus'></h2>
+        </div>
     `;
     let tasks = JSON.parse(localStorage.getItem('tasks'));
     const taskItem = new TaskItem();

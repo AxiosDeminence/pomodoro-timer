@@ -1,5 +1,3 @@
-jest.mock()
-
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {
     require('../src/scripts/script');
@@ -8,7 +6,10 @@ beforeEach(() => {
     localStorage.setItem('id', '0');
     document.body.innerHTML = `
         <ul id="task-list-elements">
-        </ul>      
+        </ul>   
+        <div id='focus-task'>
+            <h2 id='select-focus'></h2>
+        </div>   
     `;
 });
 
@@ -32,7 +33,7 @@ test('Initializes localStorage correctly', () => {
 });
 
 test('Reads task list and creates one task correctly', () => {
-    localStorage.setItem('tasks', '[{"id":"0","checked":false,"text":"test_task"}]');
+    localStorage.setItem('tasks', '[{"id":"0","checked":false,"text":"test_task","focused":false}]');
 
     window.document.dispatchEvent(new Event('DOMContentLoaded', {
         bubbles: true,
@@ -45,11 +46,12 @@ test('Reads task list and creates one task correctly', () => {
     expect(taskItem.getAttribute('checked')).toBe("false");
     expect(taskItem.id).toBe('0');
     expect(taskItem.getAttribute('text')).toBe("test_task");
+    expect(taskItem.getAttribute('focused')).toBe('false');
 });
 
 test('Reads task list and creates multiple tasks correctly', () => {
-    localStorage.setItem('tasks', '[{"id":"0","checked":false,"text":"test_task"},'
-    + '{"id":"1","checked":false,"text":"test_task1"}]');
+    localStorage.setItem('tasks', '[{"id":"0","checked":false,"text":"test_task","focused":false},'
+    + '{"id":"1","checked":false,"text":"test_task1","focused":false}]');
 
     window.document.dispatchEvent(new Event('DOMContentLoaded', {
         bubbles: true,
@@ -62,11 +64,38 @@ test('Reads task list and creates multiple tasks correctly', () => {
     expect(taskItem.getAttribute('checked')).toBe('false');
     expect(taskItem.id).toBe('0');
     expect(taskItem.getAttribute('text')).toBe('test_task');
+    expect(taskItem.getAttribute('focused')).toBe('false');
 
     const taskItem1 = document.getElementById('task-list-elements').children[1];
     expect(taskItem1.getAttribute('checked')).toBe('false');
     expect(taskItem1.id).toBe('1');
     expect(taskItem1.getAttribute('text')).toBe('test_task1');
+    expect(taskItem1.getAttribute('focused')).toBe('false');
+});
+
+test('Reads task list and creates multiple tasks correctly, with one focused task', () => {
+    localStorage.setItem('tasks', '[{"id":"0","checked":false,"text":"test_task","focused":false},'
+    + '{"id":"1","checked":false,"text":"test_task1","focused":true}]');
+
+    window.document.dispatchEvent(new Event('DOMContentLoaded', {
+        bubbles: true,
+        cancelable: true,
+    }));
+
+    expect(document.getElementById('task-list-elements').children).toHaveLength(1);
+
+    const taskItem = document.getElementById('task-list-elements').children[0];
+    expect(taskItem.getAttribute('checked')).toBe('false');
+    expect(taskItem.id).toBe('0');
+    expect(taskItem.getAttribute('text')).toBe('test_task');
+    expect(taskItem.getAttribute('focused')).toBe('false');
+
+    // const taskItem1 = document.getElementById('task-list-elements').children[1];
+    const taskItem1 = document.getElementById('focus-task').childNodes[3];
+    expect(taskItem1.getAttribute('checked')).toBe('false');
+    expect(taskItem1.id).toBe('1');
+    expect(taskItem1.getAttribute('text')).toBe('test_task1');
+    expect(taskItem1.getAttribute('focused')).toBe('true');
 });
 
 test(('save dark theme'), () => {
