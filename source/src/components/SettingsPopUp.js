@@ -14,7 +14,8 @@ class SettingsPopUp extends HTMLElement {
         const btnSound = new Audio('./icons/btnClick.mp3');
 		btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
         btnSound.play();
-        stop();
+        localStorage.setItem('stop', 'true');
+        // stop();
         this.closePopUp();
     }
 

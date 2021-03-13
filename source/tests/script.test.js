@@ -1,3 +1,5 @@
+jest.mock()
+
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {
     require('../src/scripts/script');
@@ -40,10 +42,9 @@ test('Reads task list and creates one task correctly', () => {
     expect(document.getElementById('task-list-elements').children).toHaveLength(1);
 
     const taskItem = document.getElementById('task-list-elements').children[0];
-    // expect(taskItem).toBe("");
-    // expect(taskItem.checked).toBe("false");
+    expect(taskItem.getAttribute('checked')).toBe("false");
     expect(taskItem.id).toBe('0');
-    // expect(taskItem.text).toBe("test_task");
+    expect(taskItem.getAttribute('text')).toBe("test_task");
 });
 
 test('Reads task list and creates multiple tasks correctly', () => {
@@ -58,13 +59,11 @@ test('Reads task list and creates multiple tasks correctly', () => {
     expect(document.getElementById('task-list-elements').children).toHaveLength(2);
 
     const taskItem = document.getElementById('task-list-elements').children[0];
-    // expect(taskItem).toBe("");
     expect(taskItem.getAttribute('checked')).toBe('false');
     expect(taskItem.id).toBe('0');
     expect(taskItem.getAttribute('text')).toBe('test_task');
 
     const taskItem1 = document.getElementById('task-list-elements').children[1];
-    // expect(taskItem1).toBe("");
     expect(taskItem1.getAttribute('checked')).toBe('false');
     expect(taskItem1.id).toBe('1');
     expect(taskItem1.getAttribute('text')).toBe('test_task1');

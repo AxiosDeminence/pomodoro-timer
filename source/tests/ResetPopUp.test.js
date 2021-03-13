@@ -30,6 +30,7 @@ beforeEach(() => {
     taskItemT.setAttribute('text', taskT.text);
     list.appendChild(taskItemF);
     list.appendChild(taskItemT);
+    window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 });
 
 afterEach(() => [

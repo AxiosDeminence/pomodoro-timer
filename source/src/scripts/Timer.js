@@ -7,6 +7,8 @@ let timer;
 let timerStatus = 'pomo';
 let breakCounter = 0;
 
+let stopCheck = setInterval(stopChecker, 500);
+
 // assign default session lengths to local storage
 if (localStorage.getItem('pomo-length') === null) {
     localStorage.setItem('pomo-length', '25');
@@ -80,6 +82,13 @@ async function timerFunction() {
     timerDisplayDuration.innerHTML = `${minutes}:${seconds}`;
 }
 
+async function stopChecker() {
+    if (localStorage.getItem('stop') == 'true') {
+        stop();
+        localStorage.setItem('stop', 'false');
+    } 
+}
+
 async function start() {
     startButton.innerHTML = 'Stop';
     timer = setInterval(timerFunction, SECOND);
@@ -114,38 +123,48 @@ window.addEventListener('keyup', (event) => {
     const helpDis = document.querySelector('help-popup').shadowRoot.getElementById('help-popup').style.display;
     if (!addDis || addDis === 'none') {
         switch (event.code) {
-        case 'KeyS':
-            startButton.click();
-            break;
-        case 'KeyR':
-            document.getElementById('reset-button').click();
-            break;
-        case 'KeyH':
-            document.getElementById('help-button').click();
-            break;
-        case 'Semicolon':
-            document.getElementById('setting-button').click();
-            break;
-        case 'Escape':
-            if (setDis === 'block') {
-                document.querySelector('body > settings-popup').shadowRoot.querySelector('#close-icon').click();
-            } else if (resDis === 'block') {
-                document.querySelector('body > reset-popup').shadowRoot.querySelector('#close-icon').click();
-            } else if (helpDis === 'block') {
-                document.querySelector('body > help-popup').shadowRoot.querySelector('#close-icon').click();
-            }
-            break;
-        case 'KeyA':
-            document.getElementById('task-popup-btn').click();
-            break;
-        case 'Enter':
-            if (setDis === 'block') {
-                document.querySelector('body > settings-popup').shadowRoot.querySelector('#confirm-settings-btn').click();
-            } else if (resDis === 'block') {
-                document.querySelector('body > reset-popup').shadowRoot.querySelector('#confirm-reset-btn').click();
-            }
-            break;
-        default:
+            case 'KeyS':
+                startButton.click();
+                break;
+            case 'KeyR':
+                document.getElementById('reset-button').click();
+                break;
+            case 'KeyH':
+                document.getElementById('help-button').click();
+                break;
+            case 'Semicolon':
+                document.getElementById('setting-button').click();
+                break;
+            case 'Escape':
+                if (setDis === 'block') {
+                    document.querySelector('body > settings-popup').shadowRoot.querySelector('#close-icon').click();
+                } else if (resDis === 'block') {
+                    document.querySelector('body > reset-popup').shadowRoot.querySelector('#close-icon').click();
+                } else if (helpDis === 'block') {
+                    document.querySelector('body > help-popup').shadowRoot.querySelector('#close-icon').click();
+                }
+                break;
+            case 'KeyA':
+                document.getElementById('task-popup-btn').click();
+                break;
+            case 'Enter':
+                if (setDis === 'block') {
+                    document.querySelector('body > settings-popup').shadowRoot.querySelector('#confirm-settings-btn').click();
+                } else if (resDis === 'block') {
+                    document.querySelector('body > reset-popup').shadowRoot.querySelector('#confirm-reset-btn').click();
+                }
+                break;
+            default:
+                break;
         }
+    }
+    else if (addDis === 'block') {
+        if (event.code === 'Enter') {
+            document.querySelector("body > task-popup").shadowRoot.querySelector("#add-task-btn").click();
+        } else if (event.code === 'Escape') {
+            document.querySelector("body > task-popup").shadowRoot.querySelector("#close-icon").click();
+        } else {
+        }
+    } else {
     }
 });
