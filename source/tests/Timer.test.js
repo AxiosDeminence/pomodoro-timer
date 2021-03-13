@@ -86,6 +86,17 @@ test('advance in time', () => {
     expect(display.innerHTML).toBe('0:00');
 });
 
+test('stop() called when localStorage stop value is true', () => {
+    document.body.innerHTML = `
+        <button id = "start-btn">Start</button>
+        <div id="timer_display_duration">25:00</div>
+    `;
+    require('../src/scripts/Timer');
+    localStorage.setItem('stop', 'true');
+    jest.advanceTimersByTime(1000);
+    expect(localStorage.getItem('stop')).toBe('false');
+});
+
 describe(('switch mode'), () => {
     beforeEach(() => {
         jest.useFakeTimers();
@@ -725,8 +736,8 @@ describe(('keyboard input'), () => {
 
     });
 
-    /*
-    test.only('Key press ENTER adds a task correctly', () => {
+    
+    test('Key press ENTER adds a task correctly', () => {
         document.body.innerHTML = `
             <button id = "start-btn">Start</button>
             <div id="timer_display_duration">25:00</div>
@@ -747,6 +758,9 @@ describe(('keyboard input'), () => {
 
         require('../src/scripts/Timer');
 
+        localStorage.setItem('tasks', '[]');
+        localStorage.setItem('id', '0');
+
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
         document.body.appendChild(taskPopUp);
@@ -757,18 +771,14 @@ describe(('keyboard input'), () => {
         resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
         document.body.appendChild(resetPopUp);
 
-        localStorage.setItem('tasks', '[]');
-        localStorage.setItem('id', '0');
-
-        const testTaskPopUp = new TaskPopUp();
         const shadow = taskPopUp.shadowRoot;
     
-        const input = shadow.querySelector('input');
+        const input = shadow.getElementById('task-input');
         input.value = 'test_task';
     
         let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
-            eventObj.initEvent('keydown', true, true);
+            eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'Enter';
     
@@ -819,14 +829,13 @@ describe(('keyboard input'), () => {
         localStorage.setItem('tasks', '[]');
         localStorage.setItem('id', '0');
 
-        const testTaskPopUp = new TaskPopUp();
         const shadow = taskPopUp.shadowRoot;
-        const input = shadow.querySelector('input');
+        const input = shadow.getElementById('task-input');
         input.value = 'test_task';
             
         let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
-            eventObj.initEvent('keydown', true, true);
+            eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'Escape';
     
@@ -836,5 +845,160 @@ describe(('keyboard input'), () => {
         expect(shadow.querySelector('input').value).toBe('');
     
     });
-    */
+
+    test('other key presses do nothing when task-popup is closed', () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Start</button>
+            <div id="timer_display_duration">25:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+        
+        localStorage.setItem('tasks', '[]');
+        localStorage.setItem('id', '0');
+            
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyG';
+    
+        document.body.dispatchEvent(eventObj);
+
+        const resetPopUpDisplay = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
+        const settingsPopUpDisplay = getComputedStyle(settingsPopUp.shadowRoot.getElementById('settings-confirm-popup'));
+        const taskPopUpDisplay = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
+    
+        expect(resetPopUpDisplay.display).toBe('none');
+        expect(settingsPopUpDisplay.display).toBe('none');
+        expect(taskPopUpDisplay.display).toBe('none');
+    
+    });
+
+    test('other key presses do nothing when task-popup is open', () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Start</button>
+            <div id="timer_display_duration">25:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+        
+        localStorage.setItem('tasks', '[]');
+        localStorage.setItem('id', '0');
+            
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyG';
+    
+        document.body.dispatchEvent(eventObj);
+
+        const resetPopUpDisplay = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
+        const settingsPopUpDisplay = getComputedStyle(settingsPopUp.shadowRoot.getElementById('settings-confirm-popup'));
+        const taskPopUpDisplay = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
+    
+        expect(resetPopUpDisplay.display).toBe('none');
+        expect(settingsPopUpDisplay.display).toBe('none');
+        expect(taskPopUpDisplay.display).toBe('block');
+    
+    });
+
+    test('other key presses do nothing when task-popup is undefined', () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Start</button>
+            <div id="timer_display_duration">25:00</div>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:inline');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+        
+        localStorage.setItem('tasks', '[]');
+        localStorage.setItem('id', '0');
+            
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyG';
+    
+        document.body.dispatchEvent(eventObj);
+
+        const resetPopUpDisplay = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
+        const settingsPopUpDisplay = getComputedStyle(settingsPopUp.shadowRoot.getElementById('settings-confirm-popup'));
+        const taskPopUpDisplay = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
+    
+        expect(resetPopUpDisplay.display).toBe('none');
+        expect(settingsPopUpDisplay.display).toBe('none');
+        expect(taskPopUpDisplay.display).toBe('inline');
+    
+    });
 });

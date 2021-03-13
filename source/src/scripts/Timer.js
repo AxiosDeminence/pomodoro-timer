@@ -131,46 +131,46 @@ window.addEventListener('keyup', (event) => {
     const resDis = document.querySelector('reset-popup').shadowRoot.getElementById('reset-confirm-popup').style.display;
     if (!addDis || addDis === 'none') {
         switch (event.code) {
-        case 'KeyS':
-            startButton.click();
-            break;
-        case 'KeyR':
-            document.getElementById('reset-button').click();
-            break;
-        case 'KeyH':
-            document.getElementById('help-button').click();
-            break;
-        case 'Semicolon':
-            document.getElementById('setting-button').click();
-            break;
-        case 'Escape':
-            if (setDis === 'block') {
-                document.querySelector('body > settings-popup').shadowRoot.querySelector('#cancel-settings-btn').click();
-            } else if (resDis === 'block') {
-                document.querySelector('body > reset-popup').shadowRoot.querySelector('#close-icon').click();
-            }
-            break;
-        case 'KeyA':
-            document.getElementById('task-popup-btn').click();
-            break;
-        case 'Enter':
-            if (setDis === 'block') {
-                document.querySelector('body > settings-popup').shadowRoot.querySelector('#confirm-settings-btn').click();
-            } else if (resDis === 'block') {
-                document.querySelector('body > reset-popup').shadowRoot.querySelector('#confirm-reset-btn').click();
-            }
-            break;
-        default:
+            case 'KeyS':
+                startButton.click();
+                break;
+            case 'KeyR':
+                document.getElementById('reset-button').click();
+                break;
+            case 'KeyH':
+                document.getElementById('help-button').click();
+                break;
+            case 'Semicolon':
+                document.getElementById('setting-button').click();
+                break;
+            case 'Escape':
+                if (setDis === 'block') {
+                    document.querySelector('body > settings-popup').shadowRoot.querySelector('#cancel-settings-btn').click();
+                } else if (resDis === 'block') {
+                    document.querySelector('body > reset-popup').shadowRoot.querySelector('#close-icon').click();
+                }
+                break;
+            case 'KeyA':
+                document.getElementById('task-popup-btn').click();
+                break;
+            case 'Enter':
+                if (setDis === 'block') {
+                    document.querySelector('body > settings-popup').shadowRoot.querySelector('#confirm-settings-btn').click();
+                } else if (resDis === 'block') {
+                    document.querySelector('body > reset-popup').shadowRoot.querySelector('#confirm-reset-btn').click();
+                }
+                break;
+            default:
+                break;
         }
     }
     else if (addDis === 'block') {
-        window.addEventListener('keyup', (event) => {
-            if (event.code === 'Enter') {
-                document.querySelector("body > task-popup").shadowRoot.querySelector("#add-task-btn").click();
-            }
-            if (event.code === 'Escape') {
-                document.querySelector("body > task-popup").shadowRoot.querySelector("#close-icon").click();
-            }
-        });
+        if (event.code === 'Enter') {
+            document.querySelector("body > task-popup").shadowRoot.querySelector("#add-task-btn").click();
+        } else if (event.code === 'Escape') {
+            document.querySelector("body > task-popup").shadowRoot.querySelector("#close-icon").click();
+        } else {
+        }
+    } else {
     }
 });
