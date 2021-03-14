@@ -30,7 +30,6 @@ function switchMode() {
         if (pomoButton.getAttribute('class') !== 'toggle') {
             pomoButton.classList.toggle('toggle');
             breakButton.classList.toggle('toggle');
-        } else {
         }
         timerStatus = 'break';
         breakCounter = 0;

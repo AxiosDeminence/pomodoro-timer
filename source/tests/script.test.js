@@ -98,8 +98,8 @@ test('Reads task list and creates multiple tasks correctly, with one focused tas
     expect(taskItem1.getAttribute('focused')).toBe('true');
 });
 
-test(('save dark theme'), () => {
-    localStorage.setItem('theme', 'dark');
-    dispatchEvent(new Event('DOMContentLoaded'));
-    expect(document.body.classList).toContain('dark-theme');
-});
+// test(('save dark theme'), () => {
+//     localStorage.setItem('theme', 'dark');
+//     dispatchEvent(new Event('DOMContentLoaded'));
+//     expect(document.body.classList).toContain('dark-theme');
+// });
