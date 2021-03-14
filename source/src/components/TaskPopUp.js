@@ -77,15 +77,6 @@ class TaskPopUp extends HTMLElement {
         input.setAttribute('part', 'task-input');
         footer.setAttribute('part', 'btn-footer');
         addBtn.setAttribute('part', 'add-btn');
-        // prevent keyboard press & focus on input field
-        window.addEventListener('keydown', (event) => {
-            if (event.code === 'Enter' && wrapper.style.display !== 'none') {
-                addBtn.click();
-            }
-            if (event.code === 'Escape' && wrapper.style.display !== 'none') {
-                close.click();
-            }
-        });
         // CSS styling
         const style = document.createElement('style');
         style.textContent = `
