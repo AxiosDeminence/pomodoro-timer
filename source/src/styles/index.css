@@ -285,8 +285,9 @@ body.dark-theme .top-buttons {
     color: #f5f6f7;
 }
 body.dark-theme header:after {
-    /* border-bottom: 1px solid #cbd5df; */
-    border-bottom: solid 1px #d2d2d2;
+    /* border-bottom: 1px solid #d2d2d2; */
+    border-bottom: solid 1px #9c9c9c;
+    
 }
 body.dark-theme .timer-buttons button {
     color: #f5f6f7;
@@ -451,5 +452,5 @@ body.dark-theme help-popup::part(help-h3) {
     width: auto;
 }
 #focus-task.state {
-    width: 45%;
+    width: 40%;
 }

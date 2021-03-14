@@ -1,9 +1,15 @@
 class ResetPopUp extends HTMLElement {
     reset() {
         stop(); // global func
+        // remove tasks from task list
         const taskList = Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item'));
         for (let i = 0; i < taskList.length; i += 1) {
             taskList[i].removeTask();
+        }
+        // remove focus task
+        const focusTask = document.getElementById('focus-task').querySelector('task-item');
+        if (focusTask !== null) {
+            focusTask.removeTask();
         }
         localStorage.setItem('id', `${0}`);
         const btnSound = new Audio('./icons/btnClick.mp3');
