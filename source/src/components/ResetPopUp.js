@@ -170,4 +170,4 @@ window.addEventListener('load', () => {
     });
 });
 
-module.exports = ResetPopUp;
+// module.exports = ResetPopUp;

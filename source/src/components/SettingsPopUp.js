@@ -415,4 +415,4 @@ window.addEventListener('load', () => {
     });
 });
 
-module.exports = SettingsPopUp;
+// module.exports = SettingsPopUp;

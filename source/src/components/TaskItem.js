@@ -33,8 +33,8 @@ class TaskItem extends HTMLElement {
     // allows user to focus on a task item
     focus(event) {
         // stop default 'checked' action
-        event.stopPropagation(); 
-        // remove task item from parent 
+        event.stopPropagation();
+        // remove task item from parent
         this.parentNode.removeChild(this);
         // update focused attribute
         this.setAttribute('focused', true);
@@ -195,4 +195,4 @@ class TaskItem extends HTMLElement {
 
 customElements.define('task-item', TaskItem);
 
-module.exports = TaskItem;
+// module.exports = TaskItem;
