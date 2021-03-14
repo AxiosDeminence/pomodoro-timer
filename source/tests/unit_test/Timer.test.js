@@ -479,11 +479,11 @@ describe(('keyboard input'), () => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
         localStorage.setItem('id', `${id}`);
         const list = document.getElementById('task-list-elements');
-        const taskItemF = new TaskItem();
+        const taskItemF = document.createElement('task-item');
         taskItemF.setAttribute('id', taskF.id);
         taskItemF.setAttribute('checked', taskF.checked);
         taskItemF.setAttribute('text', taskF.text);
-        const taskItemT = new TaskItem();
+        const taskItemT = document.createElement('task-item');
         taskItemT.setAttribute('id', taskT.id);
         taskItemT.setAttribute('checked', taskT.checked);
         taskItemT.setAttribute('text', taskT.text);
@@ -529,11 +529,11 @@ describe(('keyboard input'), () => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
         localStorage.setItem('id', `${id}`);
         const list = document.getElementById('task-list-elements');
-        const taskItemF = new TaskItem();
+        const taskItemF = document.createElement('task-item');
         taskItemF.setAttribute('id', taskF.id);
         taskItemF.setAttribute('checked', taskF.checked);
         taskItemF.setAttribute('text', taskF.text);
-        const taskItemT = new TaskItem();
+        const taskItemT = document.createElement('task-item');
         taskItemT.setAttribute('id', taskT.id);
         taskItemT.setAttribute('checked', taskT.checked);
         taskItemT.setAttribute('text', taskT.text);

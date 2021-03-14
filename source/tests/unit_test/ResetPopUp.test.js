@@ -23,11 +23,11 @@ beforeEach(() => {
         </div>
     `;
     const list = document.getElementById('task-list-elements');
-    const taskItemF = new TaskItem();
+    const taskItemF = document.createElement('task-item');
     taskItemF.setAttribute('id', taskF.id);
     taskItemF.setAttribute('checked', taskF.checked);
     taskItemF.setAttribute('text', taskF.text);
-    const taskItemT = new TaskItem();
+    const taskItemT = document.createElement('task-item');
     taskItemT.setAttribute('id', taskT.id);
     taskItemT.setAttribute('checked', taskT.checked);
     taskItemT.setAttribute('text', taskT.text);
@@ -54,7 +54,7 @@ test(('reset button pops the window'), () => {
 });
 
 test(('close without reset'), () => {
-    const popUP = new ResetPopUp();
+    const popUP = document.createElement('reset-popup');
     popUP.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
     const close = popUP.shadowRoot.querySelector('img');
     close.click();
@@ -65,7 +65,7 @@ test(('close without reset'), () => {
 });
 
 test(('confirm and reset'), () => {
-    const popUP = new ResetPopUp();
+    const popUP = document.createElement('reset-popup');
     popUP.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
     const confirm = popUP.shadowRoot.getElementById('confirm-reset-btn');
     confirm.click();
