@@ -12,7 +12,7 @@ on:
 jobs:
   # builds app, coverage report, and jsdocs in build folder and deploys to the gh-pages branch
   deploy-app:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -29,7 +29,12 @@ jobs:
         run: npm test
 
       - name: Build docs
-        run: ./node_modules/.bin/jsdoc -r src/scripts -d build/docs
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: src/scripts
+          output_dir: build/docs
+          template: minami
+          front_page: README.md
 
       - name: Deploy build on gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
