@@ -6,30 +6,33 @@ on:
   push:
     branches:
       - master
+  # Allows workflow to be run manually
   workflow_dispatch:
 
 jobs:
-  update-js-and-coverage-doc:
-    runs-on: ubuntu-latest
+  # builds app, coverage report, and jsdocs in build folder and deploys to the gh-pages branch
+  deploy-app:
+    runs-on:ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-          
-      - name: Install modules
-        run: npm --prefix source/ install 
 
-      - name: Build coverage docs
-        run: npm --prefix source/ test
+      - name: Install modules and ready build
+        run: |
+          cd source 
+          npm install
+          mkdir build
 
-      - name: Build JSDoc
-        uses: andstor/jsdoc-action@v1
-        with:
-          source_dir: ./source/src/scripts
-          output_dir: ./source/docs
-          template: minami
-          front_page: README.md
+      - name: Build app
+        run: cp -avr src/* build
+      
+      - name: Build coverage report
+        run: npm test
 
-      - name: Deploy 🚀
+      - name: Build docs
+        run: ./node_modules/.bin/jsdoc -r src/scripts -d build/docs
+
+      - name: Deploy build on gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: source/docs # The folder the action should deploy.      
+          branch: gh-pages
+          folder: build
