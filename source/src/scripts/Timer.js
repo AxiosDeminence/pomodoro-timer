@@ -30,7 +30,6 @@ function switchMode() {
         if (pomoButton.getAttribute('class') !== 'toggle') {
             pomoButton.classList.toggle('toggle');
             breakButton.classList.toggle('toggle');
-        } else {
         }
         timerStatus = 'break';
         breakCounter = 0;
@@ -124,6 +123,11 @@ window.addEventListener('keyup', (event) => {
     const helpDis = document.querySelector('help-popup').shadowRoot.getElementById('help-popup').style.display;
     if (!addDis || addDis === 'none') {
         switch (event.code) {
+            case 'KeyF':
+                btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
+                btnSound.play();
+                document.getElementById('focus-button').click();
+                break;
             case 'KeyS':
                 startButton.click();
                 break;

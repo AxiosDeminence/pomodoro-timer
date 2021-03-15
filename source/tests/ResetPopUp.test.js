@@ -64,9 +64,25 @@ test(('close without reset'), () => {
     expect(localStorage.getItem('tasks')).toBe('[{"id":0,"checked":false,"text":"First Item"},{"id":1,"checked":true,"text":"Second Item"}]');
 });
 
-test(('confirm and reset'), () => {
+test(('confirm and reset with a focus task in place'), () => {
     const popUP = new ResetPopUp();
     popUP.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
+
+    const focusTask = document.getElementById('focus-task');
+    focusTask.appendChild(new TaskItem());
+
+    const confirm = popUP.shadowRoot.getElementById('confirm-reset-btn');
+    confirm.click();
+    const dispaly = getComputedStyle(popUP.shadowRoot.getElementById('reset-confirm-popup'));
+    expect(dispaly.display).toBe('none');
+    expect(localStorage.getItem('id')).toBe('0');
+    expect(localStorage.getItem('tasks')).toBe('[]');
+});
+
+test(('confirm and reset without a focus task'), () => {
+    const popUP = new ResetPopUp();
+    popUP.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
+
     const confirm = popUP.shadowRoot.getElementById('confirm-reset-btn');
     confirm.click();
     const dispaly = getComputedStyle(popUP.shadowRoot.getElementById('reset-confirm-popup'));
