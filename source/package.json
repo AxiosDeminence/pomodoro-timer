@@ -37,6 +37,7 @@
   "jest": {
     "verbose": true,
     "collectCoverage": true,
+    "coverageDirectory": "build/coverage",
     "testEnvironment": "jest-environment-jsdom-sixteen",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
