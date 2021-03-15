@@ -6,6 +6,11 @@ class ResetPopUp extends HTMLElement {
         for (let i = 0; i < taskList.length; i += 1) {
             taskList[i].removeTask();
         }
+        // remove focus task
+        const focusTask = document.getElementById('focus-task').querySelector('task-item');
+        if (focusTask !== null) {
+            focusTask.removeTask();
+        }
         localStorage.setItem('id', `${0}`);
         const btnSound = new Audio('./icons/btnClick.mp3');
         btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);

@@ -145,7 +145,7 @@ class TaskPopUp extends HTMLElement {
             font-weight: 500;
         }
         input[type='text']::placeholder {
-            color: rgba(85, 85, 85, 0.336);
+            color: rgba(85, 85, 85, 0.5);
         }
         #add-task-popup > h3{
             font-size: 1.6vw;

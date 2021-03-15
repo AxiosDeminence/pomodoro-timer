@@ -1,4 +1,4 @@
-import HelpPopUp from '../../src/components/HelpPopUp';
+import HelpPopUp from '../src/components/HelpPopUp';
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {

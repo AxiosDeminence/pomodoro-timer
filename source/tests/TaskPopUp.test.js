@@ -1,4 +1,4 @@
-import TaskPopUp from '../../src/components/TaskPopUp';
+import TaskPopUp from '../src/components/TaskPopUp';
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 // jest.mock('../src/components/TaskItem');

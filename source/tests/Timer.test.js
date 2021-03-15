@@ -1,8 +1,8 @@
-import ResetPopUp from '../../src/components/ResetPopUp';
-import SettingsPopUp from '../../src/components/SettingsPopUp';
-import TaskPopUp from '../../src/components/TaskPopUp.js';
-import TaskItem from '../../src/components/TaskItem';
-import HelpPopUp from '../../src/components/HelpPopUp';
+import ResetPopUp from '../src/components/ResetPopUp';
+import SettingsPopUp from '../src/components/SettingsPopUp';
+import TaskPopUp from '../src/components/TaskPopUp.js';
+import TaskItem from '../src/components/TaskItem';
+import HelpPopUp from '../src/components/HelpPopUp';
 
 require('regenerator-runtime/runtime');
 
@@ -24,7 +24,7 @@ test('start timer function', () => {
         <div id="timer_display_duration">25:00</div>
     `;
 
-    require('../../src/scripts/Timer');
+    require('../src/scripts/Timer');
 
     const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
@@ -45,7 +45,7 @@ test('Stop and reset function', () => {
         <div id="timer_display_duration">13:00</div>
     `;
 
-    require('../../src/scripts/Timer');
+    require('../src/scripts/Timer');
 
     const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
@@ -63,7 +63,7 @@ test('advance in time', () => {
         <div id="timer_display_duration">25:00</div>
     `;
 
-    require('../../src/scripts/Timer');
+    require('../src/scripts/Timer');
 
     const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer_display_duration');
@@ -96,7 +96,7 @@ test('stop() called when localStorage stop value is true', () => {
         <button id="pomo-btn"> Pomo</button>
         <button id="break-btn"> Break</button>
     `;
-    require('../../src/scripts/Timer');
+    require('../src/scripts/Timer');
     localStorage.setItem('stop', 'true');
     jest.advanceTimersByTime(1000);
     expect(localStorage.getItem('stop')).toBe('false');
@@ -124,7 +124,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');
@@ -152,7 +152,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');
@@ -182,7 +182,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');
@@ -297,7 +297,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press S starts the timer'), () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -349,7 +349,7 @@ describe(('keyboard input'), () => {
             <button id="break-btn"> Break</button>
         `;
 
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -381,7 +381,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press H opens help pop-up'), () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -407,7 +407,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press R opens reset pop-up'), () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -433,7 +433,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press ; opens setting pop-up'), () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -460,7 +460,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press A opens add-task pop-up'), () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         document.body.appendChild(taskPopUp);
@@ -487,7 +487,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press ESCAPE closes help pop-up correctly'), () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         document.body.appendChild(taskPopUp);
@@ -533,7 +533,7 @@ describe(('keyboard input'), () => {
         list.appendChild(taskItemF);
         list.appendChild(taskItemT);
 
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         document.body.appendChild(taskPopUp);
@@ -583,7 +583,7 @@ describe(('keyboard input'), () => {
         list.appendChild(taskItemF);
         list.appendChild(taskItemT);
 
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         document.body.appendChild(taskPopUp);
@@ -618,7 +618,7 @@ describe(('keyboard input'), () => {
         localStorage.setItem('short-break-length', '5');
         localStorage.setItem('long-break-length', '15');
 
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         document.body.appendChild(taskPopUp);
@@ -663,7 +663,7 @@ describe(('keyboard input'), () => {
         localStorage.setItem('short-break-length', '5');
         localStorage.setItem('long-break-length', '15');
 
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         document.body.appendChild(taskPopUp);
@@ -702,7 +702,7 @@ describe(('keyboard input'), () => {
     });
 
     test('Key press ENTER adds a task correctly', () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         localStorage.setItem('volume', 50);
         localStorage.setItem('tasks', '[]');
@@ -743,7 +743,7 @@ describe(('keyboard input'), () => {
     });
 
     test('Key press ESCAPE exits task pop up correctly', () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
@@ -779,7 +779,7 @@ describe(('keyboard input'), () => {
     });
 
     test('other key presses do nothing when task-popup is closed', () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -816,7 +816,7 @@ describe(('keyboard input'), () => {
     });
 
     test('other key presses do nothing when task-popup is open', () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
@@ -853,7 +853,7 @@ describe(('keyboard input'), () => {
     });
 
     test('other key presses do nothing when task-popup is undefined', () => {
-        require('../../src/scripts/Timer');
+        require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:inline');

@@ -59,7 +59,7 @@
             </div>
         </div>
         <!-- Divider -->
-        <!-- <img src="../icons/dash.svg" id="dash"> -->
+        <!-- <img src="./icons/dash.svg" id="dash"> -->
         <!--Task List-->
         <div id="task-list">
             <h2 id="up-next">Up Next</h2>
@@ -73,8 +73,14 @@
     </div>
     <script>
         // Render blocking JS:
-        if (localStorage.getItem("theme") == 'dark') {
+        if (localStorage.getItem("theme") === 'dark') {
             document.body.classList.add("dark-theme");
+        }
+        if (localStorage.getItem("state") === 'focus') {
+            document.getElementById('popup-button').classList.add('state');
+            document.getElementById('task-list').classList.add('state');
+            document.getElementById('pomodoro-timer').classList.add('state');
+            document.getElementById('focus-task').classList.add('state');
         }
     </script>
     <script src="../instrumented/scripts/script.js"></script>

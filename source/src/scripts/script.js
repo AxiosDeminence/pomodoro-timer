@@ -20,12 +20,12 @@ window.addEventListener('DOMContentLoaded', () => {
     } 
     else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
-        theme = localStorage.getItem('theme');
-        state = localStorage.getItem('state');
-        // save dark theme on refresh
-        if (theme === 'dark') {
-            document.body.classList.add('dark-theme');
-        }
+        // theme = localStorage.getItem('theme');
+        // state = localStorage.getItem('state');
+        // // save dark theme on refresh
+        // if (theme === 'dark') {
+        //     document.body.classList.add('dark-theme');
+        // }
     }
     // create task items if exists in local storage
     for (let i = 0; i < tasks.length; i += 1) {

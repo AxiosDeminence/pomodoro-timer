@@ -1,5 +1,5 @@
-import ResetPopUp from '../../src/components/ResetPopUp';
-import TaskItem from '../../src/components/TaskItem';
+import ResetPopUp from '../src/components/ResetPopUp';
+import TaskItem from '../src/components/TaskItem';
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {
@@ -65,11 +65,12 @@ test(('close without reset'), () => {
 });
 
 test(('confirm and reset with a focus task in place'), () => {
-    const popUP = new ResetPopUp();
+    const popUP = document.createElement('reset-popup');
     popUP.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
 
     const focusTask = document.getElementById('focus-task');
-    focusTask.appendChild(new TaskItem());
+    const newTask = document.createElement('task-item');
+    focusTask.appendChild(newTask);
 
     const confirm = popUP.shadowRoot.getElementById('confirm-reset-btn');
     confirm.click();
@@ -80,7 +81,7 @@ test(('confirm and reset with a focus task in place'), () => {
 });
 
 test(('confirm and reset without a focus task'), () => {
-    const popUP = new ResetPopUp();
+    const popUP = document.createElement('reset-popup');
     popUP.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
 
     const confirm = popUP.shadowRoot.getElementById('confirm-reset-btn');
