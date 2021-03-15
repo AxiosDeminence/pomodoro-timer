@@ -21,5 +21,10 @@
         "jest/prefer-to-have-length": "warn",
         "jest/valid-expect": "error"
     },
-    "plugins": ["jest"]
+    "plugins": ["jest"],
+    "settings": {
+        "jest": {
+            "version": 26
+        }
+    }
 }
