@@ -174,7 +174,7 @@ describe(('switch mode'), () => {
         expect(breakButton.classList).not.toContain('toggle');
     });
 
-    test('switch to long break', () => {
+    test('switch to long break when class is not toggle', () => {
         document.body.innerHTML = `
             <button id = "start-btn">Start</button>
             <div id="timer_display_duration">0:01</div>
@@ -203,12 +203,55 @@ describe(('switch mode'), () => {
         jest.advanceTimersByTime(180000);
         jest.advanceTimersByTime(60000);
 
-        // pomoButton.setAttribute('class', '');
-        // breakButton.setAttribute('class', '');
+        pomoButton.setAttribute('class', '');
+        breakButton.setAttribute('class', '');
 
         // 3
         jest.advanceTimersByTime(180000);
         jest.runOnlyPendingTimers();
+        
+
+        expect(display.innerHTML).toBe('1:59');
+
+        expect(breakButton.classList).toContain('toggle');
+        expect(pomoButton.classList).toContain('toggle');
+    });
+
+    test('switch to long break when class is toggle', () => {
+        document.body.innerHTML = `
+            <button id = "start-btn">Start</button>
+            <div id="timer_display_duration">0:01</div>
+            <button id = "pomo-btn"> Pomo</button>
+            <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
+        `;
+
+        require('../src/scripts/Timer');
+
+        const startButton = document.getElementById('start-btn');
+        const display = document.getElementById('timer_display_duration');
+        const pomoButton = document.getElementById('pomo-btn');
+        const breakButton = document.getElementById('break-btn');
+
+        // pomoButton.setAttribute('class', '');
+        // breakButton.setAttribute('class', '');
+
+        startButton.click();
+        // 0
+        jest.advanceTimersByTime(180000);
+        jest.advanceTimersByTime(60000);
+        // 1
+        jest.advanceTimersByTime(180000);
+        jest.advanceTimersByTime(60000);
+        // 2
+        jest.advanceTimersByTime(180000);
+        jest.advanceTimersByTime(60000);
+        // 3
+        jest.advanceTimersByTime(180000);
+        pomoButton.setAttribute('class', 'toggle');
+        breakButton.setAttribute('class', 'toggle');
+        jest.runOnlyPendingTimers();
+
+        
 
         expect(display.innerHTML).toBe('1:59');
 
