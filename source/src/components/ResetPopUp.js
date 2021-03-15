@@ -13,7 +13,7 @@ class ResetPopUp extends HTMLElement {
         }
         localStorage.setItem('id', `${0}`);
         const btnSound = new Audio('./icons/btnClick.mp3');
-        btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
         btnSound.play();
         this.closePopUp();
     }
@@ -164,7 +164,7 @@ window.addEventListener('load', () => {
     const resetBtn = document.getElementById('reset-button');
     resetBtn.addEventListener('click', () => {
         const btnSound = new Audio('./icons/btnClick.mp3');
-        btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
         btnSound.play();
         // this makes sure any popup is closed before opening current popup
         const popups = Array.from(document.getElementsByClassName('popup'));
@@ -175,4 +175,4 @@ window.addEventListener('load', () => {
     });
 });
 
-module.exports = ResetPopUp;
+// module.exports = ResetPopUp;

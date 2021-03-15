@@ -31,7 +31,7 @@ test('Switch state from default to focus', () => {
     localStorage.setItem('state', 'default');
     const popUpBtn = document.getElementById('popup-button');
     const taskListDiv = document.getElementById('task-list');
-    const pomoDiv = document.getElementById('pomodoro-timer'); 
+    const pomoDiv = document.getElementById('pomodoro-timer');
     const focusTask = document.getElementById('focus-task');
 
     const focusBtn = document.getElementById('focus-button');

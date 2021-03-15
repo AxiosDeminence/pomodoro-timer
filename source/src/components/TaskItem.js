@@ -223,7 +223,6 @@ class TaskItem extends HTMLElement {
 
     attributeChangedCallback(attrName, oldVal, newVal) {
         const shadow = this.shadowRoot;
-        // console.log(newVal);
         const text = document.createTextNode(newVal);
         shadow.getElementById('li').append(text);
     }
@@ -231,4 +230,4 @@ class TaskItem extends HTMLElement {
 
 customElements.define('task-item', TaskItem);
 
-module.exports = TaskItem;
+// module.exports = TaskItem;

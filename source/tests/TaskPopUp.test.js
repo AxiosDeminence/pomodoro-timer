@@ -1,4 +1,4 @@
-import TaskPopUp from '../src/components/TaskPopUp.js';
+import TaskPopUp from '../src/components/TaskPopUp';
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 // jest.mock('../src/components/TaskItem');
@@ -23,7 +23,7 @@ afterEach(() => {
 });
 
 test('Adding a task called test_task with the addButton correctly updates localStorage', () => {
-    const testTaskPopUp = new TaskPopUp();
+    const testTaskPopUp = document.createElement('task-popup');
     const shadow = testTaskPopUp.shadowRoot;
 
     const input = shadow.querySelector('input');
@@ -41,7 +41,7 @@ test('Adding a task called test_task with the addButton correctly updates localS
 });
 
 test('Adding empty task does not change localStorage', () => {
-    const testTaskPopUp = new TaskPopUp();
+    const testTaskPopUp = document.createElement('task-popup');
     const shadow = testTaskPopUp.shadowRoot;
 
     const input = shadow.querySelector('input');
@@ -57,7 +57,7 @@ test('Adding empty task does not change localStorage', () => {
 });
 
 test('cancelButton works correctly', () => {
-    const testTaskPopUp = new TaskPopUp();
+    const testTaskPopUp = document.createElement('task-popup');
     const shadow = testTaskPopUp.shadowRoot;
 
     const close = shadow.querySelector('img');
@@ -68,7 +68,7 @@ test('cancelButton works correctly', () => {
 });
 
 test('All attributes set correctly', () => {
-    const testTaskPopUp = new TaskPopUp();
+    const testTaskPopUp = document.createElement('task-popup');
     const shadow = testTaskPopUp.shadowRoot;
 
     // wrapper attributes set correctly

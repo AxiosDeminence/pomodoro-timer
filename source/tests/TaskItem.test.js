@@ -1,4 +1,4 @@
-import TaskItem from '../src/components/TaskItem.js';
+import TaskItem from '../src/components/TaskItem';
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {
@@ -34,7 +34,7 @@ test(('toggle checked from false to true'), () => {
 
 test(('toggle checked from true to false'), () => {
     let tasks = JSON.parse(localStorage.getItem('tasks'));
-    let taskItem = new TaskItem();
+    let taskItem = document.createElement('task-item');
     taskItem.setAttribute('id', tasks[1].id);
     taskItem.setAttribute('checked', tasks[1].checked);
     taskItem.setAttribute('text', tasks[1].text);
@@ -42,7 +42,7 @@ test(('toggle checked from true to false'), () => {
     expect(taskItem.getAttribute('checked')).toBe('false');
     // localstorage is updated
     tasks = JSON.parse(localStorage.getItem('tasks'));
-    taskItem = new TaskItem();
+    taskItem = document.createElement('task-item');
     taskItem.setAttribute('id', tasks[0].id);
     taskItem.setAttribute('checked', tasks[0].checked);
     taskItem.setAttribute('text', tasks[0].text);
@@ -62,7 +62,7 @@ test(('remove a task'), () => {
         </div>
     `;
     let tasks = JSON.parse(localStorage.getItem('tasks'));
-    const taskItem = new TaskItem();
+    const taskItem = document.createElement('task-item');
     taskItem.setAttribute('id', tasks[0].id);
     taskItem.setAttribute('checked', tasks[0].checked);
     taskItem.setAttribute('text', tasks[0].text);
@@ -71,7 +71,8 @@ test(('remove a task'), () => {
     expect(list.childElementCount).toBe(1);
 
     const focuse = document.getElementById('focus-task');
-    focuse.appendChild(new TaskItem());
+    const newTask = document.createElement('task-item');
+    focuse.appendChild(newTask);
 
     const icon = taskItem.shadowRoot.querySelector("img[src='icons/delete.svg']");
     icon.click();

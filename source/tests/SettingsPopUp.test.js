@@ -13,12 +13,14 @@ beforeEach(() => {
             <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
             <p class="top-button-text">Setting</p>
         </button>
+        <div id="timer_display_duration">25:00</div>
+        <button id = "start-btn">Start</button>
     `;
     window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 });
 
 test('Confirm Button functions as intended', () => {
-    const testSettingsPopUp = new SettingsPopUp();
+    const testSettingsPopUp = document.createElement('settings-popup');
     const shadow = testSettingsPopUp.shadowRoot;
 
     const pomoLength = shadow.querySelectorAll('input')[0];
@@ -52,7 +54,7 @@ test('Confirm Button edge cases functions as intended', () => {
     const pomoLength = shadow.querySelectorAll('input')[0];
     const shortBreakLength = shadow.querySelectorAll('input')[1];
     const longBreakLength = shadow.querySelectorAll('input')[2];
-   
+
     pomoLength.value = '100';
     shortBreakLength.value = '200';
     longBreakLength.value = '300';
@@ -72,7 +74,7 @@ test('Confirm Button edge cases functions as intended', () => {
 */
 
 test('Cancel Button functions as intended', () => {
-    const testSettingsPopUp = new SettingsPopUp();
+    const testSettingsPopUp = document.createElement('settings-popup');
     const shadow = testSettingsPopUp.shadowRoot;
 
     const pomoLength = shadow.querySelectorAll('input')[0];
@@ -95,7 +97,7 @@ test('Cancel Button functions as intended', () => {
 });
 
 test('All attributes set correctly', () => {
-    const testSettingsPopUp = new SettingsPopUp();
+    const testSettingsPopUp = document.createElement('settings-popup');
     const shadow = testSettingsPopUp.shadowRoot;
 
     // wrapper attributes set correctly
@@ -176,14 +178,14 @@ test('Pop up button works correctly', () => {
 
 test(('the page is in dark mode'), () => {
     localStorage.setItem('theme', 'dark');
-    const testSettingsPopUp = new SettingsPopUp();
+    const testSettingsPopUp = document.createElement('settings-popup');
     const shadow = testSettingsPopUp.shadowRoot;
     expect(shadow.querySelector('input[type="checkbox"]').checked).toBe(true);
 });
 
 test(('toggle from light to dark mode'), () => {
     localStorage.setItem('theme', 'light');
-    const testSettingsPopUp = new SettingsPopUp();
+    const testSettingsPopUp = document.createElement('settings-popup');
     const shadow = testSettingsPopUp.shadowRoot;
     const mode = shadow.querySelector('span[class="slider"]');
     mode.click();
@@ -193,7 +195,7 @@ test(('toggle from light to dark mode'), () => {
 
 test(('toggle from dark to light mode'), () => {
     localStorage.setItem('theme', 'dark');
-    const testSettingsPopUp = new SettingsPopUp();
+    const testSettingsPopUp = document.createElement('settings-popup');
     const shadow = testSettingsPopUp.shadowRoot;
     const mode = shadow.querySelector('span[class="slider"]');
     mode.click();
@@ -201,7 +203,7 @@ test(('toggle from dark to light mode'), () => {
 });
 
 test(('set volume'), () => {
-    const testSettingsPopUp = new SettingsPopUp();
+    const testSettingsPopUp = document.createElement('settings-popup');
     const shadow = testSettingsPopUp.shadowRoot;
     const slider = shadow.querySelector('input[type="range"]');
     slider.value = 60;
@@ -211,7 +213,7 @@ test(('set volume'), () => {
 });
 
 test(('volume label consist with slider value'), () => {
-    const testSettingsPopUp = new SettingsPopUp();
+    const testSettingsPopUp = document.createElement('settings-popup');
     const shadow = testSettingsPopUp.shadowRoot;
     const slider = shadow.querySelector('input[type="range"]');
     slider.value = 60;

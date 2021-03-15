@@ -1,11 +1,10 @@
-require('regenerator-runtime/runtime');
 import ResetPopUp from '../src/components/ResetPopUp';
 import SettingsPopUp from '../src/components/SettingsPopUp';
 import TaskPopUp from '../src/components/TaskPopUp.js';
 import TaskItem from '../src/components/TaskItem';
 import HelpPopUp from '../src/components/HelpPopUp';
 
-
+require('regenerator-runtime/runtime');
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 
@@ -141,9 +140,6 @@ describe(('switch mode'), () => {
         jest.runOnlyPendingTimers();
         expect(display.innerHTML).toBe('0:59');
 
-        // expect(timer.timerStatus).toBe('break');
-        const breakColor = getComputedStyle(breakButton);
-
         expect(breakButton.classList).toContain('toggle');
         expect(pomoButton.classList).toContain('toggle');
     });
@@ -262,7 +258,6 @@ describe(('switch mode'), () => {
         expect(breakButton.classList).toContain('toggle');
         expect(pomoButton.classList).toContain('toggle');
     });
-    
 });
 
 describe(('keyboard input'), () => {
@@ -306,7 +301,7 @@ describe(('keyboard input'), () => {
         
         
     });
-    
+
     afterEach(() => {
         jest.resetModules();
         jest.clearAllTimers();
@@ -347,7 +342,6 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press S starts the timer'), () => {
-
         require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
@@ -363,12 +357,12 @@ describe(('keyboard input'), () => {
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
 
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'KeyS';
-        document.body.dispatchEvent(eventObj);   
+        document.body.dispatchEvent(eventObj);
 
         const start_button = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');
@@ -415,12 +409,12 @@ describe(('keyboard input'), () => {
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
 
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'KeyS';
-        document.body.dispatchEvent(eventObj);   
+        document.body.dispatchEvent(eventObj);
 
         const start_button = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');
@@ -432,7 +426,6 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press H opens help pop-up'), () => {
-
         require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
@@ -447,19 +440,18 @@ describe(('keyboard input'), () => {
         const helpPopUp = document.createElement('help-popup');
         document.body.appendChild(helpPopUp);
 
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'KeyH';
-        document.body.dispatchEvent(eventObj);   
+        document.body.dispatchEvent(eventObj);
 
         const dispaly = getComputedStyle(helpPopUp.shadowRoot.getElementById('help-popup'));
         expect(dispaly.display).toBe('block');
     });
 
     test(('key press R opens reset pop-up'), () => {
-
         require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
@@ -474,20 +466,18 @@ describe(('keyboard input'), () => {
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
 
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'KeyR';
-        document.body.dispatchEvent(eventObj);   
-        
+        document.body.dispatchEvent(eventObj);
+
         const dispaly = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
         expect(dispaly.display).toBe('block');
-
     });
 
     test(('key press ; opens setting pop-up'), () => {
-
         require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
@@ -502,21 +492,19 @@ describe(('keyboard input'), () => {
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
 
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'Semicolon';
-        document.body.dispatchEvent(eventObj); 
+        document.body.dispatchEvent(eventObj);
 
         const display = getComputedStyle(settingsPopUp.shadowRoot.getElementById('settings-confirm-popup'));
 
         expect(display.display).toBe('block');
-
     });
 
     test(('key press A opens add-task pop-up'), () => {
-
         require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
@@ -531,17 +519,16 @@ describe(('keyboard input'), () => {
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
 
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'KeyA';
-        document.body.dispatchEvent(eventObj); 
+        document.body.dispatchEvent(eventObj);
 
         const display = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
 
         expect(display.display).toBe('block');
-
     });
 
     test(('key press ESCAPE closes help pop-up correctly'), () => {
@@ -559,20 +546,18 @@ describe(('keyboard input'), () => {
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:block');
         document.body.appendChild(helpPopUp);
 
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'Escape';
-    
+
         document.body.dispatchEvent(eventObj);
 
         expect(helpPopUp.shadowRoot.getElementById('help-popup').style.display).toBe('none');
-
     });
 
     test(('key press ENTER confirms reset correctly'), () => {
-
         const tasks = [];
         const id = 2;
         const taskF = { id: 0, checked: false, text: 'First Item' };
@@ -582,11 +567,11 @@ describe(('keyboard input'), () => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
         localStorage.setItem('id', `${id}`);
         const list = document.getElementById('task-list-elements');
-        const taskItemF = new TaskItem();
+        const taskItemF = document.createElement('task-item');
         taskItemF.setAttribute('id', taskF.id);
         taskItemF.setAttribute('checked', taskF.checked);
         taskItemF.setAttribute('text', taskF.text);
-        const taskItemT = new TaskItem();
+        const taskItemT = document.createElement('task-item');
         taskItemT.setAttribute('id', taskT.id);
         taskItemT.setAttribute('checked', taskT.checked);
         taskItemT.setAttribute('text', taskT.text);
@@ -606,23 +591,22 @@ describe(('keyboard input'), () => {
         const helpPopUp = document.createElement('help-popup');
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
-    
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'Enter';
-    
-        document.body.dispatchEvent(eventObj);   
-    
+
+        document.body.dispatchEvent(eventObj);
+
         const dispaly = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
-        
+
         expect(dispaly.display).toBe('none');
         expect(localStorage.getItem('id')).toBe('0');
         expect(localStorage.getItem('tasks')).toBe('[]');
-    
     });
-    
+
     test(('key press ESCAPE exits reset correctly'), () => {
         const tasks = [];
         const id = 2;
@@ -633,11 +617,11 @@ describe(('keyboard input'), () => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
         localStorage.setItem('id', `${id}`);
         const list = document.getElementById('task-list-elements');
-        const taskItemF = new TaskItem();
+        const taskItemF = document.createElement('task-item');
         taskItemF.setAttribute('id', taskF.id);
         taskItemF.setAttribute('checked', taskF.checked);
         taskItemF.setAttribute('text', taskF.text);
-        const taskItemT = new TaskItem();
+        const taskItemT = document.createElement('task-item');
         taskItemT.setAttribute('id', taskT.id);
         taskItemT.setAttribute('checked', taskT.checked);
         taskItemT.setAttribute('text', taskT.text);
@@ -657,21 +641,20 @@ describe(('keyboard input'), () => {
         const helpPopUp = document.createElement('help-popup');
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
-        
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'Escape';
-    
+
         document.body.dispatchEvent(eventObj);
-        
+
         const dispaly = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
-        
+
         expect(dispaly.display).toBe('none');
         expect(localStorage.getItem('id')).toBe('2');
         expect(localStorage.getItem('tasks')).toBe('[{"id":0,"checked":false,"text":"First Item"},{"id":1,"checked":true,"text":"Second Item"}]');
-    
     });
 
     test('Key press ENTER confirms settings correctly', () => {
@@ -698,18 +681,18 @@ describe(('keyboard input'), () => {
         const pomoLength = shadow.querySelectorAll('input')[0];
         const shortBreakLength = shadow.querySelectorAll('input')[1];
         const longBreakLength = shadow.querySelectorAll('input')[2];
-    
+
         pomoLength.value = '30';
         shortBreakLength.value = '10';
         longBreakLength.value = '20';
 
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'Enter';
 
-        document.body.dispatchEvent(eventObj);   
+        document.body.dispatchEvent(eventObj);
 
         expect(localStorage.getItem('pomo-length')).toBe('30');
         expect(localStorage.getItem('short-break-length')).toBe('10');
@@ -717,7 +700,6 @@ describe(('keyboard input'), () => {
 
         // closes pop up
         expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
-
     });
 
     test('Key press ESCAPE exits settings correctly', () => {
@@ -748,8 +730,8 @@ describe(('keyboard input'), () => {
         pomoLength.value = '30';
         shortBreakLength.value = '10';
         longBreakLength.value = '20';
-        
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
@@ -762,10 +744,8 @@ describe(('keyboard input'), () => {
         expect(localStorage.getItem('long-break-length')).toBe('15');
 
         expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
-
     });
 
-    
     test('Key press ENTER adds a task correctly', () => {
         require('../src/scripts/Timer');
 
@@ -787,29 +767,26 @@ describe(('keyboard input'), () => {
         document.body.appendChild(helpPopUp);
 
         const shadow = taskPopUp.shadowRoot;
-    
+
         const input = shadow.getElementById('task-input');
         input.value = 'test_task';
-    
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'Enter';
-    
-        document.body.dispatchEvent(eventObj);   
-    
-    
-    
+
+        document.body.dispatchEvent(eventObj);
+
         // new task test_task is added to list of tasks
         expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\",\"focused\":false}]');
         // id is updated
         expect(localStorage.getItem('id')).toBe('1');
         // input is set back to empty string
         expect(input.value).toBe('');
-    
     });
-    
+
     test('Key press ESCAPE exits task pop up correctly', () => {
         require('../src/scripts/Timer');
 
@@ -825,7 +802,7 @@ describe(('keyboard input'), () => {
         const helpPopUp = document.createElement('help-popup');
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
-        
+
         localStorage.setItem('tasks', '[]');
         localStorage.setItem('id', '0');
         localStorage.setItem('volume', 50);
@@ -833,18 +810,17 @@ describe(('keyboard input'), () => {
         const shadow = taskPopUp.shadowRoot;
         const input = shadow.getElementById('task-input');
         input.value = 'test_task';
-            
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'Escape';
-    
+
         document.body.dispatchEvent(eventObj);
-    
+
         expect(shadow.querySelector('div').style.display).toBe('none');
         expect(shadow.querySelector('input').value).toBe('');
-    
     });
 
     test('other key presses do nothing when task-popup is closed', () => {
@@ -862,27 +838,26 @@ describe(('keyboard input'), () => {
         const helpPopUp = document.createElement('help-popup');
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
-        
+
         localStorage.setItem('tasks', '[]');
         localStorage.setItem('id', '0');
         localStorage.setItem('volume', 50);
-            
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'KeyG';
-    
+
         document.body.dispatchEvent(eventObj);
 
         const resetPopUpDisplay = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
         const settingsPopUpDisplay = getComputedStyle(settingsPopUp.shadowRoot.getElementById('settings-confirm-popup'));
         const taskPopUpDisplay = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
-    
+
         expect(resetPopUpDisplay.display).toBe('none');
         expect(settingsPopUpDisplay.display).toBe('none');
         expect(taskPopUpDisplay.display).toBe('none');
-    
     });
 
     test('other key presses do nothing when task-popup is open', () => {
@@ -900,27 +875,26 @@ describe(('keyboard input'), () => {
         const helpPopUp = document.createElement('help-popup');
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
-        
+
         localStorage.setItem('tasks', '[]');
         localStorage.setItem('id', '0');
         localStorage.setItem('volume', 50);
-            
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'KeyG';
-    
+
         document.body.dispatchEvent(eventObj);
 
         const resetPopUpDisplay = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
         const settingsPopUpDisplay = getComputedStyle(settingsPopUp.shadowRoot.getElementById('settings-confirm-popup'));
         const taskPopUpDisplay = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
-    
+
         expect(resetPopUpDisplay.display).toBe('none');
         expect(settingsPopUpDisplay.display).toBe('none');
         expect(taskPopUpDisplay.display).toBe('block');
-    
     });
 
     test('other key presses do nothing when task-popup is undefined', () => {
@@ -938,26 +912,25 @@ describe(('keyboard input'), () => {
         const helpPopUp = document.createElement('help-popup');
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
-        
+
         localStorage.setItem('tasks', '[]');
         localStorage.setItem('id', '0');
         localStorage.setItem('volume', 50);
-            
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'KeyG';
-    
+
         document.body.dispatchEvent(eventObj);
 
         const resetPopUpDisplay = getComputedStyle(resetPopUp.shadowRoot.getElementById('reset-confirm-popup'));
         const settingsPopUpDisplay = getComputedStyle(settingsPopUp.shadowRoot.getElementById('settings-confirm-popup'));
         const taskPopUpDisplay = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
-    
+
         expect(resetPopUpDisplay.display).toBe('none');
         expect(settingsPopUpDisplay.display).toBe('none');
         expect(taskPopUpDisplay.display).toBe('inline');
-    
     });
 });
