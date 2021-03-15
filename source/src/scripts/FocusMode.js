@@ -13,6 +13,10 @@ function toggleState() {
     }
     else {
         localStorage.setItem('state', 'default');  
+        const title = document.getElementById('select-focus');
+        if (title.innerHTML === 'All tasks complete!') {
+            title.innerHTML = '';
+        }
     }
 }
 const focusBtn = document.getElementById('focus-button');
