@@ -5,3 +5,7 @@
 [![CD](https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/deploy.yml/badge.svg)](https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/deploy.yml)
 
 We are Runtime Terror!
+
+You can find our app [here!](https://jackie1342.github.io/cse110-w21-group13/)
+* [Coverage report](https://jackie1342.github.io/cse110-w21-group13/coverage/lcov-report)
+* [JSDocs](https://jackie1342.github.io/cse110-w21-group13/docs)
