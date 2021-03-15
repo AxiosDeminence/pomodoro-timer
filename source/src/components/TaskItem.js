@@ -32,44 +32,79 @@ class TaskItem extends HTMLElement {
 
     // allows user to focus on a task item
     focus(event) {
-        // stop default 'checked' action
         event.stopPropagation(); 
         // remove task item from parent 
         this.parentNode.removeChild(this);
-        // update focused attribute
-        this.setAttribute('focused', true);
-        // update local storage
+        // find in local storage
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         const task = tasks.find((t) => t.id === this.getAttribute('id') && t.text === this.getAttribute('text'));
-        if (typeof task !== 'undefined') {
-            task.focused = true;
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        }
-        // add to div below clock
-        const focusDiv = document.getElementById('focus-task');
-        const focusTask = focusDiv.querySelector('task-item');
+        
         const ul = document.getElementById('task-list-elements');
         const title = document.getElementById('select-focus');
-        // if there doesn't exist a focus task yet
-        if (focusTask === null) {
-            focusDiv.appendChild(this);
+        const focusDiv = document.getElementById('focus-task');
+        // check if task is a current focus task item
+        if (this.getAttribute('focused').toLowerCase() === 'true') {
+            // append to end of list and set 'focused' to false
+            ul.appendChild(this);
+            this.setAttribute('focused', false);
+            // update local storage
+            task.focused = false;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            // remove title
+            title.innerHTML = '';
+            // if in focus mode, queue in next task item  
+            if (localStorage.getItem('state') === 'focus') {
+                const list = Array.from(ul.getElementsByTagName('task-item'));
+                // track whether all task items are checked
+                let allDone = true;
+                for (let i = 0; i < list.length; i+=1) {
+                    // if the next task item is unchecked, remove from task list and append to focus div
+                    if (list[i].getAttribute('checked').toLowerCase() == 'false') {
+                        ul.removeChild(list[i]);
+                        focusDiv.appendChild(list[i]);
+                        list[i].setAttribute('focused', true);
+                        const focusNow = tasks.find((t) => t.id === list[i].getAttribute('id') && t.text === list[i].getAttribute('text'));
+                        focusNow.focused = true;
+                        localStorage.setItem('tasks', JSON.stringify(tasks));
+                        allDone = false;
+                        break;
+                    }
+                }
+                // Notify user if all task items are checked
+                if (allDone == true) {
+                    title.innerHTML = 'All tasks complete!';
+                }
+                else {
+                    title.innerHTML = 'Focusing on:';
+                }
+            }      
         }
-        // else, remove existing focus task and add 'this' one
         else {
-            focusDiv.removeChild(focusTask);
-            ul.appendChild(focusTask);
-            focusTask.setAttribute('focused', false);
-            const unfocus = tasks.find((t) => t.id === focusTask.getAttribute('id') && t.text === focusTask.getAttribute('text'));
-            if (typeof unfocus !== 'undefined') {
+            // update focused attribute  
+            this.setAttribute('focused', true);
+            task.focused = true;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            const focusTask = focusDiv.querySelector('task-item');
+            // if there doesn't exist a focus task yet
+            if (focusTask === null) {
+                focusDiv.appendChild(this);
+            }
+            // else, remove existing focus task and add 'this' one
+            else {
+                focusDiv.removeChild(focusTask);
+                ul.appendChild(focusTask);
+                focusTask.setAttribute('focused', false);
+                const unfocus = tasks.find((t) => t.id === focusTask.getAttribute('id') && t.text === focusTask.getAttribute('text'));
                 unfocus.focused = false;
                 localStorage.setItem('tasks', JSON.stringify(tasks));
+                // add 'this' task item to under clock display
+                focusDiv.appendChild(this);
             }
-            // add 'this' task item to under clock display
-            focusDiv.appendChild(this);
-        }
-        // update title
-        title.innerHTML = 'Focusing on:';
+            // update title
+            title.innerHTML = 'Focusing on:';
+        } 
     }
+
 
     /* create task list item by building custom component */
     constructor() {

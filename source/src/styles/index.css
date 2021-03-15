@@ -145,7 +145,6 @@ header:after {
 #plus {
     width: 20px;
     vertical-align: middle;
-    color: #fff;
 }
 img#dash {
     height: 500px;
@@ -338,6 +337,7 @@ body.dark-theme [checked='true'] {
 /* Task Popup */
 body.dark-theme task-popup::part(close-icon) {
     opacity: 1;
+    filter: contrast(0.2);
 }
 body.dark-theme task-popup::part(popup-wrapper) {
     background-color: #3a4556;
@@ -358,6 +358,7 @@ body.dark-theme task-popup::part(add-btn) {
 /* Reset Popup */
 body.dark-theme reset-popup::part(close-icon) {
     opacity: 1;
+    filter:contrast(0.2)
 }
 body.dark-theme reset-popup::part(popup-wrapper) {
     background-color: #3a4556;
@@ -377,6 +378,7 @@ body.dark-theme reset-popup::part(confirm-btn) {
 /* Settings Popup */
 body.dark-theme settings-popup::part(close-icon) {
     opacity: 1;
+    filter: contrast(0.2);
 }
 body.dark-theme settings-popup::part(settings-confirm-popup) {
     background-color: #3a4556;
@@ -415,6 +417,7 @@ body.dark-theme settings-popup::part(range-slider) {
 /* Help Popup */
 body.dark-theme help-popup::part(close-icon) {
     opacity: 1;
+    filter: contrast(0.2);
 }
 body.dark-theme help-popup::part(popup-wrapper) {
     background-color: #3a4556;
