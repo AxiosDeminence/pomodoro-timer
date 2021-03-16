@@ -264,10 +264,11 @@ describe(('keyboard input'), () => {
     beforeEach(() => {
         jest.useFakeTimers();
         document.body.innerHTML = `
-            <button id = "start-btn">Start</button>
-            <div id="timer_display_duration">25:00</div>
             <ul id="task-list-elements">
             </ul>
+            <button class='top-buttons' id='focus-button'>
+                <img src="icons/half-moon.svg" id="focus" class="top-button-img" alt="focus">
+            </button>
             <div id="popup-button">
                 <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
             </div>
@@ -282,18 +283,62 @@ describe(('keyboard input'), () => {
             <button class="top-buttons" id="help-button">
                 <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
             </button>
-            <button id="pomo-btn"> Pomo</button>
-            button id="break-btn"> Break</button>
-            <div id='focus-task'>
-                <h2 id='select-focus'></h2>
+            <div id="pomodoro-timer">
+                <button id="pomo-btn"> Pomo</button>
+                <button id="break-btn"> Break</button>
+                <div id='focus-task'>
+                    <h2 id='select-focus'></h2>
+                </div>
+                <button id = "start-btn">Start</button>
+                <div id="timer_display_duration">25:00</div>
+            </div>
+            <div id="task-list">
+                <h2 id="up-next">Up Next</h2>
+                <ul id="task-list-elements">
+                </ul>
             </div>
         `;
+        
+        
     });
 
     afterEach(() => {
         jest.resetModules();
         jest.clearAllTimers();
         localStorage.clear();
+    });
+
+    test(('key press F toggles focus mode'), () => {
+
+        require('../src/scripts/Timer');
+        require('../src/scripts/FocusMode');
+        localStorage.setItem('state', 'default');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+        const helpPopUp = document.createElement('help-popup');
+        helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(helpPopUp);
+
+        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyF';
+        document.body.dispatchEvent(eventObj); 
+        
+        expect(localStorage.getItem('state')).toBe('focus');
+
+        document.body.dispatchEvent(eventObj); 
+
+        expect(localStorage.getItem('state')).toBe('default');
     });
 
     test(('key press S starts the timer'), () => {
@@ -459,7 +504,7 @@ describe(('keyboard input'), () => {
         expect(display.display).toBe('block');
     });
 
-    test(('key press A opens add-task pop-up'), () => {
+    test(('key press A opens add-task pop-up when in default state'), () => {
         require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
@@ -474,6 +519,8 @@ describe(('keyboard input'), () => {
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
 
+        localStorage.setItem('state', 'default');
+
         const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
@@ -484,6 +531,36 @@ describe(('keyboard input'), () => {
         const display = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
 
         expect(display.display).toBe('block');
+    });
+
+    test(('key press A does not open add-task pop-up when in focus state'), () => {
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+        const helpPopUp = document.createElement('help-popup');
+        helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(helpPopUp);
+
+        localStorage.setItem('state', 'focus');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyA';
+        document.body.dispatchEvent(eventObj);
+
+        const display = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
+
+        expect(display.display).toBe('none');
     });
 
     test(('key press ESCAPE closes help pop-up correctly'), () => {

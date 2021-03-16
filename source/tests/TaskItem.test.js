@@ -163,7 +163,7 @@ describe(('focus task'), () => {
         expect(task2.parentElement).toBe(focuse);
     });
 
-    // test(('change focus task to a task that does not exist in localStorage does nothing'), () => {
+    // test.only(('change focus task to a task that does not exist in localStorage does nothing'), () => {
     //     const task1 = document.getElementById('0');
     //     task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
 
@@ -183,7 +183,7 @@ describe(('focus task'), () => {
     //     expect(task2.parentElement).toBe(focuse);
     // });
 
-    test(('remove a focus task'), () => {
+    test(('remove a focus task by deletion'), () => {
         const task1 = document.getElementById('0');
         task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
         // remove task1
@@ -192,5 +192,52 @@ describe(('focus task'), () => {
         expect(focuse.querySelector('task-item')).toBe(null);
         const tilte = document.getElementById('select-focus');
         expect(tilte.innerHTML).toBe('');
+    });
+
+    test(('unfocus a task when in default mode'), () => {
+        
+        localStorage.setItem('state', 'default');
+        const task1 = document.getElementById('0');
+        task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
+        // unfocus task1
+        task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
+        const focus = document.getElementById('focus-task');
+        expect(focus.querySelector('task-item')).toBe(null);
+        const title = document.getElementById('select-focus');
+        expect(title.innerHTML).toBe('');
+    });
+
+    test(('unfocus a task when in focus mode'), () => {
+        
+        localStorage.setItem('state', 'focus');
+        const task1 = document.getElementById('0');
+        task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
+        task1.click();
+        // unfocus task1
+        task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
+
+        const focus = document.getElementById('focus-task');
+        expect(focus.querySelector('task-item').getAttribute('id')).toBe('1');
+        const title = document.getElementById('select-focus');
+        expect(title.innerHTML).toBe('Focusing on:');
+    });
+
+    test(('unfocus a task when in focus mode and all tasks done'), () => {
+        
+        localStorage.setItem('state', 'focus');
+        const task1 = document.getElementById('0');
+        document.getElementById('1').click();
+        document.getElementById('2').click();
+
+        task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
+        task1.click();
+
+        // unfocus task1
+        task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
+
+        const focus = document.getElementById('focus-task');
+        expect(focus.querySelector('task-item')).toBe(null);
+        const title = document.getElementById('select-focus');
+        expect(title.innerHTML).toBe('All tasks complete!');
     });
 });
