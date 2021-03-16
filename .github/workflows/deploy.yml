@@ -34,7 +34,7 @@ jobs:
         uses: andstor/jsdoc-action@v1
         with:
           source_dir: src/scripts
-          output_dir: source/build/docs
+          output_dir: build/docs
           template: minami
           front_page: README.md
 
@@ -42,4 +42,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
-          folder: source/build
+          folder: build
