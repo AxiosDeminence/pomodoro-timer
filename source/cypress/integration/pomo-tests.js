@@ -9,7 +9,6 @@ describe(('task list and timer'), () => {
     it('add task when timer has started', () => {
         // start timer
         cy.get('#start-btn').trigger('click');
-        // add task 1
         cy.get('#task-popup-btn').trigger('click');
         cy.get('task-popup').shadow()
             .find('#add-task-popup')
@@ -26,6 +25,37 @@ describe(('task list and timer'), () => {
             .type('test item 1', { force: true });
         cy.get('task-popup').shadow()
             .find('#add-task-btn').trigger('click');
+        // task is added successfully
+        cy.url().should(() => {
+            expect(localStorage.getItem('id')).contains('1');
+            expect(localStorage.getItem('tasks')).contains('test item 1');
+        });
+        // timer runs without affect
+        cy.get('#timer_display_duration').should('not.have.text', '25:00');
+    });
+
+    it('add task when timer has started (keyboard)', () => {
+        // start timer
+        cy.get('#start-btn').trigger('click');
+        cy.get('body').type('a');
+        cy.get('task-popup').shadow()
+            .find('#add-task-popup').should('have.css', 'display', 'block');
+        cy.get('task-popup').shadow()
+            .find('#task-input')
+            .type('test item 1', { force: true });
+        // random key has no affect
+        cy.get('body').type('b');
+        cy.get('task-popup').shadow()
+            .find('#add-task-popup').should('have.css', 'display', 'block');
+        cy.get('body').type('{esc}');
+        cy.get('task-popup').shadow()
+            .find('#add-task-popup').should('have.css', 'display', 'none');
+        // add task 1
+        cy.get('body').type('a');
+        cy.get('task-popup').shadow()
+            .find('#task-input')
+            .type('test item 1', { force: true });
+        cy.get('body').type('{enter}');
         // task is added successfully
         cy.url().should(() => {
             expect(localStorage.getItem('id')).contains('1');
@@ -213,7 +243,7 @@ describe('setting popup and timer', () => {
         cy.visit('http://127.0.0.1:5500/source/src/index.html');
     });
 
-    it(('set time while timer is runing, stop and reset the timer'), () => {
+    it.only(('set time while timer is runing, stop and reset the timer'), () => {
         // start the timer
         cy.get('#start-btn').trigger('click');
         cy.get('#timer_display_duration').should('not.have.text', '25:00');
@@ -246,6 +276,17 @@ describe('setting popup and timer', () => {
         cy.tick(180000);
         cy.tick(60000);
         cy.tick(181000);
+        cy.get('#timer_display_duration').should('have.text', '1:59');
+        // test when class are toggled
+        cy.get('#pomo-btn').invoke('attr', 'class', 'toggle');
+        cy.get('#break-btn').invoke('attr', 'class', 'toggle');
+        cy.tick(181000);
+        cy.tick(59000);
+        cy.tick(180000);
+        cy.tick(60000);
+        cy.tick(180000);
+        cy.tick(60000);
+        cy.tick(180000);
         cy.get('#timer_display_duration').should('have.text', '1:59');
     });
 
@@ -455,7 +496,25 @@ describe(('keyboard shortcut and focus mode'), () => {
         cy.get('#1').shadow().find('img[class="focus-icon"]').click({ force: true });
         cy.get('#focus-button').click();
     });
+    it(('random key have no affect'), () => {
+        cy.get('body').type('q');
+        cy.get('body').type('{enter}');
+        cy.get('body').type('{esc}');
+        cy.get('#timer_display_duration').should('have.text', '25:00');
+        cy.get('reset-popup').shadow()
+            .find('#reset-confirm-popup').should('have.css', 'display', 'none');
+        cy.get('help-popup').shadow()
+            .find('#help-popup')
+            .should('have.css', 'display', 'none');
+        cy.get('settings-popup').shadow()
+            .find('#settings-confirm-popup').should('have.css', 'display', 'none');
+        cy.url().should(() => {
+            expect(localStorage.getItem('state')).contains('focus');
+        });
 
+        cy.get('task-popup').shadow()
+            .find('#add-task-popup').should('have.css', 'display', 'none');
+    });
     it(('start and stop the timer'), () => {
         cy.get('body').type('s');
         cy.get('#timer_display_duration').should('not.have.text', '25:00');
@@ -524,5 +583,11 @@ describe(('keyboard shortcut and focus mode'), () => {
         cy.url().should(() => {
             expect(localStorage.getItem('state')).contains('focus');
         });
+    });
+
+    it(('add task disabled'), () => {
+        cy.get('body').type('a');
+        cy.get('task-popup').shadow()
+            .find('#add-task-popup').should('have.css', 'display', 'none');
     });
 });
