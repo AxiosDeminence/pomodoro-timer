@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "start": "http-server src -p=5500",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint ."
@@ -46,6 +47,7 @@
     ]
   },
   "dependencies": {
+    "http-server": "^0.12.3",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "regenerator-runtime": "^0.13.7"
   }
