@@ -25,10 +25,12 @@ jobs:
           mkdir build
 
       - name: Build app
-        run: cp -avr src/* build
+        run: cp -av src/* build
       
-      - name: Build coverage report
-        run: npm test
+      - name: Build Jest coverage report
+        run: |
+          npm test
+          cp -av coverage build
 
       - name: Build docs
         uses: andstor/jsdoc-action@v1
