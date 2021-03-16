@@ -504,7 +504,7 @@ describe(('keyboard input'), () => {
         expect(display.display).toBe('block');
     });
 
-    test(('key press A opens add-task pop-up'), () => {
+    test(('key press A opens add-task pop-up when in default state'), () => {
         require('../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
@@ -519,6 +519,8 @@ describe(('keyboard input'), () => {
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
 
+        localStorage.setItem('state', 'default');
+
         const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
@@ -529,6 +531,36 @@ describe(('keyboard input'), () => {
         const display = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
 
         expect(display.display).toBe('block');
+    });
+
+    test(('key press A does not open add-task pop-up when in focus state'), () => {
+        require('../src/scripts/Timer');
+
+        const taskPopUp = document.createElement('task-popup');
+        taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(taskPopUp);
+        const settingsPopUp = document.createElement('settings-popup');
+        settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(settingsPopUp);
+        const resetPopUp = document.createElement('reset-popup');
+        resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(resetPopUp);
+        const helpPopUp = document.createElement('help-popup');
+        helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
+        document.body.appendChild(helpPopUp);
+
+        localStorage.setItem('state', 'focus');
+
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        if (eventObj.initEvent) {
+            eventObj.initEvent('keyup', true, true);
+        }
+        eventObj.code = 'KeyA';
+        document.body.dispatchEvent(eventObj);
+
+        const display = getComputedStyle(taskPopUp.shadowRoot.getElementById('add-task-popup'));
+
+        expect(display.display).toBe('none');
     });
 
     test(('key press ESCAPE closes help pop-up correctly'), () => {
