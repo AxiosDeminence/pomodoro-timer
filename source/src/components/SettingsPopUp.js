@@ -5,17 +5,17 @@ class SettingsPopUp extends HTMLElement {
     }
 
     confirmSettings() {
-        const pomoLength = this.shadowRoot.getElementById('pomo-length-input').value;
-        const shortBreak = this.shadowRoot.getElementById('short-break-input').value;
-        const longBreak = this.shadowRoot.getElementById('long-break-input').value;
-        localStorage.setItem('pomo-length', pomoLength);
-        localStorage.setItem('short-break-length', shortBreak);
-        localStorage.setItem('long-break-length', longBreak);
+        const pomoLength = parseInt(this.shadowRoot.getElementById('pomo-length-input').value);
+        const shortBreak = parseInt(this.shadowRoot.getElementById('short-break-input').value);
+        const longBreak = parseInt(this.shadowRoot.getElementById('long-break-input').value);
+		console.log(typeof pomoLength);
+        localStorage.setItem('pomo-length', String(pomoLength));
+        localStorage.setItem('short-break-length', String(shortBreak));
+        localStorage.setItem('long-break-length', String(longBreak));
         const btnSound = new Audio('./icons/btnClick.mp3');
 		btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
         btnSound.play();
         localStorage.setItem('stop', 'true');
-        // stop();
         this.closePopUp();
     }
 
@@ -58,13 +58,14 @@ class SettingsPopUp extends HTMLElement {
         pomoWrapper.setAttribute('class', 'session-inputs');
         const pomoLabel = pomoWrapper.appendChild(document.createElement('label'));
         pomoLabel.setAttribute('for', 'pomo');
-        pomoLabel.innerHTML = 'Pomo';
+        pomoLabel.innerHTML = 'Pomodoro';
         const pomoInput = pomoWrapper.appendChild(document.createElement('input'));
         pomoInput.setAttribute('type', 'number'); // TODO: handle negatives
         pomoInput.setAttribute('id', 'pomo-length-input');
         pomoInput.setAttribute('value', parseInt(localStorage.getItem('pomo-length'), 10));
         pomoInput.setAttribute('min', 1); // values subj. to change
         pomoInput.setAttribute('max', 60); // values subj. to change
+		pomoInput.setAttribute('oninput', "validity.valid||(value='');");
         const shortBreakWrapper = session.appendChild(document.createElement('div'));
         shortBreakWrapper.setAttribute('class', 'session-inputs');
         const shortBreakLabel = shortBreakWrapper.appendChild(document.createElement('label'));
@@ -76,6 +77,7 @@ class SettingsPopUp extends HTMLElement {
         shortBreakInput.setAttribute('value', parseInt(localStorage.getItem('short-break-length'), 10));
         shortBreakInput.setAttribute('min', 1); // values subj. to change
         shortBreakInput.setAttribute('max', 60); // values subj. to change
+		shortBreakInput.setAttribute('oninput', "validity.valid||(value='');");
         const longBreakWrapper = session.appendChild(document.createElement('div'));
         longBreakWrapper.setAttribute('class', 'session-inputs');
         const longBreakLabel = longBreakWrapper.appendChild(document.createElement('label'));
@@ -87,6 +89,7 @@ class SettingsPopUp extends HTMLElement {
         longBreakInput.setAttribute('value', parseInt(localStorage.getItem('long-break-length'), 10));
         longBreakInput.setAttribute('min', 1); // values subj. to change
         longBreakInput.setAttribute('max', 60); // values subj. to change
+		longBreakInput.setAttribute('oninput', "validity.valid||(value='');");
 		// separate div for dark mode setting
 		const darkModeDiv = wrapper.appendChild(document.createElement('div'));
 		darkModeDiv.setAttribute('id', 'dark-mode');
@@ -158,23 +161,31 @@ class SettingsPopUp extends HTMLElement {
         confirmBtn.setAttribute('part', 'confirm-btn');
         const style = document.createElement('style');
         style.textContent = `
+		h4 {
+			font-size: 1.15vw;
+		}
         p {
 			display: flex;
     		align-items: center;
     		margin: 0;
 		}
 		#volume-number {
-			font-size: 14px;
+			// font-size: 14px;
+			font-size: 1.09375vw;
 			font-family: Arial;
 			color: rgb(85, 85, 85);
-			margin-left: 20px;
+			// margin-left: 20px;
+			margin-left: 1.5625vw;
 		}
 		.vol-slider {
 			background-color: #ccc;
 			-webkit-appearance: none;
 			appearance: none;
-			border-radius: 50px;
-			height: 7px;
+			// border-radius: 50px;
+			border-radius: 3.90625vw;
+			// height: 7px;
+			height: 0.546875vw;
+			width: 10.390625vw;
 			outline: none;
 			cursor: pointer;
 			opacity: 0.7;
@@ -188,16 +199,20 @@ class SettingsPopUp extends HTMLElement {
 			-webkit-appearance: none;
 			appearance: none;
 			cursor: pointer;
-			width: 20px;
-  			height: 20px;
+			// width: 20px;
+  			// height: 20px;
+			width: 1.5625vw;
+  			height: 1.5625vw;
   			border-radius: 50%;
   			background: #e6e5e5;
 			box-shadow: 0 0 3px 1px rgba(0,0,0,0.2);
 		}
 		.vol-slider::-moz-range-thumb {
 			cursor: pointer;
-			width: 20px;
-  			height: 20px;
+			// width: 20px;
+  			// height: 20px;
+			width: 1.5625vw;
+  			height: 1.5625vw;
   			border-radius: 50%;
   			background: #e6e5e5;
 			box-shadow: 0 0 3px 1px rgba(0,0,0,0.2);
@@ -206,9 +221,11 @@ class SettingsPopUp extends HTMLElement {
 			justify-content: space-between;
 			display: flex;
 			width: 85%;
-			margin: 20px auto 10px auto;
-			border-bottom: solid 1px #d2d2d2;
-			padding-bottom: 20px;
+			// margin: 20px auto 10px auto;
+			margin: 1.5625vw auto 0.78125vw auto;
+			// border-bottom: solid 1px #d2d2d2;
+			// padding-bottom: 20px;
+			padding-bottom: 1.5625vw;
 		}
 		.slider-div {
 			position: relative;
@@ -234,15 +251,19 @@ class SettingsPopUp extends HTMLElement {
 			justify-content: space-between;
 			display: flex;
 			width: 85%;
-			margin: 20px auto 10px auto;
+			// margin: 20px auto 10px auto;
+			margin: 1.5625vw auto 0.78125vw auto;
 			border-bottom: solid 1px #d2d2d2;
-			padding-bottom: 20px;
+			// padding-bottom: 20px;
+			padding-bottom: 1.5625vw;
 		}
 		.switch {
 			position: relative;
 			display: inline-flex;
-			width: 60px;
-			height: 34px;
+			// width: 60px;
+			// height: 34px;
+			width: 4.6875vw;
+			height: 2.65625vw;
 		}
 		.switch input[type='checkbox'] { 
 			opacity: 0;
@@ -259,15 +280,20 @@ class SettingsPopUp extends HTMLElement {
 			background-color: #ccc;
 			-webkit-transition: .4s;
 			transition: .4s;
-			border-radius: 34px;
+			// border-radius: 34px;
+			border-radius: 2.65625vw;
 		}
 		.slider:before {
 			position: absolute;
 			content: "";
-			height: 26px;
-			width: 26px;
-			left: 4px;
-			bottom: 4px;
+			// height: 26px;
+			// width: 26px;
+			height: 2.03125vw;
+			width: 2.03125vw;
+			// left: 4px;
+			// bottom: 4px;
+			left: 0.3125vw;
+			bottom: 0.3125vw;
 			background-color: white;
 			-webkit-transition: 0.2s;
 			transition: 0.2s;
@@ -277,56 +303,72 @@ class SettingsPopUp extends HTMLElement {
 			background-color: rgb(163 243 67 / 88%);
 		}
 		input[type='checkbox']:checked + .slider:before {
-			-webkit-transform: translateX(26px);
-			-ms-transform: translateX(26px);
-			transform: translateX(26px);
+			// -webkit-transform: translateX(26px);
+			// -ms-transform: translateX(26px);
+			// transform: translateX(26px);
+			-webkit-transform: translateX(2.03125vw);
+			-ms-transform: translateX(2.03125vw);
+			transform: translateX(2.03125vw);
 		}
 		#session {
 			justify-content: space-between;
 			display: flex;
 			width: 85%;
-			margin: 10px auto 10px auto;
+			// margin: 10px auto 10px auto;
+			margin: 0.78125vw auto 0.78125vw auto;
 			border-bottom: solid 1px #d2d2d2;
-			padding-bottom: 20px;
+			// padding-bottom: 20px;
+			padding-bottom: 1.5625vw;
 		}
 		label {
 			display: block;
-			font-size: 12px;
+			// font-size: 12px;
+			font-size: 0.9375vw;
 			color: rgb(85, 85, 85);
 			font-weight: 500;
 		}
 		input[type='number'] {
-			font-size: 14px;
+			// font-size: 14px;
+			font-size: 1.09375vw;
 			color: rgb(85, 85, 85);
 			border: none;
-			border-radius: 4px;
+			// border-radius: 4px;
+			border-radius: 0.3125vw;
 			background-color: rgb(234 234 234);
-			padding: 10px;
+			// padding: 10px;
+			padding: 0.78125vw;
 			box-sizing: border-box;
 			width: 100%;
 			outline: none;
 		}
         .button-footer {
             background-color: rgb(234 234 234);
-            padding: 14px 20px;
+            // padding: 14px 20px;
+            padding: 1.09375vw 1.5625vw;
             text-align: right;
             position: absolute;
             bottom: 0;
             right: 0;
             left: 0;
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
+            // border-bottom-left-radius: 4px;
+            // border-bottom-right-radius: 4px;
+			border-bottom-left-radius: 0.3125vw;
+            border-bottom-right-radius: 0.3125vw;
         }
         #timer-settings {
             color: rgb(85, 85, 85);
             width: 85%;
 			font-weight: 500;
-            margin: 20px auto 10px auto;
+            // margin: 20px auto 10px auto;
+			margin: 1.5625vw auto 0.78125vw auto;
         }
         #close-icon {
-            width: 15px;
-            margin-top: 10px;
-            margin-right: 10px;
+            // width: 15px;
+			width: 1.171875vw;
+            // margin-top: 10px;
+            // margin-right: 10px;
+			margin-top: 0.78125vw;
+            margin-right: 0.78125vw;
             position:absolute;
             top:0;
             right:0;
@@ -340,9 +382,13 @@ class SettingsPopUp extends HTMLElement {
         #settings-confirm-popup {
             display: none;
             position: fixed;
-            width: 30%;
-            height: 65%;
-            border-radius: 4px;
+            // width: 30%;
+            // height: 65%;
+			width: 29.296875vw;
+			// height: 29.296875vw;
+			height: 30.46875vw;
+            // border-radius: 4px;
+			border-radius: 0.3125vw;
             top:20%;
             left: 34%;
             z-index: 999;
@@ -365,22 +411,26 @@ class SettingsPopUp extends HTMLElement {
             font-size: 1.6vw;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
-            padding-bottom: 5px;
+            // padding-bottom: 5px;
+			padding-bottom: 0.390625vw;
             width: 85%;
 			font-weight: 500;
-            margin: 20px auto 10px auto;
+            // margin: 20px auto 10px auto;
+			margin: 1.5625vw auto 0.78125vw auto;
 		}
         .settings-popup-btns {
             cursor: pointer;
             border-style: none;
-            border-radius: 4px;
+            // border-radius: 4px;
+			border-radius: 0.3125vw;
             text-align: center;
             background-color:#f36060;
             color:#fff;
             font-family: 'Quicksand', sans-serif;
             height: 17%;
             width: 27%;
-            font-size: 1em;
+			// font-size: 1em;
+            font-size: 1.25vw;
             font-weight: 500;
             outline: none;
         }
@@ -389,7 +439,8 @@ class SettingsPopUp extends HTMLElement {
             transform: scale(1.1);
 		}
         #confirm-settings-btn {
-            padding: 8px 12px;
+            // padding: 8px 12px;
+			padding: 0.625vw 0.9375vw;
         }`;
         shadow.appendChild(wrapper);
         shadow.appendChild(style);

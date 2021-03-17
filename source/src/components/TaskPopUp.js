@@ -82,19 +82,25 @@ class TaskPopUp extends HTMLElement {
         style.textContent = `
         .button-footer {
             background-color: rgb(234 234 234);
-            padding: 14px 20px;
+            // padding: 14px 20px;
+            padding: 1.09375vw 1.5625vw;
             text-align: right;
             position: absolute;
             bottom: 0;
             right: 0;
             left: 0;
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
+            // border-bottom-left-radius: 4px;
+            // border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 0.3125vw;
+            border-bottom-right-radius: 0.3125vw;
         }
         #close-icon {
-            width: 15px;
-            margin-top: 10px;
-            margin-right: 10px;
+            // width: 15px;
+            width: 1.171875vw;
+            // margin-top: 10px;
+            // margin-right: 10px;
+            margin-top: 0.78125vw;
+            margin-right: 0.78125vw;
             position:absolute;
             top:0;
             right:0;
@@ -108,9 +114,12 @@ class TaskPopUp extends HTMLElement {
         #add-task-popup {
             display: none;
             position: fixed;
-            width: 30%;
-            height: 30%;
-            border-radius: 4px;
+            // width: 30%;
+            width: 29.296875vw;
+            // height: 30%;
+            height: 15.625vw;
+            // border-radius: 4px;
+            border-radius: 0.3125vw;
             top:25%;
             left: 34%;
             z-index: 999;
@@ -136,37 +145,45 @@ class TaskPopUp extends HTMLElement {
             width: 85%;
             height: 22%;
             background-color: whitesmoke;
-            color: rgb(85, 85, 85);
+            color: rgb(85, 85, 85); 
             border-style: hidden;
-            border-radius: 5px;
+            // border-radius: 5px;
+            border-radius: 0.390625vw;
             outline: none;
             display: block;
-            margin:20px auto 0 auto;
+            // margin: 20px auto 0 auto;
+            margin: 1.5625vw auto 0 auto;
             font-weight: 500;
         }
         input[type='text']::placeholder {
-            color: rgba(85, 85, 85, 0.5);
+            // color: rgba(85, 85, 85, 0.2);
+            // color: #A7A7A7;
+            color: #c7c7c75e;
         }
         #add-task-popup > h3{
             font-size: 1.6vw;
             font-weight: 500;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
-            padding-bottom: 5px;
+            // padding-bottom: 5px;
+            padding-bottom: 0.390625vw;
             width: 85%;
-            margin: 20px auto 10px auto;
+            // margin: 20px auto 10px auto;
+            margin: 1.5625vw auto 0.78125vw auto;
         }
         .popup-btns {
             cursor: pointer;
             border-style: none;
-            border-radius: 4px;
+            // border-radius: 4px;
+            border-radius: 0.3125vw;
             text-align: center;
             background-color:#f36060;
             color:#fff;
             font-family: 'Quicksand', sans-serif;
             height: 17%;
             width: 20%;
-            font-size: 1em;
+            // font-size: 1em;
+            font-size: 1.25vw;
             font-weight: 500;
             outline: none;
         }
@@ -175,7 +192,8 @@ class TaskPopUp extends HTMLElement {
             transform: scale(1.1);
         }
         #add-task-btn {
-            padding: 8px 12px;
+            // padding: 8px 12px;
+            padding: 0.625vw 0.9375vw;
         }
         #cancel-task-btn {
             position: absolute;

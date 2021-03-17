@@ -17,7 +17,9 @@ body {
 }
 header {
     /* text-align: center; */
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    margin-top: 1.275vh;
+    margin-bottom: 1.275vh;
     height: 15vh;
 }
 h1#header-name {
@@ -25,70 +27,72 @@ h1#header-name {
     position: relative;
     color: #f36060;
     left: 10%;
-    font-size: 30px;
+    /* font-size: 30px; */
+    font-size: 2.275vw;
     font-weight: 500;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    margin-bottom: 1.275vh;
+    /* margin-bottom: 0; */
+    /* margin-top: 1.8vw; */
 }
 #header-buttons {
     display: inline-block;
     position:absolute;
     right: 10%;
+    margin-top: 0.4vw;
 }
 #header-buttons  ul {
     list-style-type: none;
+    margin-bottom: 0;
 }
 #header-buttons ul li {
     display: inline-block;
-    margin-top: 3px;
+    /* margin-top: 3px; */
+    /* margin-top: 0.20833333333333334vw; */
+    /* margin-top: 1.15vw; */
 }
 .top-buttons {
     cursor: pointer;
     border-style: none;
-    border-radius: 4px;
+    /* border-radius: 4px; */
+    border-radius: 10%;
     text-align: center;
     background-color:#f36060;
     color:#fff;
     outline: none;
-    margin-left: 5px;
-    height: 35px;
-    width: 40px;
+    /* margin-left: 5px; */
+    margin-left: 0.5vw;
+    /* height: 35px; */
+    height: 2.875vw;
+    /* width: 40px; */
+    width: 3.125vw;
 }
 .top-buttons:hover {
     filter: brightness(105%);
     transform: scale(1.1);
 }
-/* #setting-button {
-    width: 87px;
-}
-#help-button {
-    width: 67px;
-}
-#reset-button {
-    width: 80px;
-} */
 .top-button-img {
     display: inline-block;
     vertical-align: middle;
-    width: 20px;
-    height: 20px;
+    /* width: 20px;
+    height: 20px; */
+    width: 1.6vw;
+    height: 1.6vw;
 }
 img#help {
-    width: 15px;
-    height: 15px;
+    /* width: 15px;
+    height: 15px; */
+
+    width: 1.275vw;
+    height: 1.275vw;
+
 }
 img#focus {
-    width: 30px;
-    height: 30px;
+    /* width: 30px;
+    height: 30px; */
+    width: 2.375vw;
+    height: 2.375vw;
 }
-/* .top-button-text {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0;
-    font-size: 1.05em;
-} */
-/* #text-help {
-    padding-right: 2px;
-} */
 header:after {
     content:' ';
     display: block;
@@ -100,36 +104,51 @@ header:after {
 }
 #task-list {
     float: right;
-    width: 50%;
-    min-height: 0;
-    max-height: 400px;
-    margin-bottom: 10px;
-    overflow: auto;
+    /* width: 50%; */
+    /* width: 40%; */
+    width: 35%;
+    height: 80vh;
+    margin-right: 10%;
     display: block;
+    /* min-height: 0;
+    max-height: 400px; */
+    /* margin-bottom: 10px; */
+    /* overflow: auto;
+     */
 }
 #up-next {
     color: #f36060;
     text-align: center;
     font-weight: 500;
-    margin-right: 15%;
+    font-size: 1.875vw;
+    margin: 0;
+    /* margin-right: 15%; */
 }
 #pomodoro-timer {
     float: left;
-    width: 50%;
-    min-height: 420px;
+    /* width: 50%; */
+    width: 35%;
+    margin-left: 10%;
+    height: 80vh;
+    /* min-height: 420px; */
 }
 #task-list ul {
     list-style-type: none;
+    max-height: 80%;
+    overflow: auto;
+    padding: 0;
 }
-#popup-button {
+/* #popup-button {
     float: right;
     width: 30%;
     display: block;
-}
+} */
 #task-popup-btn {
     cursor: pointer;
-    height: 40px;
-    width: 40px;
+    /* height: 40px;
+    width: 40px; */
+    height: 3.5vw;
+    width: 3.5vw;
     border-style: none;
     border-radius: 50%;
     text-align: center;
@@ -137,34 +156,45 @@ header:after {
     font-family: 'Quicksand', sans-serif;
     background-color: #f36060;
     outline: none;
+    margin: 0 auto;
+    display: block;
 }
 #task-popup-btn:hover {
     filter: brightness(105%);
     transform: scale(1.1);
 }
 #plus {
-    width: 20px;
+    /* width: 20px; */
+    width : 1.45vw;
     vertical-align: middle;
 }
 img#dash {
     height: 500px;
     width: 12px;
     position: absolute;
-    right: 52%;
-    left: 48%;
+    right: 50%;
+    left: 50%;
 }
 /* Code BELOW is for Clock */
 /* CSS for Pomo/Break button dispaly */
 .timer-buttons {
-    text-align: center;
+    /* text-align: center; */
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 0.25vh;
 }
 .timer-buttons button
 {
-    margin-top: 19px;
+    /* margin-top: 19px; */
+    /* margin-top: 0.6316489361702128vw; */
     border: none;
     color: white;
-    padding: 10px 24px;
-    font-size: larger;
+    /* padding: 10px 24px; */
+    padding: 0.78125vw 1.875vw;
+    /* padding: 1.5vh 1.5vw; */
+    /* font-size: larger; */
+    font-size: 1.5625vw;
+    /* font-size: 1.3vw; */
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
     outline: none;
@@ -194,24 +224,33 @@ div.empty-space-border
     border-width: thick;
     border-radius: 50px;
     text-align: center;
-    padding: 2px;
-    max-width:325px;
-    margin:0 auto;
+    /* padding: 2px; */
+    /* padding: 6px; */
+    padding: 0.46875vw;
+    /* padding: 0.06648936170212766vw; */
+    /* max-width:325px; */
+    /* margin:0 auto; */
 }
 /* CSS for Clock Test and Border Surrounding it */
 div.timer-value
 {
-    font-size: 550%;
+    font-size: 6.5vw;
+    /* font-size: 550%;  */
     background:#f36060;
     color: #fff;
     border-style: solid;
     border-color: #ffd5ca;
     border-width: thick;
-    border-radius: 50px;
+    /* border-radius: 50px; */
+    border-radius: 3.90625vw;
     text-align: center;
-    margin: 100px;
-    padding: 50px;
-    max-width:325px;
+    /* margin: 100px; */
+    /* margin: 3.32667997338656vw; */
+    /* padding: 50px; */
+    padding: 3.90625vw;
+    /* padding: 7vh 4.5vw 7vh 4.5vw; */
+    /* max-width:325px; */
+    max-width: 25.390625vw;
     margin:0 auto;
 
 }
@@ -221,18 +260,23 @@ div.timer-value
 }
 .timer-control-buttons button
 {
-    margin-top: 21px;
+    /* margin-top: 21px; */
+    margin-top: 1.640625vw;
     background-color: #f36060; 
     border: none; 
     color: white; 
-    padding: 10px 24px; 
+    /* padding: 10px 24px;  */
+    padding: 0.78125vw 1.875vw;
     cursor: pointer; 
-    font-size: x-large;
+    /* font-size: x-large; */
+    font-size: 1.953125vw;
     font-weight: 500;
-    border-radius: 8px;
+    /* border-radius: 8px; */
+    border-radius: 0.625vw;
     outline: none;
     font-family: 'Quicksand', sans-serif;
-    width: 200px;
+    /* width: 200px; */
+    width: 15.625vw;
 
 }
 /* CSS Code for diff color when hover over Start/Reset Button*/
@@ -284,7 +328,6 @@ body.dark-theme .top-buttons {
     color: #f5f6f7;
 }
 body.dark-theme header:after {
-    /* border-bottom: 1px solid #d2d2d2; */
     border-bottom: solid 1px #9c9c9c;
     
 }
@@ -324,6 +367,9 @@ body.dark-theme #up-next {
 }
 body.dark-theme #task-popup-btn {
     background-color: #4a5568;
+}
+body.dark-theme #help-info {
+    color: #a7a7a7;
 }
 /* Task Items */
 body.dark-theme task-item {
@@ -425,23 +471,34 @@ body.dark-theme help-popup::part(popup-wrapper) {
 body.dark-theme help-popup::part(help-h3) {
     color: #f5f6f7;
 }
-
+body.dark-theme help-popup::part(instructions) {
+    color: #f5f6f7;
+}
+body.dark-theme help-popup::part(features) {
+    color: #f5f6f7;
+}
+body.dark-theme help-popup::part(accessibility) {
+    color: #f5f6f7;
+}
+body.dark-theme help-popup::part(h4) {
+    color: #f5f6f7;
+}
 /* Focus Task */
 #focus-task {
     text-align: center;
-    width: 75%;
+    /* width: 75%; */
     margin: 40px auto;
     list-style-type: none;
 }
 #select-focus {
     font-weight: 500;
     color:#f36060;  
+    font-size: 1.875vw;
 }
 #focus-task task-item {
     margin: 0 auto;
-    border-left: solid 6px #eaeaea;
-    /* height: 60px;
-    font-size: larger; */
+    /* border-left: solid 6px #eaeaea; */
+    border-left: solid 0.46875vw #eaeaea;
 }
 /*Focus mode toggles*/
 #popup-button.state {
@@ -453,7 +510,31 @@ body.dark-theme help-popup::part(help-h3) {
 #pomodoro-timer.state {
     float: none;
     width: auto;
+    margin-left:auto;
 }
 #focus-task.state {
     width: 40%;
 }
+
+/* Footer CSS left side */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* height: 2.5rem;     */
+    height: 3.125vw;  
+}
+#help-info {
+    float:left;
+    /* margin-left: 34rem;  */
+    margin-left: 10%;
+    color: #646363;
+    font-weight: 450;
+    font-size: medium;
+}
+/* #group-credit {
+    float:right;
+    /* margin-right: 18rem; 
+    margin-right: 10%; 
+    color: #8f8888;
+} */
