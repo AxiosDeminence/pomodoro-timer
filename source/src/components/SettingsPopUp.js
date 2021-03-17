@@ -13,7 +13,7 @@ class SettingsPopUp extends HTMLElement {
         localStorage.setItem('short-break-length', String(shortBreak));
         localStorage.setItem('long-break-length', String(longBreak));
         const btnSound = new Audio('./icons/btnClick.mp3');
-		btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
         btnSound.play();
         localStorage.setItem('stop', 'true');
         this.closePopUp();
@@ -28,10 +28,10 @@ class SettingsPopUp extends HTMLElement {
         document.body.classList.toggle('dark-theme');
     }
 
-	setVolume() {
-		const volume = this.shadowRoot.getElementById('range').value;
-		localStorage.setItem('volume', '' + volume);
-	}
+    setVolume() {
+        const volume = this.shadowRoot.getElementById('range').value;
+        localStorage.setItem('volume', `${volume}`);
+    }
 
     constructor() {
         super();
@@ -135,13 +135,13 @@ class SettingsPopUp extends HTMLElement {
         // event listeners for confirm btn and close icon
         confirmBtn.addEventListener('click', this.confirmSettings.bind(this));
         close.addEventListener('click', this.closePopUp.bind(this));
-		// event listener to set volume in local storage
-		rangeInput.addEventListener('change', this.setVolume.bind(this));
-		volSpan.innerHTML = rangeInput.value;
-		// event listener to dynamically display volume
-		rangeInput.addEventListener('input', function() {
-			volSpan.innerHTML = this.value;
-		});
+        // event listener to set volume in local storage
+        rangeInput.addEventListener('change', this.setVolume.bind(this));
+        volSpan.innerHTML = rangeInput.value;
+        // event listener to dynamically display volume
+        rangeInput.addEventListener('input', function () {
+            volSpan.innerHTML = this.value;
+        });
         // use ::part pseudo-element to style element outside of shadow tree -- for dark mode
         wrapper.setAttribute('part', 'settings-confirm-popup');
         close.setAttribute('part', 'close-icon');
@@ -451,14 +451,14 @@ customElements.define('settings-popup', SettingsPopUp);
 window.addEventListener('load', () => {
     const settingsButton = document.getElementById('setting-button');
     const settingsPopUp = document.createElement('settings-popup');
-	settingsPopUp.setAttribute('class', 'popup');
+    settingsPopUp.setAttribute('class', 'popup');
     document.body.appendChild(settingsPopUp);
     settingsButton.addEventListener('click', () => {
         const btnSound = new Audio('./icons/btnClick.mp3');
-		btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
         btnSound.play();
-		// make sure all popups are closed before opening another one
-		const popups = Array.from(document.getElementsByClassName('popup'));
+        // make sure all popups are closed before opening another one
+        const popups = Array.from(document.getElementsByClassName('popup'));
     	for (let i = 0; i < popups.length; i++) {
         	popups[i].closePopUp();
     	}
@@ -466,4 +466,4 @@ window.addEventListener('load', () => {
     });
 });
 
-module.exports = SettingsPopUp;
+// module.exports = SettingsPopUp;

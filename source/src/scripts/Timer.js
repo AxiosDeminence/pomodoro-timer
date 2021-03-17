@@ -150,7 +150,9 @@ window.addEventListener('keyup', (event) => {
                 }
                 break;
             case 'KeyA':
-                document.getElementById('task-popup-btn').click();
+                const state = localStorage.getItem('state');
+                if (state === 'default')
+                    document.getElementById('task-popup-btn').click();
                 break;
             case 'Enter':
                 if (setDis === 'block') {

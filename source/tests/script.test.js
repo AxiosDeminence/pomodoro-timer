@@ -24,7 +24,6 @@ test('Initializes localStorage correctly', () => {
         bubbles: true,
         cancelable: true,
     }));
-
     expect(localStorage.getItem('tasks')).toBe('[]');
     expect(localStorage.getItem('id')).toBe('0');
     expect(localStorage.getItem('theme')).toBe('light');

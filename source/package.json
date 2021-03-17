@@ -22,32 +22,60 @@
   },
   "homepage": "https://github.com/Jackie1342/cse110-w21-group13#readme",
   "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/preset-env": "^7.13.8",
+    "@cypress/code-coverage": "^3.9.0",
     "@testing-library/jest-dom": "^5.11.9",
     "babel-jest": "^26.6.3",
+    "babel-plugin-istanbul": "^6.0.0",
+    "cypress": "^6.5.0",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.3",
     "husky": "^4.3.8",
+    "istanbul-instrumenter-loader": "^3.0.1",
+    "istanbul-lib-coverage": "^3.0.0",
     "jest": "^26.6.3",
     "jest-localstorage-mock": "^2.4.7",
-    "lint-staged": "^10.5.4"
+    "lint-staged": "^10.5.4",
+    "nyc": "^15.1.0"
   },
   "jest": {
     "verbose": true,
     "collectCoverage": true,
     "testEnvironment": "jest-environment-jsdom-sixteen",
+    "coverageDirectory": "coverage/jest-coverage",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     },
     "resetMocks": false,
     "setupFiles": [
       "jest-localstorage-mock"
+    ],
+    "modulePathIgnorePatterns": [
+      "/cypress/"
     ]
   },
   "dependencies": {
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "regenerator-runtime": "^0.13.7"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "nyc": {
+    "report-dir": "coverage/cypress-coverage",
+    "reporter": [
+      "text",
+      "json",
+      "lcov"
+    ]
   }
 }
