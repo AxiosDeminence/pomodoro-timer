@@ -142,21 +142,28 @@ class TaskItem extends HTMLElement {
         style.textContent = `
         :host {
             cursor: pointer;
-            height: 50px;
+            //height: 50px;
+            height: 3.90625vw;
             position: relative;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            margin-right: 20%;
+            // margin-bottom: 10px;
+            // border-radius: 5px;
+            border-radius: 0.390625vw;
+            // margin-right: 20%;
             box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
             display: flex;
             align-items: center;
-            padding-left: 37px;
+            // padding-left: 37px;
+            padding-left: 2.890625vw;
             background-color: #f36060;
             color: white;
-            font-size: medium;
+            // font-size: medium;
+            font-size: 1.35vw;
             font-weight: 500;
             border-style:none;
             user-select: none;
+            margin: 0 auto;
+            // margin-bottom: 10px;
+            margin-bottom: 0.78125vw;
         }
         :host(:hover) {
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -165,16 +172,20 @@ class TaskItem extends HTMLElement {
         :host([checked = 'true']) {
             background: #f3606060;
             text-decoration: line-through;
+            -webkit-text-decoration: line-through;
         }
         :host([checked = 'true']) .check-icon {
             visibility: visible;
         }
         .check-icon {
             position: absolute;
-            left: 10px;
+            // left: 10px;
+            left: 0.78125vw;
             vertical-align: middle;
-            width: 20px;
-            height: 20px;
+            // width: 20px;
+            // height: 20px;
+            width: 1.5625vw;
+            height: 1.5625vw;
             margin: 0;
             visibility: hidden;
         }
@@ -184,10 +195,13 @@ class TaskItem extends HTMLElement {
         .delete-icon {
             position: absolute;
             color: #fff;
-            right: 10px;
+            // right: 10px;
+            right: 0.78125vw;
             vertical-align: middle;
-            width: 20px;
-            height: 20px;
+            // width: 20px;
+            // height: 20px;
+            width: 1.5625vw;
+            height: 1.5625vw;
             margin: 0;
             visibility: hidden;
         }
@@ -201,10 +215,13 @@ class TaskItem extends HTMLElement {
         .focus-icon {
             position: absolute;
             color: #fff;
-            right: 40px;
+            // right: 40px;
+            right: 3.125vw;
             vertical-align: middle;
-            width: 20px;
-            height: 20px;
+            // width: 20px;
+            // height: 20px;
+            width: 1.5625vw;
+            height: 1.5625vw;
             margin: 0;
             visibility: hidden;
         }

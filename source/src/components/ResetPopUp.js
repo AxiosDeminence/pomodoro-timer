@@ -62,19 +62,25 @@ class ResetPopUp extends HTMLElement {
         style.textContent = `
         .button-footer {
             background-color: rgb(234 234 234);
-            padding: 14px 20px;
+            // padding: 14px 20px;
+            padding: 1.09375vw 1.5625vw;
             text-align: right;
             position: absolute;
             bottom: 0;
             right: 0;
             left: 0;
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
+            // border-bottom-left-radius: 4px;
+            // border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 0.3125vw;
+            border-bottom-right-radius: 0.3125vw;
         }
         #close-icon {
-            width: 15px;
-            margin-top: 10px;
-            margin-right: 10px;
+            // width: 15px;
+            width: 1.171875vw;
+            // margin-top: 10px;
+            // margin-right: 10px;
+            margin-top: 0.78125vw;
+            margin-right: 0.78125vw;
             position:absolute;
             top:0;
             right:0;
@@ -89,14 +95,19 @@ class ResetPopUp extends HTMLElement {
             color: rgb(85, 85, 85);
             width: 85%;
             font-weight: 500;
-            margin: 20px auto 0 auto;
+            font-size: 1.0375vw;
+            // margin: 20px auto 0 auto;
+            margin: 1.5625vw auto 0 auto;
         }
         #reset-confirm-popup {
             display: none;
             position: fixed;
-            width: 30%;
-            height: 30%;
-            border-radius: 4px;
+            // width: 30%;
+            width: 29.296875vw;
+            // height: 30%;
+            height: 15.625vw;
+            // border-radius: 4px;
+            border-radius: 0.3125vw;
             top:25%;
             left: 34%;
             z-index: 999;
@@ -119,22 +130,26 @@ class ResetPopUp extends HTMLElement {
             font-size: 1.6vw;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
-            padding-bottom: 5px;
+            // padding-bottom: 5px;
+            padding-bottom: 0.390625vw;
             width: 85%;
             font-weight: 500;
-            margin: 20px auto 10px auto;
+            // margin: 20px auto 10px auto;
+            margin: 1.5625vw auto 0.78125vw auto;
         }
         .reset-popup-btns {
             cursor: pointer;
             border-style: none;
-            border-radius: 4px;
+            // border-radius: 4px;
+            border-radius: 0.3125vw;
             text-align: center;
             background-color:#f36060;
             color:#fff;
             font-family: 'Quicksand', sans-serif;
             height: 17%;
             width: 27%;
-            font-size: 1em;
+            // font-size: 1em;
+            font-size: 1.25vw;
             font-weight: 500;
             outline: none;
         }
@@ -143,13 +158,14 @@ class ResetPopUp extends HTMLElement {
             transform: scale(1.1);
         }
         #confirm-reset-btn {
-            padding: 8px 12px;
+            // padding: 8px 12px;
+            padding: 0.625vw 0.9375vw;
         }
-        #cancel-reset-btn {
-            position: absolute;
-            float:right;
-            right: 5em;
-            bottom: 2em;
+        // #cancel-reset-btn {
+        //     position: absolute;
+        //     float:right;
+        //     right: 5em;
+        //     bottom: 2em;
         }`;
         shadow.appendChild(wrapper);
         shadow.appendChild(style);
