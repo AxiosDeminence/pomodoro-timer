@@ -243,7 +243,7 @@ describe('setting popup and timer', () => {
         cy.visit('http://127.0.0.1:5500/source/src/index.html');
     });
 
-    it.only(('set time while timer is runing, stop and reset the timer'), () => {
+    it(('set time while timer is runing, stop and reset the timer'), () => {
         // start the timer
         cy.get('#start-btn').trigger('click');
         cy.get('#timer_display_duration').should('not.have.text', '25:00');
@@ -278,15 +278,19 @@ describe('setting popup and timer', () => {
         cy.tick(181000);
         cy.get('#timer_display_duration').should('have.text', '1:59');
         // test when class are toggled
+        cy.get('#start-btn').trigger('click');
+        cy.get('#start-btn').trigger('click');
+        cy.get('#pomo-btn').invoke('attr', 'class', '');
+        cy.tick(180000);
         cy.get('#pomo-btn').invoke('attr', 'class', 'toggle');
-        cy.get('#break-btn').invoke('attr', 'class', 'toggle');
-        cy.tick(181000);
-        cy.tick(59000);
-        cy.tick(180000);
         cy.tick(60000);
         cy.tick(180000);
         cy.tick(60000);
         cy.tick(180000);
+        cy.tick(60000);
+        cy.tick(180000);
+        cy.get('#pomo-btn').invoke('attr', 'class', 'toggle');
+        cy.tick(1000);
         cy.get('#timer_display_duration').should('have.text', '1:59');
     });
 
@@ -589,5 +593,23 @@ describe(('keyboard shortcut and focus mode'), () => {
         cy.get('body').type('a');
         cy.get('task-popup').shadow()
             .find('#add-task-popup').should('have.css', 'display', 'none');
+    });
+
+    it(('when task-pop is undefined'), () => {
+        cy.get('#focus-button').click();
+        cy.get('task-popup').shadow()
+            .find('#add-task-popup').invoke('attr', 'style', 'display: inline');
+        cy.get('body').type('s');
+        cy.get('#timer_display_duration').should('have.text', '25:00');
+        cy.get('reset-popup').shadow()
+            .find('#reset-confirm-popup').should('have.css', 'display', 'none');
+        cy.get('help-popup').shadow()
+            .find('#help-popup')
+            .should('have.css', 'display', 'none');
+        cy.get('settings-popup').shadow()
+            .find('#settings-confirm-popup').should('have.css', 'display', 'none');
+        cy.url().should(() => {
+            expect(localStorage.getItem('state')).contains('default');
+        });
     });
 });
