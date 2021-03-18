@@ -80,6 +80,7 @@
       "text",
       "json",
       "lcov"
-    ]
+    ],
+    "exclude": "src/instrumented"
   }
 }
