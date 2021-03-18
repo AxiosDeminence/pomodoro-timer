@@ -43,12 +43,13 @@
     "jest-localstorage-mock": "^2.4.7",
     "jsdoc": "^3.6.6",
     "lint-staged": "^10.5.4",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "jsdoc": "^3.6.6"
   },
   "jest": {
     "verbose": true,
     "collectCoverage": true,
-    "coverageDirectory": "coverage/jest-coverage",
+    "coverageDirectory": "coverage/jest",
     "testEnvironment": "jest-environment-jsdom-sixteen",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"

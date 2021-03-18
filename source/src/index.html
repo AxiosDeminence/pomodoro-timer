@@ -13,7 +13,6 @@
     <div id="container">
         <header>
             <h1 id="header-name">Pomodoro Timer</h1>
-            <!-- Header Buttons -->
             <div id="header-buttons">
                 <ul>
                     <li>
@@ -38,19 +37,15 @@
             </div>
         </header>
         <div id="pomodoro-timer">
-            <!--Adds Pomo and Break buttons-->
             <div id="timer-btns" class="timer-buttons">
                 <button id="pomo-btn"> Pomo</button>
                 <button id="break-btn"> Break</button>
             </div>
-            <!--Adds empty border to create distance between Pomo/Break buttons and Timer display-->
             <div class="empty-space-border">
             </div>
-            <!--Adds Timer display-->
             <div id="timer_display" class="timer-value">
                 <div id="timer_display_duration">25:00</div>
             </div>
-            <!--Adds Start and Reset buttons-->
             <div id="timer-control-btns" class="timer-control-buttons">
                 <button id="start-btn">Start</button>
             </div>
@@ -58,26 +53,15 @@
                 <h2 id='select-focus'></h2>
             </div>
         </div>
-        <!-- Divider -->
-        <!-- <img src="./icons/dash.svg" id="dash"> -->
-        <!--Task List-->
         <div id="task-list">
             <h2 id="up-next">Up Next</h2>
             <ul id="task-list-elements">
             </ul>
-            <!-- <div id="popup-button"> -->
             <button id="task-popup-btn"> <img src="icons/plus.svg" id="plus"></button>
-            <!-- </div> -->
         </div>
-        <!-- Popup button opens popup to add task -->
-        <!-- <div id="popup-button">
-            <button id="task-popup-btn"> <img src="icons/plus.svg" id="plus"></button>
-        </div> -->
-
-        <footer>
+        <!-- <footer>
             <span id='help-info'>Click on 'Help' or press 'h' for more info </span>
-            <!-- <span id='group-credit'>Designed and developed by Runtime Terror</span> -->
-        </footer>
+        </footer> -->
     </div>
     <script>
         // Render blocking JS:
@@ -85,7 +69,6 @@
             document.body.classList.add("dark-theme");
         }
         if (localStorage.getItem("state") === 'focus') {
-            document.getElementById('popup-button').classList.add('state');
             document.getElementById('task-list').classList.add('state');
             document.getElementById('pomodoro-timer').classList.add('state');
             document.getElementById('focus-task').classList.add('state');

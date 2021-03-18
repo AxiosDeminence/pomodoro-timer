@@ -7,22 +7,16 @@ class HelpPopUp extends HTMLElement {
     constructor() {
         super();
         const shadow = this.attachShadow({ mode: 'open' });
-        // use div as wrapper
         const wrapper = document.createElement('div');
         wrapper.setAttribute('id', 'help-popup');
-        // close icon
         const close = wrapper.appendChild(document.createElement('img'));
         close.setAttribute('src', 'icons/close.svg');
         close.setAttribute('id', 'close-icon');
-        // title
         const title = wrapper.appendChild(document.createElement('h3'));
         title.innerHTML = 'Help';
-        // event listener for close icon
         close.addEventListener('click', this.closePopUp.bind(this));
-
         const helpContainer = wrapper.appendChild(document.createElement('div'));
         helpContainer.setAttribute('id', 'help-container');
-
         const instructionsDiv = helpContainer.appendChild(document.createElement('div'));
         instructionsDiv.setAttribute('id', 'how-to');
         const howTo = instructionsDiv.appendChild(document.createElement('h4'));
@@ -218,7 +212,7 @@ window.addEventListener('load', () => {
         btnSound.play();
         // this makes sure any popup is closed before opening current popup
         const popups = Array.from(document.getElementsByClassName('popup'));
-        for (let i = 0; i < popups.length; i++) {
+        for (let i = 0; i < popups.length; i += 1) {
             popups[i].closePopUp();
         }
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:block');

@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let theme; // UI theme
     let volume; // default volume -> initialized to 50
     let state; // state -> initialized to 'default'
+  
     if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
         tasks = [];
         id = 0;
@@ -19,12 +20,6 @@ window.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('state', state);
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
-        // theme = localStorage.getItem('theme');
-        // state = localStorage.getItem('state');
-        // // save dark theme on refresh
-        // if (theme === 'dark') {
-        //     document.body.classList.add('dark-theme');
-        // }
     }
     // create task items if exists in local storage
     for (let i = 0; i < tasks.length; i += 1) {
@@ -44,9 +39,3 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
-// Uncomment below code to clear local storage on refresh -- Useful for debugging
-// window.onbeforeunload = function() {
-//     localStorage.clear();
-//     return '';
-// };

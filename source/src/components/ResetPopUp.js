@@ -184,7 +184,7 @@ window.addEventListener('load', () => {
         btnSound.play();
         // this makes sure any popup is closed before opening current popup
         const popups = Array.from(document.getElementsByClassName('popup'));
-        for (let i = 0; i < popups.length; i++) {
+        for (let i = 0; i < popups.length; i += 1) {
             popups[i].closePopUp();
         }
         resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
