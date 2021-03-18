@@ -1,0 +1,43 @@
+{
+   "lambdatest_auth": {
+      "username": "mel001",
+      "access_key": "Lf8XSZ9v4CnOM9reapsTgLuNkiOb13mAgzH3rh8NaXPssyKx6Z"
+   },
+   "browsers": [
+      {
+         "browser": "Chrome",
+         "platform": "MacOS Catalina",
+         "versions": [
+            "86.0","85","84"
+         ]
+      },
+      {
+         "browser": "Firefox",
+         "platform": "MacOS Catalina",
+         "versions": [
+            "82.0", "81","80"
+         ]
+      },
+      {
+         "browser": "MicrosoftEdge",
+         "platform": "MacOS Catalina",
+         "versions": [
+            "88.0","87.0","86.0"
+         ]
+      }
+   ],
+   "run_settings": {
+      "cypress_config_file": "cypress.json",
+      "build_name": "Cross Browser MacOS Catalina",
+      "parallels": 1,
+      "ignore_files": "",
+      "specs": "cypress/integration/pomo-tests.js",
+      "npm_dependencies": {
+         "cypress": "6.1.0"
+      }
+   },
+   "tunnel_settings": {
+      "tunnel": false,
+      "tunnelName": null
+   }
+}
