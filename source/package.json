@@ -33,6 +33,7 @@
     "cypress": "^6.5.0",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.3",
     "husky": "^4.3.8",
@@ -40,14 +41,14 @@
     "istanbul-lib-coverage": "^3.0.0",
     "jest": "^26.6.3",
     "jest-localstorage-mock": "^2.4.7",
+    "jsdoc": "^3.6.6",
     "lint-staged": "^10.5.4",
-    "nyc": "^15.1.0",
-    "jsdoc": "^3.6.6"
+    "nyc": "^15.1.0"
   },
   "jest": {
     "verbose": true,
     "collectCoverage": true,
-    "coverageDirectory": "coverage/jest",
+    "coverageDirectory": "coverage/jest-coverage",
     "testEnvironment": "jest-environment-jsdom-sixteen",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
@@ -79,6 +80,7 @@
       "text",
       "json",
       "lcov"
-    ]
+    ],
+    "exclude": "src/instrumented"
   }
 }

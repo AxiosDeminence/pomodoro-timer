@@ -209,7 +209,6 @@ describe(('switch mode'), () => {
         // 3
         jest.advanceTimersByTime(180000);
         jest.runOnlyPendingTimers();
-        
 
         expect(display.innerHTML).toBe('1:59');
 
@@ -250,8 +249,6 @@ describe(('switch mode'), () => {
         pomoButton.setAttribute('class', 'toggle');
         breakButton.setAttribute('class', 'toggle');
         jest.runOnlyPendingTimers();
-
-        
 
         expect(display.innerHTML).toBe('1:59');
 
@@ -298,8 +295,6 @@ describe(('keyboard input'), () => {
                 </ul>
             </div>
         `;
-        
-        
     });
 
     afterEach(() => {
@@ -309,7 +304,6 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press F toggles focus mode'), () => {
-
         require('../src/scripts/Timer');
         require('../src/scripts/FocusMode');
         localStorage.setItem('state', 'default');
@@ -327,16 +321,16 @@ describe(('keyboard input'), () => {
         helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:none');
         document.body.appendChild(helpPopUp);
 
-        let eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
+        const eventObj = document.createEventObject ? document.createEventObject() : document.createEvent('Events');
         if (eventObj.initEvent) {
             eventObj.initEvent('keyup', true, true);
         }
         eventObj.code = 'KeyF';
-        document.body.dispatchEvent(eventObj); 
-        
+        document.body.dispatchEvent(eventObj);
+
         expect(localStorage.getItem('state')).toBe('focus');
 
-        document.body.dispatchEvent(eventObj); 
+        document.body.dispatchEvent(eventObj);
 
         expect(localStorage.getItem('state')).toBe('default');
     });

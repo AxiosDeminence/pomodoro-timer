@@ -42,9 +42,9 @@ test('Reads task list and creates one task correctly', () => {
     expect(document.getElementById('task-list-elements').children).toHaveLength(1);
 
     const taskItem = document.getElementById('task-list-elements').children[0];
-    expect(taskItem.getAttribute('checked')).toBe("false");
+    expect(taskItem.getAttribute('checked')).toBe('false');
     expect(taskItem.id).toBe('0');
-    expect(taskItem.getAttribute('text')).toBe("test_task");
+    expect(taskItem.getAttribute('text')).toBe('test_task');
     expect(taskItem.getAttribute('focused')).toBe('false');
 });
 

@@ -12,22 +12,21 @@ jobs:
 
       # installs the npm modules
       - name: Install modules
-        run: npm --prefix source/ install 
-        
+        run: npm --prefix source/ install
+
       # lint
       - name: Run linter
         run: npm --prefix source/ run lint
 
   test:
-  
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       #installs the npm modules
       - name: Install modules
         run: npm --prefix source/ install
-        
+
       # run the test suite
       - name: Run tests
         run: npm --prefix source/ test
