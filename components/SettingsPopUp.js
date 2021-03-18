@@ -63,8 +63,8 @@ class SettingsPopUp extends HTMLElement {
         pomoInput.setAttribute('type', 'number');
         pomoInput.setAttribute('id', 'pomo-length-input');
         pomoInput.setAttribute('value', parseInt(localStorage.getItem('pomo-length'), 10));
-        pomoInput.setAttribute('min', 1);
-        pomoInput.setAttribute('max', 60);
+        pomoInput.setAttribute('min', 1); // values subj. to change
+        pomoInput.setAttribute('max', 60); // values subj. to change
         pomoInput.setAttribute('oninput', "validity.valid||(value='');");
         const shortBreakWrapper = session.appendChild(document.createElement('div'));
         shortBreakWrapper.setAttribute('class', 'session-inputs');
@@ -75,8 +75,8 @@ class SettingsPopUp extends HTMLElement {
         shortBreakInput.setAttribute('type', 'number');
         shortBreakInput.setAttribute('id', 'short-break-input');
         shortBreakInput.setAttribute('value', parseInt(localStorage.getItem('short-break-length'), 10));
-        shortBreakInput.setAttribute('min', 1);
-        shortBreakInput.setAttribute('max', 60);
+        shortBreakInput.setAttribute('min', 1); // values subj. to change
+        shortBreakInput.setAttribute('max', 60); // values subj. to change
         shortBreakInput.setAttribute('oninput', "validity.valid||(value='');");
         const longBreakWrapper = session.appendChild(document.createElement('div'));
         longBreakWrapper.setAttribute('class', 'session-inputs');
@@ -87,8 +87,8 @@ class SettingsPopUp extends HTMLElement {
         longBreakInput.setAttribute('type', 'number');
         longBreakInput.setAttribute('id', 'long-break-input');
         longBreakInput.setAttribute('value', parseInt(localStorage.getItem('long-break-length'), 10));
-        longBreakInput.setAttribute('min', 1);
-        longBreakInput.setAttribute('max', 60);
+        longBreakInput.setAttribute('min', 1); // values subj. to change
+        longBreakInput.setAttribute('max', 60); // values subj. to change
         longBreakInput.setAttribute('oninput', "validity.valid||(value='');");
         // separate div for dark mode setting
         const darkModeDiv = wrapper.appendChild(document.createElement('div'));

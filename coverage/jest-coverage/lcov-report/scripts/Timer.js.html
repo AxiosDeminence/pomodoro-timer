@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>113/113</span>
+                <span class='fraction'>112/112</span>
             </div>
         
             
@@ -232,9 +232,7 @@
 <a name='L173'></a><a href='#L173'>173</a>
 <a name='L174'></a><a href='#L174'>174</a>
 <a name='L175'></a><a href='#L175'>175</a>
-<a name='L176'></a><a href='#L176'>176</a>
-<a name='L177'></a><a href='#L177'>177</a>
-<a name='L178'></a><a href='#L178'>178</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">26x</span>
+<a name='L176'></a><a href='#L176'>176</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-yes">26x</span>
@@ -388,7 +386,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">59x</span>
@@ -399,7 +396,6 @@
 <span class="cline-any cline-yes">59x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">53x</span>
 <span class="cline-any cline-yes">27x</span>
@@ -420,7 +416,7 @@ let timer;
 let timerStatus = 'pomo';
 let breakCounter = 0;
 &nbsp;
-let stopCheck = setInterval(stopChecker, 500);
+const stopCheck = setInterval(stopChecker, 500);
 &nbsp;
 // assign default session lengths to local storage
 if (localStorage.getItem('pomo-length') === null) {
@@ -499,7 +495,7 @@ async function stopChecker() {
     if (localStorage.getItem('stop') == 'true') {
         stop();
         localStorage.setItem('stop', 'false');
-    } 
+    }
 }
 &nbsp;
 async function start() {
@@ -536,53 +532,51 @@ window.addEventListener('keyup', (event) =&gt; {
     const helpDis = document.querySelector('help-popup').shadowRoot.getElementById('help-popup').style.display;
     if (!addDis || addDis === 'none') {
         switch (event.code) {
-            case 'KeyF':
-                btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
-                btnSound.play();
-                document.getElementById('focus-button').click();
-                break;
-            case 'KeyS':
-                startButton.click();
-                break;
-            case 'KeyR':
-                document.getElementById('reset-button').click();
-                break;
-            case 'KeyH':
-                document.getElementById('help-button').click();
-                break;
-            case 'Semicolon':
-                document.getElementById('setting-button').click();
-                break;
-            case 'Escape':
-                if (setDis === 'block') {
-                    document.querySelector('body &gt; settings-popup').shadowRoot.querySelector('#close-icon').click();
-                } else if (resDis === 'block') {
-                    document.querySelector('body &gt; reset-popup').shadowRoot.querySelector('#close-icon').click();
-                } else if (helpDis === 'block') {
-                    document.querySelector('body &gt; help-popup').shadowRoot.querySelector('#close-icon').click();
-                }
-                break;
-            case 'KeyA':
-                const state = localStorage.getItem('state');
-                if (state === 'default')
-                    document.getElementById('task-popup-btn').click();
-                break;
-            case 'Enter':
-                if (setDis === 'block') {
-                    document.querySelector('body &gt; settings-popup').shadowRoot.querySelector('#confirm-settings-btn').click();
-                } else if (resDis === 'block') {
-                    document.querySelector('body &gt; reset-popup').shadowRoot.querySelector('#confirm-reset-btn').click();
-                }
-                break;
-            default:
-                break;
+        case 'KeyF':
+            btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
+            btnSound.play();
+            document.getElementById('focus-button').click();
+            break;
+        case 'KeyS':
+            startButton.click();
+            break;
+        case 'KeyR':
+            document.getElementById('reset-button').click();
+            break;
+        case 'KeyH':
+            document.getElementById('help-button').click();
+            break;
+        case 'Semicolon':
+            document.getElementById('setting-button').click();
+            break;
+        case 'Escape':
+            if (setDis === 'block') {
+                document.querySelector('body &gt; settings-popup').shadowRoot.querySelector('#close-icon').click();
+            } else if (resDis === 'block') {
+                document.querySelector('body &gt; reset-popup').shadowRoot.querySelector('#close-icon').click();
+            } else if (helpDis === 'block') {
+                document.querySelector('body &gt; help-popup').shadowRoot.querySelector('#close-icon').click();
+            }
+            break;
+        case 'KeyA':
+            const state = localStorage.getItem('state');
+            if (state === 'default') document.getElementById('task-popup-btn').click();
+            break;
+        case 'Enter':
+            if (setDis === 'block') {
+                document.querySelector('body &gt; settings-popup').shadowRoot.querySelector('#confirm-settings-btn').click();
+            } else if (resDis === 'block') {
+                document.querySelector('body &gt; reset-popup').shadowRoot.querySelector('#confirm-reset-btn').click();
+            }
+            break;
+        default:
+            break;
         }
-    }
-    else if (addDis === 'block') {
+    } else if (addDis === 'block') {
         if (event.code === 'Enter') {
-            document.querySelector("body &gt; task-popup").shadowRoot.querySelector("#add-task-btn").click();
+            document.querySelector('body &gt; task-popup').shadowRoot.querySelector('#add-task-btn').click();
         } else if (event.code === 'Escape') {
-            document.querySelector("body &gt; task-popup").shadowRoot.querySelector("#close-icon").click();
+            document.querySelector('body &gt; task-popup').shadowRoot.querySelector('#close-icon').click();
         } else {
         }
     } else {
@@ -595,7 +589,7 @@ window.addEventListener('keyup', (event) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Mar 18 2021 06:26:34 GMT+0000 (Coordinated Universal Time)
+                at Thu Mar 18 2021 07:04:01 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

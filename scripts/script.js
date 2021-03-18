@@ -1,11 +1,12 @@
 // require('../components/TaskItem');
 // const TaskItem = require('../components/TaskItem');
 window.addEventListener('DOMContentLoaded', () => {
-    let tasks;
-    let id;
-    let theme;
-    let volume;
-    let state;
+    let tasks; // holds list nodes in local storage
+    let id; // id counter for task items
+    let theme; // UI theme
+    let volume; // default volume -> initialized to 50
+    let state; // state -> initialized to 'default'
+
     if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
         tasks = [];
         id = 0;
