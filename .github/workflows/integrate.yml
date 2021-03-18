@@ -42,7 +42,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
-          project: ./source
+          project: source
+          working-directory: source
           spec: source/cypress/integration/pomo-tests.js
           browser: chrome
           start: npm start
