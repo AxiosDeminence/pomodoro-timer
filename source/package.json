@@ -10,7 +10,8 @@
     "start": "http-server src -p=5500",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "instrument": "npx nyc instrument --compact=false src src/instrumented"
   },
   "repository": {
     "type": "git",
@@ -82,5 +83,10 @@
       "lcov"
     ],
     "exclude": "src/instrumented"
+  },
+  "husky": {
+     "hooks": {
+       "pre-commit": "npm run lint && npm run instrument"
+     }
   }
 }

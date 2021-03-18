@@ -1,4 +1,4 @@
-import TaskItem from '../src/components/TaskItem';
+import '../src/components/TaskItem';
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {
@@ -163,7 +163,7 @@ describe(('focus task'), () => {
         expect(task2.parentElement).toBe(focuse);
     });
 
-    // test.only(('change focus task to a task that does not exist in localStorage does nothing'), () => {
+    // test.only(('change focus task to task does not exist in localStorage does nothing'), () => {
     //     const task1 = document.getElementById('0');
     //     task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
 

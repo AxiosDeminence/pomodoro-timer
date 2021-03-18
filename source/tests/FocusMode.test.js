@@ -28,7 +28,7 @@ test('Switch state from default to focus', () => {
     require('../src/scripts/FocusMode');
 
     localStorage.setItem('state', 'default');
-    const popUpBtn = document.getElementById('popup-button');
+    // const popUpBtn = document.getElementById('popup-button');
     const taskListDiv = document.getElementById('task-list');
     const pomoDiv = document.getElementById('pomodoro-timer');
     const focusTask = document.getElementById('focus-task');
@@ -48,7 +48,7 @@ test('Switch state from focus to default, title updates properly', () => {
     require('../src/scripts/FocusMode');
 
     localStorage.setItem('state', 'focus');
-    const popUpBtn = document.getElementById('popup-button');
+    // const popUpBtn = document.getElementById('popup-button');
     const taskListDiv = document.getElementById('task-list');
     const pomoDiv = document.getElementById('pomodoro-timer');
     const focusTask = document.getElementById('focus-task');
@@ -72,7 +72,7 @@ test('Switch state from focus to default, title unchanges properly', () => {
     require('../src/scripts/FocusMode');
 
     localStorage.setItem('state', 'focus');
-    const popUpBtn = document.getElementById('popup-button');
+    // const popUpBtn = document.getElementById('popup-button');
     const taskListDiv = document.getElementById('task-list');
     const pomoDiv = document.getElementById('pomodoro-timer');
     const focusTask = document.getElementById('focus-task');

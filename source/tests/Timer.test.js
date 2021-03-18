@@ -1,8 +1,8 @@
-import ResetPopUp from '../src/components/ResetPopUp';
-import SettingsPopUp from '../src/components/SettingsPopUp';
-import TaskPopUp from '../src/components/TaskPopUp.js';
-import TaskItem from '../src/components/TaskItem';
-import HelpPopUp from '../src/components/HelpPopUp';
+import '../src/components/ResetPopUp';
+import '../src/components/SettingsPopUp';
+import '../src/components/TaskPopUp';
+import '../src/components/TaskItem';
+import '../src/components/HelpPopUp';
 
 require('regenerator-runtime/runtime');
 
@@ -358,12 +358,12 @@ describe(('keyboard input'), () => {
         eventObj.code = 'KeyS';
         document.body.dispatchEvent(eventObj);
 
-        const start_button = document.getElementById('start-btn');
+        const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');
 
         jest.advanceTimersByTime(5000);
 
-        expect(start_button.innerHTML).toBe('Stop');
+        expect(startButton.innerHTML).toBe('Stop');
         expect(display.innerHTML).toBe('24:55');
     });
 
@@ -410,12 +410,12 @@ describe(('keyboard input'), () => {
         eventObj.code = 'KeyS';
         document.body.dispatchEvent(eventObj);
 
-        const start_button = document.getElementById('start-btn');
+        const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer_display_duration');
 
         jest.advanceTimersByTime(5000);
 
-        expect(start_button.innerHTML).toBe('Start');
+        expect(startButton.innerHTML).toBe('Start');
         expect(display.innerHTML).toBe('25:00');
     });
 
@@ -806,7 +806,7 @@ describe(('keyboard input'), () => {
         document.body.dispatchEvent(eventObj);
 
         // new task test_task is added to list of tasks
-        expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\",\"focused\":false}]');
+        expect(localStorage.getItem('tasks')).toBe('[{"id":"0","checked":false,"text":"test_task","focused":false}]');
         // id is updated
         expect(localStorage.getItem('id')).toBe('1');
         // input is set back to empty string

@@ -1,4 +1,4 @@
-import SettingsPopUp from '../src/components/SettingsPopUp';
+import '../src/components/SettingsPopUp';
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 beforeEach(() => {

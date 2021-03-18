@@ -1,4 +1,4 @@
-import TaskPopUp from '../src/components/TaskPopUp';
+import '../src/components/TaskPopUp';
 
 window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 // jest.mock('../src/components/TaskItem');
@@ -33,7 +33,7 @@ test('Adding a task called test_task with the addButton correctly updates localS
     button.click();
 
     // new task test_task is added to list of tasks
-    expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\",\"focused\":false}]');
+    expect(localStorage.getItem('tasks')).toBe('[{"id":"0","checked":false,"text":"test_task","focused":false}]');
     // id is updated
     expect(localStorage.getItem('id')).toBe('1');
     // input is set back to empty string

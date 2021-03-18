@@ -40,7 +40,7 @@ class TaskItem extends HTMLElement {
         const ul = document.getElementById('task-list-elements');
         const title = document.getElementById('select-focus');
         const focusDiv = document.getElementById('focus-task');
-      
+
         // check if task is a current focus task item
         if (this.getAttribute('focused').toLowerCase() === 'true') {
             // append to end of list and set 'focused' to false
@@ -56,7 +56,8 @@ class TaskItem extends HTMLElement {
                 const list = Array.from(ul.getElementsByTagName('task-item'));
                 let allDone = true;
                 for (let i = 0; i < list.length; i += 1) {
-                    // if the next task item is unchecked, remove from task list and append to focus div
+                    // if the next task item is unchecked
+                    // remove from task list and append to focus div
                     if (list[i].getAttribute('checked').toLowerCase() === 'false') {
                         ul.removeChild(list[i]);
                         focusDiv.appendChild(list[i]);
