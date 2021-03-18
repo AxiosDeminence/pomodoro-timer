@@ -28,9 +28,17 @@ jobs:
         run: cp -av src/* build
 
       - name: Build Jest coverage report
-        run: |
-          npm test
-          cp -av coverage build
+        run: npm test
+
+      - name: Build Cypress coverage report
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          working-directory: source
+          browser: chrome
+          start: npm start
+
+      - run: cp -av coverage build
 
       - name: Build docs
         uses: andstor/jsdoc-action@v1
