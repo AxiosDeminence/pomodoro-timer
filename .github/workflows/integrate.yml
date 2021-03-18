@@ -5,6 +5,30 @@ on:
   pull_request:
 
 jobs:
+  instrument:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # installs the npm modules
+      - name: Install modules
+        run: npm --prefix source/ install
+
+      - name: Instrument JS code
+        run: npx nyc instrument --compact=false src src/instrumented
+      
+      - name: Commit changes
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Update instrumented code" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -12,22 +36,21 @@ jobs:
 
       # installs the npm modules
       - name: Install modules
-        run: npm --prefix source/ install 
-        
+        run: npm --prefix source/ install
+
       # lint
       - name: Run linter
         run: npm --prefix source/ run lint
 
   test:
-  
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       #installs the npm modules
       - name: Install modules
         run: npm --prefix source/ install
-        
+
       # run the test suite
       - name: Run tests
         run: npm --prefix source/ test
