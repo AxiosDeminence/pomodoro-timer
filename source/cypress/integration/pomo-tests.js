@@ -1,7 +1,7 @@
 /* eslint-disable jest/expect-expect */
 // returning false here prevents Cypress from
 // failing the test
-Cypress.on('uncaught:exception', (err, runnable) => false);
+Cypress.on('uncaught:exception', () => false);
 describe(('task list and timer'), () => {
     beforeEach(() => {
         cy.visit('http://127.0.0.1:5500/source/src/index.html');
