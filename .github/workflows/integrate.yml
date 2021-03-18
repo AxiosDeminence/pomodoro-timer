@@ -36,7 +36,9 @@ jobs:
 
       # installs the npm modules
       - name: Install modules
-        run: npm --prefix source/ install
+        run: | 
+          cd source
+          npm --prefix source/ install
 
       # lint
       - name: Run linter
