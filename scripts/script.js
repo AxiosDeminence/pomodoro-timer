@@ -1,32 +1,40 @@
 // require('../components/TaskItem');
-
 // const TaskItem = require('../components/TaskItem');
-
 window.addEventListener('DOMContentLoaded', () => {
-    let tasks; // holds list nodes in local storage
-    let id; // id counter for task items
-
+    let tasks;
+    let id;
+    let theme;
+    let volume;
+    let state;
     if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
         tasks = [];
         id = 0;
+        theme = 'light';
+        volume = 50;
+        state = 'default';
         localStorage.setItem('tasks', JSON.stringify(tasks));
         localStorage.setItem('id', `${id}`);
-        // console.log('tasks:',localStorage.getItem('tasks'),'\nid:',localStorage.getItem('id'));
+        localStorage.setItem('theme', theme);
+        localStorage.setItem('volume', `${volume}`);
+        localStorage.setItem('state', state);
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
+    // create task items if exists in local storage
     for (let i = 0; i < tasks.length; i += 1) {
         const task = document.createElement('task-item');
+        const focusDiv = document.getElementById('focus-task');
+        const ul = document.getElementById('task-list-elements');
+        const title = document.getElementById('select-focus');
         task.setAttribute('id', tasks[i].id);
         task.setAttribute('checked', tasks[i].checked);
         task.setAttribute('text', tasks[i].text);
-        // new TaskItem(tasks[i]);
-        document.getElementById('task-list-elements').appendChild(task);
+        task.setAttribute('focused', tasks[i].focused);
+        if (tasks[i].focused === true) {
+            title.innerHTML = 'Focusing on:';
+            focusDiv.appendChild(task);
+        } else {
+            ul.appendChild(task);
+        }
     }
 });
-// Uncomment below code to clear local storage on refresh -- Useful for debugging
-// window.onbeforeunload = function() {
-//     // localStorage.removeItem('tasks');
-//     localStorage.clear();
-//     return '';
-// };

@@ -1,74 +1,87 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="styles/index.css">
+    <!-- Below is temporary solution to avoid 404 error on Chrome -->
+    <link rel="shortcut icon" href="#">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="container">
         <header>
             <h1 id="header-name">Pomodoro Timer</h1>
-            <!-- Header Buttons -->
             <div id="header-buttons">
                 <ul>
                     <li>
+                        <button class='top-buttons' id='focus-button'>
+                            <img src="icons/half-moon.svg" id="focus" class="top-button-img" alt="focus">
+                        </button>
+                    </li>
+                    <li>
                         <button class="top-buttons" id="reset-button">
                             <img src="icons/reset.svg" id="reset" class="top-button-img" alt="reset">
-                            <p class="top-button-text">Reset</p>
                         </button>
                     </li>
                     <li><button class="top-buttons" id="setting-button">
                             <img src="icons/settings.svg" id="gear" class="top-button-img" alt="gear">
-                            <p class="top-button-text">Setting</p>
                         </button>
                     </li>
                     <li><button class="top-buttons" id="help-button">
                             <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
-                            <p class="top-button-text" id="text-help">Help</p>
                         </button>
                     </li>
                 </ul>
             </div>
         </header>
         <div id="pomodoro-timer">
-            <!--Adds Pomo and Break buttons-->
-            <div style="text-align: center;" id = "timer-btns" class="timer-buttons">
-                <button id = "pomo-btn"> Pomo</button>
-                <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
+            <div id="timer-btns" class="timer-buttons">
+                <button id="pomo-btn"> Pomo</button>
+                <button id="break-btn"> Break</button>
             </div>
-            <!--Adds empty border to create distance between Pomo/Break buttons and Timer display-->
-            <div style="text-align: center;" class="empty-space-border">
+            <div class="empty-space-border">
             </div>
-            <!--Adds Timer display-->
-            <div style="text-align: center;" id="timer_display" class="timer-value">
+            <div id="timer_display" class="timer-value">
                 <div id="timer_display_duration">25:00</div>
             </div>
-            <!--Adds Start and Reset buttons-->
-            <div style="text-align: center;" id = "timer-control-btns" class="timer-control-buttons">
-                <button id = "start-btn">Start</button> 
+            <div id="timer-control-btns" class="timer-control-buttons">
+                <button id="start-btn">Start</button>
+            </div>
+            <div id='focus-task'>
+                <h2 id='select-focus'></h2>
             </div>
         </div>
-        <!-- Divider -->
-        <img src="icons/dash.svg" id="dash">
-        <!--Task List-->
         <div id="task-list">
             <h2 id="up-next">Up Next</h2>
             <ul id="task-list-elements">
-            </ul>             
-        </div>
-        <!-- Popup button opens popup to add task -->
-        <div id="popup-button">
+            </ul>
             <button id="task-popup-btn"> <img src="icons/plus.svg" id="plus"></button>
         </div>
+        <!-- <footer>
+            <span id='help-info'>Click on 'Help' or press 'h' for more info </span>
+        </footer> -->
     </div>
+    <script>
+        // Render blocking JS:
+        if (localStorage.getItem("theme") === 'dark') {
+            document.body.classList.add("dark-theme");
+        }
+        if (localStorage.getItem("state") === 'focus') {
+            document.getElementById('task-list').classList.add('state');
+            document.getElementById('pomodoro-timer').classList.add('state');
+            document.getElementById('focus-task').classList.add('state');
+        }
+    </script>
     <script src="scripts/script.js"></script>
     <script src="scripts/Timer.js"></script>
+    <script src="scripts/FocusMode.js"></script>
     <script src="components/TaskItem.js"></script>
     <script src="components/TaskPopUp.js"></script>
     <script src="components/ResetPopUp.js"></script>
     <script src="components/SettingsPopUp.js"></script>
+    <script src="components/HelpPopUp.js"></script>
 </body>
+
 </html>

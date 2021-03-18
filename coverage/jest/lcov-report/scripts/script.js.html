@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>27/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
@@ -89,70 +89,94 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// require('../components/TaskItem');
-&nbsp;
 // const TaskItem = require('../components/TaskItem');
-&nbsp;
 window.addEventListener('DOMContentLoaded', () =&gt; {
-    let tasks; // holds list nodes in local storage
-    let id; // id counter for task items
-&nbsp;
+    let tasks;
+    let id;
+    let theme;
+    let volume;
+    let state;
     if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
         tasks = [];
         id = 0;
+        theme = 'light';
+        volume = 50;
+        state = 'default';
         localStorage.setItem('tasks', JSON.stringify(tasks));
         localStorage.setItem('id', `${id}`);
-        // console.log('tasks:',localStorage.getItem('tasks'),'\nid:',localStorage.getItem('id'));
+        localStorage.setItem('theme', theme);
+        localStorage.setItem('volume', `${volume}`);
+        localStorage.setItem('state', state);
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
+    // create task items if exists in local storage
     for (let i = 0; i &lt; tasks.length; i += 1) {
         const task = document.createElement('task-item');
+        const focusDiv = document.getElementById('focus-task');
+        const ul = document.getElementById('task-list-elements');
+        const title = document.getElementById('select-focus');
         task.setAttribute('id', tasks[i].id);
         task.setAttribute('checked', tasks[i].checked);
         task.setAttribute('text', tasks[i].text);
-        // new TaskItem(tasks[i]);
-        document.getElementById('task-list-elements').appendChild(task);
+        task.setAttribute('focused', tasks[i].focused);
+        if (tasks[i].focused === true) {
+            title.innerHTML = 'Focusing on:';
+            focusDiv.appendChild(task);
+        } else {
+            ul.appendChild(task);
+        }
     }
 });
-// Uncomment below code to clear local storage on refresh -- Useful for debugging
-// window.onbeforeunload = function() {
-//     // localStorage.removeItem('tasks');
-//     localStorage.clear();
-//     return '';
-// };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -160,7 +184,7 @@ window.addEventListener('DOMContentLoaded', () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Mar 18 2021 05:49:14 GMT+0000 (Coordinated Universal Time)
+                at Thu Mar 18 2021 06:26:34 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

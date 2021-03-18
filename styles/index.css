@@ -1,82 +1,76 @@
-html,
+html {
+    height: 100%;
+}
 body {
     padding: 0;
     margin: 0;
     font-family: 'Quicksand', sans-serif;
     background-color: #ffd5ca;
     box-sizing: border-box;
+    min-height: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#container {
+    min-height: 100%;
+    overflow: hidden;
 }
 header {
-    text-align: center;
-    margin-top: 10px;
+    margin-top: 1.275vh;
+    margin-bottom: 1.275vh;
     height: 15vh;
 }
 h1#header-name {
     display: inline-block;
     position: relative;
     color: #f36060;
-    font-size: 30px;
-    margin-bottom: 10px;
+    left: 10%;
+    font-size: 2.275vw;
+    font-weight: 500;
+    margin-bottom: 1.275vh;
 }
 #header-buttons {
     display: inline-block;
     position:absolute;
     right: 10%;
+    margin-top: 0.4vw;
 }
 #header-buttons  ul {
     list-style-type: none;
+    margin-bottom: 0;
 }
 #header-buttons ul li {
     display: inline-block;
-    margin-top: 3px;
 }
 .top-buttons {
     cursor: pointer;
     border-style: none;
-    border-radius: 4px;
+    border-radius: 10%;
     text-align: center;
     background-color:#f36060;
     color:#fff;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
     outline: none;
-    margin-left: 5px;
-    height: 35px;
+    margin-left: 0.5vw;
+    height: 2.875vw;
+    width: 3.125vw;
 }
 .top-buttons:hover {
     filter: brightness(105%);
     transform: scale(1.1);
 }
-#setting-button {
-    width: 87px;
-}
-#help-button {
-    width: 67px;
-}
-#reset-button {
-    width: 80px;
-}
 .top-button-img {
     display: inline-block;
     vertical-align: middle;
-    width: 20px;
-    height: 20px;
+    width: 1.6vw;
+    height: 1.6vw;
 }
 img#help {
-    width: 15px;
-    height: 15px;
+    width: 1.275vw;
+    height: 1.275vw;
 }
-img#reset {
-    padding-right: 2px;
-}
-.top-button-text {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0;
-    font-size: 1.05em;
-}
-#text-help {
-    padding-right: 2px;
+img#focus {
+    width: 2.375vw;
+    height: 2.375vw;
 }
 header:after {
     content:' ';
@@ -89,59 +83,34 @@ header:after {
 }
 #task-list {
     float: right;
-    width: 50%;
-    min-height: 0;
-    max-height: 400px;
-    margin-bottom: 10px;
-    overflow: auto;
+    width: 35%;
+    height: 80vh;
+    margin-right: 10%;
+    display: block;
 }
 #up-next {
     color: #f36060;
     text-align: center;
-    margin-right: 15%;
+    font-weight: 500;
+    font-size: 1.875vw;
+    margin: 0;
 }
 #pomodoro-timer {
     float: left;
-    width: 50%;
-    min-height: 420px;
+    width: 35%;
+    margin-left: 10%;
+    height: 80vh;
 }
 #task-list ul {
     list-style-type: none;
-}
-task-item {
-    cursor: pointer;
-    height: 50px;
-    position: relative;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    margin-right: 20%;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    padding-left: 10px  ;
-    background-color: #f36060;
-    color: white;
-    font-size: larger;
-    font-weight: 500;
-    border-style:none;
-}
-task-item:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-[checked = 'true'] {
-    background: #f3606060;
-    color: rgba(255, 255, 255, 0.651);
-    text-decoration: line-through;
-}
-#popup-button {
-    float: right;
-    width: 30%;
+    max-height: 80%;
+    overflow: auto;
+    padding: 0;
 }
 #task-popup-btn {
     cursor: pointer;
-    height: 40px;
-    width: 40px;
+    height: 3.5vw;
+    width: 3.5vw;
     border-style: none;
     border-radius: 50%;
     text-align: center;
@@ -149,39 +118,55 @@ task-item:hover {
     font-family: 'Quicksand', sans-serif;
     background-color: #f36060;
     outline: none;
+    margin: 0 auto;
+    display: block;
 }
 #task-popup-btn:hover {
     filter: brightness(105%);
     transform: scale(1.1);
 }
 #plus {
-    width: 20px;
+    width : 1.45vw;
     vertical-align: middle;
-    color: #fff;
 }
 img#dash {
     height: 500px;
     width: 12px;
     position: absolute;
-    right: 52%;
-    left: 48%;
+    right: 50%;
+    left: 50%;
 }
 /* Code BELOW is for Clock */
 /* CSS for Pomo/Break button dispaly */
+.timer-buttons {
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 0.25vh;
+}
 .timer-buttons button
 {
-    margin-top: 19px;
-    background-color: #f36060;
-    border: 0 solid #ffd5ca;
+    border: none;
     color: white;
-    padding: 10px 24px;
-    font-size: larger;
+    padding: 0.78125vw 1.875vw;
+    font-size: 1.5625vw;
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
     outline: none;
     display: inline;
     margin-right: -4.5px;
     margin-left: -0px;
+}
+#pomo-btn {
+    background-color: #f36060;
+}
+#pomo-btn.toggle {
+    background-color: #f3606060;
+}
+#break-btn {
+    background-color: #f3606060;
+}
+#break-btn.toggle {
+    background-color: #f36060;
 }
 /* This is here to create spacing between Pomo/Break and Timer Display */
 div.empty-space-border
@@ -192,43 +177,43 @@ div.empty-space-border
     border-color: #ffd5ca;
     border-width: thick;
     border-radius: 50px;
-
-    padding: 2px;
-    max-width:325px;
-    margin:0 auto;
+    text-align: center;
+    padding: 0.46875vw;
 }
 /* CSS for Clock Test and Border Surrounding it */
 div.timer-value
 {
-    font-size: 550%;
+    font-size: 6.5vw;
     background:#f36060;
     color: #fff;
     border-style: solid;
     border-color: #ffd5ca;
     border-width: thick;
-    border-radius: 50px;
-
-    margin: 100px;
-    padding: 50px;
-    max-width:325px;
+    border-radius: 3.90625vw;
+    text-align: center;
+    padding: 3.90625vw;
+    max-width: 25.390625vw;
     margin:0 auto;
 
 }
 /* CSS for Start/Reset Buttons */
+.timer-control-buttons {
+    text-align: center;
+}
 .timer-control-buttons button
 {
-    margin-top: 21px;
+    margin-top: 1.640625vw;
     background-color: #f36060; 
-    border: 1px solid #ffd5ca; 
+    border: none; 
     color: white; 
-    padding: 10px 24px; 
+    padding: 0.78125vw 1.875vw;
     cursor: pointer; 
-    font-size: x-large;
+    font-size: 1.953125vw;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 0.625vw;
     outline: none;
     font-family: 'Quicksand', sans-serif;
-    width: 200px;
+    width: 15.625vw;
 
 }
 /* CSS Code for diff color when hover over Start/Reset Button*/
@@ -236,33 +221,217 @@ div.timer-value
     transform: scale(1.1);
     filter: brightness(105%);
 }
-/* Animations */
-@media screen and (max-width: 1000px) {
-    .top-button-text {
-        display: none;
-    }
-    #setting-button {
-        width: 40px;
-    }
-    #help-button {
-        width: 40px;
-    }
-    #reset-button {
-        width: 40px;
-    }
+
+/* Dark Mode Styles */
+body.dark-theme {
+    background-color: #232b32;
 }
-@media screen and (max-width: 700px) {
-    header {
-        margin-top: 10px;
-        height: 15vh;
-        text-align: initial;
-    }
-    h1#header-name {
-        display: inline-block;
-        position: relative;
-        color: #f36060;
-        font-size: 30px;
-        margin-bottom: 10px;
-        margin-left: 10%;
-    }
+body.dark-theme h1#header-name {
+    color: #f5f6f7;
+}
+body.dark-theme .top-buttons {
+    background-color: #4a5568;
+    color: #f5f6f7;
+}
+body.dark-theme header:after {
+    border-bottom: solid 1px #9c9c9c;
+    
+}
+body.dark-theme .timer-buttons button {
+    color: #f5f6f7;
+}
+body.dark-theme #pomo-btn {
+    background-color: #4a5568;
+}
+body.dark-theme #pomo-btn.toggle {
+    background-color: #2d3848bf;
+}
+body.dark-theme #break-btn {
+    background-color: #2d3848bf;
+}
+body.dark-theme #break-btn.toggle {
+    background-color: #4a5568;
+}
+body.dark-theme div.empty-space-border {
+    background: #232b32;
+    border-color: #232b32;
+}
+body.dark-theme div.timer-value {
+    background: #4a5568;
+    color: #f5f6f7;
+    border-color: #232b32;
+}
+body.dark-theme .timer-control-buttons button{
+    background-color: #4a5568;
+    color: #f5f6f7;
+}
+body.dark-theme #select-focus {
+    color: #f5f6f7;
+}
+body.dark-theme #up-next {
+    color: #f5f6f7;
+}
+body.dark-theme #task-popup-btn {
+    background-color: #4a5568;
+}
+body.dark-theme #help-info {
+    color: #a7a7a7;
+}
+/* Task Items */
+body.dark-theme task-item {
+    color: #f5f6f7;
+    background-color: #4a5568;
+}
+body.dark-theme [checked='true'] {
+    background-color: #2d3848bf;
+    text-decoration: line-through;
+}
+/* Task Popup */
+body.dark-theme task-popup::part(close-icon) {
+    opacity: 1;
+    filter: contrast(0.2);
+}
+body.dark-theme task-popup::part(popup-wrapper) {
+    background-color: #3a4556;
+}
+body.dark-theme task-popup::part(add-task-h3) {
+    color: #f5f6f7;
+}
+body.dark-theme task-popup::part(task-input) {
+    background-color: #3a4556;
+    color: #f5f6f791;
+}
+body.dark-theme task-popup::part(btn-footer) {
+    background-color: #2d3848;
+}
+body.dark-theme task-popup::part(add-btn) {
+    background-color: #4a5568;
+}
+/* Reset Popup */
+body.dark-theme reset-popup::part(close-icon) {
+    opacity: 1;
+    filter:contrast(0.2)
+}
+body.dark-theme reset-popup::part(popup-wrapper) {
+    background-color: #3a4556;
+}
+body.dark-theme reset-popup::part(reset-confirm-h3) {
+    color: #f5f6f7;
+}
+body.dark-theme reset-popup::part(reset-content) {
+    color: #f5f6f7;
+}
+body.dark-theme reset-popup::part(btn-footer) {
+    background-color: #2d3848;
+}
+body.dark-theme reset-popup::part(confirm-btn) {
+    background-color: #4a5568;
+}
+/* Settings Popup */
+body.dark-theme settings-popup::part(close-icon) {
+    opacity: 1;
+    filter: contrast(0.2);
+}
+body.dark-theme settings-popup::part(settings-confirm-popup) {
+    background-color: #3a4556;
+}
+body.dark-theme settings-popup::part(settings-h3) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(timer-settings) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(session-labels) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(enable-dark-mode) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(btn-footer) {
+    background-color: #2d3848;
+}
+body.dark-theme settings-popup::part(confirm-btn) {
+    background-color: #4a5568;
+}
+body.dark-theme settings-popup::part(length-inputs) {
+    background-color: #4a5568;
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(sound-volume) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(volume-number) {
+    color: #f5f6f7;
+}
+body.dark-theme settings-popup::part(range-slider) {
+    background-color: #6a6a6a;
+}
+/* Help Popup */
+body.dark-theme help-popup::part(close-icon) {
+    opacity: 1;
+    filter: contrast(0.2);
+}
+body.dark-theme help-popup::part(popup-wrapper) {
+    background-color: #3a4556;
+}
+body.dark-theme help-popup::part(help-h3) {
+    color: #f5f6f7;
+}
+body.dark-theme help-popup::part(instructions) {
+    color: #f5f6f7;
+}
+body.dark-theme help-popup::part(features) {
+    color: #f5f6f7;
+}
+body.dark-theme help-popup::part(accessibility) {
+    color: #f5f6f7;
+}
+body.dark-theme help-popup::part(h4) {
+    color: #f5f6f7;
+}
+/* Focus Task */
+#focus-task {
+    text-align: center;
+    /* width: 75%; */
+    margin: 40px auto;
+    list-style-type: none;
+}
+#select-focus {
+    font-weight: 500;
+    color:#f36060;  
+    font-size: 1.875vw;
+}
+#focus-task task-item {
+    margin: 0 auto;
+    border-left: solid 0.46875vw #eaeaea;
+}
+/*Focus mode toggles*/
+#popup-button.state {
+    display: none;
+}
+#task-list.state {
+    display: none;
+}
+#pomodoro-timer.state {
+    float: none;
+    width: auto;
+    margin-left:auto;
+}
+#focus-task.state {
+    width: 40%;
+}
+
+/* Footer CSS left side */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.125vw;  
+}
+#help-info {
+    float:left;
+    margin-left: 10%;
+    color: #646363;
+    font-weight: 450;
+    font-size: medium;
 }
