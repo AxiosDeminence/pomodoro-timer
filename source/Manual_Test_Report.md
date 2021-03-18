@@ -2,10 +2,10 @@
 
 Template created by Jackie Li 03/17/2021
 
-- Tester:  HanJie Zhan
-- Date: 03/18/21
-- System: Mac OS
-- Browser:google chrome
+- Tester: 
+- Date: 
+- System:
+- Browser:
 
 ## Help Popup
 
