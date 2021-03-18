@@ -6,6 +6,28 @@
 
 We are Runtime Terror!
 
+KeyBoard Events:
+
+main page:
+
+'s' --Start/Stop the timer
+
+'h' --open the help pop-up
+
+'r' --open the reset pop-up
+
+';' --open the setting pop-up
+
+'a' --open the add task pop-up
+
+in pop-ups:
+
+'Enter' --confirm your setting
+
+'Escape' --cancel the change and close the pop-up
+
+
+=======
 You can find our app [here!](https://jackie1342.github.io/cse110-w21-group13/)
 * [Coverage report](https://jackie1342.github.io/cse110-w21-group13/coverage/lcov-report)
 * [JSDocs](https://jackie1342.github.io/cse110-w21-group13/docs)

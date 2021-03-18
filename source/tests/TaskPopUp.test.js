@@ -1,8 +1,10 @@
-import TaskPopUp from '../src/components/TaskPopUp.js';
+import TaskPopUp from '../src/components/TaskPopUp';
 
+window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 // jest.mock('../src/components/TaskItem');
 
 beforeEach(() => {
+    localStorage.setItem('volume', 50);
     localStorage.setItem('tasks', '[]');
     localStorage.setItem('id', '0');
     document.body.innerHTML = `
@@ -12,6 +14,7 @@ beforeEach(() => {
             <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
         </div>
     `;
+    window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 });
 
 afterEach(() => {
@@ -20,7 +23,7 @@ afterEach(() => {
 });
 
 test('Adding a task called test_task with the addButton correctly updates localStorage', () => {
-    const testTaskPopUp = new TaskPopUp();
+    const testTaskPopUp = document.createElement('task-popup');
     const shadow = testTaskPopUp.shadowRoot;
 
     const input = shadow.querySelector('input');
@@ -30,7 +33,7 @@ test('Adding a task called test_task with the addButton correctly updates localS
     button.click();
 
     // new task test_task is added to list of tasks
-    expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\"}]');
+    expect(localStorage.getItem('tasks')).toBe('[{\"id\":\"0\",\"checked\":false,\"text\":\"test_task\",\"focused\":false}]');
     // id is updated
     expect(localStorage.getItem('id')).toBe('1');
     // input is set back to empty string
@@ -38,7 +41,7 @@ test('Adding a task called test_task with the addButton correctly updates localS
 });
 
 test('Adding empty task does not change localStorage', () => {
-    const testTaskPopUp = new TaskPopUp();
+    const testTaskPopUp = document.createElement('task-popup');
     const shadow = testTaskPopUp.shadowRoot;
 
     const input = shadow.querySelector('input');
@@ -54,7 +57,7 @@ test('Adding empty task does not change localStorage', () => {
 });
 
 test('cancelButton works correctly', () => {
-    const testTaskPopUp = new TaskPopUp();
+    const testTaskPopUp = document.createElement('task-popup');
     const shadow = testTaskPopUp.shadowRoot;
 
     const close = shadow.querySelector('img');
@@ -65,7 +68,7 @@ test('cancelButton works correctly', () => {
 });
 
 test('All attributes set correctly', () => {
-    const testTaskPopUp = new TaskPopUp();
+    const testTaskPopUp = document.createElement('task-popup');
     const shadow = testTaskPopUp.shadowRoot;
 
     // wrapper attributes set correctly
@@ -78,7 +81,7 @@ test('All attributes set correctly', () => {
     expect(shadow.querySelector('input').getAttribute('type')).toBe('text');
     expect(shadow.querySelector('input').getAttribute('id')).toBe('task-input');
     expect(shadow.querySelector('input').getAttribute('placeholder')).toBe('What are you working on today?');
-    expect(shadow.querySelector('input').getAttribute('maxlength')).toBe('42');
+    expect(shadow.querySelector('input').getAttribute('maxlength')).toBe('48');
 
     // add button attributes set correctly
     expect(shadow.querySelector('button').getAttribute('class')).toBe('popup-btns');
@@ -86,7 +89,7 @@ test('All attributes set correctly', () => {
     expect(shadow.querySelector('button').innerHTML).toBe('Add');
 
     // close icon attributes set correctly
-    expect(shadow.querySelector('img').getAttribute('src')).toBe('../icons/close.svg');
+    expect(shadow.querySelector('img').getAttribute('src')).toBe('icons/close.svg');
     expect(shadow.querySelector('img').getAttribute('id')).toBe('close-icon');
 });
 
