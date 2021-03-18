@@ -33,12 +33,9 @@ class TaskItem extends HTMLElement {
     // allows user to focus on a task item
     focus(event) {
         event.stopPropagation();
-        // remove task item from parent
         this.parentNode.removeChild(this);
-        // find in local storage
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         const task = tasks.find((t) => t.id === this.getAttribute('id') && t.text === this.getAttribute('text'));
-
         const ul = document.getElementById('task-list-elements');
         const title = document.getElementById('select-focus');
         const focusDiv = document.getElementById('focus-task');
@@ -55,11 +52,9 @@ class TaskItem extends HTMLElement {
             // if in focus mode, queue in next task item
             if (localStorage.getItem('state') === 'focus') {
                 const list = Array.from(ul.getElementsByTagName('task-item'));
-                // track whether all task items are checked
                 let allDone = true;
                 for (let i = 0; i < list.length; i += 1) {
-                    // if the next task item is unchecked, remove from task list and append to focus div
-                    if (list[i].getAttribute('checked').toLowerCase() == 'false') {
+                    if (list[i].getAttribute('checked').toLowerCase() === 'false') {
                         ul.removeChild(list[i]);
                         focusDiv.appendChild(list[i]);
                         list[i].setAttribute('focused', true);
@@ -71,7 +66,7 @@ class TaskItem extends HTMLElement {
                     }
                 }
                 // Notify user if all task items are checked
-                if (allDone == true) {
+                if (allDone === true) {
                     title.innerHTML = 'All tasks complete!';
                 } else {
                     title.innerHTML = 'Focusing on:';
@@ -86,9 +81,7 @@ class TaskItem extends HTMLElement {
             // if there doesn't exist a focus task yet
             if (focusTask === null) {
                 focusDiv.appendChild(this);
-            }
-            // else, remove existing focus task and add 'this' one
-            else {
+            } else {
                 focusDiv.removeChild(focusTask);
                 ul.appendChild(focusTask);
                 focusTask.setAttribute('focused', false);
