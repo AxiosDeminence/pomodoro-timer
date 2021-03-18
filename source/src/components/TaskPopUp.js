@@ -218,7 +218,7 @@ window.addEventListener('load', () => {
         btnSound.play();
         // make sure any popup is closed before opening current popup
         const popups = Array.from(document.getElementsByClassName('popup'));
-        for (let i = 0; i < popups.length; i++) {
+        for (let i = 0; i < popups.length; i += 1) {
             popups[i].closePopUp();
         }
         popUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
