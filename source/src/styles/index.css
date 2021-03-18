@@ -203,11 +203,11 @@ div.timer-value
 .timer-control-buttons button
 {
     margin-top: 1.640625vw;
-    background-color: #f36060; 
-    border: none; 
-    color: white; 
+    background-color: #f36060;
+    border: none;
+    color: white;
     padding: 0.78125vw 1.875vw;
-    cursor: pointer; 
+    cursor: pointer;
     font-size: 1.953125vw;
     font-weight: 500;
     border-radius: 0.625vw;
@@ -235,7 +235,7 @@ body.dark-theme .top-buttons {
 }
 body.dark-theme header:after {
     border-bottom: solid 1px #9c9c9c;
-    
+
 }
 body.dark-theme .timer-buttons button {
     color: #f5f6f7;
@@ -398,7 +398,7 @@ body.dark-theme help-popup::part(h4) {
 }
 #select-focus {
     font-weight: 500;
-    color:#f36060;  
+    color:#f36060;
     font-size: 1.875vw;
 }
 #focus-task task-item {
@@ -426,7 +426,7 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 3.125vw;  
+    height: 3.125vw;
 }
 #help-info {
     float:left;
