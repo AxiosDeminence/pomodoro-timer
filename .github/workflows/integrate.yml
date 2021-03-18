@@ -15,7 +15,9 @@ jobs:
         run: npm --prefix source/ install
 
       - name: Instrument JS code
-        run: npx nyc instrument --compact=false src src/instrumented
+        run: |
+          cd source
+          npx nyc instrument --compact=false src src/instrumented
       
       - name: Commit changes
         run: |
@@ -36,9 +38,7 @@ jobs:
 
       # installs the npm modules
       - name: Install modules
-        run: | 
-          cd source
-          npm --prefix source/ install
+        run: npm --prefix source/ install
 
       # lint
       - name: Run linter
