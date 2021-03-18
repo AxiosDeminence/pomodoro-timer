@@ -41,6 +41,7 @@ jobs:
       - name: Run integration tests
         uses: cypress-io/github-action@v2
         with:
+          project: ./source
           spec: source/cypress/integration/pomo-tests.js
           browser: chrome
           start: npm start
