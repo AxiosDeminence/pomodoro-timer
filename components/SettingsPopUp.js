@@ -18,7 +18,6 @@ class SettingsPopUp extends HTMLElement {
         this.closePopUp();
     }
 
-    // eslint-disable-line
     toggleMode() {
         if (localStorage.getItem('theme') === 'light') {
             localStorage.setItem('theme', 'dark');
@@ -139,7 +138,7 @@ class SettingsPopUp extends HTMLElement {
         rangeInput.addEventListener('change', this.setVolume.bind(this));
         volSpan.innerHTML = rangeInput.value;
         // event listener to dynamically display volume
-        rangeInput.addEventListener('input', function () {
+        rangeInput.addEventListener('input', function onInput() {
             volSpan.innerHTML = this.value;
         });
         // use ::part pseudo-element to style element outside of shadow tree -- for dark mode
