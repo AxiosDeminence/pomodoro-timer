@@ -18,6 +18,7 @@ class SettingsPopUp extends HTMLElement {
         this.closePopUp();
     }
 
+    // eslint-disable-line
     toggleMode() {
         if (localStorage.getItem('theme') === 'light') {
             localStorage.setItem('theme', 'dark');
