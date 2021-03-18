@@ -11,7 +11,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint .",
-    "instrument": "npx nyc instrument --compact=false src src/instrumented"
+    "instrument": "rm -rf src/instrumented && npx nyc instrument --compact=false src src/instrumented"
   },
   "repository": {
     "type": "git",
@@ -49,7 +49,7 @@
   "jest": {
     "verbose": true,
     "collectCoverage": true,
-    "coverageDirectory": "coverage/jest-coverage",
+    "coverageDirectory": "coverage/jest",
     "testEnvironment": "jest-environment-jsdom-sixteen",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
@@ -76,7 +76,7 @@
     ]
   },
   "nyc": {
-    "report-dir": "coverage/cypress-coverage",
+    "report-dir": "coverage/cypress",
     "reporter": [
       "text",
       "json",
@@ -85,8 +85,8 @@
     "exclude": "src/instrumented"
   },
   "husky": {
-     "hooks": {
-       "pre-commit": "npm run lint && npm run instrument"
-     }
+    "hooks": {
+      "pre-commit": "npm run lint && npm run instrument"
+    }
   }
 }

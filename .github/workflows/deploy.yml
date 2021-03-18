@@ -26,7 +26,7 @@ jobs:
 
       - name: Build app
         run: cp -av src/* build
-      
+
       - name: Build Jest coverage report
         run: |
           npm test

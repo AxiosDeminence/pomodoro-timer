@@ -208,7 +208,7 @@ window.addEventListener('load', () => {
     const helpBtn = document.getElementById('help-button');
     helpBtn.addEventListener('click', () => {
         const btnSound = new Audio('./icons/btnClick.mp3');
-        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
+        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume') || '50', 10);
         btnSound.play();
         // this makes sure any popup is closed before opening current popup
         const popups = Array.from(document.getElementsByClassName('popup'));

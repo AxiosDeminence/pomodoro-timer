@@ -4,7 +4,7 @@
 Cypress.on('uncaught:exception', () => false);
 describe(('task list and timer'), () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
     });
     it('add task when timer has started', () => {
         // start timer
@@ -115,7 +115,7 @@ describe(('task list and timer'), () => {
 
 describe(('interact with exist task list while timer is runing'), () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
         cy.get('#task-popup-btn').trigger('click');
         cy.get('task-popup').shadow()
             .find('#task-input')
@@ -129,7 +129,7 @@ describe(('interact with exist task list while timer is runing'), () => {
         cy.get('task-popup').shadow()
             .find('#add-task-btn').trigger('click');
         cy.get('#1').shadow().find('img[class="focus-icon"]').click({ force: true });
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
     });
     it(('toggle the tasks while timer is runing'), () => {
         cy.get('#start-btn').trigger('click');
@@ -167,7 +167,7 @@ describe(('interact with exist task list while timer is runing'), () => {
 
 describe('reset popup and timer', () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
         // add task 1
         cy.get('#task-popup-btn').trigger('click');
         cy.get('task-popup').shadow()
@@ -240,7 +240,7 @@ describe('reset popup and timer', () => {
 
 describe('setting popup and timer', () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
     });
 
     it(('set time while timer is runing, stop and reset the timer'), () => {
@@ -343,7 +343,7 @@ describe('setting popup and timer', () => {
 
 describe(('helping popup and timer'), () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
     });
 
     it(('view help popup while timer is runing'), () => {
@@ -366,7 +366,7 @@ describe(('helping popup and timer'), () => {
 
 describe(('in dark mode'), () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
         cy.get('#setting-button').trigger('click');
         cy.get('settings-popup').shadow()
             .find('span[class="slider"]')
@@ -374,7 +374,7 @@ describe(('in dark mode'), () => {
         cy.get('settings-popup').shadow()
             .find('#close-icon')
             .click();
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
     });
     it(('switch to light mode while timer is runing'), () => {
         cy.get('#start-btn').trigger('click');
@@ -392,7 +392,7 @@ describe(('in dark mode'), () => {
 
 describe(('toggle focus mode while timer is runing'), () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
     });
     it(('toggle to focus mode'), () => {
         cy.get('#start-btn').trigger('click');
@@ -417,7 +417,7 @@ describe(('toggle focus mode while timer is runing'), () => {
 
 describe(('task list in focus mode'), () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
         cy.get('#task-popup-btn').trigger('click');
         cy.get('task-popup').shadow()
             .find('#task-input')
@@ -432,7 +432,7 @@ describe(('task list in focus mode'), () => {
             .find('#add-task-btn').trigger('click');
         cy.get('#1').shadow().find('img[class="focus-icon"]').click({ force: true });
         cy.get('#focus-button').click();
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
     });
 
     it(('toggle task in focus mode'), () => {
@@ -484,7 +484,7 @@ describe(('task list in focus mode'), () => {
 
 describe(('keyboard shortcut and focus mode'), () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/source/src/index.html');
+        cy.visit('http://127.0.0.1:5500');
         cy.get('#task-popup-btn').trigger('click');
         cy.get('task-popup').shadow()
             .find('#task-input')

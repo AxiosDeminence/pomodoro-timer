@@ -409,7 +409,7 @@ window.addEventListener('load', () => {
     document.body.appendChild(settingsPopUp);
     settingsButton.addEventListener('click', () => {
         const btnSound = new Audio('./icons/btnClick.mp3');
-        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
+        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume') || '50', 10);
         btnSound.play();
         // make sure all popups are closed before opening another one
         const popups = Array.from(document.getElementsByClassName('popup'));
