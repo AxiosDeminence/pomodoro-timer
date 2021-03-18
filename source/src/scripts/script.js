@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let theme; // UI theme
     let volume; // default volume -> initialized to 50
     let state; // state -> initialized to 'default'
-  
+
     if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
         tasks = [];
         id = 0;

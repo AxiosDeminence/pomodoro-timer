@@ -8,7 +8,7 @@ class SettingsPopUp extends HTMLElement {
         const pomoLength = parseInt(this.shadowRoot.getElementById('pomo-length-input').value, 10);
         const shortBreak = parseInt(this.shadowRoot.getElementById('short-break-input').value, 10);
         const longBreak = parseInt(this.shadowRoot.getElementById('long-break-input').value, 10);
-      
+
         localStorage.setItem('pomo-length', String(pomoLength));
         localStorage.setItem('short-break-length', String(shortBreak));
         localStorage.setItem('long-break-length', String(longBreak));
