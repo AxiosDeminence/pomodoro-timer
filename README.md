@@ -1,6 +1,6 @@
 # Horrible Timer
 
-We are Runtime Terror!
+**We are Runtime Terror!**
 
 [![CodeFactor](https://www.codefactor.io/repository/github/jackie1342/cse110-w21-group13/badge?s=60ed377b2b1538342690c2bba4151269aedbbc86)](https://www.codefactor.io/repository/github/jackie1342/cse110-w21-group13)
 [![CI](https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/integrate.yml/badge.svg)](https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/integrate.yml)
@@ -11,9 +11,11 @@ You can find our app [here!](https://jackie1342.github.io/cse110-w21-group13/)
 * [E2E test coverage report](https://jackie1342.github.io/cse110-w21-group13/coverage/cypress/lcov-report)
 * [JSDocs](https://jackie1342.github.io/cse110-w21-group13/docs)
 
-KeyBoard Events:
+**New to the team? Read the [onboarding documentation](https://github.com/Jackie1342/cse110-w21-group13/wiki/Onboarding) in our Wiki!**
 
-main page:
+# Keyboard Events
+
+## Main Page:
 
 's' --Start/Stop the timer
 
@@ -25,7 +27,7 @@ main page:
 
 'a' --open the add task pop-up
 
-in pop-ups:
+## In Pop-Ups
 
 'Enter' --confirm your setting
 
