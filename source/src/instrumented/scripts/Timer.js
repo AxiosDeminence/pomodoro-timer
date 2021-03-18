@@ -1,10 +1,10 @@
-function cov_11900qbyvy() {
-  var path = "/Users/efeichen/Documents/Academics/CSE 110/cse110-w21-group13/source/src/scripts/Timer.js";
-  var hash = "5c5ae9fb1f4112f6e4df1c61a92dc14ba1bfac85";
+function cov_1p64ahvc6u() {
+  var path = "C:\\Users\\AutoCarry\\cse110-w21-group13\\source\\src\\scripts\\Timer.js";
+  var hash = "4088b392f39808a6765e2934f85ac51f239937d9";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path: "/Users/efeichen/Documents/Academics/CSE 110/cse110-w21-group13/source/src/scripts/Timer.js",
+    path: "C:\\Users\\AutoCarry\\cse110-w21-group13\\source\\src\\scripts\\Timer.js",
     statementMap: {
       "0": {
         start: {
@@ -2349,7 +2349,7 @@ function cov_11900qbyvy() {
       "24": [0, 0]
     },
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "5c5ae9fb1f4112f6e4df1c61a92dc14ba1bfac85"
+    hash: "4088b392f39808a6765e2934f85ac51f239937d9"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -2360,399 +2360,399 @@ function cov_11900qbyvy() {
   var actualCoverage = coverage[path];
   {
     // @ts-ignore
-    cov_11900qbyvy = function () {
+    cov_1p64ahvc6u = function () {
       return actualCoverage;
     };
   }
   return actualCoverage;
 }
 
-cov_11900qbyvy();
-const startButton = (cov_11900qbyvy().s[0]++, document.getElementById('start-btn'));
-const timerDisplayDuration = (cov_11900qbyvy().s[1]++, document.getElementById('timer_display_duration'));
-const btnSound = (cov_11900qbyvy().s[2]++, new Audio('./icons/btnClick.mp3'));
-const alarmSound = (cov_11900qbyvy().s[3]++, new Audio('./icons/alarm.mp3'));
-const SECOND = (cov_11900qbyvy().s[4]++, 1000);
+cov_1p64ahvc6u();
+const startButton = (cov_1p64ahvc6u().s[0]++, document.getElementById('start-btn'));
+const timerDisplayDuration = (cov_1p64ahvc6u().s[1]++, document.getElementById('timer_display_duration'));
+const btnSound = (cov_1p64ahvc6u().s[2]++, new Audio('./icons/btnClick.mp3'));
+const alarmSound = (cov_1p64ahvc6u().s[3]++, new Audio('./icons/alarm.mp3'));
+const SECOND = (cov_1p64ahvc6u().s[4]++, 1000);
 let timer;
-let timerStatus = (cov_11900qbyvy().s[5]++, 'pomo');
-let breakCounter = (cov_11900qbyvy().s[6]++, 0); // assign default session lengths to local storage
+let timerStatus = (cov_1p64ahvc6u().s[5]++, 'pomo');
+let breakCounter = (cov_1p64ahvc6u().s[6]++, 0); // assign default session lengths to local storage
 
-cov_11900qbyvy().s[7]++;
+cov_1p64ahvc6u().s[7]++;
 
 if (localStorage.getItem('pomo-length') === null) {
-  cov_11900qbyvy().b[0][0]++;
-  cov_11900qbyvy().s[8]++;
+  cov_1p64ahvc6u().b[0][0]++;
+  cov_1p64ahvc6u().s[8]++;
   localStorage.setItem('pomo-length', '25');
-  cov_11900qbyvy().s[9]++;
+  cov_1p64ahvc6u().s[9]++;
   localStorage.setItem('short-break-length', '5');
-  cov_11900qbyvy().s[10]++;
+  cov_1p64ahvc6u().s[10]++;
   localStorage.setItem('long-break-length', '15');
 } else {
-  cov_11900qbyvy().b[0][1]++;
+  cov_1p64ahvc6u().b[0][1]++;
 }
 
-let pomoTime = (cov_11900qbyvy().s[11]++, localStorage.getItem('pomo-length'));
-let breakTime = (cov_11900qbyvy().s[12]++, localStorage.getItem('short-break-length'));
-let longBreakTime = (cov_11900qbyvy().s[13]++, localStorage.getItem('long-break-length'));
-cov_11900qbyvy().s[14]++;
+let pomoTime = (cov_1p64ahvc6u().s[11]++, localStorage.getItem('pomo-length'));
+let breakTime = (cov_1p64ahvc6u().s[12]++, localStorage.getItem('short-break-length'));
+let longBreakTime = (cov_1p64ahvc6u().s[13]++, localStorage.getItem('long-break-length'));
+cov_1p64ahvc6u().s[14]++;
 timerDisplayDuration.innerHTML = `${pomoTime}:00`;
 
 function switchMode() {
-  cov_11900qbyvy().f[0]++;
-  const pomoButton = (cov_11900qbyvy().s[15]++, document.getElementById('pomo-btn'));
-  const breakButton = (cov_11900qbyvy().s[16]++, document.getElementById('break-btn'));
-  cov_11900qbyvy().s[17]++;
+  cov_1p64ahvc6u().f[0]++;
+  const pomoButton = (cov_1p64ahvc6u().s[15]++, document.getElementById('pomo-btn'));
+  const breakButton = (cov_1p64ahvc6u().s[16]++, document.getElementById('break-btn'));
+  cov_1p64ahvc6u().s[17]++;
 
-  if ((cov_11900qbyvy().b[2][0]++, timerStatus === 'pomo') && (cov_11900qbyvy().b[2][1]++, breakCounter >= 3)) {
-    cov_11900qbyvy().b[1][0]++;
-    cov_11900qbyvy().s[18]++;
+  if ((cov_1p64ahvc6u().b[2][0]++, timerStatus === 'pomo') && (cov_1p64ahvc6u().b[2][1]++, breakCounter >= 3)) {
+    cov_1p64ahvc6u().b[1][0]++;
+    cov_1p64ahvc6u().s[18]++;
     timerDisplayDuration.innerHTML = `${longBreakTime}:00`;
-    cov_11900qbyvy().s[19]++;
+    cov_1p64ahvc6u().s[19]++;
 
     if (pomoButton.getAttribute('class') !== 'toggle') {
-      cov_11900qbyvy().b[3][0]++;
-      cov_11900qbyvy().s[20]++;
+      cov_1p64ahvc6u().b[3][0]++;
+      cov_1p64ahvc6u().s[20]++;
       pomoButton.classList.toggle('toggle');
-      cov_11900qbyvy().s[21]++;
+      cov_1p64ahvc6u().s[21]++;
       breakButton.classList.toggle('toggle');
     } else {
-      cov_11900qbyvy().b[3][1]++;
+      cov_1p64ahvc6u().b[3][1]++;
     }
 
-    cov_11900qbyvy().s[22]++;
+    cov_1p64ahvc6u().s[22]++;
     timerStatus = 'break';
-    cov_11900qbyvy().s[23]++;
+    cov_1p64ahvc6u().s[23]++;
     breakCounter = 0;
   } else {
-    cov_11900qbyvy().b[1][1]++;
-    cov_11900qbyvy().s[24]++;
+    cov_1p64ahvc6u().b[1][1]++;
+    cov_1p64ahvc6u().s[24]++;
 
     if (timerStatus === 'pomo') {
-      cov_11900qbyvy().b[4][0]++;
-      cov_11900qbyvy().s[25]++;
+      cov_1p64ahvc6u().b[4][0]++;
+      cov_1p64ahvc6u().s[25]++;
       timerDisplayDuration.innerHTML = `${breakTime}:00`;
-      cov_11900qbyvy().s[26]++;
+      cov_1p64ahvc6u().s[26]++;
 
       if (pomoButton.getAttribute('class') !== 'toggle') {
-        cov_11900qbyvy().b[5][0]++;
-        cov_11900qbyvy().s[27]++;
+        cov_1p64ahvc6u().b[5][0]++;
+        cov_1p64ahvc6u().s[27]++;
         pomoButton.classList.toggle('toggle');
-        cov_11900qbyvy().s[28]++;
+        cov_1p64ahvc6u().s[28]++;
         breakButton.classList.toggle('toggle');
       } else {
-        cov_11900qbyvy().b[5][1]++;
+        cov_1p64ahvc6u().b[5][1]++;
       }
 
-      cov_11900qbyvy().s[29]++;
+      cov_1p64ahvc6u().s[29]++;
       timerStatus = 'break';
-      cov_11900qbyvy().s[30]++;
+      cov_1p64ahvc6u().s[30]++;
       breakCounter += 1;
     } else {
-      cov_11900qbyvy().b[4][1]++;
-      cov_11900qbyvy().s[31]++;
+      cov_1p64ahvc6u().b[4][1]++;
+      cov_1p64ahvc6u().s[31]++;
       timerDisplayDuration.innerHTML = `${pomoTime}:00`;
-      cov_11900qbyvy().s[32]++;
+      cov_1p64ahvc6u().s[32]++;
 
       if (pomoButton.getAttribute('class') === 'toggle') {
-        cov_11900qbyvy().b[6][0]++;
-        cov_11900qbyvy().s[33]++;
+        cov_1p64ahvc6u().b[6][0]++;
+        cov_1p64ahvc6u().s[33]++;
         pomoButton.classList.toggle('toggle');
-        cov_11900qbyvy().s[34]++;
+        cov_1p64ahvc6u().s[34]++;
         breakButton.classList.toggle('toggle');
       } else {
-        cov_11900qbyvy().b[6][1]++;
+        cov_1p64ahvc6u().b[6][1]++;
       }
 
-      cov_11900qbyvy().s[35]++;
+      cov_1p64ahvc6u().s[35]++;
       timerStatus = 'pomo';
     }
   }
 }
 
 async function timerFunction() {
-  cov_11900qbyvy().f[1]++;
-  let timerText = (cov_11900qbyvy().s[36]++, timerDisplayDuration.innerHTML);
-  cov_11900qbyvy().s[37]++;
+  cov_1p64ahvc6u().f[1]++;
+  let timerText = (cov_1p64ahvc6u().s[36]++, timerDisplayDuration.innerHTML);
+  cov_1p64ahvc6u().s[37]++;
 
   if (timerText === '0:00') {
-    cov_11900qbyvy().b[7][0]++;
-    cov_11900qbyvy().s[38]++;
+    cov_1p64ahvc6u().b[7][0]++;
+    cov_1p64ahvc6u().s[38]++;
     switchMode();
-    cov_11900qbyvy().s[39]++;
+    cov_1p64ahvc6u().s[39]++;
     timerText = timerDisplayDuration.innerHTML;
   } else {
-    cov_11900qbyvy().b[7][1]++;
+    cov_1p64ahvc6u().b[7][1]++;
   }
 
-  cov_11900qbyvy().s[40]++;
+  cov_1p64ahvc6u().s[40]++;
 
   if (timerText === '0:01') {
-    cov_11900qbyvy().b[8][0]++;
-    cov_11900qbyvy().s[41]++;
+    cov_1p64ahvc6u().b[8][0]++;
+    cov_1p64ahvc6u().s[41]++;
     alarmSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10); // console.log(alarmSound.volume);
 
-    cov_11900qbyvy().s[42]++;
+    cov_1p64ahvc6u().s[42]++;
     alarmSound.play();
   } else {
-    cov_11900qbyvy().b[8][1]++;
+    cov_1p64ahvc6u().b[8][1]++;
   }
 
-  let minutes = (cov_11900qbyvy().s[43]++, Number(timerText.substring(0, timerText.length - 3)));
-  let seconds = (cov_11900qbyvy().s[44]++, Number(timerText.substring(timerText.length - 2)));
-  cov_11900qbyvy().s[45]++;
+  let minutes = (cov_1p64ahvc6u().s[43]++, Number(timerText.substring(0, timerText.length - 3)));
+  let seconds = (cov_1p64ahvc6u().s[44]++, Number(timerText.substring(timerText.length - 2)));
+  cov_1p64ahvc6u().s[45]++;
 
   if (!(seconds === 0)) {
-    cov_11900qbyvy().b[9][0]++;
-    cov_11900qbyvy().s[46]++;
+    cov_1p64ahvc6u().b[9][0]++;
+    cov_1p64ahvc6u().s[46]++;
     seconds -= 1;
   } else {
-    cov_11900qbyvy().b[9][1]++;
-    cov_11900qbyvy().s[47]++;
+    cov_1p64ahvc6u().b[9][1]++;
+    cov_1p64ahvc6u().s[47]++;
     seconds = 59;
-    cov_11900qbyvy().s[48]++;
+    cov_1p64ahvc6u().s[48]++;
     minutes -= 1;
   }
 
-  cov_11900qbyvy().s[49]++;
+  cov_1p64ahvc6u().s[49]++;
 
   if (seconds < 10) {
-    cov_11900qbyvy().b[10][0]++;
-    cov_11900qbyvy().s[50]++;
+    cov_1p64ahvc6u().b[10][0]++;
+    cov_1p64ahvc6u().s[50]++;
     seconds = `0${String(seconds)}`;
   } else {
-    cov_11900qbyvy().b[10][1]++;
+    cov_1p64ahvc6u().b[10][1]++;
   }
 
-  cov_11900qbyvy().s[51]++;
+  cov_1p64ahvc6u().s[51]++;
   timerDisplayDuration.innerHTML = `${minutes}:${seconds}`;
 }
 
 async function start() {
-  cov_11900qbyvy().f[2]++;
-  cov_11900qbyvy().s[52]++;
+  cov_1p64ahvc6u().f[2]++;
+  cov_1p64ahvc6u().s[52]++;
   startButton.innerHTML = 'Stop';
-  cov_11900qbyvy().s[53]++;
+  cov_1p64ahvc6u().s[53]++;
   timer = setInterval(timerFunction, SECOND);
 }
 
 async function stop() {
-  cov_11900qbyvy().f[3]++;
-  cov_11900qbyvy().s[54]++;
+  cov_1p64ahvc6u().f[3]++;
+  cov_1p64ahvc6u().s[54]++;
   pomoTime = localStorage.getItem('pomo-length');
-  cov_11900qbyvy().s[55]++;
+  cov_1p64ahvc6u().s[55]++;
   breakTime = localStorage.getItem('short-break-length');
-  cov_11900qbyvy().s[56]++;
+  cov_1p64ahvc6u().s[56]++;
   longBreakTime = localStorage.getItem('long-break-length');
-  cov_11900qbyvy().s[57]++;
+  cov_1p64ahvc6u().s[57]++;
   clearInterval(timer);
-  cov_11900qbyvy().s[58]++;
+  cov_1p64ahvc6u().s[58]++;
   timerStatus = 'break';
-  cov_11900qbyvy().s[59]++;
+  cov_1p64ahvc6u().s[59]++;
   setTimeout(switchMode, SECOND / 10);
-  cov_11900qbyvy().s[60]++;
+  cov_1p64ahvc6u().s[60]++;
   breakCounter = 0;
-  cov_11900qbyvy().s[61]++;
+  cov_1p64ahvc6u().s[61]++;
   startButton.innerHTML = 'Start';
 }
 
 async function stopChecker() {
-  cov_11900qbyvy().f[4]++;
-  cov_11900qbyvy().s[62]++;
+  cov_1p64ahvc6u().f[4]++;
+  cov_1p64ahvc6u().s[62]++;
 
   if (localStorage.getItem('stop') === 'true') {
-    cov_11900qbyvy().b[11][0]++;
-    cov_11900qbyvy().s[63]++;
+    cov_1p64ahvc6u().b[11][0]++;
+    cov_1p64ahvc6u().s[63]++;
     stop();
-    cov_11900qbyvy().s[64]++;
+    cov_1p64ahvc6u().s[64]++;
     localStorage.setItem('stop', 'false');
   } else {
-    cov_11900qbyvy().b[11][1]++;
+    cov_1p64ahvc6u().b[11][1]++;
   }
 }
 
 async function startAndStopButton() {
-  cov_11900qbyvy().f[5]++;
-  cov_11900qbyvy().s[65]++;
+  cov_1p64ahvc6u().f[5]++;
+  cov_1p64ahvc6u().s[65]++;
   btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
-  cov_11900qbyvy().s[66]++;
+  cov_1p64ahvc6u().s[66]++;
   btnSound.play();
-  cov_11900qbyvy().s[67]++;
+  cov_1p64ahvc6u().s[67]++;
 
   if (startButton.innerHTML === 'Start') {
-    cov_11900qbyvy().b[12][0]++;
-    cov_11900qbyvy().s[68]++;
+    cov_1p64ahvc6u().b[12][0]++;
+    cov_1p64ahvc6u().s[68]++;
     start();
   } else {
-    cov_11900qbyvy().b[12][1]++;
-    cov_11900qbyvy().s[69]++;
+    cov_1p64ahvc6u().b[12][1]++;
+    cov_1p64ahvc6u().s[69]++;
     stop();
   }
 }
 
-cov_11900qbyvy().s[70]++;
+cov_1p64ahvc6u().s[70]++;
 setInterval(stopChecker, 500);
-cov_11900qbyvy().s[71]++;
+cov_1p64ahvc6u().s[71]++;
 startButton.addEventListener('click', startAndStopButton); // keyboard event stuff
 
-cov_11900qbyvy().s[72]++;
+cov_1p64ahvc6u().s[72]++;
 window.addEventListener('keyup', event => {
-  cov_11900qbyvy().f[6]++;
-  const addDis = (cov_11900qbyvy().s[73]++, document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display);
-  const setDis = (cov_11900qbyvy().s[74]++, document.querySelector('settings-popup').shadowRoot.getElementById('settings-confirm-popup').style.display);
-  const resDis = (cov_11900qbyvy().s[75]++, document.querySelector('reset-popup').shadowRoot.getElementById('reset-confirm-popup').style.display);
-  const helpDis = (cov_11900qbyvy().s[76]++, document.querySelector('help-popup').shadowRoot.getElementById('help-popup').style.display);
-  cov_11900qbyvy().s[77]++;
+  cov_1p64ahvc6u().f[6]++;
+  const addDis = (cov_1p64ahvc6u().s[73]++, document.querySelector('task-popup').shadowRoot.getElementById('add-task-popup').style.display);
+  const setDis = (cov_1p64ahvc6u().s[74]++, document.querySelector('settings-popup').shadowRoot.getElementById('settings-confirm-popup').style.display);
+  const resDis = (cov_1p64ahvc6u().s[75]++, document.querySelector('reset-popup').shadowRoot.getElementById('reset-confirm-popup').style.display);
+  const helpDis = (cov_1p64ahvc6u().s[76]++, document.querySelector('help-popup').shadowRoot.getElementById('help-popup').style.display);
+  cov_1p64ahvc6u().s[77]++;
 
-  if ((cov_11900qbyvy().b[14][0]++, !addDis) || (cov_11900qbyvy().b[14][1]++, addDis === 'none')) {
-    cov_11900qbyvy().b[13][0]++;
-    cov_11900qbyvy().s[78]++;
+  if ((cov_1p64ahvc6u().b[14][0]++, !addDis) || (cov_1p64ahvc6u().b[14][1]++, addDis === 'none')) {
+    cov_1p64ahvc6u().b[13][0]++;
+    cov_1p64ahvc6u().s[78]++;
 
     switch (event.code) {
       case 'KeyF':
-        cov_11900qbyvy().b[15][0]++;
-        cov_11900qbyvy().s[79]++;
+        cov_1p64ahvc6u().b[15][0]++;
+        cov_1p64ahvc6u().s[79]++;
         btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
-        cov_11900qbyvy().s[80]++;
+        cov_1p64ahvc6u().s[80]++;
         btnSound.play();
-        cov_11900qbyvy().s[81]++;
+        cov_1p64ahvc6u().s[81]++;
         document.getElementById('focus-button').click();
-        cov_11900qbyvy().s[82]++;
+        cov_1p64ahvc6u().s[82]++;
         break;
 
       case 'KeyS':
-        cov_11900qbyvy().b[15][1]++;
-        cov_11900qbyvy().s[83]++;
+        cov_1p64ahvc6u().b[15][1]++;
+        cov_1p64ahvc6u().s[83]++;
         startButton.click();
-        cov_11900qbyvy().s[84]++;
+        cov_1p64ahvc6u().s[84]++;
         break;
 
       case 'KeyR':
-        cov_11900qbyvy().b[15][2]++;
-        cov_11900qbyvy().s[85]++;
+        cov_1p64ahvc6u().b[15][2]++;
+        cov_1p64ahvc6u().s[85]++;
         document.getElementById('reset-button').click();
-        cov_11900qbyvy().s[86]++;
+        cov_1p64ahvc6u().s[86]++;
         break;
 
       case 'KeyH':
-        cov_11900qbyvy().b[15][3]++;
-        cov_11900qbyvy().s[87]++;
+        cov_1p64ahvc6u().b[15][3]++;
+        cov_1p64ahvc6u().s[87]++;
         document.getElementById('help-button').click();
-        cov_11900qbyvy().s[88]++;
+        cov_1p64ahvc6u().s[88]++;
         break;
 
       case 'Semicolon':
-        cov_11900qbyvy().b[15][4]++;
-        cov_11900qbyvy().s[89]++;
+        cov_1p64ahvc6u().b[15][4]++;
+        cov_1p64ahvc6u().s[89]++;
         document.getElementById('setting-button').click();
-        cov_11900qbyvy().s[90]++;
+        cov_1p64ahvc6u().s[90]++;
         break;
 
       case 'Escape':
-        cov_11900qbyvy().b[15][5]++;
-        cov_11900qbyvy().s[91]++;
+        cov_1p64ahvc6u().b[15][5]++;
+        cov_1p64ahvc6u().s[91]++;
 
         if (setDis === 'block') {
-          cov_11900qbyvy().b[16][0]++;
-          cov_11900qbyvy().s[92]++;
+          cov_1p64ahvc6u().b[16][0]++;
+          cov_1p64ahvc6u().s[92]++;
           document.querySelector('body > settings-popup').shadowRoot.querySelector('#close-icon').click();
         } else {
-          cov_11900qbyvy().b[16][1]++;
-          cov_11900qbyvy().s[93]++;
+          cov_1p64ahvc6u().b[16][1]++;
+          cov_1p64ahvc6u().s[93]++;
 
           if (resDis === 'block') {
-            cov_11900qbyvy().b[17][0]++;
-            cov_11900qbyvy().s[94]++;
+            cov_1p64ahvc6u().b[17][0]++;
+            cov_1p64ahvc6u().s[94]++;
             document.querySelector('body > reset-popup').shadowRoot.querySelector('#close-icon').click();
           } else {
-            cov_11900qbyvy().b[17][1]++;
-            cov_11900qbyvy().s[95]++;
+            cov_1p64ahvc6u().b[17][1]++;
+            cov_1p64ahvc6u().s[95]++;
 
             if (helpDis === 'block') {
-              cov_11900qbyvy().b[18][0]++;
-              cov_11900qbyvy().s[96]++;
+              cov_1p64ahvc6u().b[18][0]++;
+              cov_1p64ahvc6u().s[96]++;
               document.querySelector('body > help-popup').shadowRoot.querySelector('#close-icon').click();
             } else {
-              cov_11900qbyvy().b[18][1]++;
+              cov_1p64ahvc6u().b[18][1]++;
             }
           }
         }
 
-        cov_11900qbyvy().s[97]++;
+        cov_1p64ahvc6u().s[97]++;
         break;
 
       case 'KeyA':
-        cov_11900qbyvy().b[15][6]++;
+        cov_1p64ahvc6u().b[15][6]++;
         {
-          const state = (cov_11900qbyvy().s[98]++, localStorage.getItem('state'));
-          cov_11900qbyvy().s[99]++;
+          const state = (cov_1p64ahvc6u().s[98]++, localStorage.getItem('state'));
+          cov_1p64ahvc6u().s[99]++;
 
           if (state === 'default') {
-            cov_11900qbyvy().b[19][0]++;
-            cov_11900qbyvy().s[100]++;
+            cov_1p64ahvc6u().b[19][0]++;
+            cov_1p64ahvc6u().s[100]++;
             document.getElementById('task-popup-btn').click();
           } else {
-            cov_11900qbyvy().b[19][1]++;
+            cov_1p64ahvc6u().b[19][1]++;
           }
 
-          cov_11900qbyvy().s[101]++;
+          cov_1p64ahvc6u().s[101]++;
           break;
         }
 
       case 'Enter':
-        cov_11900qbyvy().b[15][7]++;
-        cov_11900qbyvy().s[102]++;
+        cov_1p64ahvc6u().b[15][7]++;
+        cov_1p64ahvc6u().s[102]++;
 
         if (setDis === 'block') {
-          cov_11900qbyvy().b[20][0]++;
-          cov_11900qbyvy().s[103]++;
+          cov_1p64ahvc6u().b[20][0]++;
+          cov_1p64ahvc6u().s[103]++;
           document.querySelector('body > settings-popup').shadowRoot.querySelector('#confirm-settings-btn').click();
         } else {
-          cov_11900qbyvy().b[20][1]++;
-          cov_11900qbyvy().s[104]++;
+          cov_1p64ahvc6u().b[20][1]++;
+          cov_1p64ahvc6u().s[104]++;
 
           if (resDis === 'block') {
-            cov_11900qbyvy().b[21][0]++;
-            cov_11900qbyvy().s[105]++;
+            cov_1p64ahvc6u().b[21][0]++;
+            cov_1p64ahvc6u().s[105]++;
             document.querySelector('body > reset-popup').shadowRoot.querySelector('#confirm-reset-btn').click();
           } else {
-            cov_11900qbyvy().b[21][1]++;
+            cov_1p64ahvc6u().b[21][1]++;
           }
         }
 
-        cov_11900qbyvy().s[106]++;
+        cov_1p64ahvc6u().s[106]++;
         break;
 
       default:
-        cov_11900qbyvy().b[15][8]++;
-        cov_11900qbyvy().s[107]++;
+        cov_1p64ahvc6u().b[15][8]++;
+        cov_1p64ahvc6u().s[107]++;
         break;
     }
   } else {
-    cov_11900qbyvy().b[13][1]++;
-    cov_11900qbyvy().s[108]++;
+    cov_1p64ahvc6u().b[13][1]++;
+    cov_1p64ahvc6u().s[108]++;
 
     if (addDis === 'block') {
-      cov_11900qbyvy().b[22][0]++;
-      cov_11900qbyvy().s[109]++;
+      cov_1p64ahvc6u().b[22][0]++;
+      cov_1p64ahvc6u().s[109]++;
 
       if (event.code === 'Enter') {
-        cov_11900qbyvy().b[23][0]++;
-        cov_11900qbyvy().s[110]++;
+        cov_1p64ahvc6u().b[23][0]++;
+        cov_1p64ahvc6u().s[110]++;
         document.querySelector('body > task-popup').shadowRoot.querySelector('#add-task-btn').click();
       } else {
-        cov_11900qbyvy().b[23][1]++;
-        cov_11900qbyvy().s[111]++;
+        cov_1p64ahvc6u().b[23][1]++;
+        cov_1p64ahvc6u().s[111]++;
 
         if (event.code === 'Escape') {
-          cov_11900qbyvy().b[24][0]++;
-          cov_11900qbyvy().s[112]++;
+          cov_1p64ahvc6u().b[24][0]++;
+          cov_1p64ahvc6u().s[112]++;
           document.querySelector('body > task-popup').shadowRoot.querySelector('#close-icon').click();
         } else {
-          cov_11900qbyvy().b[24][1]++;
+          cov_1p64ahvc6u().b[24][1]++;
         }
       }
     } else {
-      cov_11900qbyvy().b[22][1]++;
+      cov_1p64ahvc6u().b[22][1]++;
     }
   }
 });

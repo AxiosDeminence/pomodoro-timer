@@ -1,10 +1,10 @@
-function cov_tqe8zbem4() {
-  var path = "/Users/efeichen/Documents/Academics/CSE 110/cse110-w21-group13/source/src/components/HelpPopUp.js";
-  var hash = "b16c3af7c6d9b2b882f45d25fc889515d363044f";
+function cov_wgghypdk2() {
+  var path = "C:\\Users\\AutoCarry\\cse110-w21-group13\\source\\src\\components\\HelpPopUp.js";
+  var hash = "7b643e023fecb9889d8df6aa3e7d1cbd1c7a02fc";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path: "/Users/efeichen/Documents/Academics/CSE 110/cse110-w21-group13/source/src/components/HelpPopUp.js",
+    path: "C:\\Users\\AutoCarry\\cse110-w21-group13\\source\\src\\components\\HelpPopUp.js",
     statementMap: {
       "0": {
         start: {
@@ -1194,7 +1194,7 @@ function cov_tqe8zbem4() {
     },
     b: {},
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "b16c3af7c6d9b2b882f45d25fc889515d363044f"
+    hash: "7b643e023fecb9889d8df6aa3e7d1cbd1c7a02fc"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -1205,152 +1205,152 @@ function cov_tqe8zbem4() {
   var actualCoverage = coverage[path];
   {
     // @ts-ignore
-    cov_tqe8zbem4 = function () {
+    cov_wgghypdk2 = function () {
       return actualCoverage;
     };
   }
   return actualCoverage;
 }
 
-cov_tqe8zbem4();
+cov_wgghypdk2();
 
 class HelpPopUp extends HTMLElement {
   closePopUp() {
-    cov_tqe8zbem4().f[0]++;
-    const wrapper = (cov_tqe8zbem4().s[0]++, this.shadowRoot.getElementById('help-popup'));
-    cov_tqe8zbem4().s[1]++;
+    cov_wgghypdk2().f[0]++;
+    const wrapper = (cov_wgghypdk2().s[0]++, this.shadowRoot.getElementById('help-popup'));
+    cov_wgghypdk2().s[1]++;
     wrapper.style.display = 'none';
   }
 
   constructor() {
-    cov_tqe8zbem4().f[1]++;
-    cov_tqe8zbem4().s[2]++;
+    cov_wgghypdk2().f[1]++;
+    cov_wgghypdk2().s[2]++;
     super();
-    const shadow = (cov_tqe8zbem4().s[3]++, this.attachShadow({
+    const shadow = (cov_wgghypdk2().s[3]++, this.attachShadow({
       mode: 'open'
     }));
-    const wrapper = (cov_tqe8zbem4().s[4]++, document.createElement('div'));
-    cov_tqe8zbem4().s[5]++;
+    const wrapper = (cov_wgghypdk2().s[4]++, document.createElement('div'));
+    cov_wgghypdk2().s[5]++;
     wrapper.setAttribute('id', 'help-popup');
-    const close = (cov_tqe8zbem4().s[6]++, wrapper.appendChild(document.createElement('img')));
-    cov_tqe8zbem4().s[7]++;
+    const close = (cov_wgghypdk2().s[6]++, wrapper.appendChild(document.createElement('img')));
+    cov_wgghypdk2().s[7]++;
     close.setAttribute('src', 'icons/close.svg');
-    cov_tqe8zbem4().s[8]++;
+    cov_wgghypdk2().s[8]++;
     close.setAttribute('id', 'close-icon');
-    const title = (cov_tqe8zbem4().s[9]++, wrapper.appendChild(document.createElement('h3')));
-    cov_tqe8zbem4().s[10]++;
+    const title = (cov_wgghypdk2().s[9]++, wrapper.appendChild(document.createElement('h3')));
+    cov_wgghypdk2().s[10]++;
     title.innerHTML = 'Help';
-    cov_tqe8zbem4().s[11]++;
+    cov_wgghypdk2().s[11]++;
     close.addEventListener('click', this.closePopUp.bind(this));
-    const helpContainer = (cov_tqe8zbem4().s[12]++, wrapper.appendChild(document.createElement('div')));
-    cov_tqe8zbem4().s[13]++;
+    const helpContainer = (cov_wgghypdk2().s[12]++, wrapper.appendChild(document.createElement('div')));
+    cov_wgghypdk2().s[13]++;
     helpContainer.setAttribute('id', 'help-container');
-    const instructionsDiv = (cov_tqe8zbem4().s[14]++, helpContainer.appendChild(document.createElement('div')));
-    cov_tqe8zbem4().s[15]++;
+    const instructionsDiv = (cov_wgghypdk2().s[14]++, helpContainer.appendChild(document.createElement('div')));
+    cov_wgghypdk2().s[15]++;
     instructionsDiv.setAttribute('id', 'how-to');
-    const howTo = (cov_tqe8zbem4().s[16]++, instructionsDiv.appendChild(document.createElement('h4')));
-    cov_tqe8zbem4().s[17]++;
+    const howTo = (cov_wgghypdk2().s[16]++, instructionsDiv.appendChild(document.createElement('h4')));
+    cov_wgghypdk2().s[17]++;
     howTo.innerHTML = 'How to use the Pomodoro Timer';
-    const howToContent = (cov_tqe8zbem4().s[18]++, instructionsDiv.appendChild(document.createElement('ol')));
-    cov_tqe8zbem4().s[19]++;
+    const howToContent = (cov_wgghypdk2().s[18]++, instructionsDiv.appendChild(document.createElement('ol')));
+    cov_wgghypdk2().s[19]++;
     howToContent.setAttribute('id', 'how-to-content');
-    const step1 = (cov_tqe8zbem4().s[20]++, howToContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[21]++;
+    const step1 = (cov_wgghypdk2().s[20]++, howToContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[21]++;
     step1.innerHTML = "Add tasks using the '+' button";
-    const step2 = (cov_tqe8zbem4().s[22]++, howToContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[23]++;
+    const step2 = (cov_wgghypdk2().s[22]++, howToContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[23]++;
     step2.innerHTML = 'Set pomodoro and break lengths in the settings (or use the default values)';
-    const step3 = (cov_tqe8zbem4().s[24]++, howToContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[25]++;
+    const step3 = (cov_wgghypdk2().s[24]++, howToContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[25]++;
     step3.innerHTML = 'Select a task to focus on using the magnifying glass icon';
-    const step4 = (cov_tqe8zbem4().s[26]++, howToContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[27]++;
+    const step4 = (cov_wgghypdk2().s[26]++, howToContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[27]++;
     step4.innerHTML = 'Start the timer and be productive!';
-    const step5 = (cov_tqe8zbem4().s[28]++, howToContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[29]++;
+    const step5 = (cov_wgghypdk2().s[28]++, howToContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[29]++;
     step5.innerHTML = 'Take a break when the alarm rings';
-    const step6 = (cov_tqe8zbem4().s[30]++, howToContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[31]++;
+    const step6 = (cov_wgghypdk2().s[30]++, howToContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[31]++;
     step6.innerHTML = 'Repeat steps 3-5 to satisfaction';
-    const featuresDiv = (cov_tqe8zbem4().s[32]++, helpContainer.appendChild(document.createElement('div')));
-    cov_tqe8zbem4().s[33]++;
+    const featuresDiv = (cov_wgghypdk2().s[32]++, helpContainer.appendChild(document.createElement('div')));
+    cov_wgghypdk2().s[33]++;
     featuresDiv.setAttribute('id', 'features');
-    const featuresTitle = (cov_tqe8zbem4().s[34]++, featuresDiv.appendChild(document.createElement('h4')));
-    cov_tqe8zbem4().s[35]++;
+    const featuresTitle = (cov_wgghypdk2().s[34]++, featuresDiv.appendChild(document.createElement('h4')));
+    cov_wgghypdk2().s[35]++;
     featuresTitle.innerHTML = 'Features';
-    const featuresContent = (cov_tqe8zbem4().s[36]++, featuresDiv.appendChild(document.createElement('ul')));
-    cov_tqe8zbem4().s[37]++;
+    const featuresContent = (cov_wgghypdk2().s[36]++, featuresDiv.appendChild(document.createElement('ul')));
+    cov_wgghypdk2().s[37]++;
     featuresContent.setAttribute('id', 'features-content');
-    const feature1 = (cov_tqe8zbem4().s[38]++, featuresContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[39]++;
+    const feature1 = (cov_wgghypdk2().s[38]++, featuresContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[39]++;
     feature1.innerHTML = 'Dark mode theme for late night work sessions';
-    const feature2 = (cov_tqe8zbem4().s[40]++, featuresContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[41]++;
+    const feature2 = (cov_wgghypdk2().s[40]++, featuresContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[41]++;
     feature2.innerHTML = 'Audio notifications at end of pomodoro sessions';
-    const feature3 = (cov_tqe8zbem4().s[42]++, featuresContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[43]++;
+    const feature3 = (cov_wgghypdk2().s[42]++, featuresContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[43]++;
     feature3.innerHTML = 'Customizable pomodoro and break intervals';
-    const feature4 = (cov_tqe8zbem4().s[44]++, featuresContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[45]++;
+    const feature4 = (cov_wgghypdk2().s[44]++, featuresContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[45]++;
     feature4.innerHTML = 'Ability to focus, mark as completed, and delete tasks';
-    const feature5 = (cov_tqe8zbem4().s[46]++, featuresContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[47]++;
+    const feature5 = (cov_wgghypdk2().s[46]++, featuresContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[47]++;
     feature5.innerHTML = 'Focus mode to eliminate page distractions and allow for greater focus on current task';
-    const accessibilityDiv = (cov_tqe8zbem4().s[48]++, helpContainer.appendChild(document.createElement('div')));
-    cov_tqe8zbem4().s[49]++;
+    const accessibilityDiv = (cov_wgghypdk2().s[48]++, helpContainer.appendChild(document.createElement('div')));
+    cov_wgghypdk2().s[49]++;
     accessibilityDiv.setAttribute('id', 'accessibility');
-    const accessibilityTitle = (cov_tqe8zbem4().s[50]++, accessibilityDiv.appendChild(document.createElement('h4')));
-    cov_tqe8zbem4().s[51]++;
+    const accessibilityTitle = (cov_wgghypdk2().s[50]++, accessibilityDiv.appendChild(document.createElement('h4')));
+    cov_wgghypdk2().s[51]++;
     accessibilityTitle.innerHTML = 'Keyboard Shortcuts';
-    const accessibilityContent = (cov_tqe8zbem4().s[52]++, accessibilityDiv.appendChild(document.createElement('ul')));
-    cov_tqe8zbem4().s[53]++;
+    const accessibilityContent = (cov_wgghypdk2().s[52]++, accessibilityDiv.appendChild(document.createElement('ul')));
+    cov_wgghypdk2().s[53]++;
     accessibilityContent.setAttribute('id', 'accessibility-content');
-    const shortcut1 = (cov_tqe8zbem4().s[54]++, accessibilityContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[55]++;
+    const shortcut1 = (cov_wgghypdk2().s[54]++, accessibilityContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[55]++;
     shortcut1.innerHTML = "'h' - Help page pop up";
-    const shortcut2 = (cov_tqe8zbem4().s[56]++, accessibilityContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[57]++;
+    const shortcut2 = (cov_wgghypdk2().s[56]++, accessibilityContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[57]++;
     shortcut2.innerHTML = "';' - Settings pop up";
-    const shortcut3 = (cov_tqe8zbem4().s[58]++, accessibilityContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[59]++;
+    const shortcut3 = (cov_wgghypdk2().s[58]++, accessibilityContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[59]++;
     shortcut3.innerHTML = "'r' - Reset pop up";
-    const shortcut4 = (cov_tqe8zbem4().s[60]++, accessibilityContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[61]++;
+    const shortcut4 = (cov_wgghypdk2().s[60]++, accessibilityContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[61]++;
     shortcut4.innerHTML = "'f' - Focus mode";
-    const shortcut5 = (cov_tqe8zbem4().s[62]++, accessibilityContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[63]++;
+    const shortcut5 = (cov_wgghypdk2().s[62]++, accessibilityContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[63]++;
     shortcut5.innerHTML = "'s' - Start/stop";
-    const shortcut6 = (cov_tqe8zbem4().s[64]++, accessibilityContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[65]++;
+    const shortcut6 = (cov_wgghypdk2().s[64]++, accessibilityContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[65]++;
     shortcut6.innerHTML = "'a' - Add task";
-    const shortcut7 = (cov_tqe8zbem4().s[66]++, accessibilityContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[67]++;
+    const shortcut7 = (cov_wgghypdk2().s[66]++, accessibilityContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[67]++;
     shortcut7.innerHTML = "'Enter' - Confirm/Add";
-    const shortcut8 = (cov_tqe8zbem4().s[68]++, accessibilityContent.appendChild(document.createElement('li')));
-    cov_tqe8zbem4().s[69]++;
+    const shortcut8 = (cov_wgghypdk2().s[68]++, accessibilityContent.appendChild(document.createElement('li')));
+    cov_wgghypdk2().s[69]++;
     shortcut8.innerHTML = "'Esc' - Cancel/Close"; // use ::part pseudo-element to style element outside of shadow tree -- for dark mode
 
-    cov_tqe8zbem4().s[70]++;
+    cov_wgghypdk2().s[70]++;
     wrapper.setAttribute('part', 'popup-wrapper');
-    cov_tqe8zbem4().s[71]++;
+    cov_wgghypdk2().s[71]++;
     close.setAttribute('part', 'close-icon');
-    cov_tqe8zbem4().s[72]++;
+    cov_wgghypdk2().s[72]++;
     title.setAttribute('part', 'help-h3');
-    cov_tqe8zbem4().s[73]++;
+    cov_wgghypdk2().s[73]++;
     instructionsDiv.setAttribute('part', 'instructions');
-    cov_tqe8zbem4().s[74]++;
+    cov_wgghypdk2().s[74]++;
     featuresDiv.setAttribute('part', 'features');
-    cov_tqe8zbem4().s[75]++;
+    cov_wgghypdk2().s[75]++;
     accessibilityDiv.setAttribute('part', 'accessibility');
-    cov_tqe8zbem4().s[76]++;
+    cov_wgghypdk2().s[76]++;
     howTo.setAttribute('part', 'h4');
-    cov_tqe8zbem4().s[77]++;
+    cov_wgghypdk2().s[77]++;
     featuresTitle.setAttribute('part', 'h4');
-    cov_tqe8zbem4().s[78]++;
+    cov_wgghypdk2().s[78]++;
     accessibilityTitle.setAttribute('part', 'h4'); // CSS styling
 
-    const style = (cov_tqe8zbem4().s[79]++, document.createElement('style'));
-    cov_tqe8zbem4().s[80]++;
+    const style = (cov_wgghypdk2().s[79]++, document.createElement('style'));
+    cov_wgghypdk2().s[80]++;
     style.textContent = `
         #accessibility-content li{
             margin-bottom: 0.390625vw;
@@ -1457,43 +1457,43 @@ class HelpPopUp extends HTMLElement {
             // margin: 20px auto 10px auto;
             margin: 1.5625vw auto 0.78125vw auto;
         }`;
-    cov_tqe8zbem4().s[81]++;
+    cov_wgghypdk2().s[81]++;
     shadow.appendChild(wrapper);
-    cov_tqe8zbem4().s[82]++;
+    cov_wgghypdk2().s[82]++;
     shadow.appendChild(style);
   }
 
 }
 
-cov_tqe8zbem4().s[83]++;
+cov_wgghypdk2().s[83]++;
 customElements.define('help-popup', HelpPopUp);
-cov_tqe8zbem4().s[84]++;
+cov_wgghypdk2().s[84]++;
 window.addEventListener('load', () => {
-  cov_tqe8zbem4().f[2]++;
-  const helpPopUp = (cov_tqe8zbem4().s[85]++, document.createElement('help-popup'));
-  cov_tqe8zbem4().s[86]++;
+  cov_wgghypdk2().f[2]++;
+  const helpPopUp = (cov_wgghypdk2().s[85]++, document.createElement('help-popup'));
+  cov_wgghypdk2().s[86]++;
   helpPopUp.setAttribute('class', 'popup');
-  cov_tqe8zbem4().s[87]++;
+  cov_wgghypdk2().s[87]++;
   document.body.appendChild(helpPopUp);
-  const helpBtn = (cov_tqe8zbem4().s[88]++, document.getElementById('help-button'));
-  cov_tqe8zbem4().s[89]++;
+  const helpBtn = (cov_wgghypdk2().s[88]++, document.getElementById('help-button'));
+  cov_wgghypdk2().s[89]++;
   helpBtn.addEventListener('click', () => {
-    cov_tqe8zbem4().f[3]++;
-    const btnSound = (cov_tqe8zbem4().s[90]++, new Audio('./icons/btnClick.mp3'));
-    cov_tqe8zbem4().s[91]++;
+    cov_wgghypdk2().f[3]++;
+    const btnSound = (cov_wgghypdk2().s[90]++, new Audio('./icons/btnClick.mp3'));
+    cov_wgghypdk2().s[91]++;
     btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
-    cov_tqe8zbem4().s[92]++;
+    cov_wgghypdk2().s[92]++;
     btnSound.play(); // this makes sure any popup is closed before opening current popup
 
-    const popups = (cov_tqe8zbem4().s[93]++, Array.from(document.getElementsByClassName('popup')));
-    cov_tqe8zbem4().s[94]++;
+    const popups = (cov_wgghypdk2().s[93]++, Array.from(document.getElementsByClassName('popup')));
+    cov_wgghypdk2().s[94]++;
 
-    for (let i = (cov_tqe8zbem4().s[95]++, 0); i < popups.length; i += 1) {
-      cov_tqe8zbem4().s[96]++;
+    for (let i = (cov_wgghypdk2().s[95]++, 0); i < popups.length; i += 1) {
+      cov_wgghypdk2().s[96]++;
       popups[i].closePopUp();
     }
 
-    cov_tqe8zbem4().s[97]++;
+    cov_wgghypdk2().s[97]++;
     helpPopUp.shadowRoot.getElementById('help-popup').setAttribute('style', 'display:block');
   });
 });

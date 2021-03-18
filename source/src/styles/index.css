@@ -142,6 +142,7 @@ img#dash {
     width: fit-content;
     margin: 0 auto;
     margin-top: 0.25vh;
+    display: table;
 }
 .timer-buttons button
 {
