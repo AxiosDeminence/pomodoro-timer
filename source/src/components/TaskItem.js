@@ -32,13 +32,13 @@ class TaskItem extends HTMLElement {
 
     // allows user to focus on a task item
     focus(event) {
-        event.stopPropagation(); 
-        // remove task item from parent 
+        event.stopPropagation();
+        // remove task item from parent
         this.parentNode.removeChild(this);
         // find in local storage
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         const task = tasks.find((t) => t.id === this.getAttribute('id') && t.text === this.getAttribute('text'));
-        
+
         const ul = document.getElementById('task-list-elements');
         const title = document.getElementById('select-focus');
         const focusDiv = document.getElementById('focus-task');
@@ -52,12 +52,12 @@ class TaskItem extends HTMLElement {
             localStorage.setItem('tasks', JSON.stringify(tasks));
             // remove title
             title.innerHTML = '';
-            // if in focus mode, queue in next task item  
+            // if in focus mode, queue in next task item
             if (localStorage.getItem('state') === 'focus') {
                 const list = Array.from(ul.getElementsByTagName('task-item'));
                 // track whether all task items are checked
                 let allDone = true;
-                for (let i = 0; i < list.length; i+=1) {
+                for (let i = 0; i < list.length; i += 1) {
                     // if the next task item is unchecked, remove from task list and append to focus div
                     if (list[i].getAttribute('checked').toLowerCase() == 'false') {
                         ul.removeChild(list[i]);
@@ -73,14 +73,12 @@ class TaskItem extends HTMLElement {
                 // Notify user if all task items are checked
                 if (allDone == true) {
                     title.innerHTML = 'All tasks complete!';
-                }
-                else {
+                } else {
                     title.innerHTML = 'Focusing on:';
                 }
-            }      
-        }
-        else {
-            // update focused attribute  
+            }
+        } else {
+            // update focused attribute
             this.setAttribute('focused', true);
             task.focused = true;
             localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -102,9 +100,8 @@ class TaskItem extends HTMLElement {
             }
             // update title
             title.innerHTML = 'Focusing on:';
-        } 
+        }
     }
-
 
     /* create task list item by building custom component */
     constructor() {

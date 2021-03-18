@@ -1,11 +1,11 @@
 // require('../components/TaskItem');
 // const TaskItem = require('../components/TaskItem');
 window.addEventListener('DOMContentLoaded', () => {
-    let tasks;      // holds list nodes in local storage
-    let id;         // id counter for task items
-    let theme;      // UI theme
-    let volume;     // default volume -> initialized to 50
-    let state;      // state -> initialized to 'default'
+    let tasks; // holds list nodes in local storage
+    let id; // id counter for task items
+    let theme; // UI theme
+    let volume; // default volume -> initialized to 50
+    let state; // state -> initialized to 'default'
     if (localStorage.getItem('tasks') === null || localStorage.getItem('id') === null) {
         tasks = [];
         id = 0;
@@ -17,8 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', theme);
         localStorage.setItem('volume', `${volume}`);
         localStorage.setItem('state', state);
-    } 
-    else {
+    } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
         // theme = localStorage.getItem('theme');
         // state = localStorage.getItem('state');
@@ -40,8 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (tasks[i].focused === true) {
             title.innerHTML = 'Focusing on:';
             focusDiv.appendChild(task);
-        }
-        else {
+        } else {
             ul.appendChild(task);
         }
     }

@@ -22,47 +22,47 @@ class HelpPopUp extends HTMLElement {
 
         const helpContainer = wrapper.appendChild(document.createElement('div'));
         helpContainer.setAttribute('id', 'help-container');
-        
+
         const instructionsDiv = helpContainer.appendChild(document.createElement('div'));
         instructionsDiv.setAttribute('id', 'how-to');
         const howTo = instructionsDiv.appendChild(document.createElement('h4'));
-        howTo.innerHTML = "How to use the Pomodoro Timer";
+        howTo.innerHTML = 'How to use the Pomodoro Timer';
         const howToContent = instructionsDiv.appendChild(document.createElement('ol'));
         howToContent.setAttribute('id', 'how-to-content');
         const step1 = howToContent.appendChild(document.createElement('li'));
         step1.innerHTML = "Add tasks using the '+' button";
         const step2 = howToContent.appendChild(document.createElement('li'));
-        step2.innerHTML = "Set pomodoro and break lengths in the settings (or use the default values)";
+        step2.innerHTML = 'Set pomodoro and break lengths in the settings (or use the default values)';
         const step3 = howToContent.appendChild(document.createElement('li'));
-        step3.innerHTML = "Select a task to focus on using the magnifying glass icon";
+        step3.innerHTML = 'Select a task to focus on using the magnifying glass icon';
         const step4 = howToContent.appendChild(document.createElement('li'));
-        step4.innerHTML = "Start the timer and be productive!";
+        step4.innerHTML = 'Start the timer and be productive!';
         const step5 = howToContent.appendChild(document.createElement('li'));
-        step5.innerHTML = "Take a break when the alarm rings";
+        step5.innerHTML = 'Take a break when the alarm rings';
         const step6 = howToContent.appendChild(document.createElement('li'));
-        step6.innerHTML = "Repeat steps 3-5 to satisfaction";
+        step6.innerHTML = 'Repeat steps 3-5 to satisfaction';
 
         const featuresDiv = helpContainer.appendChild(document.createElement('div'));
         featuresDiv.setAttribute('id', 'features');
         const featuresTitle = featuresDiv.appendChild(document.createElement('h4'));
-        featuresTitle.innerHTML = "Features";
+        featuresTitle.innerHTML = 'Features';
         const featuresContent = featuresDiv.appendChild(document.createElement('ul'));
         featuresContent.setAttribute('id', 'features-content');
         const feature1 = featuresContent.appendChild(document.createElement('li'));
-        feature1.innerHTML = "Dark mode theme for late night work sessions";
+        feature1.innerHTML = 'Dark mode theme for late night work sessions';
         const feature2 = featuresContent.appendChild(document.createElement('li'));
-        feature2.innerHTML = "Audio notifications at end of pomodoro sessions";
+        feature2.innerHTML = 'Audio notifications at end of pomodoro sessions';
         const feature3 = featuresContent.appendChild(document.createElement('li'));
-        feature3.innerHTML = "Customizable pomodoro and break intervals";
+        feature3.innerHTML = 'Customizable pomodoro and break intervals';
         const feature4 = featuresContent.appendChild(document.createElement('li'));
-        feature4.innerHTML = "Ability to focus, mark as completed, and delete tasks";
+        feature4.innerHTML = 'Ability to focus, mark as completed, and delete tasks';
         const feature5 = featuresContent.appendChild(document.createElement('li'));
-        feature5.innerHTML = "Focus mode to eliminate page distractions and allow for greater focus on current task";
+        feature5.innerHTML = 'Focus mode to eliminate page distractions and allow for greater focus on current task';
 
         const accessibilityDiv = helpContainer.appendChild(document.createElement('div'));
         accessibilityDiv.setAttribute('id', 'accessibility');
         const accessibilityTitle = accessibilityDiv.appendChild(document.createElement('h4'));
-        accessibilityTitle.innerHTML = "Keyboard Shortcuts";
+        accessibilityTitle.innerHTML = 'Keyboard Shortcuts';
         const accessibilityContent = accessibilityDiv.appendChild(document.createElement('ul'));
         accessibilityContent.setAttribute('id', 'accessibility-content');
         const shortcut1 = accessibilityContent.appendChild(document.createElement('li'));
@@ -214,7 +214,7 @@ window.addEventListener('load', () => {
     const helpBtn = document.getElementById('help-button');
     helpBtn.addEventListener('click', () => {
         const btnSound = new Audio('./icons/btnClick.mp3');
-        btnSound.volume = 0.01*parseInt(localStorage.getItem('volume'), 10);
+        btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
         btnSound.play();
         // this makes sure any popup is closed before opening current popup
         const popups = Array.from(document.getElementsByClassName('popup'));

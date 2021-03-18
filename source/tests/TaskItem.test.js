@@ -175,7 +175,7 @@ describe(('focus task'), () => {
     //     task2.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
     //     expect(task1.getAttribute('focused')).toBe('false');
     //     expect(task2.getAttribute('focused')).toBe('true');
-        
+
     //     // task2 is moved to focus section and task 1 is in task list
     //     const taskList = document.getElementById('task-list-elements');
     //     const focuse = document.getElementById('focus-task');
@@ -195,7 +195,6 @@ describe(('focus task'), () => {
     });
 
     test(('unfocus a task when in default mode'), () => {
-        
         localStorage.setItem('state', 'default');
         const task1 = document.getElementById('0');
         task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
@@ -208,7 +207,6 @@ describe(('focus task'), () => {
     });
 
     test(('unfocus a task when in focus mode'), () => {
-        
         localStorage.setItem('state', 'focus');
         const task1 = document.getElementById('0');
         task1.shadowRoot.querySelector('img[src="icons/focus.svg"]').click();
@@ -223,7 +221,6 @@ describe(('focus task'), () => {
     });
 
     test(('unfocus a task when in focus mode and all tasks done'), () => {
-        
         localStorage.setItem('state', 'focus');
         const task1 = document.getElementById('0');
         document.getElementById('1').click();

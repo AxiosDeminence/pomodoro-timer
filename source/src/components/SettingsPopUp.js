@@ -8,7 +8,7 @@ class SettingsPopUp extends HTMLElement {
         const pomoLength = parseInt(this.shadowRoot.getElementById('pomo-length-input').value);
         const shortBreak = parseInt(this.shadowRoot.getElementById('short-break-input').value);
         const longBreak = parseInt(this.shadowRoot.getElementById('long-break-input').value);
-		console.log(typeof pomoLength);
+        console.log(typeof pomoLength);
         localStorage.setItem('pomo-length', String(pomoLength));
         localStorage.setItem('short-break-length', String(shortBreak));
         localStorage.setItem('long-break-length', String(longBreak));
@@ -65,7 +65,7 @@ class SettingsPopUp extends HTMLElement {
         pomoInput.setAttribute('value', parseInt(localStorage.getItem('pomo-length'), 10));
         pomoInput.setAttribute('min', 1); // values subj. to change
         pomoInput.setAttribute('max', 60); // values subj. to change
-		pomoInput.setAttribute('oninput', "validity.valid||(value='');");
+        pomoInput.setAttribute('oninput', "validity.valid||(value='');");
         const shortBreakWrapper = session.appendChild(document.createElement('div'));
         shortBreakWrapper.setAttribute('class', 'session-inputs');
         const shortBreakLabel = shortBreakWrapper.appendChild(document.createElement('label'));
@@ -77,7 +77,7 @@ class SettingsPopUp extends HTMLElement {
         shortBreakInput.setAttribute('value', parseInt(localStorage.getItem('short-break-length'), 10));
         shortBreakInput.setAttribute('min', 1); // values subj. to change
         shortBreakInput.setAttribute('max', 60); // values subj. to change
-		shortBreakInput.setAttribute('oninput', "validity.valid||(value='');");
+        shortBreakInput.setAttribute('oninput', "validity.valid||(value='');");
         const longBreakWrapper = session.appendChild(document.createElement('div'));
         longBreakWrapper.setAttribute('class', 'session-inputs');
         const longBreakLabel = longBreakWrapper.appendChild(document.createElement('label'));
@@ -89,43 +89,43 @@ class SettingsPopUp extends HTMLElement {
         longBreakInput.setAttribute('value', parseInt(localStorage.getItem('long-break-length'), 10));
         longBreakInput.setAttribute('min', 1); // values subj. to change
         longBreakInput.setAttribute('max', 60); // values subj. to change
-		longBreakInput.setAttribute('oninput', "validity.valid||(value='');");
-		// separate div for dark mode setting
-		const darkModeDiv = wrapper.appendChild(document.createElement('div'));
-		darkModeDiv.setAttribute('id', 'dark-mode');
-		const darkModeTitle = darkModeDiv.appendChild(document.createElement('h4'));
-		darkModeTitle.setAttribute('id', 'enable-dark-mode');
-		darkModeTitle.innerHTML = 'Enable Dark Mode?';
-		const modeSwitch = darkModeDiv.appendChild(document.createElement('label'));
-		modeSwitch.setAttribute('class', 'switch');
-		const checkboxInput = modeSwitch.appendChild(document.createElement('input'));
-		checkboxInput.setAttribute('type', 'checkbox');
-		if (localStorage.getItem('theme') == 'dark') { 
-			checkboxInput.checked = 'checked';
-		}
-		const slider = modeSwitch.appendChild(document.createElement('span'));
-		slider.setAttribute('class', 'slider'); 
-		// add event listener to toggle dark mode
-		slider.addEventListener('click', this.toggleMode.bind(this));
-		// separate div for volume
-		const volumeDiv = wrapper.appendChild(document.createElement('div'));
-		volumeDiv.setAttribute('id', 'volume-div');
-		const volumeTitle = volumeDiv.appendChild(document.createElement('h4'));
-		volumeTitle.setAttribute('id', 'sound-volume');
-		volumeTitle.innerHTML = 'Audio Volume';
-		const volP = volumeDiv.appendChild(document.createElement('p'));
-		const volSpan = volP.appendChild(document.createElement('span'));
-		volSpan.setAttribute('id', 'volume-number');
-		const sliderDiv = volumeDiv.appendChild(document.createElement('div'));
-		sliderDiv.setAttribute('class', 'slider-div');
-		const rangeInput = sliderDiv.appendChild(document.createElement('input'));
-		rangeInput.setAttribute('type', 'range');
-		rangeInput.setAttribute('min', 0);
-		rangeInput.setAttribute('max', 100);
-		rangeInput.setAttribute('value', parseInt(localStorage.getItem('volume'), 10));
-		rangeInput.setAttribute('class', 'vol-slider');
-		rangeInput.setAttribute('id', 'range');
-		// append confirm btn in footer
+        longBreakInput.setAttribute('oninput', "validity.valid||(value='');");
+        // separate div for dark mode setting
+        const darkModeDiv = wrapper.appendChild(document.createElement('div'));
+        darkModeDiv.setAttribute('id', 'dark-mode');
+        const darkModeTitle = darkModeDiv.appendChild(document.createElement('h4'));
+        darkModeTitle.setAttribute('id', 'enable-dark-mode');
+        darkModeTitle.innerHTML = 'Enable Dark Mode?';
+        const modeSwitch = darkModeDiv.appendChild(document.createElement('label'));
+        modeSwitch.setAttribute('class', 'switch');
+        const checkboxInput = modeSwitch.appendChild(document.createElement('input'));
+        checkboxInput.setAttribute('type', 'checkbox');
+        if (localStorage.getItem('theme') == 'dark') {
+            checkboxInput.checked = 'checked';
+        }
+        const slider = modeSwitch.appendChild(document.createElement('span'));
+        slider.setAttribute('class', 'slider');
+        // add event listener to toggle dark mode
+        slider.addEventListener('click', this.toggleMode.bind(this));
+        // separate div for volume
+        const volumeDiv = wrapper.appendChild(document.createElement('div'));
+        volumeDiv.setAttribute('id', 'volume-div');
+        const volumeTitle = volumeDiv.appendChild(document.createElement('h4'));
+        volumeTitle.setAttribute('id', 'sound-volume');
+        volumeTitle.innerHTML = 'Audio Volume';
+        const volP = volumeDiv.appendChild(document.createElement('p'));
+        const volSpan = volP.appendChild(document.createElement('span'));
+        volSpan.setAttribute('id', 'volume-number');
+        const sliderDiv = volumeDiv.appendChild(document.createElement('div'));
+        sliderDiv.setAttribute('class', 'slider-div');
+        const rangeInput = sliderDiv.appendChild(document.createElement('input'));
+        rangeInput.setAttribute('type', 'range');
+        rangeInput.setAttribute('min', 0);
+        rangeInput.setAttribute('max', 100);
+        rangeInput.setAttribute('value', parseInt(localStorage.getItem('volume'), 10));
+        rangeInput.setAttribute('class', 'vol-slider');
+        rangeInput.setAttribute('id', 'range');
+        // append confirm btn in footer
         const footer = wrapper.appendChild(document.createElement('div'));
         footer.setAttribute('class', 'button-footer');
         const confirmBtn = footer.appendChild(document.createElement('button'));
