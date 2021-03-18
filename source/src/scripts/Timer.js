@@ -104,7 +104,7 @@ async function stopChecker() {
 }
 
 async function startAndStopButton() {
-    btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume') || '50', 10);
+    btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
     btnSound.play();
     if (startButton.innerHTML === 'Start') {
         start();

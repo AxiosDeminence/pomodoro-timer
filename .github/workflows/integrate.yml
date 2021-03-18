@@ -43,7 +43,6 @@ jobs:
         with:
           install: false
           working-directory: source
-          spec: /cypress/integration/pomo-tests.js
           browser: chrome
           start: npm start
 
