@@ -7,7 +7,8 @@ We are Runtime Terror!
 [![CD](https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/deploy.yml/badge.svg)](https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/deploy.yml)
 
 You can find our app [here!](https://jackie1342.github.io/cse110-w21-group13/)
-* [Coverage report](https://jackie1342.github.io/cse110-w21-group13/coverage/lcov-report)
+* [Unit test coverage report](https://jackie1342.github.io/cse110-w21-group13/coverage/jest/lcov-report)
+* [E2E test coverage report](https://jackie1342.github.io/cse110-w21-group13/coverage/cypress/lcov-report)
 * [JSDocs](https://jackie1342.github.io/cse110-w21-group13/docs)
 
 KeyBoard Events:
