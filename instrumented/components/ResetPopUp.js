@@ -1,10 +1,10 @@
-function cov_1q5rv9i0dz() {
-  var path = "/Users/efeichen/Documents/Academics/CSE 110/cse110-w21-group13/source/src/components/ResetPopUp.js";
-  var hash = "dbb4c15384f5107bb1d12a177666b3ee3a35a209";
+function cov_23501v8g69() {
+  var path = "/Users/Ben/Local_Documents/git/2021/cse110-w21-group13/source/src/components/ResetPopUp.js";
+  var hash = "8f6537042331e7b71468b801e10e8b68b1a54d19";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path: "/Users/efeichen/Documents/Academics/CSE 110/cse110-w21-group13/source/src/components/ResetPopUp.js",
+    path: "/Users/Ben/Local_Documents/git/2021/cse110-w21-group13/source/src/components/ResetPopUp.js",
     statementMap: {
       "0": {
         start: {
@@ -837,7 +837,7 @@ function cov_1q5rv9i0dz() {
       "0": [0, 0]
     },
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "dbb4c15384f5107bb1d12a177666b3ee3a35a209"
+    hash: "8f6537042331e7b71468b801e10e8b68b1a54d19"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -848,122 +848,122 @@ function cov_1q5rv9i0dz() {
   var actualCoverage = coverage[path];
   {
     // @ts-ignore
-    cov_1q5rv9i0dz = function () {
+    cov_23501v8g69 = function () {
       return actualCoverage;
     };
   }
   return actualCoverage;
 }
 
-cov_1q5rv9i0dz();
+cov_23501v8g69();
 
 /** Reset modal component */
 class ResetPopUp extends HTMLElement {
   /** Reset current Pomodoro session */
   reset() {
-    cov_1q5rv9i0dz().f[0]++;
-    cov_1q5rv9i0dz().s[0]++;
+    cov_23501v8g69().f[0]++;
+    cov_23501v8g69().s[0]++;
     // stop();
     localStorage.setItem('stop', 'true');
-    const taskList = (cov_1q5rv9i0dz().s[1]++, Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item')));
-    cov_1q5rv9i0dz().s[2]++;
+    const taskList = (cov_23501v8g69().s[1]++, Array.from(document.getElementById('task-list-elements').getElementsByTagName('task-item')));
+    cov_23501v8g69().s[2]++;
 
-    for (let i = (cov_1q5rv9i0dz().s[3]++, 0); i < taskList.length; i += 1) {
-      cov_1q5rv9i0dz().s[4]++;
+    for (let i = (cov_23501v8g69().s[3]++, 0); i < taskList.length; i += 1) {
+      cov_23501v8g69().s[4]++;
       taskList[i].removeTask();
     } // remove focus task
 
 
-    const focusTask = (cov_1q5rv9i0dz().s[5]++, document.getElementById('focus-task').querySelector('task-item'));
-    cov_1q5rv9i0dz().s[6]++;
+    const focusTask = (cov_23501v8g69().s[5]++, document.getElementById('focus-task').querySelector('task-item'));
+    cov_23501v8g69().s[6]++;
 
     if (focusTask !== null) {
-      cov_1q5rv9i0dz().b[0][0]++;
-      cov_1q5rv9i0dz().s[7]++;
+      cov_23501v8g69().b[0][0]++;
+      cov_23501v8g69().s[7]++;
       focusTask.removeTask();
     } else {
-      cov_1q5rv9i0dz().b[0][1]++;
+      cov_23501v8g69().b[0][1]++;
     }
 
-    cov_1q5rv9i0dz().s[8]++;
+    cov_23501v8g69().s[8]++;
     localStorage.setItem('id', `${0}`);
-    const btnSound = (cov_1q5rv9i0dz().s[9]++, new Audio('./icons/btnClick.mp3'));
-    cov_1q5rv9i0dz().s[10]++;
+    const btnSound = (cov_23501v8g69().s[9]++, new Audio('./icons/btnClick.mp3'));
+    cov_23501v8g69().s[10]++;
     btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
-    cov_1q5rv9i0dz().s[11]++;
+    cov_23501v8g69().s[11]++;
     btnSound.play();
-    cov_1q5rv9i0dz().s[12]++;
+    cov_23501v8g69().s[12]++;
     this.closePopUp();
   }
   /** Close the reset modal */
 
 
   closePopUp() {
-    cov_1q5rv9i0dz().f[1]++;
-    const wrapper = (cov_1q5rv9i0dz().s[13]++, this.shadowRoot.getElementById('reset-confirm-popup'));
-    cov_1q5rv9i0dz().s[14]++;
+    cov_23501v8g69().f[1]++;
+    const wrapper = (cov_23501v8g69().s[13]++, this.shadowRoot.getElementById('reset-confirm-popup'));
+    cov_23501v8g69().s[14]++;
     wrapper.style.display = 'none';
   }
 
   constructor() {
-    cov_1q5rv9i0dz().f[2]++;
-    cov_1q5rv9i0dz().s[15]++;
+    cov_23501v8g69().f[2]++;
+    cov_23501v8g69().s[15]++;
     super();
-    const shadow = (cov_1q5rv9i0dz().s[16]++, this.attachShadow({
+    const shadow = (cov_23501v8g69().s[16]++, this.attachShadow({
       mode: 'open'
     })); // use div as wrapper
 
-    const wrapper = (cov_1q5rv9i0dz().s[17]++, document.createElement('div'));
-    cov_1q5rv9i0dz().s[18]++;
+    const wrapper = (cov_23501v8g69().s[17]++, document.createElement('div'));
+    cov_23501v8g69().s[18]++;
     wrapper.setAttribute('id', 'reset-confirm-popup'); // close icon
 
-    const close = (cov_1q5rv9i0dz().s[19]++, wrapper.appendChild(document.createElement('img')));
-    cov_1q5rv9i0dz().s[20]++;
+    const close = (cov_23501v8g69().s[19]++, wrapper.appendChild(document.createElement('img')));
+    cov_23501v8g69().s[20]++;
     close.setAttribute('src', 'icons/close.svg');
-    cov_1q5rv9i0dz().s[21]++;
+    cov_23501v8g69().s[21]++;
     close.setAttribute('id', 'close-icon'); // title
 
-    const title = (cov_1q5rv9i0dz().s[22]++, wrapper.appendChild(document.createElement('h3')));
-    cov_1q5rv9i0dz().s[23]++;
+    const title = (cov_23501v8g69().s[22]++, wrapper.appendChild(document.createElement('h3')));
+    cov_23501v8g69().s[23]++;
     title.innerHTML = 'Are you sure?'; // content
 
-    const content = (cov_1q5rv9i0dz().s[24]++, wrapper.appendChild(document.createElement('h5')));
-    cov_1q5rv9i0dz().s[25]++;
+    const content = (cov_23501v8g69().s[24]++, wrapper.appendChild(document.createElement('h5')));
+    cov_23501v8g69().s[25]++;
     content.setAttribute('id', 'reset-content');
-    cov_1q5rv9i0dz().s[26]++;
+    cov_23501v8g69().s[26]++;
     content.innerHTML = 'This will reset your current pomodoro session and wipe out your jotted tasks!'; // wrap confirm button in a footer
 
-    const footer = (cov_1q5rv9i0dz().s[27]++, wrapper.appendChild(document.createElement('div')));
-    cov_1q5rv9i0dz().s[28]++;
+    const footer = (cov_23501v8g69().s[27]++, wrapper.appendChild(document.createElement('div')));
+    cov_23501v8g69().s[28]++;
     footer.setAttribute('class', 'button-footer');
-    const confirmBtn = (cov_1q5rv9i0dz().s[29]++, footer.appendChild(document.createElement('button')));
-    cov_1q5rv9i0dz().s[30]++;
+    const confirmBtn = (cov_23501v8g69().s[29]++, footer.appendChild(document.createElement('button')));
+    cov_23501v8g69().s[30]++;
     confirmBtn.setAttribute('class', 'reset-popup-btns');
-    cov_1q5rv9i0dz().s[31]++;
+    cov_23501v8g69().s[31]++;
     confirmBtn.setAttribute('id', 'confirm-reset-btn');
-    cov_1q5rv9i0dz().s[32]++;
+    cov_23501v8g69().s[32]++;
     confirmBtn.innerHTML = 'Confirm'; // event listeners for confirm button and close icon
 
-    cov_1q5rv9i0dz().s[33]++;
+    cov_23501v8g69().s[33]++;
     confirmBtn.addEventListener('click', this.reset.bind(this));
-    cov_1q5rv9i0dz().s[34]++;
+    cov_23501v8g69().s[34]++;
     close.addEventListener('click', this.closePopUp.bind(this)); // use ::part pseudo-element to style element outside of shadow tree -- for dark mode
 
-    cov_1q5rv9i0dz().s[35]++;
+    cov_23501v8g69().s[35]++;
     wrapper.setAttribute('part', 'popup-wrapper');
-    cov_1q5rv9i0dz().s[36]++;
+    cov_23501v8g69().s[36]++;
     close.setAttribute('part', 'close-icon');
-    cov_1q5rv9i0dz().s[37]++;
+    cov_23501v8g69().s[37]++;
     title.setAttribute('part', 'reset-confirm-h3');
-    cov_1q5rv9i0dz().s[38]++;
+    cov_23501v8g69().s[38]++;
     content.setAttribute('part', 'reset-content');
-    cov_1q5rv9i0dz().s[39]++;
+    cov_23501v8g69().s[39]++;
     footer.setAttribute('part', 'btn-footer');
-    cov_1q5rv9i0dz().s[40]++;
+    cov_23501v8g69().s[40]++;
     confirmBtn.setAttribute('part', 'confirm-btn'); // CSS styling
 
-    const style = (cov_1q5rv9i0dz().s[41]++, document.createElement('style'));
-    cov_1q5rv9i0dz().s[42]++;
+    const style = (cov_23501v8g69().s[41]++, document.createElement('style'));
+    cov_23501v8g69().s[42]++;
     style.textContent = `
         .button-footer {
             background-color: rgb(234 234 234);
@@ -1072,43 +1072,43 @@ class ResetPopUp extends HTMLElement {
         //     right: 5em;
         //     bottom: 2em;
         }`;
-    cov_1q5rv9i0dz().s[43]++;
+    cov_23501v8g69().s[43]++;
     shadow.appendChild(wrapper);
-    cov_1q5rv9i0dz().s[44]++;
+    cov_23501v8g69().s[44]++;
     shadow.appendChild(style);
   }
 
 }
 
-cov_1q5rv9i0dz().s[45]++;
+cov_23501v8g69().s[45]++;
 customElements.define('reset-popup', ResetPopUp);
-cov_1q5rv9i0dz().s[46]++;
+cov_23501v8g69().s[46]++;
 window.addEventListener('load', () => {
-  cov_1q5rv9i0dz().f[3]++;
-  const resetPopUp = (cov_1q5rv9i0dz().s[47]++, document.createElement('reset-popup'));
-  cov_1q5rv9i0dz().s[48]++;
+  cov_23501v8g69().f[3]++;
+  const resetPopUp = (cov_23501v8g69().s[47]++, document.createElement('reset-popup'));
+  cov_23501v8g69().s[48]++;
   resetPopUp.setAttribute('class', 'popup');
-  cov_1q5rv9i0dz().s[49]++;
+  cov_23501v8g69().s[49]++;
   document.body.appendChild(resetPopUp);
-  const resetBtn = (cov_1q5rv9i0dz().s[50]++, document.getElementById('reset-button'));
-  cov_1q5rv9i0dz().s[51]++;
+  const resetBtn = (cov_23501v8g69().s[50]++, document.getElementById('reset-button'));
+  cov_23501v8g69().s[51]++;
   resetBtn.addEventListener('click', () => {
-    cov_1q5rv9i0dz().f[4]++;
-    const btnSound = (cov_1q5rv9i0dz().s[52]++, new Audio('./icons/btnClick.mp3'));
-    cov_1q5rv9i0dz().s[53]++;
+    cov_23501v8g69().f[4]++;
+    const btnSound = (cov_23501v8g69().s[52]++, new Audio('./icons/btnClick.mp3'));
+    cov_23501v8g69().s[53]++;
     btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
-    cov_1q5rv9i0dz().s[54]++;
+    cov_23501v8g69().s[54]++;
     btnSound.play(); // this makes sure any popup is closed before opening current popup
 
-    const popups = (cov_1q5rv9i0dz().s[55]++, Array.from(document.getElementsByClassName('popup')));
-    cov_1q5rv9i0dz().s[56]++;
+    const popups = (cov_23501v8g69().s[55]++, Array.from(document.getElementsByClassName('popup')));
+    cov_23501v8g69().s[56]++;
 
-    for (let i = (cov_1q5rv9i0dz().s[57]++, 0); i < popups.length; i += 1) {
-      cov_1q5rv9i0dz().s[58]++;
+    for (let i = (cov_23501v8g69().s[57]++, 0); i < popups.length; i += 1) {
+      cov_23501v8g69().s[58]++;
       popups[i].closePopUp();
     }
 
-    cov_1q5rv9i0dz().s[59]++;
+    cov_23501v8g69().s[59]++;
     resetPopUp.shadowRoot.getElementById('reset-confirm-popup').setAttribute('style', 'display:block');
   });
 }); // module.exports = ResetPopUp;
