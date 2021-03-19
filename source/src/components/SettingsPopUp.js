@@ -5,12 +5,27 @@ class SettingsPopUp extends HTMLElement {
     }
 
     confirmSettings() {
-        const pomoLength = parseInt(this.shadowRoot.getElementById('pomo-length-input').value, 10);
-        const shortBreak = parseInt(this.shadowRoot.getElementById('short-break-input').value, 10);
-        const longBreak = parseInt(this.shadowRoot.getElementById('long-break-input').value, 10);
+        let pomoLength = parseInt(this.shadowRoot.getElementById('pomo-length-input').value, 10);
+        if (Number.isNaN(pomoLength)) {
+            pomoLength = 25;
+            this.shadowRoot.getElementById('pomo-length-input').value = 25;
+        }
         localStorage.setItem('pomo-length', String(pomoLength));
+
+        let shortBreak = parseInt(this.shadowRoot.getElementById('short-break-input').value, 10);
+        if (Number.isNaN(shortBreak)) {
+            shortBreak = 5;
+            this.shadowRoot.getElementById('short-break-input').value = 5;
+        }
         localStorage.setItem('short-break-length', String(shortBreak));
+
+        let longBreak = parseInt(this.shadowRoot.getElementById('long-break-input').value, 10);
+        if (Number.isNaN(longBreak)) {
+            longBreak = 15;
+            this.shadowRoot.getElementById('long-break-input').value = 15;
+        }
         localStorage.setItem('long-break-length', String(longBreak));
+
         const btnSound = new Audio('./icons/btnClick.mp3');
         btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
         btnSound.play();
