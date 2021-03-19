@@ -1,7 +1,7 @@
 /**
  * The class is extend the HTMlElement function. The closePopup function would be call for
  * close all the popup windows. The confirmSettings function would be call for confirm setting
- * all the time. The toggleMode function would be call for change the dark or light mode. 
+ * all the time. The toggleMode function would be call for change the dark or light mode.
  * The setVolume would be call for setting the volume.
  * include the style of the web.
  * @constructor The constructor would reset and show everything in pages

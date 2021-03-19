@@ -1,5 +1,5 @@
 /** Toggle focus mode: remove task list component and only show the Pomodoro timer */
-/** The function is keep track of focus tasks and check if all the 
+/** The function is keep track of focus tasks and check if all the
  * tasks are complete.
   */
 function toggleState() {

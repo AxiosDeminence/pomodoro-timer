@@ -19,11 +19,11 @@ let longBreakTime = localStorage.getItem('long-break-length');
 
 timerDisplayDuration.innerHTML = `${pomoTime}:00`;
 
-
-/** The sitchMode function would sitch the time mode if the pomo time is over. 
- * the function would switch short break time mode. After three times of short 
+/**
+ * The sitchMode function would sitch the time mode if the pomo time is over.
+ * the function would switch short break time mode. After three times of short
  * break time, the function would switch to long break time.
-*/
+ */
 function switchMode() {
     const pomoButton = document.getElementById('pomo-btn');
     const breakButton = document.getElementById('break-btn');
@@ -54,10 +54,11 @@ function switchMode() {
     }
 }
 
-/** The function would call the switchMode function if the time mode counter 
+/**
+ * The function would call the switchMode function if the time mode counter
  * down to 0 and the alarm sound would be call. The counter down would be call
  * in this function.
- **/
+ */
 async function timerFunction() {
     let timerText = timerDisplayDuration.innerHTML;
 
@@ -111,7 +112,7 @@ async function stop() {
     startButton.innerHTML = 'Start';
 }
 
-/** The function to check if the status stop*/
+/** The function to check if the status stop */
 async function stopChecker() {
     if (localStorage.getItem('stop') === 'true') {
         stop();
