@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>scripts/FocusMode.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,50 +29,43 @@
 
 <div id="main">
     
+    <h1 class="page-title">scripts/FocusMode.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** Toggle focus mode: remove task list component and only show the Pomodoro timer */
+function toggleState() {
+    // elements -- popup button, task list div, pomodoro timer div, focus task
+    // const popUpBtn = document.getElementById('popup-button');
+    const taskListDiv = document.getElementById('task-list');
+    const pomoDiv = document.getElementById('pomodoro-timer');
+    const focusTask = document.getElementById('focus-task');
+    // popUpBtn.classList.toggle('state');
+    taskListDiv.classList.toggle('state');
+    pomoDiv.classList.toggle('state');
+    focusTask.classList.toggle('state');
+    if (localStorage.getItem('state') === 'default') {
+        localStorage.setItem('state', 'focus');
+    } else {
+        localStorage.setItem('state', 'default');
+        const title = document.getElementById('select-focus');
+        if (title.innerHTML === 'All tasks complete!') {
+            title.innerHTML = '';
+        }
+    }
+}
 
-
-
-
-
-
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>Horrible Timer</h1>
-<p><strong>We are Runtime Terror!</strong></p>
-<p><a href="https://www.codefactor.io/repository/github/jackie1342/cse110-w21-group13"><img src="https://www.codefactor.io/repository/github/jackie1342/cse110-w21-group13/badge?s=60ed377b2b1538342690c2bba4151269aedbbc86" alt="CodeFactor"></a>
-<a href="https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/integrate.yml"><img src="https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/integrate.yml/badge.svg" alt="CI"></a>
-<a href="https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/deploy.yml"><img src="https://github.com/Jackie1342/cse110-w21-group13/actions/workflows/deploy.yml/badge.svg" alt="CD"></a></p>
-<p>You can find our app <a href="https://jackie1342.github.io/cse110-w21-group13/">here!</a></p>
-<ul>
-<li><a href="https://jackie1342.github.io/cse110-w21-group13/coverage/jest/lcov-report">Unit test coverage report</a></li>
-<li><a href="https://jackie1342.github.io/cse110-w21-group13/coverage/cypress/lcov-report">E2E test coverage report</a></li>
-<li><a href="https://jackie1342.github.io/cse110-w21-group13/docs">JSDocs</a></li>
-</ul>
-<p><strong>New to the team? Read the <a href="https://github.com/Jackie1342/cse110-w21-group13/wiki/Onboarding">onboarding documentation</a> in our Wiki!</strong></p>
-<h1>Keyboard Events</h1>
-<h2>Main Page:</h2>
-<p>'s' --Start/Stop the timer</p>
-<p>'h' --open the help pop-up</p>
-<p>'r' --open the reset pop-up</p>
-<p>';' --open the setting pop-up</p>
-<p>'a' --open the add task pop-up</p>
-<h2>In Pop-Ups</h2>
-<p>'Enter' --confirm your setting</p>
-<p>'Escape' --cancel the change and close the pop-up</p></article>
+const focusBtn = document.getElementById('focus-button');
+focusBtn.addEventListener('click', toggleState);
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
