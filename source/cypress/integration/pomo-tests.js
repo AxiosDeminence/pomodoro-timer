@@ -294,6 +294,25 @@ describe('setting popup and timer', () => {
         cy.get('#timer_display_duration').should('have.text', '1:59');
     });
 
+    it(('set time incorrectly resets values to default'), () => {
+        cy.get('#setting-button').trigger('click');
+        cy.get('settings-popup').shadow()
+            .find('#pomo-length-input')
+            .invoke('val', '');
+        cy.get('settings-popup').shadow()
+            .find('#short-break-input')
+            .invoke('val', '');
+        cy.get('settings-popup').shadow()
+            .find('#long-break-input')
+            .invoke('val', '');
+        cy.get('settings-popup').shadow()
+            .find('#confirm-settings-btn')
+            .trigger('click');
+
+        cy.get('#timer_display_duration').should('have.text', '25:00');
+        cy.get('#start-btn').should('have.text', 'Start');
+    });
+
     it(('set time then cancel while timer is runing'), () => {
         cy.get('#start-btn').trigger('click');
         cy.get('#timer_display_duration').should('not.have.text', '25:00');
