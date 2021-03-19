@@ -1,4 +1,6 @@
+/** Reset modal component */
 class ResetPopUp extends HTMLElement {
+    /** Reset current Pomodoro session */
     reset() {
         // stop();
         localStorage.setItem('stop', 'true');
@@ -18,6 +20,7 @@ class ResetPopUp extends HTMLElement {
         this.closePopUp();
     }
 
+    /** Close the reset modal */
     closePopUp() {
         const wrapper = this.shadowRoot.getElementById('reset-confirm-popup');
         wrapper.style.display = 'none';
