@@ -42,7 +42,7 @@ jobs:
       - name: Build docs
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: source/src/components
+          source_dir: source/src
           output_dir: source/build/docs
           template: minami
           front_page: README.md
