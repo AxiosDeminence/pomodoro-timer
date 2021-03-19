@@ -1,4 +1,45 @@
-const startButton = document.getElementById('start-btn');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>scripts/Timer.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="TaskItem.html">TaskItem</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TaskItem.html#focus">focus</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TaskItem.html#focus">focus</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TaskItem.html#removeTask">removeTask</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TaskItem.html#removeTask">removeTask</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="TaskPopUp.html">TaskPopUp</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TaskPopUp.html#closePopUp">closePopUp</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TaskPopUp.html#closePopUp">closePopUp</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="The%2525252525252525252520constructor%2525252525252525252520would%2525252525252525252520reset%2525252525252525252520and%2525252525252525252520show%2525252525252525252520everything%2525252525252525252520in%2525252525252525252520pages.html">The constructor would reset and show everything in pages</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#startAndStopButton">startAndStopButton</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#stop">stop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#stopChecker">stopChecker</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#switchMode">switchMode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#timerFunction">timerFunction</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#toggleState">toggleState</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">scripts/Timer.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const startButton = document.getElementById('start-btn');
 const timerDisplayDuration = document.getElementById('timer_display_duration');
 const btnSound = new Audio('./icons/btnClick.mp3');
 const alarmSound = new Audio('./icons/alarm.mp3');
@@ -28,7 +69,7 @@ function switchMode() {
     const pomoButton = document.getElementById('pomo-btn');
     const breakButton = document.getElementById('break-btn');
 
-    if (timerStatus === 'pomo' && breakCounter >= 3) {
+    if (timerStatus === 'pomo' &amp;&amp; breakCounter >= 3) {
         timerDisplayDuration.innerHTML = `${longBreakTime}:00`;
         if (pomoButton.getAttribute('class') !== 'toggle') {
             pomoButton.classList.toggle('toggle');
@@ -83,7 +124,7 @@ async function timerFunction() {
         minutes -= 1;
     }
 
-    if (seconds < 10) {
+    if (seconds &lt; 10) {
         seconds = `0${String(seconds)}`;
     }
 
@@ -194,3 +235,22 @@ window.addEventListener('keyup', (event) => {
         }
     }
 });
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Fri Mar 19 2021 06:52:53 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

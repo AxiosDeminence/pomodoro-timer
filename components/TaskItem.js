@@ -1,4 +1,10 @@
 /** creates a task list item */
+/**
+ * The class is extend the HTMlElement function. The toggle function would be call for
+ * check if the button toggle. The removeTask function would be call for remove all the tasks
+ * and the class mostly would manage the focus tasks in the app.
+ * @constructor The constructor would reset and show everything in pages
+ */
 class TaskItem extends HTMLElement {
     // toggles custom attribute 'checked' for this element
     toggle() {
