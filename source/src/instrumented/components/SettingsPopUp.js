@@ -1,10 +1,10 @@
-function cov_1umlas6hd8() {
-  var path = "C:\\Users\\AutoCarry\\cse110-w21-group13\\source\\src\\components\\SettingsPopUp.js";
-  var hash = "8f3831def4c83726ddb0ee816c992a8bea31b976";
+function cov_16b1q58rs7() {
+  var path = "/Users/Ben/Local_Documents/git/2021/cse110-w21-group13/source/src/components/SettingsPopUp.js";
+  var hash = "3a6427264177de236729b65b2fbbd31bcfa068fb";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path: "C:\\Users\\AutoCarry\\cse110-w21-group13\\source\\src\\components\\SettingsPopUp.js",
+    path: "/Users/Ben/Local_Documents/git/2021/cse110-w21-group13/source/src/components/SettingsPopUp.js",
     statementMap: {
       "0": {
         start: {
@@ -2104,7 +2104,7 @@ function cov_1umlas6hd8() {
       "4": [0, 0]
     },
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "8f3831def4c83726ddb0ee816c992a8bea31b976"
+    hash: "3a6427264177de236729b65b2fbbd31bcfa068fb"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -2115,330 +2115,330 @@ function cov_1umlas6hd8() {
   var actualCoverage = coverage[path];
   {
     // @ts-ignore
-    cov_1umlas6hd8 = function () {
+    cov_16b1q58rs7 = function () {
       return actualCoverage;
     };
   }
   return actualCoverage;
 }
 
-cov_1umlas6hd8();
+cov_16b1q58rs7();
 
 class SettingsPopUp extends HTMLElement {
   closePopUp() {
-    cov_1umlas6hd8().f[0]++;
-    const wrapper = (cov_1umlas6hd8().s[0]++, this.shadowRoot.getElementById('settings-confirm-popup'));
-    cov_1umlas6hd8().s[1]++;
+    cov_16b1q58rs7().f[0]++;
+    const wrapper = (cov_16b1q58rs7().s[0]++, this.shadowRoot.getElementById('settings-confirm-popup'));
+    cov_16b1q58rs7().s[1]++;
     wrapper.style.display = 'none';
   }
 
   confirmSettings() {
-    cov_1umlas6hd8().f[1]++;
-    let pomoLength = (cov_1umlas6hd8().s[2]++, parseInt(this.shadowRoot.getElementById('pomo-length-input').value, 10));
-    cov_1umlas6hd8().s[3]++;
+    cov_16b1q58rs7().f[1]++;
+    let pomoLength = (cov_16b1q58rs7().s[2]++, parseInt(this.shadowRoot.getElementById('pomo-length-input').value, 10));
+    cov_16b1q58rs7().s[3]++;
 
     if (Number.isNaN(pomoLength)) {
-      cov_1umlas6hd8().b[0][0]++;
-      cov_1umlas6hd8().s[4]++;
+      cov_16b1q58rs7().b[0][0]++;
+      cov_16b1q58rs7().s[4]++;
       pomoLength = 25;
-      cov_1umlas6hd8().s[5]++;
+      cov_16b1q58rs7().s[5]++;
       this.shadowRoot.getElementById('pomo-length-input').value = 25;
     } else {
-      cov_1umlas6hd8().b[0][1]++;
+      cov_16b1q58rs7().b[0][1]++;
     }
 
-    cov_1umlas6hd8().s[6]++;
+    cov_16b1q58rs7().s[6]++;
     localStorage.setItem('pomo-length', String(pomoLength));
-    let shortBreak = (cov_1umlas6hd8().s[7]++, parseInt(this.shadowRoot.getElementById('short-break-input').value, 10));
-    cov_1umlas6hd8().s[8]++;
+    let shortBreak = (cov_16b1q58rs7().s[7]++, parseInt(this.shadowRoot.getElementById('short-break-input').value, 10));
+    cov_16b1q58rs7().s[8]++;
 
     if (Number.isNaN(shortBreak)) {
-      cov_1umlas6hd8().b[1][0]++;
-      cov_1umlas6hd8().s[9]++;
+      cov_16b1q58rs7().b[1][0]++;
+      cov_16b1q58rs7().s[9]++;
       shortBreak = 5;
-      cov_1umlas6hd8().s[10]++;
+      cov_16b1q58rs7().s[10]++;
       this.shadowRoot.getElementById('short-break-input').value = 5;
     } else {
-      cov_1umlas6hd8().b[1][1]++;
+      cov_16b1q58rs7().b[1][1]++;
     }
 
-    cov_1umlas6hd8().s[11]++;
+    cov_16b1q58rs7().s[11]++;
     localStorage.setItem('short-break-length', String(shortBreak));
-    let longBreak = (cov_1umlas6hd8().s[12]++, parseInt(this.shadowRoot.getElementById('long-break-input').value, 10));
-    cov_1umlas6hd8().s[13]++;
+    let longBreak = (cov_16b1q58rs7().s[12]++, parseInt(this.shadowRoot.getElementById('long-break-input').value, 10));
+    cov_16b1q58rs7().s[13]++;
 
     if (Number.isNaN(longBreak)) {
-      cov_1umlas6hd8().b[2][0]++;
-      cov_1umlas6hd8().s[14]++;
+      cov_16b1q58rs7().b[2][0]++;
+      cov_16b1q58rs7().s[14]++;
       longBreak = 15;
-      cov_1umlas6hd8().s[15]++;
+      cov_16b1q58rs7().s[15]++;
       this.shadowRoot.getElementById('long-break-input').value = 15;
     } else {
-      cov_1umlas6hd8().b[2][1]++;
+      cov_16b1q58rs7().b[2][1]++;
     }
 
-    cov_1umlas6hd8().s[16]++;
+    cov_16b1q58rs7().s[16]++;
     localStorage.setItem('long-break-length', String(longBreak));
-    const btnSound = (cov_1umlas6hd8().s[17]++, new Audio('./icons/btnClick.mp3'));
-    cov_1umlas6hd8().s[18]++;
+    const btnSound = (cov_16b1q58rs7().s[17]++, new Audio('./icons/btnClick.mp3'));
+    cov_16b1q58rs7().s[18]++;
     btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
-    cov_1umlas6hd8().s[19]++;
+    cov_16b1q58rs7().s[19]++;
     btnSound.play();
-    cov_1umlas6hd8().s[20]++;
+    cov_16b1q58rs7().s[20]++;
     localStorage.setItem('stop', 'true');
-    cov_1umlas6hd8().s[21]++;
+    cov_16b1q58rs7().s[21]++;
     this.closePopUp();
   }
 
   toggleMode() {
-    cov_1umlas6hd8().f[2]++;
-    cov_1umlas6hd8().s[22]++;
+    cov_16b1q58rs7().f[2]++;
+    cov_16b1q58rs7().s[22]++;
 
     if (localStorage.getItem('theme') === 'light') {
-      cov_1umlas6hd8().b[3][0]++;
-      cov_1umlas6hd8().s[23]++;
+      cov_16b1q58rs7().b[3][0]++;
+      cov_16b1q58rs7().s[23]++;
       localStorage.setItem('theme', 'dark');
     } else {
-      cov_1umlas6hd8().b[3][1]++;
-      cov_1umlas6hd8().s[24]++;
+      cov_16b1q58rs7().b[3][1]++;
+      cov_16b1q58rs7().s[24]++;
       localStorage.setItem('theme', 'light');
     }
 
-    cov_1umlas6hd8().s[25]++;
+    cov_16b1q58rs7().s[25]++;
     document.body.classList.toggle('dark-theme');
   }
 
   setVolume() {
-    cov_1umlas6hd8().f[3]++;
-    const volume = (cov_1umlas6hd8().s[26]++, this.shadowRoot.getElementById('range').value);
-    cov_1umlas6hd8().s[27]++;
+    cov_16b1q58rs7().f[3]++;
+    const volume = (cov_16b1q58rs7().s[26]++, this.shadowRoot.getElementById('range').value);
+    cov_16b1q58rs7().s[27]++;
     localStorage.setItem('volume', `${volume}`);
   }
 
   constructor() {
-    cov_1umlas6hd8().f[4]++;
-    cov_1umlas6hd8().s[28]++;
+    cov_16b1q58rs7().f[4]++;
+    cov_16b1q58rs7().s[28]++;
     super();
-    const shadow = (cov_1umlas6hd8().s[29]++, this.attachShadow({
+    const shadow = (cov_16b1q58rs7().s[29]++, this.attachShadow({
       mode: 'open'
     })); // use div as wrapper
 
-    const wrapper = (cov_1umlas6hd8().s[30]++, document.createElement('div'));
-    cov_1umlas6hd8().s[31]++;
+    const wrapper = (cov_16b1q58rs7().s[30]++, document.createElement('div'));
+    cov_16b1q58rs7().s[31]++;
     wrapper.setAttribute('id', 'settings-confirm-popup'); // close icon
 
-    const close = (cov_1umlas6hd8().s[32]++, wrapper.appendChild(document.createElement('img')));
-    cov_1umlas6hd8().s[33]++;
+    const close = (cov_16b1q58rs7().s[32]++, wrapper.appendChild(document.createElement('img')));
+    cov_16b1q58rs7().s[33]++;
     close.setAttribute('src', 'icons/close.svg');
-    cov_1umlas6hd8().s[34]++;
+    cov_16b1q58rs7().s[34]++;
     close.setAttribute('id', 'close-icon'); // title
 
-    const title = (cov_1umlas6hd8().s[35]++, wrapper.appendChild(document.createElement('h3')));
-    cov_1umlas6hd8().s[36]++;
+    const title = (cov_16b1q58rs7().s[35]++, wrapper.appendChild(document.createElement('h3')));
+    cov_16b1q58rs7().s[36]++;
     title.innerHTML = 'Settings'; // session title
 
-    const sessionTitle = (cov_1umlas6hd8().s[37]++, wrapper.appendChild(document.createElement('h4')));
-    cov_1umlas6hd8().s[38]++;
+    const sessionTitle = (cov_16b1q58rs7().s[37]++, wrapper.appendChild(document.createElement('h4')));
+    cov_16b1q58rs7().s[38]++;
     sessionTitle.setAttribute('id', 'timer-settings');
-    cov_1umlas6hd8().s[39]++;
+    cov_16b1q58rs7().s[39]++;
     sessionTitle.innerHTML = 'Session Length (minutes)'; // session div
 
-    const session = (cov_1umlas6hd8().s[40]++, wrapper.appendChild(document.createElement('div')));
-    cov_1umlas6hd8().s[41]++;
+    const session = (cov_16b1q58rs7().s[40]++, wrapper.appendChild(document.createElement('div')));
+    cov_16b1q58rs7().s[41]++;
     session.setAttribute('id', 'session'); // append input forms
 
-    const pomoWrapper = (cov_1umlas6hd8().s[42]++, session.appendChild(document.createElement('div')));
-    cov_1umlas6hd8().s[43]++;
+    const pomoWrapper = (cov_16b1q58rs7().s[42]++, session.appendChild(document.createElement('div')));
+    cov_16b1q58rs7().s[43]++;
     pomoWrapper.setAttribute('class', 'session-inputs');
-    const pomoLabel = (cov_1umlas6hd8().s[44]++, pomoWrapper.appendChild(document.createElement('label')));
-    cov_1umlas6hd8().s[45]++;
+    const pomoLabel = (cov_16b1q58rs7().s[44]++, pomoWrapper.appendChild(document.createElement('label')));
+    cov_16b1q58rs7().s[45]++;
     pomoLabel.setAttribute('for', 'pomo');
-    cov_1umlas6hd8().s[46]++;
+    cov_16b1q58rs7().s[46]++;
     pomoLabel.innerHTML = 'Pomodoro';
-    const pomoInput = (cov_1umlas6hd8().s[47]++, pomoWrapper.appendChild(document.createElement('input')));
-    cov_1umlas6hd8().s[48]++;
+    const pomoInput = (cov_16b1q58rs7().s[47]++, pomoWrapper.appendChild(document.createElement('input')));
+    cov_16b1q58rs7().s[48]++;
     pomoInput.setAttribute('type', 'number');
-    cov_1umlas6hd8().s[49]++;
+    cov_16b1q58rs7().s[49]++;
     pomoInput.setAttribute('id', 'pomo-length-input');
-    cov_1umlas6hd8().s[50]++;
+    cov_16b1q58rs7().s[50]++;
     pomoInput.setAttribute('value', parseInt(localStorage.getItem('pomo-length'), 10));
-    cov_1umlas6hd8().s[51]++;
+    cov_16b1q58rs7().s[51]++;
     pomoInput.setAttribute('min', 1); // values subj. to change
 
-    cov_1umlas6hd8().s[52]++;
+    cov_16b1q58rs7().s[52]++;
     pomoInput.setAttribute('max', 60); // values subj. to change
 
-    cov_1umlas6hd8().s[53]++;
+    cov_16b1q58rs7().s[53]++;
     pomoInput.setAttribute('oninput', "validity.valid||(value='');");
-    const shortBreakWrapper = (cov_1umlas6hd8().s[54]++, session.appendChild(document.createElement('div')));
-    cov_1umlas6hd8().s[55]++;
+    const shortBreakWrapper = (cov_16b1q58rs7().s[54]++, session.appendChild(document.createElement('div')));
+    cov_16b1q58rs7().s[55]++;
     shortBreakWrapper.setAttribute('class', 'session-inputs');
-    const shortBreakLabel = (cov_1umlas6hd8().s[56]++, shortBreakWrapper.appendChild(document.createElement('label')));
-    cov_1umlas6hd8().s[57]++;
+    const shortBreakLabel = (cov_16b1q58rs7().s[56]++, shortBreakWrapper.appendChild(document.createElement('label')));
+    cov_16b1q58rs7().s[57]++;
     shortBreakLabel.setAttribute('for', 'short-break');
-    cov_1umlas6hd8().s[58]++;
+    cov_16b1q58rs7().s[58]++;
     shortBreakLabel.innerHTML = 'Short Break';
-    const shortBreakInput = (cov_1umlas6hd8().s[59]++, shortBreakWrapper.appendChild(document.createElement('input')));
-    cov_1umlas6hd8().s[60]++;
+    const shortBreakInput = (cov_16b1q58rs7().s[59]++, shortBreakWrapper.appendChild(document.createElement('input')));
+    cov_16b1q58rs7().s[60]++;
     shortBreakInput.setAttribute('type', 'number');
-    cov_1umlas6hd8().s[61]++;
+    cov_16b1q58rs7().s[61]++;
     shortBreakInput.setAttribute('id', 'short-break-input');
-    cov_1umlas6hd8().s[62]++;
+    cov_16b1q58rs7().s[62]++;
     shortBreakInput.setAttribute('value', parseInt(localStorage.getItem('short-break-length'), 10));
-    cov_1umlas6hd8().s[63]++;
+    cov_16b1q58rs7().s[63]++;
     shortBreakInput.setAttribute('min', 1); // values subj. to change
 
-    cov_1umlas6hd8().s[64]++;
+    cov_16b1q58rs7().s[64]++;
     shortBreakInput.setAttribute('max', 60); // values subj. to change
 
-    cov_1umlas6hd8().s[65]++;
+    cov_16b1q58rs7().s[65]++;
     shortBreakInput.setAttribute('oninput', "validity.valid||(value='');");
-    const longBreakWrapper = (cov_1umlas6hd8().s[66]++, session.appendChild(document.createElement('div')));
-    cov_1umlas6hd8().s[67]++;
+    const longBreakWrapper = (cov_16b1q58rs7().s[66]++, session.appendChild(document.createElement('div')));
+    cov_16b1q58rs7().s[67]++;
     longBreakWrapper.setAttribute('class', 'session-inputs');
-    const longBreakLabel = (cov_1umlas6hd8().s[68]++, longBreakWrapper.appendChild(document.createElement('label')));
-    cov_1umlas6hd8().s[69]++;
+    const longBreakLabel = (cov_16b1q58rs7().s[68]++, longBreakWrapper.appendChild(document.createElement('label')));
+    cov_16b1q58rs7().s[69]++;
     longBreakLabel.setAttribute('for', 'long-break');
-    cov_1umlas6hd8().s[70]++;
+    cov_16b1q58rs7().s[70]++;
     longBreakLabel.innerHTML = 'Long Break';
-    const longBreakInput = (cov_1umlas6hd8().s[71]++, longBreakWrapper.appendChild(document.createElement('input')));
-    cov_1umlas6hd8().s[72]++;
+    const longBreakInput = (cov_16b1q58rs7().s[71]++, longBreakWrapper.appendChild(document.createElement('input')));
+    cov_16b1q58rs7().s[72]++;
     longBreakInput.setAttribute('type', 'number');
-    cov_1umlas6hd8().s[73]++;
+    cov_16b1q58rs7().s[73]++;
     longBreakInput.setAttribute('id', 'long-break-input');
-    cov_1umlas6hd8().s[74]++;
+    cov_16b1q58rs7().s[74]++;
     longBreakInput.setAttribute('value', parseInt(localStorage.getItem('long-break-length'), 10));
-    cov_1umlas6hd8().s[75]++;
+    cov_16b1q58rs7().s[75]++;
     longBreakInput.setAttribute('min', 1); // values subj. to change
 
-    cov_1umlas6hd8().s[76]++;
+    cov_16b1q58rs7().s[76]++;
     longBreakInput.setAttribute('max', 60); // values subj. to change
 
-    cov_1umlas6hd8().s[77]++;
+    cov_16b1q58rs7().s[77]++;
     longBreakInput.setAttribute('oninput', "validity.valid||(value='');"); // separate div for dark mode setting
 
-    const darkModeDiv = (cov_1umlas6hd8().s[78]++, wrapper.appendChild(document.createElement('div')));
-    cov_1umlas6hd8().s[79]++;
+    const darkModeDiv = (cov_16b1q58rs7().s[78]++, wrapper.appendChild(document.createElement('div')));
+    cov_16b1q58rs7().s[79]++;
     darkModeDiv.setAttribute('id', 'dark-mode');
-    const darkModeTitle = (cov_1umlas6hd8().s[80]++, darkModeDiv.appendChild(document.createElement('h4')));
-    cov_1umlas6hd8().s[81]++;
+    const darkModeTitle = (cov_16b1q58rs7().s[80]++, darkModeDiv.appendChild(document.createElement('h4')));
+    cov_16b1q58rs7().s[81]++;
     darkModeTitle.setAttribute('id', 'enable-dark-mode');
-    cov_1umlas6hd8().s[82]++;
+    cov_16b1q58rs7().s[82]++;
     darkModeTitle.innerHTML = 'Enable Dark Mode?';
-    const modeSwitch = (cov_1umlas6hd8().s[83]++, darkModeDiv.appendChild(document.createElement('label')));
-    cov_1umlas6hd8().s[84]++;
+    const modeSwitch = (cov_16b1q58rs7().s[83]++, darkModeDiv.appendChild(document.createElement('label')));
+    cov_16b1q58rs7().s[84]++;
     modeSwitch.setAttribute('class', 'switch');
-    const checkboxInput = (cov_1umlas6hd8().s[85]++, modeSwitch.appendChild(document.createElement('input')));
-    cov_1umlas6hd8().s[86]++;
+    const checkboxInput = (cov_16b1q58rs7().s[85]++, modeSwitch.appendChild(document.createElement('input')));
+    cov_16b1q58rs7().s[86]++;
     checkboxInput.setAttribute('type', 'checkbox');
-    cov_1umlas6hd8().s[87]++;
+    cov_16b1q58rs7().s[87]++;
 
     if (localStorage.getItem('theme') === 'dark') {
-      cov_1umlas6hd8().b[4][0]++;
-      cov_1umlas6hd8().s[88]++;
+      cov_16b1q58rs7().b[4][0]++;
+      cov_16b1q58rs7().s[88]++;
       checkboxInput.checked = 'checked';
     } else {
-      cov_1umlas6hd8().b[4][1]++;
+      cov_16b1q58rs7().b[4][1]++;
     }
 
-    const slider = (cov_1umlas6hd8().s[89]++, modeSwitch.appendChild(document.createElement('span')));
-    cov_1umlas6hd8().s[90]++;
+    const slider = (cov_16b1q58rs7().s[89]++, modeSwitch.appendChild(document.createElement('span')));
+    cov_16b1q58rs7().s[90]++;
     slider.setAttribute('class', 'slider'); // add event listener to toggle dark mode
 
-    cov_1umlas6hd8().s[91]++;
+    cov_16b1q58rs7().s[91]++;
     slider.addEventListener('click', this.toggleMode.bind(this)); // separate div for volume
 
-    const volumeDiv = (cov_1umlas6hd8().s[92]++, wrapper.appendChild(document.createElement('div')));
-    cov_1umlas6hd8().s[93]++;
+    const volumeDiv = (cov_16b1q58rs7().s[92]++, wrapper.appendChild(document.createElement('div')));
+    cov_16b1q58rs7().s[93]++;
     volumeDiv.setAttribute('id', 'volume-div');
-    const volumeTitle = (cov_1umlas6hd8().s[94]++, volumeDiv.appendChild(document.createElement('h4')));
-    cov_1umlas6hd8().s[95]++;
+    const volumeTitle = (cov_16b1q58rs7().s[94]++, volumeDiv.appendChild(document.createElement('h4')));
+    cov_16b1q58rs7().s[95]++;
     volumeTitle.setAttribute('id', 'sound-volume');
-    cov_1umlas6hd8().s[96]++;
+    cov_16b1q58rs7().s[96]++;
     volumeTitle.innerHTML = 'Audio Volume';
-    const volP = (cov_1umlas6hd8().s[97]++, volumeDiv.appendChild(document.createElement('p')));
-    const volSpan = (cov_1umlas6hd8().s[98]++, volP.appendChild(document.createElement('span')));
-    cov_1umlas6hd8().s[99]++;
+    const volP = (cov_16b1q58rs7().s[97]++, volumeDiv.appendChild(document.createElement('p')));
+    const volSpan = (cov_16b1q58rs7().s[98]++, volP.appendChild(document.createElement('span')));
+    cov_16b1q58rs7().s[99]++;
     volSpan.setAttribute('id', 'volume-number');
-    const sliderDiv = (cov_1umlas6hd8().s[100]++, volumeDiv.appendChild(document.createElement('div')));
-    cov_1umlas6hd8().s[101]++;
+    const sliderDiv = (cov_16b1q58rs7().s[100]++, volumeDiv.appendChild(document.createElement('div')));
+    cov_16b1q58rs7().s[101]++;
     sliderDiv.setAttribute('class', 'slider-div');
-    const rangeInput = (cov_1umlas6hd8().s[102]++, sliderDiv.appendChild(document.createElement('input')));
-    cov_1umlas6hd8().s[103]++;
+    const rangeInput = (cov_16b1q58rs7().s[102]++, sliderDiv.appendChild(document.createElement('input')));
+    cov_16b1q58rs7().s[103]++;
     rangeInput.setAttribute('type', 'range');
-    cov_1umlas6hd8().s[104]++;
+    cov_16b1q58rs7().s[104]++;
     rangeInput.setAttribute('min', 0);
-    cov_1umlas6hd8().s[105]++;
+    cov_16b1q58rs7().s[105]++;
     rangeInput.setAttribute('max', 100);
-    cov_1umlas6hd8().s[106]++;
+    cov_16b1q58rs7().s[106]++;
     rangeInput.setAttribute('value', parseInt(localStorage.getItem('volume'), 10));
-    cov_1umlas6hd8().s[107]++;
+    cov_16b1q58rs7().s[107]++;
     rangeInput.setAttribute('class', 'vol-slider');
-    cov_1umlas6hd8().s[108]++;
+    cov_16b1q58rs7().s[108]++;
     rangeInput.setAttribute('id', 'range'); // append confirm btn in footer
 
-    const footer = (cov_1umlas6hd8().s[109]++, wrapper.appendChild(document.createElement('div')));
-    cov_1umlas6hd8().s[110]++;
+    const footer = (cov_16b1q58rs7().s[109]++, wrapper.appendChild(document.createElement('div')));
+    cov_16b1q58rs7().s[110]++;
     footer.setAttribute('class', 'button-footer');
-    const confirmBtn = (cov_1umlas6hd8().s[111]++, footer.appendChild(document.createElement('button')));
-    cov_1umlas6hd8().s[112]++;
+    const confirmBtn = (cov_16b1q58rs7().s[111]++, footer.appendChild(document.createElement('button')));
+    cov_16b1q58rs7().s[112]++;
     confirmBtn.setAttribute('class', 'settings-popup-btns');
-    cov_1umlas6hd8().s[113]++;
+    cov_16b1q58rs7().s[113]++;
     confirmBtn.setAttribute('id', 'confirm-settings-btn');
-    cov_1umlas6hd8().s[114]++;
+    cov_16b1q58rs7().s[114]++;
     confirmBtn.innerHTML = 'Confirm'; // event listeners for confirm btn and close icon
 
-    cov_1umlas6hd8().s[115]++;
+    cov_16b1q58rs7().s[115]++;
     confirmBtn.addEventListener('click', this.confirmSettings.bind(this));
-    cov_1umlas6hd8().s[116]++;
+    cov_16b1q58rs7().s[116]++;
     close.addEventListener('click', this.closePopUp.bind(this)); // event listener to set volume in local storage
 
-    cov_1umlas6hd8().s[117]++;
+    cov_16b1q58rs7().s[117]++;
     rangeInput.addEventListener('change', this.setVolume.bind(this));
-    cov_1umlas6hd8().s[118]++;
+    cov_16b1q58rs7().s[118]++;
     volSpan.innerHTML = rangeInput.value; // event listener to dynamically display volume
 
-    cov_1umlas6hd8().s[119]++;
+    cov_16b1q58rs7().s[119]++;
     rangeInput.addEventListener('input', function onInput() {
-      cov_1umlas6hd8().f[5]++;
-      cov_1umlas6hd8().s[120]++;
+      cov_16b1q58rs7().f[5]++;
+      cov_16b1q58rs7().s[120]++;
       volSpan.innerHTML = this.value;
     }); // use ::part pseudo-element to style element outside of shadow tree -- for dark mode
 
-    cov_1umlas6hd8().s[121]++;
+    cov_16b1q58rs7().s[121]++;
     wrapper.setAttribute('part', 'settings-confirm-popup');
-    cov_1umlas6hd8().s[122]++;
+    cov_16b1q58rs7().s[122]++;
     close.setAttribute('part', 'close-icon');
-    cov_1umlas6hd8().s[123]++;
+    cov_16b1q58rs7().s[123]++;
     title.setAttribute('part', 'settings-h3');
-    cov_1umlas6hd8().s[124]++;
+    cov_16b1q58rs7().s[124]++;
     sessionTitle.setAttribute('part', 'timer-settings');
-    cov_1umlas6hd8().s[125]++;
+    cov_16b1q58rs7().s[125]++;
     pomoLabel.setAttribute('part', 'session-labels');
-    cov_1umlas6hd8().s[126]++;
+    cov_16b1q58rs7().s[126]++;
     pomoInput.setAttribute('part', 'length-inputs');
-    cov_1umlas6hd8().s[127]++;
+    cov_16b1q58rs7().s[127]++;
     shortBreakLabel.setAttribute('part', 'session-labels');
-    cov_1umlas6hd8().s[128]++;
+    cov_16b1q58rs7().s[128]++;
     shortBreakInput.setAttribute('part', 'length-inputs');
-    cov_1umlas6hd8().s[129]++;
+    cov_16b1q58rs7().s[129]++;
     longBreakLabel.setAttribute('part', 'session-labels');
-    cov_1umlas6hd8().s[130]++;
+    cov_16b1q58rs7().s[130]++;
     longBreakInput.setAttribute('part', 'length-inputs');
-    cov_1umlas6hd8().s[131]++;
+    cov_16b1q58rs7().s[131]++;
     darkModeTitle.setAttribute('part', 'enable-dark-mode');
-    cov_1umlas6hd8().s[132]++;
+    cov_16b1q58rs7().s[132]++;
     volumeTitle.setAttribute('part', 'sound-volume');
-    cov_1umlas6hd8().s[133]++;
+    cov_16b1q58rs7().s[133]++;
     volSpan.setAttribute('part', 'volume-number');
-    cov_1umlas6hd8().s[134]++;
+    cov_16b1q58rs7().s[134]++;
     rangeInput.setAttribute('part', 'range-slider');
-    cov_1umlas6hd8().s[135]++;
+    cov_16b1q58rs7().s[135]++;
     footer.setAttribute('part', 'btn-footer');
-    cov_1umlas6hd8().s[136]++;
+    cov_16b1q58rs7().s[136]++;
     confirmBtn.setAttribute('part', 'confirm-btn');
-    const style = (cov_1umlas6hd8().s[137]++, document.createElement('style'));
-    cov_1umlas6hd8().s[138]++;
+    const style = (cov_16b1q58rs7().s[137]++, document.createElement('style'));
+    cov_16b1q58rs7().s[138]++;
     style.textContent = `
         h4 {
                 font-size: 1.15vw;
@@ -2676,43 +2676,43 @@ class SettingsPopUp extends HTMLElement {
         #confirm-settings-btn {
                 padding: 0.625vw 0.9375vw;
         }`;
-    cov_1umlas6hd8().s[139]++;
+    cov_16b1q58rs7().s[139]++;
     shadow.appendChild(wrapper);
-    cov_1umlas6hd8().s[140]++;
+    cov_16b1q58rs7().s[140]++;
     shadow.appendChild(style);
   }
 
 }
 
-cov_1umlas6hd8().s[141]++;
+cov_16b1q58rs7().s[141]++;
 customElements.define('settings-popup', SettingsPopUp);
-cov_1umlas6hd8().s[142]++;
+cov_16b1q58rs7().s[142]++;
 window.addEventListener('load', () => {
-  cov_1umlas6hd8().f[6]++;
-  const settingsButton = (cov_1umlas6hd8().s[143]++, document.getElementById('setting-button'));
-  const settingsPopUp = (cov_1umlas6hd8().s[144]++, document.createElement('settings-popup'));
-  cov_1umlas6hd8().s[145]++;
+  cov_16b1q58rs7().f[6]++;
+  const settingsButton = (cov_16b1q58rs7().s[143]++, document.getElementById('setting-button'));
+  const settingsPopUp = (cov_16b1q58rs7().s[144]++, document.createElement('settings-popup'));
+  cov_16b1q58rs7().s[145]++;
   settingsPopUp.setAttribute('class', 'popup');
-  cov_1umlas6hd8().s[146]++;
+  cov_16b1q58rs7().s[146]++;
   document.body.appendChild(settingsPopUp);
-  cov_1umlas6hd8().s[147]++;
+  cov_16b1q58rs7().s[147]++;
   settingsButton.addEventListener('click', () => {
-    cov_1umlas6hd8().f[7]++;
-    const btnSound = (cov_1umlas6hd8().s[148]++, new Audio('./icons/btnClick.mp3'));
-    cov_1umlas6hd8().s[149]++;
+    cov_16b1q58rs7().f[7]++;
+    const btnSound = (cov_16b1q58rs7().s[148]++, new Audio('./icons/btnClick.mp3'));
+    cov_16b1q58rs7().s[149]++;
     btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
-    cov_1umlas6hd8().s[150]++;
+    cov_16b1q58rs7().s[150]++;
     btnSound.play(); // make sure all popups are closed before opening another one
 
-    const popups = (cov_1umlas6hd8().s[151]++, Array.from(document.getElementsByClassName('popup')));
-    cov_1umlas6hd8().s[152]++;
+    const popups = (cov_16b1q58rs7().s[151]++, Array.from(document.getElementsByClassName('popup')));
+    cov_16b1q58rs7().s[152]++;
 
-    for (let i = (cov_1umlas6hd8().s[153]++, 0); i < popups.length; i += 1) {
-      cov_1umlas6hd8().s[154]++;
+    for (let i = (cov_16b1q58rs7().s[153]++, 0); i < popups.length; i += 1) {
+      cov_16b1q58rs7().s[154]++;
       popups[i].closePopUp();
     }
 
-    cov_1umlas6hd8().s[155]++;
+    cov_16b1q58rs7().s[155]++;
     settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
   });
 }); // module.exports = SettingsPopUp;
