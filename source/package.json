@@ -12,7 +12,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint .",
-    "instrument": "rm -rf src/instrumented && npx nyc instrument --compact=false src src/instrumented"
+    "instrument": "npx rimraf src/instrumented && npx nyc instrument --compact=false src src/instrumented"
   },
   "repository": {
     "type": "git",
@@ -67,6 +67,7 @@
     "http-server": "^0.12.3",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "regenerator-runtime": "^0.13.7",
+    "rimraf": "^3.0.2",
     "watch": "^1.0.2"
   },
   "babel": {
