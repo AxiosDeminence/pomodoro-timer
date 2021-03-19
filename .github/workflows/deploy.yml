@@ -42,10 +42,11 @@ jobs:
       - name: Build docs
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: source/src/scripts
+          source_dir: source/src/components
           output_dir: source/build/docs
           template: minami
           front_page: README.md
+          recurse: true
 
       - name: Deploy build on gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
