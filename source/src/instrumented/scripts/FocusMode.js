@@ -8,141 +8,141 @@ function cov_241nv9cxxr() {
     statementMap: {
       "0": {
         start: {
-          line: 4,
+          line: 5,
           column: 24
         },
         end: {
-          line: 4,
+          line: 5,
           column: 60
         }
       },
       "1": {
         start: {
-          line: 5,
+          line: 6,
           column: 20
         },
         end: {
-          line: 5,
+          line: 6,
           column: 61
         }
       },
       "2": {
         start: {
-          line: 6,
+          line: 7,
           column: 22
         },
         end: {
-          line: 6,
+          line: 7,
           column: 59
         }
       },
       "3": {
         start: {
-          line: 8,
+          line: 9,
           column: 4
         },
         end: {
-          line: 8,
+          line: 9,
           column: 42
         }
       },
       "4": {
         start: {
-          line: 9,
+          line: 10,
           column: 4
         },
         end: {
-          line: 9,
+          line: 10,
           column: 38
         }
       },
       "5": {
         start: {
-          line: 10,
+          line: 11,
           column: 4
         },
         end: {
-          line: 10,
+          line: 11,
           column: 40
         }
       },
       "6": {
         start: {
-          line: 11,
+          line: 12,
           column: 4
         },
         end: {
-          line: 19,
+          line: 20,
           column: 5
         }
       },
       "7": {
         start: {
-          line: 12,
+          line: 13,
           column: 8
         },
         end: {
-          line: 12,
+          line: 13,
           column: 47
         }
       },
       "8": {
         start: {
-          line: 14,
+          line: 15,
           column: 8
         },
         end: {
-          line: 14,
+          line: 15,
           column: 49
         }
       },
       "9": {
         start: {
-          line: 15,
+          line: 16,
           column: 22
         },
         end: {
-          line: 15,
+          line: 16,
           column: 61
         }
       },
       "10": {
         start: {
-          line: 16,
+          line: 17,
           column: 8
         },
         end: {
-          line: 18,
+          line: 19,
           column: 9
         }
       },
       "11": {
         start: {
-          line: 17,
+          line: 18,
           column: 12
         },
         end: {
-          line: 17,
+          line: 18,
           column: 33
         }
       },
       "12": {
         start: {
-          line: 21,
+          line: 23,
           column: 17
         },
         end: {
-          line: 21,
+          line: 23,
           column: 56
         }
       },
       "13": {
         start: {
-          line: 22,
+          line: 24,
           column: 0
         },
         end: {
-          line: 22,
+          line: 24,
           column: 48
         }
       }
@@ -152,93 +152,93 @@ function cov_241nv9cxxr() {
         name: "toggleState",
         decl: {
           start: {
-            line: 1,
+            line: 2,
             column: 9
           },
           end: {
-            line: 1,
+            line: 2,
             column: 20
           }
         },
         loc: {
           start: {
-            line: 1,
+            line: 2,
             column: 23
           },
           end: {
-            line: 20,
+            line: 21,
             column: 1
           }
         },
-        line: 1
+        line: 2
       }
     },
     branchMap: {
       "0": {
         loc: {
           start: {
-            line: 11,
+            line: 12,
             column: 4
           },
           end: {
-            line: 19,
+            line: 20,
             column: 5
           }
         },
         type: "if",
         locations: [{
           start: {
-            line: 11,
+            line: 12,
             column: 4
           },
           end: {
-            line: 19,
+            line: 20,
             column: 5
           }
         }, {
           start: {
-            line: 11,
+            line: 12,
             column: 4
           },
           end: {
-            line: 19,
+            line: 20,
             column: 5
           }
         }],
-        line: 11
+        line: 12
       },
       "1": {
         loc: {
           start: {
-            line: 16,
+            line: 17,
             column: 8
           },
           end: {
-            line: 18,
+            line: 19,
             column: 9
           }
         },
         type: "if",
         locations: [{
           start: {
-            line: 16,
+            line: 17,
             column: 8
           },
           end: {
-            line: 18,
+            line: 19,
             column: 9
           }
         }, {
           start: {
-            line: 16,
+            line: 17,
             column: 8
           },
           end: {
-            line: 18,
+            line: 19,
             column: 9
           }
         }],
-        line: 16
+        line: 17
       }
     },
     s: {
@@ -285,6 +285,7 @@ function cov_241nv9cxxr() {
 
 cov_241nv9cxxr();
 
+/** Toggle focus mode: remove task list component and only show the Pomodoro timer */
 function toggleState() {
   cov_241nv9cxxr().f[0]++;
   // elements -- popup button, task list div, pomodoro timer div, focus task

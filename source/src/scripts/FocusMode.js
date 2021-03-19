@@ -1,3 +1,4 @@
+/** Toggle focus mode: remove task list component and only show the Pomodoro timer */
 function toggleState() {
     // elements -- popup button, task list div, pomodoro timer div, focus task
     // const popUpBtn = document.getElementById('popup-button');
@@ -18,5 +19,6 @@ function toggleState() {
         }
     }
 }
+
 const focusBtn = document.getElementById('focus-button');
 focusBtn.addEventListener('click', toggleState);
