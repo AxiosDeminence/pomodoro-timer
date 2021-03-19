@@ -43,35 +43,49 @@ test('Confirm Button functions as intended', () => {
     expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
 });
 
-/*
-edge case for settings not implemented yet, ignore for now.
+test('Illegal numbers treated properly', () => {
+    const testSettingsPopUp = document.createElement('settings-popup');
+    const shadow = testSettingsPopUp.shadowRoot;
 
-test('Confirm Button edge cases functions as intended', () => {
+    localStorage.setItem('pomo-length', '100');
+    localStorage.setItem('short-break-length', '-10');
+    localStorage.setItem('long-break-length', '0.5');
 
-    const testSettingsPopUp = new SettingsPopUp();
+    const confirmBtn = shadow.querySelectorAll('button')[0];
+
+    confirmBtn.click();
+
+    expect(localStorage.getItem('pomo-length')).toBe('25');
+    expect(localStorage.getItem('short-break-length')).toBe('5');
+    expect(localStorage.getItem('long-break-length')).toBe('15');
+
+    // closes pop up
+    expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
+});
+
+test('NaN input treated correctly', () => {
+    const testSettingsPopUp = document.createElement('settings-popup');
     const shadow = testSettingsPopUp.shadowRoot;
 
     const pomoLength = shadow.querySelectorAll('input')[0];
     const shortBreakLength = shadow.querySelectorAll('input')[1];
     const longBreakLength = shadow.querySelectorAll('input')[2];
 
-    pomoLength.value = '100';
-    shortBreakLength.value = '200';
-    longBreakLength.value = '300';
+    pomoLength.value = '';
+    shortBreakLength.value = '';
+    longBreakLength.value = '';
 
     const confirmBtn = shadow.querySelectorAll('button')[0];
 
     confirmBtn.click();
 
-    expect(localStorage.getItem('pomo-length')).toBe('60');
-    expect(localStorage.getItem('short-break-length')).toBe('60');
-    expect(localStorage.getItem('long-break-length')).toBe('600');
+    expect(localStorage.getItem('pomo-length')).toBe('25');
+    expect(localStorage.getItem('short-break-length')).toBe('5');
+    expect(localStorage.getItem('long-break-length')).toBe('15');
 
     // closes pop up
     expect(shadow.getElementById('settings-confirm-popup').style.display).toBe('none');
-
 });
-*/
 
 test('Cancel Button functions as intended', () => {
     const testSettingsPopUp = document.createElement('settings-popup');
