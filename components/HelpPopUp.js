@@ -1,4 +1,6 @@
+/** Help documentation modal component */
 class HelpPopUp extends HTMLElement {
+    /** Closes the modal */
     closePopUp() {
         const wrapper = this.shadowRoot.getElementById('help-popup');
         wrapper.style.display = 'none';

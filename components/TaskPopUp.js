@@ -1,5 +1,6 @@
 // const TaskItem = require('./TaskItem');
-// create class for popup to add task
+
+/** create class for popup to add task */
 class TaskPopUp extends HTMLElement {
     // add TaskItem element to DOM
     addTask() {
@@ -32,7 +33,7 @@ class TaskPopUp extends HTMLElement {
         }
     }
 
-    // closes popup
+    /** closes popup */
     closePopUp() {
         const wrapper = this.shadowRoot.getElementById('add-task-popup');
         const input = this.shadowRoot.getElementById('task-input');
@@ -40,7 +41,7 @@ class TaskPopUp extends HTMLElement {
         input.value = '';
     }
 
-    /* create popup item to add tasks by building a custom component */
+    /** create popup item to add tasks by building a custom component */
     constructor() {
         super();
         const shadow = this.attachShadow({ mode: 'open' });

@@ -1,4 +1,4 @@
-// creates a task list item
+/** creates a task list item */
 class TaskItem extends HTMLElement {
     // toggles custom attribute 'checked' for this element
     toggle() {
@@ -14,7 +14,7 @@ class TaskItem extends HTMLElement {
         }
     }
 
-    // removes custom element from DOM and deletes task from localStorage
+    /** removes custom element from DOM and deletes task from localStorage */
     removeTask() {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         // find and remove task from localStorage
@@ -30,7 +30,7 @@ class TaskItem extends HTMLElement {
         }
     }
 
-    // allows user to focus on a task item
+    /** allows user to focus on a task item */
     focus(event) {
         event.stopPropagation();
         // remove task item from parent
@@ -100,7 +100,7 @@ class TaskItem extends HTMLElement {
         }
     }
 
-    /* create task list item by building custom component */
+    /** create task list item by building custom component */
     constructor() {
         super();
         const shadow = this.attachShadow({ mode: 'open' });
