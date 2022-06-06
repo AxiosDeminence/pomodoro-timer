@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="icons/favicon.ico">
 
-    <link rel="prefetch" href="assets/icons-cd826e74.svg" as="image">
+    <link rel="prefetch" href="assets/icons-68c6c82c.svg" as="image">
     <link rel="preload" href="icons/btnClick.mp3" as="audio">
     <link rel="preload" href="icons/alarm.mp3" as="audio">
     <link rel="preload" href="scripts/Timer.worker.js" as="worker">
@@ -87,6 +87,7 @@
             right:20px;
             cursor: pointer;
             opacity: 0.33;
+            transition: transform .3s ease;
         }
         #close-icon:hover {
             opacity: 1;
@@ -174,7 +175,7 @@
         }
     </style>
     <div id="help-popup" part="popup-wrapper">
-        <img src="assets/icons-cd826e74.svg#close" id="close-icon" part="close-icon">
+        <img src="assets/icons-68c6c82c.svg#close" id="close-icon" part="close-icon">
         <h3 part="help-h3">Help</h3>
         <div id="help-container">
             <div id="how-to" part="instructions">
@@ -364,6 +365,7 @@
             right:20px;
             cursor: pointer;
             opacity: 0.33;
+            transition: transform .3s ease;
         }
         @media(min-width: 800px) {
             #close-icon {
@@ -424,6 +426,7 @@
             outline: none;
             padding: 10px 40px;
             border-radius: 10px;
+            transition: transform .3s ease;
         }
         .warning-message {
             border-style: none; 
@@ -476,7 +479,7 @@
     </style>
     <!-- Part attributes are set to change the style in a global stylesheet -->
     <div id="settings-confirm-popup" part="settings-confirm-popup">
-        <img src="assets/icons-cd826e74.svg#close" id="close-icon" part="close-icon">
+        <img src="assets/icons-68c6c82c.svg#close" id="close-icon" part="close-icon">
         <h3 part="settings-h3">Settings</h3>
         <h4 id="timer-settings" part="timer-settings">Session Length (minutes)</h4>
         <div id="session" class="single-setting">
@@ -562,6 +565,7 @@
             right:20px;
             cursor: pointer;
             opacity: 0.33;
+            transition: transform .3s ease;
         }
         #close-icon:hover {
             opacity: 1;
@@ -631,6 +635,7 @@
             font-size: 4.25vw;
             font-weight: 500;
             outline: none;
+            transition: transform .3s ease;
         }
         .reset-popup-btns:hover {
             filter: brightness(105%);
@@ -659,7 +664,7 @@
         } */
     </style>
     <div id="reset-confirm-popup" part="popup-wrapper">
-        <img src="assets/icons-cd826e74.svg#close" alt="" id="close-icon" part="close-icon">
+        <img src="assets/icons-68c6c82c.svg#close" alt="" id="close-icon" part="close-icon">
         <h3 part="reset-confirm-h3">Are you sure?</h3>
         <h5 id="reset-content" part="reset-content">This will reset your current pomodoro session and wipe out your jotted tasks!</h5>
         <div class="button-footer" part="btn-footer">
@@ -768,10 +773,10 @@
         }
     </style>
     <li id="li">
-        <img src="assets/icons-cd826e74.svg#check" alt="" part="test" class="check-icon">
+        <img src="assets/icons-68c6c82c.svg#check" alt="" part="test" class="check-icon">
         <span id="task-text"></span>
-        <img src="assets/icons-cd826e74.svg#focus" alt="" title="Focus on this task" class="focus-icon">
-        <img src="assets/icons-cd826e74.svg#delete" alt="" title="Delete this task" class="delete-icon">
+        <img src="assets/icons-68c6c82c.svg#focus" alt="" title="Focus on this task" class="focus-icon">
+        <img src="assets/icons-68c6c82c.svg#delete" alt="" title="Delete this task" class="delete-icon">
     </li>
 </template>
 <script src="components/TaskItem.js" type="module" async></script>
@@ -911,7 +916,7 @@
         }
     </style>
     <div id="add-task-popup" part="popup-wrapper">
-        <img src="assets/icons-cd826e74.svg#close" alt="" id="close-icon" part="close-icon">
+        <img src="assets/icons-68c6c82c.svg#close" alt="" id="close-icon" part="close-icon">
         <h3 part="add-task-h3">Add Task</h3>
         <input type="text" name="" id="task-input" placeholder="What are you working on today?" maxlength="48" spellcheck="false" part="task-input">
         <div class="button-footer" part="btn-footer">
@@ -927,22 +932,22 @@
                 <ul>
                     <li title="Focus">
                         <button id="focus-button">
-                            <img src="assets/icons-cd826e74.svg#half-moon" id="focus" class="top-button-img" alt="Focus">
+                            <img src="assets/icons-68c6c82c.svg#half-moon" id="focus" class="top-button-img" alt="Focus">
                         </button>
                     </li>
                     <li title="Reset">
                         <button class="top-buttons" id="reset-button">
-                            <img src="assets/icons-cd826e74.svg#reset" id="reset" class="top-button-img" alt="Reset">
+                            <img src="assets/icons-68c6c82c.svg#reset" id="reset" class="top-button-img" alt="Reset">
                         </button>
                     </li>
                     <li title="Settings">
                         <button class="top-buttons" id="setting-button">
-                            <img src="assets/icons-cd826e74.svg#settings" id="gear" class="top-button-img" alt="Settings">
+                            <img src="assets/icons-68c6c82c.svg#settings" id="gear" class="top-button-img" alt="Settings">
                         </button>
                     </li>
                     <li title="Help">
                         <button class="top-buttons" id="help-button">
-                            <img src="assets/icons-cd826e74.svg#help" id="help" class="top-button-img" alt="Help">
+                            <img src="assets/icons-68c6c82c.svg#help" id="help" class="top-button-img" alt="Help">
                         </button>
                     </li>
                 </ul>
@@ -951,8 +956,8 @@
         <main>
             <section id="pomodoro-timer">
                 <div id="timer-btns" class="timer-buttons">
-                    <button id="pomo-btn"> Pomo</button>
-                    <button id="break-btn"> Break</button>
+                    <h2 id="pomo-btn"> Pomo</h2>
+                    <h2 id="break-btn"> Break</h2>
                 </div>
                 <div id="timer-display" class="timer-value">
                     <div id="timer-display-duration">25:00</div>
@@ -972,7 +977,7 @@
                 <ul id="task-list-elements">
                 </ul>
                 <button id="task-popup-btn" title="Add Task">
-                    <img src="assets/icons-cd826e74.svg#plus" id="plus">
+                    <img src="assets/icons-68c6c82c.svg#plus" id="plus">
                 </button>
             </section>
         </main>
