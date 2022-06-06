@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Global - Documentation</title>
+    <title>AccurateInterval - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">AccurateInterval</h1>
     
 
     
@@ -42,8 +42,12 @@
 <header>
     
         <h2>
+            <span class="ancestors"><a href="Timer.worker.module_js.html">Timer.worker.js</a>~</span>
         
+        AccurateInterval
         </h2>
+        
+            <div class="class-description">Class representing a self-correcting interval.</div>
         
     
 </header>
@@ -52,8 +56,107 @@
     <div class="container-overview">
     
         
+<div class="section-method">
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="AccurateInterval"><span class="type-signature"></span>new AccurateInterval<span class="signature">(cb, args, interval, acceptableDrift)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Creates an accurate interval with an acceptable drift.
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
 
         
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>timeoutID</code></span>
+|
+
+<span class="param-type"><code>intervalID</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Maintains timeouts/intervals and checks it
+    against the drift.</td>
+        </tr>
+
+        
+
+    
+
+        <tr>
+            
+                <td class="name"><code>expectedTime</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Expected tiemstamp the next tick would be run</td>
+        </tr>
+
+        
+
+    
+    </tbody>
+</table>
+
+
 
 
 <dl class="details">
@@ -83,6 +186,11 @@
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_Timer.worker.js.html">scripts/Timer.worker.js</a>, <a href="scripts_Timer.worker.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
 
     
 
@@ -92,7 +200,158 @@
 </dl>
 
 
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
         
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>function</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                Callback function
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Array.&lt;any></code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                Arguments to the callback function
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>interval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                Interval in milliseconds
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>acceptableDrift</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                Allowed drift in milliseconds
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
     
     </div>
 
@@ -117,14 +376,14 @@
 
     
 
-    <h4 class="name" id="showCompleted"><span class="type-signature"></span>showCompleted<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="start"><span class="type-signature"></span>start<span class="signature">(noZeroTick)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Show completed tasks and hides incomplete tasks
+    Starts the accurate interval
 </div>
 
 
@@ -160,7 +419,142 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_script.js.html">scripts/script.js</a>, <a href="scripts_script.js.html#line57">line 57</a>
+        <a href="scripts_Timer.worker.js.html">scripts/Timer.worker.js</a>, <a href="scripts_Timer.worker.js.html#line43">line 43</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>noZeroTick</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>boolean</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                Checks to see if we want a zerotick callback run.
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="stop"><span class="type-signature"></span>stop<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Stops the accurate interval
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_Timer.worker.js.html">scripts/Timer.worker.js</a>, <a href="scripts_Timer.worker.js.html#line82">line 82</a>
     </li></ul></dd>
     
 
@@ -200,14 +594,14 @@
 
     
 
-    <h4 class="name" id="showInComplete"><span class="type-signature"></span>showInComplete<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="tick"><span class="type-signature"></span>tick<span class="signature">(attemptedCorrection)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Show incomplete tasks and hides completed tasks
+    Each run of the accurate interval
 </div>
 
 
@@ -243,7 +637,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_script.js.html">scripts/script.js</a>, <a href="scripts_script.js.html#line34">line 34</a>
+        <a href="scripts_Timer.worker.js.html">scripts/Timer.worker.js</a>, <a href="scripts_Timer.worker.js.html#line56">line 56</a>
     </li></ul></dd>
     
 
@@ -262,88 +656,56 @@
 
 
 
+    <h5>Parameters:</h5>
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
+<table class="params">
+    <thead>
+    <tr>
         
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-<div class="section-method">
+                <td class="name"><code>attemptedCorrection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>boolean</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                
+                
+            </td>
+        </tr>
 
     
-
-    <h4 class="name" id="toggleState"><span class="type-signature"></span>toggleState<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    The function is keep track of focus tasks and check if all the
-tasks are complete.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_FocusMode.js.html">scripts/FocusMode.js</a>, <a href="scripts_FocusMode.js.html#line5">line 5</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
+    </tbody>
+</table>
 
 
 

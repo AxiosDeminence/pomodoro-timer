@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>scripts/FocusMode.js - Documentation</title>
+    <title>HelpPopUp - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,61 +29,134 @@
 
 <div id="main">
     
-    <h1 class="page-title">scripts/FocusMode.js</h1>
+    <h1 class="page-title">HelpPopUp</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/** Toggle focus mode: remove task list component and only show the Pomodoro timer */
-/** The function is keep track of focus tasks and check if all the
- * tasks are complete.
- */
-function toggleState() {
-    // elements -- popup button, task list div, pomodoro timer div, focus task
-    // const popUpBtn = document.getElementById('popup-button');
-    const taskListDiv = document.getElementById('task-list');
-    const pomoDiv = document.getElementById('pomodoro-timer');
-    const focusTask = document.getElementById('focus-task');
-    const button = document.getElementById('header-buttons');
-    // popUpBtn.classList.toggle('state');
-    taskListDiv.classList.toggle('state');
-    pomoDiv.classList.toggle('state');
-    focusTask.classList.toggle('state');
-    button.classList.toggle('state');
-    if (localStorage.getItem('state') === 'default') {
-        localStorage.setItem('state', 'focus');
-        document.querySelector('main').style.display = 'block';
-    } else {
-        document.querySelector('main').style.display = 'grid';
-        localStorage.setItem('state', 'default');
-        const title = document.getElementById('select-focus');
-        if (title.innerHTML === 'All tasks complete!') {
-            title.innerHTML = '';
-        }
-    }
+        <h2>
+        HelpPopUp
+        </h2>
+        
+            <div class="class-description">This class extends HTMLElement, creates a shadow document object model
+(DOM), and adds the elements of the help popup window to the DOM.</div>
+        
+    
+</header>
 
-    // play button-click sound accordingly
-    const btnSound = new Audio('../icons/btnClick.mp3');
-    btnSound.volume = 0.01 * parseInt(localStorage.getItem('volume'), 10);
-    if (localStorage.getItem('clickState') === 'on') {
-        btnSound.play(); // only plays sound when enabled
-    }
-}
+<article>
+    <div class="container-overview">
+    
+        
+<div class="section-method">
 
-// export { toggleState as default };
+    
+    <h2>Constructor</h2>
+    
 
-window.addEventListener('DOMContentLoaded', () => {
-    const focusBtn = document.getElementById('focus-button');
-    focusBtn.addEventListener('click', toggleState);
-});
-</code></pre>
-        </article>
-    </section>
+    <h4 class="name" id="HelpPopUp"><span class="type-signature"></span>new HelpPopUp<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_HelpPopUp.js.html">components/HelpPopUp.js</a>, <a href="components_HelpPopUp.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

@@ -1,17 +1,77 @@
+/** Settings model component. */
+
 /**
- * The class is extend the HTMlElement function. The closePopup function would be call for
- * close all the popup windows. The confirmSettings function would be call for confirm setting
- * all the time. The toggleMode function would be call for change the dark or light mode.
- * The setVolume would be call for setting the volume.
- * include the style of the web.
- * @constructor The constructor would reset and show everything in pages
+ * This class extends HTMLElement, creates a shadow document object model
+ * (DOM), and adds the elements of the settings popup window to the DOM.
  */
 class SettingsPopUp extends HTMLElement {
-    closePopUp() {
+    // Closes the settings popup without reset.
+    closeWithoutReset() {
         const wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
         wrapper.style.display = 'none';
     }
 
+    // Closes the settings popup.
+    closePopUp() {
+        const themeCheckbox = this.shadowRoot.querySelector('#dark-mode > label.switch > input[type=checkbox]');
+
+        if ((localStorage.getItem('theme') === 'light') && document.body.classList.contains('dark-theme')) {
+            themeCheckbox.checked = false;
+            document.body.classList.toggle('dark-theme');
+        } else if ((localStorage.getItem('theme') === 'dark') && (!document.body.classList.contains('dark-theme'))) {
+            themeCheckbox.checked = true;
+            document.body.classList.toggle('dark-theme');
+        }
+
+        const curTabState = localStorage.getItem('tab-label');
+        const prevTabState = localStorage.getItem('prevTabState');
+        if (!(curTabState === prevTabState)) {
+            localStorage.setItem('tab-label', prevTabState);
+            const tabLabelCheckbox = this.shadowRoot.querySelector('#tab-label-switch > label.switch > input[type=checkbox]');
+            if (prevTabState === 'on') {
+                tabLabelCheckbox.checked = true;
+            } else {
+                tabLabelCheckbox.checked = false;
+                document.getElementById('tab-label').innerHTML = 'Pomodoro Timer';
+            }
+        }
+
+        const curClickState = localStorage.getItem('clickState');
+        const prevClickState = localStorage.getItem('prevClickState');
+        if (!(curClickState === prevClickState)) {
+            localStorage.setItem('clickState', prevClickState);
+            const clickCheckbox = this.shadowRoot.querySelector('#sound-switch > input[type=checkbox]');
+            if (prevClickState === 'on') {
+                clickCheckbox.checked = true;
+            } else {
+                clickCheckbox.checked = false;
+            }
+        }
+
+        const curAlarmState = localStorage.getItem('alarmState');
+        const prevAlarmState = localStorage.getItem('prevAlarmState');
+        if (!(curAlarmState === prevAlarmState)) {
+            localStorage.setItem('alarmState', prevAlarmState);
+            const alarmCheckbox = this.shadowRoot.querySelector('#alarm-switch > input[type=checkbox]');
+            if (prevAlarmState === 'on') {
+                alarmCheckbox.checked = true;
+            } else {
+                alarmCheckbox.checked = false;
+            }
+        }
+
+        const volumeToSet = localStorage.getItem('prevVolume');
+        const rangeInput = this.shadowRoot.getElementById('range');
+        rangeInput.value = parseInt(volumeToSet, 10);
+        localStorage.setItem('volume', volumeToSet.toString());
+        const volumeText = this.shadowRoot.getElementById('volume-number');
+        volumeText.textContent = volumeToSet;
+
+        const wrapper = this.shadowRoot.getElementById('settings-confirm-popup');
+        wrapper.style.display = 'none';
+    }
+
+    // Sets all default values and button audios to play on click in the settings popup.
     confirmSettings() {
         let pomoLength = parseInt(this.shadowRoot.getElementById('pomo-length-input').value, 10);
         if (Number.isNaN(pomoLength)) {
@@ -40,22 +100,28 @@ class SettingsPopUp extends HTMLElement {
             btnSound.play(); // only plays sound when enabled
         }
         localStorage.setItem('stop', 'true');
-        this.closePopUp();
-    }
 
-    toggleMode() {
-        const timerBackground = document.getElementById('timer_display');
-        if (localStorage.getItem('theme') === 'light') {
-            timerBackground.style.background = '#4a5568';
+        if (document.body.classList.contains('dark-theme')) {
             localStorage.setItem('theme', 'dark');
         } else {
-            timerBackground.style.background = '#f36060';
             localStorage.setItem('theme', 'light');
         }
+
+        // setting for previous states
+        localStorage.setItem('prevVolume', localStorage.getItem('volume'));
+        localStorage.setItem('prevClickState', localStorage.getItem('clickState'));
+        localStorage.setItem('prevAlarmState', localStorage.getItem('alarmState'));
+        localStorage.setItem('prevTabState', localStorage.getItem('tab-label'));
+        this.closeWithoutReset();
+        // this.closePopUp();
+    }
+
+    // Changes theme from light mode to dark mode.
+    toggleMode() {
         document.body.classList.toggle('dark-theme');
     }
 
-    // toggles clickState's state
+    // Toggles clickState's state.
     toggleClickSound() {
         if (localStorage.getItem('clickState') === 'off') {
             localStorage.setItem('clickState', 'on');
@@ -64,7 +130,7 @@ class SettingsPopUp extends HTMLElement {
         }
     }
 
-    // toggles alarmState's state
+    // Toggles alarmState's state.
     toggleAlarmSound() {
         if (localStorage.getItem('alarmState') === 'off') {
             localStorage.setItem('alarmState', 'on');
@@ -73,6 +139,12 @@ class SettingsPopUp extends HTMLElement {
         }
     }
 
+    /** This function is called when the tab label toggle is clicked,
+     * to toggle the tab label setting on and off in localStorage.
+     * If the tab label is toggled off, it also sets the tab label
+     * back to regular text (in case it is currently showing a time).
+     * @returns { void }
+     */
     toggleTabLabel() {
         const tabLabel = document.getElementById('tab-label');
         if (localStorage.getItem('tab-label') === 'on') {
@@ -83,17 +155,20 @@ class SettingsPopUp extends HTMLElement {
         }
     }
 
+    // Sets the volume based on value in settings popup.
     setVolume() {
         const volume = this.shadowRoot.getElementById('range').value;
         localStorage.setItem('volume', `${volume}`);
     }
 
+    // Updates the volume text based on value in settings popup.
     updateVolumeText() {
         const volumeText = this.shadowRoot.getElementById('volume-number');
         const rangeInput = this.shadowRoot.getElementById('range');
         volumeText.textContent = rangeInput.value;
     }
 
+    // Appends the elements of the settings popup to the shadow DOM.
     constructor() {
         super();
         const shadow = this.attachShadow({ mode: 'open' });
@@ -130,6 +205,7 @@ class SettingsPopUp extends HTMLElement {
         });
     }
 
+    // If node is connected, add an on-click listener to the close button.
     connectedCallback() {
         // Guard clause to prevent it from being called when element is disconnected.
         if (!this.isConnected) {
@@ -155,14 +231,14 @@ class SettingsPopUp extends HTMLElement {
 
         const themeCheckbox = this.shadowRoot.querySelector('#dark-mode > label.switch > input[type=checkbox]');
         if (localStorage.getItem('theme') === 'dark') {
-            themeCheckbox.toggleAttribute('checked');
+            themeCheckbox.setAttribute('checked', '');
         }
         const themeStylisticSlider = this.shadowRoot.getElementById('mode-switch-slider');
         themeStylisticSlider.addEventListener('click', this._bindedChangeTheme);
 
         const tabLabelCheckbox = this.shadowRoot.querySelector('#tab-label-switch > label.switch > input[type=checkbox]');
-        if (localStorage.getItem('tab-label') === 'on' || localStorage.getItem('tab-label') === null) {
-            tabLabelCheckbox.toggleAttribute('checked');
+        if (localStorage.getItem('tab-label') === 'on') {
+            tabLabelCheckbox.setAttribute('checked', '');
         }
         const tabLabelStylisticSlider = this.shadowRoot.getElementById('tab-label-switch-slider');
         tabLabelStylisticSlider.addEventListener('click', this._bindedToggleTabLabel);
@@ -175,47 +251,48 @@ class SettingsPopUp extends HTMLElement {
 
         const soundCheckbox = this.shadowRoot.querySelector('#sound-switch > input[type=checkbox]');
         if (localStorage.getItem('clickState') === 'on') {
-            soundCheckbox.toggleAttribute('checked');
+            soundCheckbox.setAttribute('checked', '');
         }
         const soundStylisticSlider = this.shadowRoot.querySelector('#sound-switch > span.slider');
         soundStylisticSlider.addEventListener('click', this._bindedToggleClickSound);
 
         const alarmCheckbox = this.shadowRoot.querySelector('#alarm-switch > input[type=checkbox]');
         if (localStorage.getItem('clickState') === 'on') {
-            alarmCheckbox.toggleAttribute('checked');
+            alarmCheckbox.setAttribute('checked', '');
         }
-        const alarmStylisticSlider = this.shadowRoot.querySelector('#sound-switch > span.slider');
+        const alarmStylisticSlider = this.shadowRoot.querySelector('#alarm-switch > span.slider');
         alarmStylisticSlider.addEventListener('click', this._bindedToggleAlarmSound);
 
         const confirmBtn = this.shadowRoot.getElementById('confirm-settings-btn');
         confirmBtn.addEventListener('click', this._bindedConfirmSettings);
     }
 
+    // If node is connected, remove the close button's on-click listener.
     disconnectedCallback() {
         const closeBtn = this.shadowRoot.getElementById('close-icon');
-        closeBtn.addEventListener('click', this._bindedClose);
+        closeBtn.removeEventListener('click', this._bindedClose);
 
         const themeStylisticSlider = this.shadowRoot.getElementById('mode-switch-slider');
-        themeStylisticSlider.addEventListener('click', this._bindedChangeTheme);
+        themeStylisticSlider.removeEventListener('click', this._bindedChangeTheme);
 
         const rangeInput = this.shadowRoot.getElementById('range');
-        rangeInput.addEventListener('input', this._bindedUpdateVolumeText);
-        rangeInput.addEventListener('change', this._bindedSetVolume);
+        rangeInput.removeEventListener('input', this._bindedUpdateVolumeText);
+        rangeInput.removeEventListener('change', this._bindedSetVolume);
 
         const soundStylisticSlider = this.shadowRoot.querySelector('#sound-switch > span.slider');
-        soundStylisticSlider.addEventListener('click', this._bindedToggleClickSound);
+        soundStylisticSlider.removeEventListener('click', this._bindedToggleClickSound);
 
         const alarmStylisticSlider = this.shadowRoot.querySelector('#sound-switch > span.slider');
-        alarmStylisticSlider.addEventListener('click', this._bindedToggleAlarmSound);
+        alarmStylisticSlider.removeEventListener('click', this._bindedToggleAlarmSound);
 
         const confirmBtn = this.shadowRoot.getElementById('confirm-settings-btn');
-        confirmBtn.addEventListener('click', this._bindedConfirmSettings);
+        confirmBtn.removeEventListener('click', this._bindedConfirmSettings);
     }
 }
 
 customElements.define('settings-popup', SettingsPopUp);
 
-window.addEventListener('DOMContentLoaded', () => {
+function init() {
     const settingsButton = document.getElementById('setting-button');
     const settingsPopUp = document.querySelector('settings-popup');
     settingsButton.addEventListener('click', () => {
@@ -231,6 +308,12 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         settingsPopUp.shadowRoot.getElementById('settings-confirm-popup').setAttribute('style', 'display:block');
     });
-});
+}
+
+if (document.readyState !== 'loading') {
+    init();
+} else {
+    window.addEventListener('DOMContentLoaded', init);
+}
 
 // module.exports = SettingsPopUp;

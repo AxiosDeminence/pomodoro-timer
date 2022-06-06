@@ -3,23 +3,45 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="tab-label">Pomodoro Timer</title>
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" as="font">
     <link rel="stylesheet" href="styles/index.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/icons/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
-</head>
+    <link rel="shortcut icon" type="image/x-icon" href="icons/favicon.ico">
 
+    <link rel="prefetch" href="assets/icons-68c6c82c.svg" as="image">
+    <link rel="preload" href="icons/btnClick.mp3" as="audio">
+    <link rel="preload" href="icons/alarm.mp3" as="audio">
+    <link rel="preload" href="scripts/Timer.worker.js" as="worker">
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/Timer.js" type="module"></script>
+    <script src="scripts/FocusMode.js" type="module"></script>
+</head>
 <body>
-    <template id="help-popup-template">
+    <script>
+        // Render blocking JS:
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('state') === 'focus') {
+                document.getElementById('task-list').classList.add('state');
+                document.getElementById('pomodoro-timer').classList.add('state');
+                document.getElementById('focus-task').classList.add('state');
+            }
+        });
+    </script>
+<template id="help-popup-template">
     <style>
-        #accessibility-content li{
+        #accessibility-content li {
             margin-bottom: 0.390625vw;
         }
         #accessibility-content {
             padding: 0;
-            margin-left: 1.875vw;
-            font-size: 1vw;
         }
         #accessibility {
             font-weight: 500;
@@ -30,8 +52,6 @@
         }
         #features-content {
             padding: 0;
-            margin-left: 1.875vw;
-            font-size: 1vw;
         }
         #features {
             font-weight: 500;
@@ -42,35 +62,29 @@
         }
         #how-to-content {
             padding: 0;
-            margin-left: 1.875vw;
-            font-size: 1vw;
         }
         #how-to {
             font-weight: 500;
             color: rgb(85, 85, 85);
         }
         h4 {
-            font-size: 1.15vw;
             color: rgb(85, 85, 85);
             font-weight: 500;
+            font-size: 25px;
         }
+
         #help-container {
-            width: 85%;
             margin: 0 auto;
             /* height: 80%; */
-            height: 28.125vw;
+            max-height: 60vh;
             overflow: auto;
         }
         #close-icon {
             /* width: 15px; */
-            width: 1.171875vw;
-            /* margin-top: 10px; */
-            /* margin-right: 10px; */
-            margin-top: 0.78125vw;
-            margin-right: 0.78125vw;
+            width: 20px;
             position:absolute;
-            top:0;
-            right:0;
+            top:20px;
+            right:20px;
             cursor: pointer;
             opacity: 0.33;
             transition: transform .3s ease;
@@ -80,48 +94,88 @@
             transform: scale(1.1);
         }
         #help-popup {
+            box-sizing: border-box;
             display: none;
             position: fixed;
             /* width: 30%; */
             /* width: 52%; */
-            width: 51.953125vw;
+            width: 90%;
             /* height: 30%; */
-            height: 35.15625vw;
+            height: fit-content;
             /* border-radius: 4px;  */
-            border-radius: 0.3125vw;
+            border-radius: 10px;
+            padding: 20px;
             top:18%;
             /* left: 34%; */
             left: 24%;
             z-index: 999;
             background-color: whitesmoke;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-            -webkit-animation-name: animatetop; 
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-animation-name: animatetop;
             -webkit-animation-duration: 0.3s;
             animation-name: animatetop;
-            animation-duration: 0.3s
+            animation-duration: 0.3s;
+            max-width:600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-height: 80vh;
         }
         @-webkit-keyframes animatetop {
-            from {top:-200px; opacity:0} 
-            to {top:70; opacity:1}
+            from {
+                top: -200px;
+                opacity: 0
+            }
+            to {
+                top: 70;
+                opacity: 1
+            }
         }
         @keyframes animatetop {
-            from {top:-200px; opacity:0}
-            to {top:70; opacity:1}
+            from {
+                top: -200px;
+                opacity: 0
+            }
+            to {
+                top: 70;
+                opacity: 1
+            }
         }
         #help-popup > h3{
-            font-size: 1.6vw;
+            font-size: 30px;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
             /* padding-bottom: 5px; */
-            padding-bottom: 0.390625vw;
-            width: 85%;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            width:100%;
             font-weight: 500;
             /* margin: 20px auto 10px auto; */
             margin: 1.5625vw auto 0.78125vw auto;
         }
+
+        @media(min-width:768px) {
+            #help-popup > h3{
+                font-size: 40px;
+            }
+        }
+
+        ol, ul {
+            margin-left: 20px;
+        }
+
+        ol li{
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        ul li{
+            font-size: 18px;
+            margin-left: 10px;
+        }
     </style>
     <div id="help-popup" part="popup-wrapper">
-        <img src="icons/close.svg" id="close-icon" part="close-icon">
+        <img src="assets/icons-68c6c82c.svg#close" id="close-icon" part="close-icon">
         <h3 part="help-h3">Help</h3>
         <div id="help-container">
             <div id="how-to" part="instructions">
@@ -148,24 +202,22 @@
             <div id="accessibility" part="accessibility">
                 <h4 part="h4">Keyboard Shortcuts</h4>
                 <ul id="accessibility-content">
-                    <li>'h'     - Help page pop up</li>
-                    <li>';'     - Settings pop up</li>
-                    <li>'r'     - Reset pop up</li>
-                    <li>'f'     - Focus mode</li>
-                    <li>'a'     - Add task</li>
+                    <li>'h' - Help page pop up</li>
+                    <li>';' - Settings pop up</li>
+                    <li>'r' - Reset pop up</li>
+                    <li>'f' - Focus mode</li>
+                    <li>'a' - Add task</li>
                     <li>'Space' - Start/stop</li>
                     <li>'Enter' - Confirm/Add</li>
-                    <li>'Esc'   - Cancel/Close</li>
+                    <li>'Esc' - Cancel/Close</li>
                 </ul>
             </div>
         </div>
     </div>
 </template>
-    <template id="settings-popup-template">
+<script src="components/HelpPopUp.js" type="module" async></script>
+<template id="settings-popup-template">
     <style>
-        button {
-            transition: transform .3s ease;
-        }
         h4 {
             font-size: var(--setting-h4);
             color: rgb(85, 85, 85);
@@ -296,47 +348,48 @@
         .button-footer {
             background-color: rgb(234 234 234);
             margin: 0;
-            padding: var(--button-footer-padding);
+            padding: 0 20px 20px 20px;
             text-align: right;
             position: absolute;
             right: 0;
             left: 0;
-            border-bottom-left-radius: 0.3125vw;
-            border-bottom-right-radius: 0.3125vw;
+            border-radius: 0 0 10px 10px;
         }
         #timer-settings {
             margin: var(--setting-margin) auto var(--setting-margin) auto;
         }
         #close-icon {
-            width: 1.171875vw;
-            margin-top: 0.78125vw;
-            margin-right: 0.78125vw;
+            width: 20px;
             position:absolute;
-            top:0;
-            right:0;
+            top:20px;
+            right:20px;
             cursor: pointer;
             opacity: 0.33;
             transition: transform .3s ease;
+        }
+        @media(min-width: 800px) {
+            #close-icon {
+                width:30px;
+            }
         }
         #close-icon:hover {
             opacity: 1;
             transform: scale(1.1);
         }
-        
         #settings-confirm-popup {
+            box-sizing: border-box;
             flex-wrap: wrap;
-            position:absolute;
-            width:max-content;
-            height:max-content;
-            padding-left: 2.5%;
-            padding-right: 2.5%;
-            padding-bottom: 0.30625vw;
-            border-radius: 0.3125vw;
-            top: 50vh;
+            position:fixed;
+            height:fit-content;
+            padding: 20px;
+            border-radius: 10px;
+            top: 50%;
             left: 50%;
-            transform: translate(-50%,-25vh);
+            transform: translate(-50%,-50%);
             z-index: 999;
             background-color: whitesmoke;
+            width:90%;
+            max-width: 600px;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
             -webkit-animation-name: animatetop; 
             -webkit-animation-duration: 0.3s;
@@ -353,27 +406,43 @@
             to {top:70; opacity:1}
         }
         #settings-confirm-popup > h3 {
-            font-size: var(--setting-h3);
+            font-size: 30px;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
             padding-bottom: var(--setting-h3-padding);
             font-weight: 500;
             margin: var(--setting-margin) auto var(--setting-margin) auto;
+            margin-bottom: 10px;
         }
         .settings-popup-btns {
             cursor: pointer;
             border-style: none; 
-            border-radius: 0.3125vw;
             text-align: center;
             background-color:#f36060;
             color:#fff;
             font-family: 'Quicksand', sans-serif;
-            height: 17%;
-            width: 27%;
-            font-size: var(--pop-up-button-font-size);
+            font-size: 20px;
             font-weight: 500;
             outline: none;
+            padding: 10px 40px;
+            border-radius: 10px;
+            transition: transform .3s ease;
+        }
+        .warning-message {
+            border-style: none; 
+            color:rgb(85, 85, 85);
+            font-family: 'Quicksand', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            outline: none;
+            margin-top: 10px;
             padding: var(--setting-margin) var(--setting-margin);
+        }
+
+        @media(min-width:768px) {
+            .warning-message {
+                font-size: 15px;
+            }
         }
         .settings-popup-btns:hover {
             filter: brightness(105%);
@@ -401,10 +470,16 @@
         #alarm-switch {
             margin-left: var(--setting-margin);
         }
+
+        #session {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
     </style>
     <!-- Part attributes are set to change the style in a global stylesheet -->
     <div id="settings-confirm-popup" part="settings-confirm-popup">
-        <img src="icons/close.svg" id="close-icon" part="close-icon">
+        <img src="assets/icons-68c6c82c.svg#close" id="close-icon" part="close-icon">
         <h3 part="settings-h3">Settings</h3>
         <h4 id="timer-settings" part="timer-settings">Session Length (minutes)</h4>
         <div id="session" class="single-setting">
@@ -417,7 +492,7 @@
                 <input type="number" id="short-break-input" min="1" max="60" part="length-inputs">
             </div>
             <div class="session-inputs">
-                <label for="long-break" part="session-labels">Short Break</label>
+                <label for="long-break" part="session-labels">Long Break</label>
                 <input type="number" id="long-break-input" min="1" max="60" part="length-inputs">
             </div>
         </div>
@@ -461,39 +536,33 @@
             
         </div>
         <div class="button-footer" part="btn-footer">
-            <button id="confirm-settings-btn" class="settings-popup-btns" part="confirm-btn">Confirm</button>
+            <p class = "warning-message" style="text-align:left" part="volume-number">WARNING: Any changes to settings will reset the timer if running!</p>
+            <button class="settings-popup-btns" id="confirm-settings-btn" part="confirm-btn">Confirm</button>
         </div>
     </div>
 </template>
-    <template id="reset-popup-template">
+<script src="components/SettingsPopUp.js" type="module" async></script>
+<template id="reset-popup-template">
     <style>
-        button{
-            transition: transform .3s ease;
-        }
         .button-footer {
             background-color: rgb(234 234 234);
             /* padding: 14px 20px; */
-            padding: 1.09375vw 1.5625vw;
-            text-align: right;
+            padding: 20px;
             position: absolute;
-            bottom: 0;
+            text-align: right;
+            margin: 0;
             right: 0;
             left: 0;
-            /* border-bottom-left-radius: 4px; */
-            /* border-bottom-right-radius: 4px; */
-            border-bottom-left-radius: 0.3125vw;
-            border-bottom-right-radius: 0.3125vw;
+            border-radius: 0 0 10px 10px;
         }
         #close-icon {
             /* width: 15px; */
-            width: 1.171875vw;
+            width: 20px;
             /* margin-top: 10px; */
             /* margin-right: 10px; */
-            margin-top: 0.78125vw;
-            margin-right: 0.78125vw;
             position:absolute;
-            top:0;
-            right:0;
+            top:20px;
+            right:20px;
             cursor: pointer;
             opacity: 0.33;
             transition: transform .3s ease;
@@ -504,30 +573,34 @@
         }
         #reset-content {
             color: rgb(85, 85, 85);
-            width: 85%;
             font-weight: 500;
-            font-size: 1.0375vw;
+            font-size: 18px;
             /* margin: 20px auto 0 auto; */
-            margin: 1.5625vw auto 0 auto;
+            margin: 0;
+            margin-bottom: 20px;
+            height: fit-content;
         }
         #reset-confirm-popup {
             display: none;
+            box-sizing: border-box;
             position: fixed;
             /* width: 30%; */
-            width: 29.296875vw;
             /* height: 30%; */
-            height: 15.625vw;
             /* border-radius: 4px; */
-            border-radius: 0.3125vw;
-            top:25%;
-            left: 34%;
+            border-radius: 10px;
+            padding: 20px;
             z-index: 999;
             background-color: whitesmoke;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
             -webkit-animation-name: animatetop; 
             -webkit-animation-duration: 0.3s;
             animation-name: animatetop;
-            animation-duration: 0.3s
+            animation-duration: 0.3s;
+            width: 90%;
+            max-width: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         @-webkit-keyframes animatetop {
             from {top:-200px; opacity:0} 
@@ -538,15 +611,16 @@
             to {top:70; opacity:1}
         }
         #reset-confirm-popup > h3{
-            font-size: 1.6vw;
+            font-size: 30px;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
             /* padding-bottom: 5px; */
-            padding-bottom: 0.390625vw;
-            width: 85%;
+            padding-bottom: 10px;
+            width: 100%;
             font-weight: 500;
             /* margin: 20px auto 10px auto; */
-            margin: 1.5625vw auto 0.78125vw auto;
+            margin: 0;
+            margin-bottom: 10px;
         }
         .reset-popup-btns {
             cursor: pointer;
@@ -557,12 +631,11 @@
             background-color:#f36060;
             color:#fff;
             font-family: 'Quicksand', sans-serif;
-            height: 17%;
-            width: 27%;
             /* font-size: 1em; */
-            font-size: 1.25vw;
+            font-size: 4.25vw;
             font-weight: 500;
             outline: none;
+            transition: transform .3s ease;
         }
         .reset-popup-btns:hover {
             filter: brightness(105%);
@@ -570,7 +643,18 @@
         }
         #confirm-reset-btn {
             /* padding: 8px 12px; */
-            padding: 0.625vw 0.9375vw;
+            padding: 10px 40px;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        @media(min-width:900px) {
+            #reset-confirm-h3 {
+                font-size: 40px;
+            }
+            #reset-content{
+                font-size: 20px;
+            }
         }
         /* #cancel-reset-btn {
             position: absolute;
@@ -580,7 +664,7 @@
         } */
     </style>
     <div id="reset-confirm-popup" part="popup-wrapper">
-        <img src="icons/close.svg" alt="" id="close-icon" part="close-icon">
+        <img src="assets/icons-68c6c82c.svg#close" alt="" id="close-icon" part="close-icon">
         <h3 part="reset-confirm-h3">Are you sure?</h3>
         <h5 id="reset-content" part="reset-content">This will reset your current pomodoro session and wipe out your jotted tasks!</h5>
         <div class="button-footer" part="btn-footer">
@@ -588,36 +672,41 @@
         </div>
     </div>
 </template>
-    <template id="task-item-template">
+<script src="components/ResetPopUp.js" type="module" async></script>
+<template id="task-item-template">
     <style>
         :host {
             cursor: pointer;
             /* height: 50px; */
-            height: 3.90625vw;
             position: relative;
             /* margin-bottom: 10px; */
             /* border-radius: 5px; */
-            border-radius: 0.390625vw;
+            border-radius: 10px;
             /* margin-right: 20%; */
             box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
-            display: flex;
             align-items: center;
+            padding-left: 10px;
             /* padding-left: 37px; */
-            padding-left: 2.890625vw;
             background-color: #f36060;
             color: white;
             /* font-size: medium; */
             font-size: 1.35vw;
             font-weight: 500;
-            border-style:none;
+            border-style: none;
             user-select: none;
             margin: 0 auto;
             /* margin-bottom: 10px; */
-            margin-bottom: 0.78125vw;
+            margin-bottom: 10px;
         }
         :host(:hover) {
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
+        }
+        :host(:hover) .delete-icon, :host(:hover) .focus-icon {
+            visibility: visible;
+        }
+        :host(:hover[checked = "true"]) .focus-icon {
+            visibility: hidden;
         }
         :host([checked = 'true']) {
             background: #f3606060;
@@ -627,32 +716,38 @@
         :host([checked = 'true']) .check-icon {
             visibility: visible;
         }
+
+        #li {
+            width:100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 50px 1fr 50px 50px;
+        }
+
+        #task-text {
+            align-self: center;
+        }
         .check-icon {
-            position: absolute;
             /* left: 10px; */
-            left: 0.78125vw;
-            vertical-align: middle;
+            align-self: center;
             /* width: 20px; */
             /* height: 20px; */
-            width: 1.5625vw;
-            height: 1.5625vw;
+            width: 30px;
+            height: 30px;
             margin: 0;
             visibility: hidden;
         }
-        :host(:hover) .delete-icon {
-            visibility: visible;
-        }
+
         .delete-icon {
-            position: absolute;
             color: #fff;
             /* right: 10px; */
-            right: 0.78125vw;
-            vertical-align: middle;
+            align-self: center;
             /* width: 20px; */
             /* height: 20px; */
-            width: 1.5625vw;
-            height: 1.5625vw;
+            width: 30px;
+            height: 30px;
             margin: 0;
+            grid-column:4;
             visibility: hidden;
             transition: transform .3s ease;
         }
@@ -660,19 +755,14 @@
             transform: scale(1.3);
             filter:brightness(105%)
         }
-        :host(:hover) .focus-icon {
-            visibility: visible;
-        }
         .focus-icon {
-            position: absolute;
             color: #fff;
             /* right: 40px; */
-            right: 3.125vw;
-            vertical-align: middle;
+            align-self:center;
             /* width: 20px; */
             /* height: 20px; */
-            width: 1.5625vw;
-            height: 1.5625vw;
+            width: 30px;
+            height: 30px;
             margin: 0;
             visibility: hidden;
             transition: transform .3s ease;
@@ -683,64 +773,65 @@
         }
     </style>
     <li id="li">
-        <img src="icons/check.svg" alt="" part="test" class="check-icon">
-        <img src="icons/focus.svg" alt="" title="Focus on this task" class="focus-icon">
-        <img src="icons/delete.svg" alt="" title="Delete this task" class="delete-icon">
+        <img src="assets/icons-68c6c82c.svg#check" alt="" part="test" class="check-icon">
         <span id="task-text"></span>
+        <img src="assets/icons-68c6c82c.svg#focus" alt="" title="Focus on this task" class="focus-icon">
+        <img src="assets/icons-68c6c82c.svg#delete" alt="" title="Delete this task" class="delete-icon">
     </li>
 </template>
-    <template id="task-popup-template">
+<script src="components/TaskItem.js" type="module" async></script>
+<template id="task-popup-template">
     <style>
         .button-footer {
             background-color: rgb(234 234 234);
             /* padding: 14px 20px; */
-            padding: 1.09375vw 1.5625vw;
+            position:absolute;
+            padding: 20px;
             text-align: right;
-            position: absolute;
-            bottom: 0;
-            right: 0;
             left: 0;
+            right: 0;
+            border-radius: 0 0 15px 15px;
             /* border-bottom-left-radius: 4px; */
             /* border-bottom-right-radius: 4px; */
-            border-bottom-left-radius: 0.3125vw;
-            border-bottom-right-radius: 0.3125vw;
         }
         #close-icon {
             /* width: 15px; */
-            width: 1.171875vw;
+            width: 20px;
             /* margin-top: 10px; */
             /* margin-right: 10px; */
-            margin-top: 0.78125vw;
-            margin-right: 0.78125vw;
             position:absolute;
-            top:0;
-            right:0;
+            top:20px;
+            right:20px;
             cursor: pointer;
             opacity: 0.33;
-            transition: transform .3s ease;
         }
         #close-icon:hover {
             opacity: 1;
             transform: scale(1.1);
         }
         #add-task-popup {
+            box-sizing: border-box;
             display: none;
             position: fixed;
             /* width: 30%; */
-            width: 29.296875vw;
+            width: 90%;
             /* height: 30%; */
-            height: 15.625vw;
+            max-width:600px;
             /* border-radius: 4px; */
-            border-radius: 0.3125vw;
-            top:25%;
-            left: 34%;
+            padding: 20px;
+            border-radius: 10px;
             z-index: 999;
             background-color: whitesmoke;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
             -webkit-animation-name: animatetop; 
             -webkit-animation-duration: 0.3s;
             animation-name: animatetop;
-            animation-duration: 0.3s
+            animation-duration: 0.3s;
+            width: 90%;
+            max-width: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         @-webkit-keyframes animatetop {
             from {top:-200px; opacity:0} 
@@ -752,19 +843,18 @@
         }
         #task-input {
             font-family: 'Quicksand', sans-serif;
-            font-size: 1.5vw;
+            font-size: 20px;
             font-weight: 600;
             width: 85%;
-            height: 22%;
+            height: 80px;
             background-color: whitesmoke;
             color: rgb(85, 85, 85); 
             border-style: hidden;
             /* border-radius: 5px; */
-            border-radius: 0.390625vw;
             outline: none;
             display: block;
             /* margin: 20px auto 0 auto; */
-            margin: 1.5625vw auto 0 auto;
+            margin-top: 0;
             font-weight: 500;
         }
         input[type='text']::placeholder {
@@ -772,33 +862,32 @@
             /* color: #A7A7A7; */
             color: #c7c7c75e;
         }
+
+
         #add-task-popup > h3{
-            font-size: 1.6vw;
+            font-size: 30px;
             font-weight: 500;
             color: #f36060;
             border-bottom: solid 1px #d2d2d2;
             /* padding-bottom: 5px; */
-            padding-bottom: 0.390625vw;
-            width: 85%;
+            padding-bottom: 10px;
+            width:100%;
+            margin: 0;
             /* margin: 20px auto 10px auto; */
-            margin: 1.5625vw auto 0.78125vw auto;
         }
         .popup-btns {
             cursor: pointer;
             border-style: none;
             /* border-radius: 4px; */
-            border-radius: 0.3125vw;
+            border-radius: 10px;
             text-align: center;
             background-color:#f36060;
             color:#fff;
             font-family: 'Quicksand', sans-serif;
-            height: 17%;
-            width: 20%;
             /* font-size: 1em; */
-            font-size: 1.25vw;
+            font-size: 20px;
             font-weight: 500;
             outline: none;
-            transition: transform .3s ease;
         }
         .popup-btns:hover {
             filter: brightness(105%);
@@ -806,7 +895,7 @@
         }
         #add-task-btn {
             /* padding: 8px 12px; */
-            padding: 0.625vw 0.9375vw;
+            padding: 10px 40px;
         }
         #cancel-task-btn {
             position: absolute;
@@ -814,9 +903,20 @@
             right: 5em;
             bottom: 2em;
         }
+
+        @media(min-width:900px) {
+            #add-task-popup>h3 {
+                font-size: 40px;
+            }
+
+            #task-input{
+                font-size: 22px;
+            }
+
+        }
     </style>
     <div id="add-task-popup" part="popup-wrapper">
-        <img src="icons/close.svg" alt="" id="close-icon" part="close-icon">
+        <img src="assets/icons-68c6c82c.svg#close" alt="" id="close-icon" part="close-icon">
         <h3 part="add-task-h3">Add Task</h3>
         <input type="text" name="" id="task-input" placeholder="What are you working on today?" maxlength="48" spellcheck="false" part="task-input">
         <div class="button-footer" part="btn-footer">
@@ -824,27 +924,30 @@
         </div>
     </div>
 </template>
+<script src="components/TaskPopUp.js" type="module" async></script>
     <div id="container">
         <header>
             <h1 id="header-name">Pomodoro Timer</h1>
             <nav id="header-buttons">
                 <ul>
                     <li title="Focus">
-                        <button class="top-buttons" id="focus-button">
-                            <img src="icons/half-moon.svg" id="focus" class="top-button-img" alt="Focus">
+                        <button id="focus-button">
+                            <img src="assets/icons-68c6c82c.svg#half-moon" id="focus" class="top-button-img" alt="Focus">
                         </button>
                     </li>
                     <li title="Reset">
                         <button class="top-buttons" id="reset-button">
-                            <img src="icons/reset.svg" id="reset" class="top-button-img" alt="Reset">
+                            <img src="assets/icons-68c6c82c.svg#reset" id="reset" class="top-button-img" alt="Reset">
                         </button>
                     </li>
-                    <li title="Settings"><button class="top-buttons" id="setting-button">
-                            <img src="icons/settings.svg" id="gear" class="top-button-img" alt="Settings">
+                    <li title="Settings">
+                        <button class="top-buttons" id="setting-button">
+                            <img src="assets/icons-68c6c82c.svg#settings" id="gear" class="top-button-img" alt="Settings">
                         </button>
                     </li>
-                    <li title="Help"><button class="top-buttons" id="help-button">
-                            <img src="icons/help.svg" id="help" class="top-button-img" alt="Help">
+                    <li title="Help">
+                        <button class="top-buttons" id="help-button">
+                            <img src="assets/icons-68c6c82c.svg#help" id="help" class="top-button-img" alt="Help">
                         </button>
                     </li>
                 </ul>
@@ -853,13 +956,11 @@
         <main>
             <section id="pomodoro-timer">
                 <div id="timer-btns" class="timer-buttons">
-                    <button id="pomo-btn"> Pomo</button>
-                    <button id="break-btn"> Break</button>
+                    <h2 id="pomo-btn"> Pomo</h2>
+                    <h2 id="break-btn"> Break</h2>
                 </div>
-                <div class="empty-space-border">
-                </div>
-                <div id="timer_display" class="timer-value">
-                    <div id="timer_display_duration">25:00</div>
+                <div id="timer-display" class="timer-value">
+                    <div id="timer-display-duration">25:00</div>
                 </div>
                 <div id="timer-control-btns" class="timer-control-buttons">
                     <button id="start-btn">Start</button>
@@ -875,32 +976,15 @@
                 </menu>
                 <ul id="task-list-elements">
                 </ul>
-                <button id="task-popup-btn" title="Add Task"> <img src="icons/plus.svg" id="plus"></button>
+                <button id="task-popup-btn" title="Add Task">
+                    <img src="assets/icons-68c6c82c.svg#plus" id="plus">
+                </button>
             </section>
         </main>
         <!-- <footer>
             <span id='help-info'>Click on 'Help' or press 'h' for more info </span>
         </footer> -->
     </div>
-    <script>
-        // Render blocking JS:
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-theme');
-        }
-        if (localStorage.getItem('state') === 'focus') {
-            document.getElementById('task-list').classList.add('state');
-            document.getElementById('pomodoro-timer').classList.add('state');
-            document.getElementById('focus-task').classList.add('state');
-        }
-    </script>
-    <script src="scripts/script.js"></script>
-    <script src="scripts/Timer.js"></script>
-    <script src="scripts/FocusMode.js"></script>
-    <script src="components/TaskItem.js"></script>
-    <script src="components/TaskPopUp.js"></script>
-    <script src="components/ResetPopUp.js"></script>
-    <script src="components/SettingsPopUp.js"></script>
-    <script src="components/HelpPopUp.js"></script>
 
     <settings-popup class="popup"></settings-popup>
     <help-popup class="popup"></help-popup>
