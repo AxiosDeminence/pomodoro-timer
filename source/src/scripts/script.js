@@ -1,3 +1,5 @@
+import Toolbox from "./Toolbox.mjs";
+
 (function initializeLocalStorage() {
     const defaults = {
         tasks: '[]',
@@ -8,10 +10,6 @@
         'tab-label': 'on',
         clickState: 'on',
         alarmState: 'on',
-        prevClickState: 'on',
-        prevAlarmState: 'on',
-        prevTabState: 'on',
-        prevVolume: 50,
         'pomo-length': 25,
         'short-break-length': 5,
         'long-break-length': 15,
@@ -22,9 +20,15 @@
             localStorage.setItem(key, value.toString());
         }
     });
-
-    console.log('demo');
 }());
+
+const toolbox = new Toolbox();
+
+if (typeof Worker !== 'undefined') {
+    toolbox.registerComponent()
+} else {
+    toolbox.registerComponent()
+}
 
 function getTasks() {
     return JSON.parse(localStorage.getItem('tasks'));
@@ -91,8 +95,6 @@ function buildTaskList() {
     return taskNodes;
 }
 
-// require('../components/TaskItem');
-// const TaskItem = require('../components/TaskItem');
 window.addEventListener('DOMContentLoaded', () => {
     const upNextBtn = document.getElementById('up-next');
     const completedBtn = document.getElementById('completed');

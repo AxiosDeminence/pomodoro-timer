@@ -1,0 +1,6 @@
+{
+    "include": ["./source/src"],
+    "compilerOptions": {
+        "lib": ["ES6"]
+    }
+}

@@ -1,19 +1,14 @@
-/* eslint-disable no-restricted-globals */
+// @ts-check
 
-/**
- * @file Webworker for the pomodoro timer. Used when browser/environment supports
- * webworkers and maintains driftless intervals.
- * @author Juhmer Tena
- * @module Timer.worker.js
- */
-
-/**
- * Remaining time in seconds for timerFunction
- * @type {number}
- */
-let remainingTime;
-
-let /** @type {AccurateInterval} */ timer;
+export class AccurateIntervalError extends Error {
+    /**
+     * 
+     * @param {ConstructorParameters<typeof Error>} args
+     */
+    constructor(...args) {
+        super(...args);
+    }
+}
 
 /**
  * Class representing a self-correcting interval.
@@ -21,31 +16,54 @@ let /** @type {AccurateInterval} */ timer;
  *     against the drift.
  * @property {number} expectedTime - Expected tiemstamp the next tick would be run
  */
-class AccurateInterval {
+export default class AccurateInterval {
+    running = false;
+
     /**
      * Creates an accurate interval with an acceptable drift.
-     * @param {function} cb - Callback function
+     * @param {!function} cb - Callback function
      * @param {any[]} args - Arguments to the callback function
-     * @param {number} interval - Interval in milliseconds
-     * @param {number} acceptableDrift - Allowed drift in milliseconds
+     * @param {!number} interval - Interval in milliseconds
+     * @param {!number} [acceptableDrift=50] - Allowed drift in milliseconds
      */
     constructor(cb, args, interval, acceptableDrift) {
+        if (typeof cb !== 'function') {
+            throw new TypeError('Callback is not a function');
+        }
+        // Coerce to number
+        const coercedInterval = Number(interval);
+        if (!Number.isSafeInteger(coercedInterval) || Number(coercedInterval) <= 0) {
+            throw new RangeError('Interval must be larger than 0');
+        }
+        const coercedDrift = Number(acceptableDrift);
+        if (!Number.isSafeInteger(coercedDrift) || Number(coercedDrift) < 0) {
+            throw new RangeError('acceptableDrift cannot be less than 0');
+        }
+
         this.cb = cb;
         this.args = args;
-        this.interval = interval;
-        this.acceptableDrift = acceptableDrift;
+        this.interval = coercedInterval;
+        this.acceptableDrift = coercedDrift;
     }
 
     /**
      * Starts the accurate interval
-     * @param {boolean} noZeroTick - Checks to see if we want a zerotick callback run.
+     * @param {boolean} zeroTick - Checks to see if we want a zerotick callback run.
      */
-    start(noZeroTick) {
-        if (noZeroTick) {
-            this.expectedTime = Date.now() + this.interval;
-            this.tick();
+    start(zeroTick=false) {
+        // Prevent it from multiple starts without stopping
+        if (this.running) {
+            throw new AccurateIntervalError('AccurateInterval already started.')
         } else {
+            this.running = true;
+        }
+
+        // If we want a zerotick, then we want to immediately
+        if (zeroTick) {
             this.tick(true);
+        } else {
+            this.expectedTime = Date.now() + this.interval;
+            this.timer = setInterval(this.tick.bind(this), this.interval);
         }
     }
 
@@ -53,7 +71,7 @@ class AccurateInterval {
      * Each run of the accurate interval
      * @param {boolean} attemptedCorrection
      */
-    tick(attemptedCorrection) {
+    tick(attemptedCorrection=false) {
         this.cb(...(this.args || []));
 
         const currentTime = Date.now();
@@ -80,47 +98,14 @@ class AccurateInterval {
      * Stops the accurate interval
      */
     stop() {
+        if (!this.running) {
+            throw new AccurateIntervalError('AccurateInterval has not started.');
+        } else {
+            this.running = false;
+        }
+
         clearInterval(this.timer);
         this.timer = undefined;
         this.expectedTime = undefined;
     }
 }
-
-/**
- * Each tick of the pomodoro timer where worker posts message of the new time.
- */
-function timerFunction() {
-    const remainingMinutes = Math.floor(remainingTime / 60);
-    const remainingSeconds = remainingTime % 60;
-
-    const timerString = `${remainingMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-
-    self.postMessage({ remainingTime, timerString });
-    remainingTime -= 1;
-}
-
-/**
- * Listen to messages for the timer webworker.
- * @listens Worker#message
- * @param {Event} ev - Message event from main JavaScript thread
- */
-self.addEventListener('message', (ev) => {
-    if (timer instanceof AccurateInterval) {
-        timer.stop();
-    }
-
-    if (ev.data === 'stop') {
-        timer = undefined;
-        return;
-    }
-
-    const totalTime = parseInt(ev.data, 10);
-
-    if (Number.isNaN(totalTime)) {
-        throw new Error(`Unknown message ${ev.data}`);
-    }
-
-    remainingTime = totalTime * 60;
-    timer = new AccurateInterval(timerFunction, null, 1000, 50);
-    timer.start();
-});
