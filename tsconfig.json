@@ -1,5 +1,5 @@
 {
-    "include": ["./source/src"],
+    "include": ["./source/src/"],
     "compilerOptions": {
         "lib": ["ES6"]
     }

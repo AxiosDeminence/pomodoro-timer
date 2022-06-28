@@ -5,34 +5,31 @@
  * @file Webworker for the pomodoro timer. Used when browser/environment supports
  * webworkers and maintains driftless intervals.
  * @author Juhmer Tena
- * @module Timer.worker.js
+ * @module Timer.worker.mjs
  */
 
 import { ACCEPTABLE_DRIFT, SECOND } from '../constants.mjs';
 import CountdownTimer from './CountdownTimer.mjs';
 
 /** @type {CountdownTimer} */
-let timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT);
+export let timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT);
 
 /**
- * Listen to messages for the timer webworker.
+ * Listen to messages for the timer webworker to control the CountdownTimer.
  * @listens Worker#message
- * @param {Event} ev - Message event from main JavaScript thread
+ * @param {MessageEvent} ev - Message event from main JavaScript thread
  */
-self.addEventListener('message', (ev) => {
-    timer.stop();
-
+export default function processMessages(ev) {
     if (ev.data === 'stop') {
+        timer.stop();
         return;
     }
 
     const totalTime = parseInt(ev.data, 10);
-
     if (Number.isNaN(totalTime)) {
         throw new Error(`Unknown message ${ev.data}`);
     }
-
     timer.start(totalTime);
-});
+}
 
-export {};
+self.addEventListener('message', processMessages);

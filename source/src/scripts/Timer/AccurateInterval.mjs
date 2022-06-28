@@ -1,8 +1,11 @@
 // @ts-check
 
+/**
+ * Errors for the @see {@link AccurateInterval} class.
+ */
 export class AccurateIntervalError extends Error {
     /**
-     * 
+     * Creates an error for the @see {@link AccurateInterval} class.
      * @param {ConstructorParameters<typeof Error>} args
      */
     constructor(...args) {
@@ -17,8 +20,6 @@ export class AccurateIntervalError extends Error {
  * @property {number} expectedTime - Expected tiemstamp the next tick would be run
  */
 export default class AccurateInterval {
-    running = false;
-
     /**
      * Creates an accurate interval with an acceptable drift.
      * @param {!function} cb - Callback function
@@ -30,7 +31,8 @@ export default class AccurateInterval {
         if (typeof cb !== 'function') {
             throw new TypeError('Callback is not a function');
         }
-        // Coerce to number
+
+        // Coerce to number and see if these are safe.
         const coercedInterval = Number(interval);
         if (!Number.isSafeInteger(coercedInterval) || Number(coercedInterval) <= 0) {
             throw new RangeError('Interval must be larger than 0');
@@ -44,6 +46,7 @@ export default class AccurateInterval {
         this.args = args;
         this.interval = coercedInterval;
         this.acceptableDrift = coercedDrift;
+        this.running = false;
     }
 
     /**

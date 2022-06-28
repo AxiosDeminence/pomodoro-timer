@@ -19,7 +19,7 @@ import CountdownTimer from './CountdownTimer.mjs';
 /**
  * @extends TimerAbstractFactory
  */
-export class TimerWorkerAbstractFactory {
+class TimerWorkerAbstractFactory {
     constructor() {}
 
     /**
@@ -58,7 +58,7 @@ export class TimerWorkerAbstractFactory {
 /**
  * @extends TimerAbstractFactory
  */
-export class CountdownTimerAbstractFactory {
+class CountdownTimerAbstractFactory {
     constructor() {}
 
     getTimer() {
@@ -85,5 +85,13 @@ export class CountdownTimerAbstractFactory {
         return () => {
             timer.stop();
         }
+    }
+}
+
+export default function getTimerFactory() {
+    if (typeof Worker !== 'undefined') {
+        return new TimerWorkerAbstractFactory();
+    } else {
+        return new CountdownTimerAbstractFactory();
     }
 }

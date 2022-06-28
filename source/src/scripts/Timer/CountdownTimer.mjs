@@ -25,21 +25,23 @@ export default class CountdownTimer {
     }
 
     /**
-     * Starts the countdown timer
+     * Starts the countdown timer. Will restart the timer with the new time if
+     *     currently running.
      * @param {number} totalTime Time in minutes that should elapse
      */
     start(totalTime) {
         if (typeof this.remainingTime !== 'undefined') {
-            throw new Error('CountdownTimer already started');
+            this.intervalController.stop();
         }
-        this.remainingTime = totalTime;
         this.intervalController.start(this.zeroTickEnabled);
+        this.remainingTime = totalTime;
     }
 
     /**
      * Stops the countdown timer
      */
     stop() {
+        this.remainingTime = undefined;
         this.intervalController.stop();
     }
 
