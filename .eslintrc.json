@@ -24,7 +24,8 @@
         "jest/no-commented-out-tests": 0,
         "jest/valid-expect": "error",
         "class-methods-use-this": 0,
-        "global-require": 0
+        "global-require": 0,
+        "import/extensions": 0
     },
     "plugins": ["jest", "cypress"],
     "settings": {

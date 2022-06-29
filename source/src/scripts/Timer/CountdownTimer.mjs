@@ -4,24 +4,24 @@ import AccurateInterval from './AccurateInterval.mjs';
 
 export default class CountdownTimer {
     /**
-     * Remaining time in seconds.
-     * @type {number}
-     */
-    remainingTime;
-
-    /** @type {AccurateInterval} */
-    intervalController;
-
-    /**
      * @param {boolean} runAtStart Have the first callback run happen when the
      *     timer gets started
      * @param {number} interval Milliseconds between each callback run
      * @param {number} acceptableDrift Allowed drift in milliseconds
      */
     constructor(runAtStart, interval, acceptableDrift) {
+        /** @type {boolean} */
         this.zeroTickEnabled = runAtStart;
+
+        /** @type {AccurateInterval} */
         this.intervalController = new AccurateInterval(this.timerFunction, null,
             interval, acceptableDrift);
+        
+        /**
+         * Remaining time in seconds
+         * @type {number}
+         */
+        this.remainingTime = undefined;
     }
 
     /**

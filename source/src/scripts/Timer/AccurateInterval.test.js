@@ -1,6 +1,6 @@
 // @ts-check
 
-import { default as AccurateInterval, AccurateIntervalError } from './AccurateInterval.mjs';
+import AccurateInterval, { AccurateIntervalError } from './AccurateInterval.mjs';
 
 const mockedCallback = jest.fn(() => {});
 

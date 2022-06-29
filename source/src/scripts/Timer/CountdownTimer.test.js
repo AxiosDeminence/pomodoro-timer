@@ -13,7 +13,7 @@ jest.mock('./AccurateInterval.mjs');
  * @param {number} [obj.interval=10]
  * @param {number} [obj.acceptableDrift=10]
  */
-function getCountdownTimer({zeroTick=true, interval=10, acceptableDrift=10} = {}) {
+function getCountdownTimer({ zeroTick = true, interval = 10, acceptableDrift = 10 } = {}) {
     return new CountdownTimer(zeroTick, interval, acceptableDrift);
 }
 
@@ -49,7 +49,7 @@ it('Remove remaining time on stop', () => {
     expect(timer.remainingTime).not.toBeUndefined();
     timer.stop();
     expect(timer.remainingTime).toBeUndefined();
-})
+});
 
 describe('Timer callback functionality', () => {
     const timer = getCountdownTimer();
@@ -63,6 +63,7 @@ describe('Timer callback functionality', () => {
         expect(timer.timerFunction()).toBe(expectedString);
     }
 
+    // eslint-disable jest/expect-expect
     it('Single-digit seconds only', () => {
         checkTimerFunction(1, '0:01');
     });
@@ -90,4 +91,5 @@ describe('Timer callback functionality', () => {
     it('Triple-digit minutes and double-digit seconds', () => {
         checkTimerFunction(111 * 60 + 11, '111:11');
     });
+    // eslint-enable jest/expect-expect
 });
