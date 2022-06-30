@@ -4,13 +4,13 @@
 let toolbox;
 
 export default class Toolbox {
-    /** @type {Map<string, Object>} */
-    components = new Map();
-
     constructor() {
         if (typeof toolbox === 'undefined') {
             toolbox = this;
         }
+
+        /** @type {Map<string, Object>} */
+        this.components = new Map();
 
         return toolbox;
     }

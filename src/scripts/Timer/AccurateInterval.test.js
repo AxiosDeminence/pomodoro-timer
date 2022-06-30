@@ -24,6 +24,7 @@ beforeAll(() => {
 
 describe('Proper construction required', () => {
     it('Generic construction possible', () => {
+        expect.assertions(0);
         getIntervalController();
     });
 
@@ -79,6 +80,7 @@ describe('Proper construction required', () => {
 
 describe('AccurateInterval starting and stopping behavior', () => {
     it('Starts and stops with proper calls', () => {
+        expect.assertions(0);
         const { intervalController } = getIntervalController();
         intervalController.start();
         intervalController.stop();
@@ -150,8 +152,12 @@ describe('AccurateInterval ticking behavior', () => {
             }
         }
 
-        const intervalController = new PausableController(mockedCallback,
-            null, interval, acceptableDrift);
+        const intervalController = new PausableController(
+            mockedCallback,
+            null,
+            interval,
+            acceptableDrift
+        );
         const spy = jest.spyOn(intervalController, 'tick');
 
         beforeEach(() => {

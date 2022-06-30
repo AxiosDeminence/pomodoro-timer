@@ -8,7 +8,7 @@
  * @module Timer.worker.mjs
  */
 
-import { ACCEPTABLE_DRIFT, SECOND } from '../constants.mjs';
+import { ACCEPTABLE_DRIFT, SECOND } from '../Constants.mjs';
 import CountdownTimer from './CountdownTimer.mjs';
 
 /** @type {CountdownTimer} */

@@ -1,5 +1,5 @@
-import { addTemplates } from './utils';
-import { SETTINGS_POPUP_TEMPLATE } from './Constants';
+import { addTemplates } from '../utils.js';
+import { SETTINGS_POPUP_TEMPLATE } from '../Constants.js';
 
 let templates;
 let pageTemplate;

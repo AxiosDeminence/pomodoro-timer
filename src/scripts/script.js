@@ -1,4 +1,4 @@
-import Toolbox from "./Toolbox.mjs";
+import Toolbox from './Toolbox.mjs';
 
 (function initializeLocalStorage() {
     const defaults = {

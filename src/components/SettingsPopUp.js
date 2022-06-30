@@ -118,6 +118,8 @@ class SettingsPopUp extends HTMLElement {
 
     // Changes theme from light mode to dark mode.
     toggleMode() {
+        // Disable nextline since it incorrectly reports unsupported body in firefox 35
+        // eslint-disable-next-line compat/compat
         document.body.classList.toggle('dark-theme');
     }
 

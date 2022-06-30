@@ -1,8 +1,8 @@
-import '../src/scripts/script';
-import '../src/components/TaskItem';
+import '../../src/scripts/script.js';
+import '../../src/components/TaskItem.js';
 
-import { addTemplates, dispatchDOMLoadedEvent } from './utils';
-import { TASK_ITEM_TEMPLATE } from './Constants';
+import { addTemplates, dispatchDOMLoadedEvent } from '../utils.js';
+import { TASK_ITEM_TEMPLATE } from '../Constants.js';
 
 let pageTemplate;
 

@@ -1,13 +1,13 @@
-import { addTemplates, dispatchDOMLoadedEvent } from './utils';
+import { addTemplates, dispatchDOMLoadedEvent } from '../utils.js';
 import {
     TASK_POPUP_TEMPLATE,
     SETTINGS_POPUP_TEMPLATE,
     RESET_POPUP_TEMPLATE,
     HELP_POPUP_TEMPLATE,
     TASK_ITEM_TEMPLATE,
-} from './Constants';
+} from '../Constants.js';
 
-import '../src/components/TaskItem';
+import '../../src/components/TaskItem.js';
 
 beforeAll(() => {
     window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };

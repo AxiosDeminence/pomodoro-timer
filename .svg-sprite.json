@@ -1,7 +1,7 @@
 {
   "mode": {
     "view": {
-      "dest": "source/src/assets",
+      "dest": "src/assets",
       "sprite": "icons"
     }
   }

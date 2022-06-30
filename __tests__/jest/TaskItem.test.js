@@ -1,7 +1,7 @@
-import { TASK_ITEM_TEMPLATE } from './Constants';
-import { addTemplates } from './utils';
+import { TASK_ITEM_TEMPLATE } from '../Constants.js';
+import { addTemplates } from '../utils.js';
 
-import '../src/components/TaskItem';
+import '../../src/components/TaskItem.js';
 
 let defaultTasks;
 let templates;

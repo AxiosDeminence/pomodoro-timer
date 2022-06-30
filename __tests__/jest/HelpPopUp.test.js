@@ -1,5 +1,5 @@
-import { addTemplates, dispatchDOMLoadedEvent } from './utils';
-import { HELP_POPUP_TEMPLATE } from './Constants';
+import { addTemplates, dispatchDOMLoadedEvent } from '../utils.js';
+import { HELP_POPUP_TEMPLATE } from '../Constants.js';
 
 let pageTemplate;
 

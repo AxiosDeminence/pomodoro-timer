@@ -1,6 +1,6 @@
-import { addTemplates } from './utils';
-import { RESET_POPUP_TEMPLATE, TASK_ITEM_TEMPLATE } from './Constants';
-import '../src/components/TaskItem';
+import { addTemplates } from '../utils.js';
+import { RESET_POPUP_TEMPLATE, TASK_ITEM_TEMPLATE } from '../Constants.js';
+import '../../src/components/TaskItem.js';
 
 let pageTemplate;
 

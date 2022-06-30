@@ -1,5 +1,5 @@
-import { TASK_POPUP_TEMPLATE } from './Constants';
-import { addTemplates } from './utils';
+import { TASK_POPUP_TEMPLATE } from '../Constants.js';
+import { addTemplates } from '../utils.js';
 
 let pageTemplate;
 
