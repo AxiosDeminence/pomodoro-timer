@@ -6,7 +6,7 @@ import '../../src/components/TaskItem.js';
 let defaultTasks;
 let templates;
 
-beforeAll(async () => {
+beforeAll(() => {
     window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
     const tasks = [];
     const taskF = { id: '0', checked: false, text: 'First Item' };
@@ -15,9 +15,11 @@ beforeAll(async () => {
     tasks.push(taskT);
     defaultTasks = JSON.stringify(tasks);
 
-    templates = await addTemplates([
+    return addTemplates([
         TASK_ITEM_TEMPLATE,
-    ], __dirname);
+    ], __dirname).then((result) => {
+        templates = result;
+    });
 });
 
 beforeEach(() => {
@@ -80,23 +82,7 @@ describe(('focus task'), () => {
     let pageTemplate;
     const tasks = [];
 
-    beforeAll(async () => {
-        const templates = await addTemplates([ // eslint-disable-line no-shadow
-            TASK_ITEM_TEMPLATE,
-        ], __dirname);
-
-        pageTemplate = `
-            ${templates}
-            <div id='focus-task'>
-                <h2 id='select-focus'></h2>
-            </div>
-            <ul id="task-list-elements">
-                <task-item id="0" checked="false" text="First Item" focused="false"></task-item>
-                <task-item id="1" checked="false" text="Second Item" focused="false"></task-item>
-                <task-item id="2" checked="false" text="Third Item" focused="false"></task-item>
-            </ul>
-        `;
-
+    beforeAll(() => {
         const task0 = {
             id: '0', checked: false, text: 'First Item', focused: false,
         };
@@ -109,6 +95,22 @@ describe(('focus task'), () => {
         tasks.push(task0);
         tasks.push(task1);
         tasks.push(task2);
+
+        return addTemplates([ // eslint-disable-line no-shadow
+            TASK_ITEM_TEMPLATE,
+        ], __dirname).then((result) => {
+            pageTemplate = `
+                ${result}
+                <div id='focus-task'>
+                    <h2 id='select-focus'></h2>
+                </div>
+                <ul id="task-list-elements">
+                    <task-item id="0" checked="false" text="First Item" focused="false"></task-item>
+                    <task-item id="1" checked="false" text="Second Item" focused="false"></task-item>
+                    <task-item id="2" checked="false" text="Third Item" focused="false"></task-item>
+                </ul>
+            `;
+        });
     });
 
     beforeEach(() => {

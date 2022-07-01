@@ -102,14 +102,14 @@
   },
   "nyc": {
     "compact": false,
-    "report-dir": "source/coverage/cypress",
+    "report-dir": "coverage/cypress",
     "reporter": [
       "text",
       "json",
       "lcov"
     ],
     "exclude": [
-      "source/src/html_fragments/**.*"
+      "src/html_fragments/**.*"
     ]
   },
   "husky": {
@@ -118,8 +118,7 @@
     }
   },
   "browserslist": [
-    "since 2015",
-    "maintained node versions",
-    "not dead"
+    "last 2 node major versions",
+    "since 2015 and not dead"
   ]
 }

@@ -4,22 +4,24 @@ import { SETTINGS_POPUP_TEMPLATE } from '../Constants.js';
 let templates;
 let pageTemplate;
 
-beforeAll(async () => {
+beforeAll(() => {
     window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
-    templates = await addTemplates([
+    return addTemplates([
         SETTINGS_POPUP_TEMPLATE,
-    ], __dirname);
-    pageTemplate = `
-        ${templates}
-        <button class="top-buttons" id="setting-button">
-            <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
-            <p class="top-button-text">Setting</p>
-        </button>
-        <div id="timer-display" class="timer-value">
-            <div id="timer-display-duration">25:00</div>
-        </div>
-        <button id = "start-btn">Start</button>
-    `;
+    ], __dirname).then((results) => {
+        templates = results;
+        pageTemplate = `
+            ${templates}
+            <button class="top-buttons" id="setting-button">
+                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                <p class="top-button-text">Setting</p>
+            </button>
+            <div id="timer-display" class="timer-value">
+                <div id="timer-display-duration">25:00</div>
+            </div>
+            <button id = "start-btn">Start</button>
+        `;
+    });
 });
 
 beforeEach(() => {
@@ -32,7 +34,7 @@ beforeEach(() => {
     localStorage.setItem('tab-label', 'on');
     localStorage.setItem('prevTabState', 'on');
     document.body.innerHTML = pageTemplate;
-    require('../src/components/SettingsPopUp');
+    require('../../src/components/SettingsPopUp');
 });
 
 afterEach(() => {

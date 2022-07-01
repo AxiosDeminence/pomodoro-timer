@@ -3,24 +3,25 @@ import { HELP_POPUP_TEMPLATE } from '../Constants.js';
 
 let pageTemplate;
 
-beforeAll(async () => {
-    const templates = await addTemplates([
-        HELP_POPUP_TEMPLATE,
-    ], __dirname);
-
-    pageTemplate = `
-    ${templates}
-    <button class="top-buttons" id="help-button">
-        <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
-    </button>
-    <help-popup></help-popup>
-    `;
-    window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
-
+beforeAll(() => {
     Object.defineProperty(document, 'readyState', {
         get() { return 'loading'; },
     });
-    require('../src/components/HelpPopUp');
+    window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+
+    return addTemplates([
+        HELP_POPUP_TEMPLATE,
+    ], __dirname).then((templates) => {
+        pageTemplate = `
+            ${templates}
+            <button class="top-buttons" id="help-button">
+                <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
+            </button>
+            <help-popup></help-popup>
+        `;
+    }).then(() => {
+        require('../../src/components/HelpPopUp');
+    });
 });
 
 beforeEach(() => {

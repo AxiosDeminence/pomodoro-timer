@@ -36,7 +36,7 @@ test('start timer function', () => {
         <button id = "pomo-btn"> Pomo</button>
     `;
 
-    require('../src/scripts/Timer');
+    require('../../src/scripts/Timer');
 
     const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer-display-duration');
@@ -64,7 +64,7 @@ test('Stop and reset function', () => {
         </div>
     `;
 
-    require('../src/scripts/Timer');
+    require('../../src/scripts/Timer');
 
     const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer-display-duration');
@@ -86,7 +86,7 @@ test('advance in time', () => {
         </div>
     `;
 
-    require('../src/scripts/Timer');
+    require('../../src/scripts/Timer');
 
     const startButton = document.getElementById('start-btn');
     const display = document.getElementById('timer-display-duration');
@@ -122,7 +122,7 @@ test('stop() called when localStorage stop value is true', () => {
         <button id="pomo-btn"> Pomo</button>
         <button id="break-btn"> Break</button>
     `;
-    require('../src/scripts/Timer');
+    require('../../src/scripts/Timer');
     localStorage.setItem('stop', 'true');
     jest.advanceTimersByTime(1000);
     expect(localStorage.getItem('stop')).toBe('false');
@@ -158,7 +158,7 @@ describe(('update tab label'), () => {
             </div>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const tabLabel = document.getElementById('tab-label');
@@ -184,7 +184,7 @@ describe(('update tab label'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const tabLabel = document.getElementById('tab-label');
@@ -211,7 +211,7 @@ describe(('update tab label'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const tabLabel = document.getElementById('tab-label');
@@ -249,7 +249,7 @@ describe(('update tab label'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
         localStorage.setItem('tab-label', 'off');
 
         const startButton = document.getElementById('start-btn');
@@ -289,7 +289,7 @@ describe(('switch mode'), () => {
         localStorage.clear();
     });
 
-    test('pomo section ends', async () => {
+    test('pomo section ends', () => {
         document.body.innerHTML = `
             <button id = "start-btn">Start</button>
             <div id="timer-display" class="timer-value">
@@ -299,7 +299,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer-display-duration');
@@ -322,7 +322,7 @@ describe(('switch mode'), () => {
         expect(pomoButton.classList).toContain('toggle');
     });
 
-    test('break section ends', async () => {
+    test('break section ends', () => {
         document.body.innerHTML = `
             <button id = "start-btn">Start</button>
             <div id="timer-display" class="timer-value">
@@ -332,7 +332,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer-display-duration');
@@ -369,7 +369,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer-display-duration');
@@ -416,7 +416,7 @@ describe(('switch mode'), () => {
             <button style="background-color: #f3606060;" id = "break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const startButton = document.getElementById('start-btn');
         const display = document.getElementById('timer-display-duration');
@@ -454,65 +454,66 @@ describe(('switch mode'), () => {
 describe(('keyboard input'), () => {
     let templates;
     let genericPageTemplate;
-    beforeAll(async () => {
-        templates = await addTemplates([
+    // eslint-disable-nextline arrow-body-style
+    beforeAll(() => {
+        addTemplates([
             TASK_POPUP_TEMPLATE, SETTINGS_POPUP_TEMPLATE, RESET_POPUP_TEMPLATE,
             HELP_POPUP_TEMPLATE, TASK_ITEM_TEMPLATE,
-        ], __dirname);
-
-        document.head.innerHTML = '<title id="tab-label"></title>';
-
-        genericPageTemplate = `
-            ${templates}
-        <main id="main"></main>
-            <ul id="task-list-elements">
-            </ul>
-            <nav id="header-buttons">
-                <button class='top-buttons' id='focus-button'>
-                    <img src="icons/half-moon.svg" id="focus" class="top-button-img" alt="focus">
-                </button>  
-                <button class="top-buttons" id="setting-button">
-                <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
-                <p class="top-button-text">Setting</p>
-                </button>
-                <button class="top-buttons" id="reset-button">
-                    <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
-                    <p class="top-button-text">Reset</p>
-                </button>
-                <button class="top-buttons" id="help-button">
-                    <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
-                </button>          
-            </nav>
-            <div id="popup-button">
-                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
-            </div>
-            <div id="pomodoro-timer">
-                <button id="pomo-btn"> Pomo</button>
-                <button id="break-btn"> Break</button>
-                <div id='focus-task'>
-                    <h2 id='select-focus'></h2>
-                </div>
-                <button id = "start-btn">Start</button>
-                <div id="timer-display" class="timer-value">
-                    <div id="timer-display-duration">25:00</div>
-                </div>
-            </div>
-            <div id="task-list">
-                <h2 id="up-next">Up Next</h2>
+        ], __dirname).then((result) => {
+            templates = result;
+            document.head.innerHTML = '<title id="tab-label"></title>';
+            genericPageTemplate = `
+                ${templates}
+            <main id="main"></main>
                 <ul id="task-list-elements">
                 </ul>
-            </div>
-            <button id="completed" data-selected="false">Up Next</button>
-        `;
+                <nav id="header-buttons">
+                    <button class='top-buttons' id='focus-button'>
+                        <img src="icons/half-moon.svg" id="focus" class="top-button-img" alt="focus">
+                    </button>  
+                    <button class="top-buttons" id="setting-button">
+                    <img src="../icons/settings.svg" id="gear" class="top-button-img" alt="gear">
+                    <p class="top-button-text">Setting</p>
+                    </button>
+                    <button class="top-buttons" id="reset-button">
+                        <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                        <p class="top-button-text">Reset</p>
+                    </button>
+                    <button class="top-buttons" id="help-button">
+                        <img src="icons/help.svg" id="help" class="top-button-img" alt="help">
+                    </button>          
+                </nav>
+                <div id="popup-button">
+                    <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+                </div>
+                <div id="pomodoro-timer">
+                    <button id="pomo-btn"> Pomo</button>
+                    <button id="break-btn"> Break</button>
+                    <div id='focus-task'>
+                        <h2 id='select-focus'></h2>
+                    </div>
+                    <button id = "start-btn">Start</button>
+                    <div id="timer-display" class="timer-value">
+                        <div id="timer-display-duration">25:00</div>
+                    </div>
+                </div>
+                <div id="task-list">
+                    <h2 id="up-next">Up Next</h2>
+                    <ul id="task-list-elements">
+                    </ul>
+                </div>
+                <button id="completed" data-selected="false">Up Next</button>
+            `;
+        }).then(() => {
+            Object.defineProperty(document, 'readyState', {
+                get() { return 'loading'; },
+            });
 
-        Object.defineProperty(document, 'readyState', {
-            get() { return 'loading'; },
+            require('../../src/components/ResetPopUp');
+            require('../../src/components/SettingsPopUp');
+            require('../../src/components/TaskPopUp');
+            require('../../src/components/HelpPopUp');
         });
-
-        require('../src/components/ResetPopUp');
-        require('../src/components/SettingsPopUp');
-        require('../src/components/TaskPopUp');
-        require('../src/components/HelpPopUp');
     });
 
     beforeEach(() => {
@@ -529,8 +530,8 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press F toggles focus mode'), () => {
-        require('../src/scripts/Timer');
-        require('../src/scripts/FocusMode');
+        require('../../src/scripts/Timer');
+        require('../../src/scripts/FocusMode');
         localStorage.setItem('state', 'default');
 
         const taskPopUp = document.createElement('task-popup');
@@ -569,7 +570,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press space starts the timer'), () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -634,7 +635,7 @@ describe(('keyboard input'), () => {
             <button id="break-btn"> Break</button>
         `;
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -668,7 +669,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press H opens help pop-up'), () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -697,7 +698,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press R opens reset pop-up'), () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -726,7 +727,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press ; opens setting pop-up'), () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -756,7 +757,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press A opens add-task pop-up when in default state'), () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -788,7 +789,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press A does not open add-task pop-up when in focus state'), () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -821,7 +822,7 @@ describe(('keyboard input'), () => {
     });
 
     test(('key press ESCAPE closes help pop-up correctly'), () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -870,7 +871,7 @@ describe(('keyboard input'), () => {
         list.appendChild(taskItemF);
         list.appendChild(taskItemT);
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -923,7 +924,7 @@ describe(('keyboard input'), () => {
         list.appendChild(taskItemF);
         list.appendChild(taskItemT);
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -961,7 +962,7 @@ describe(('keyboard input'), () => {
         localStorage.setItem('short-break-length', '5');
         localStorage.setItem('long-break-length', '15');
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -1009,7 +1010,7 @@ describe(('keyboard input'), () => {
         localStorage.setItem('short-break-length', '5');
         localStorage.setItem('long-break-length', '15');
 
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         document.body.appendChild(taskPopUp);
@@ -1050,7 +1051,7 @@ describe(('keyboard input'), () => {
     });
 
     test('Key press ENTER adds a task correctly', () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         localStorage.setItem('volume', 50);
         localStorage.setItem('tasks', '[]');
@@ -1093,7 +1094,7 @@ describe(('keyboard input'), () => {
     });
 
     test('Key press ESCAPE exits task pop up correctly', () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
@@ -1131,7 +1132,7 @@ describe(('keyboard input'), () => {
     });
 
     test('other key presses do nothing when task-popup is closed', () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:none');
@@ -1170,7 +1171,7 @@ describe(('keyboard input'), () => {
     });
 
     test('other key presses do nothing when task-popup is open', () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:block');
@@ -1209,7 +1210,7 @@ describe(('keyboard input'), () => {
     });
 
     test('other key presses do nothing when task-popup is undefined', () => {
-        require('../src/scripts/Timer');
+        require('../../src/scripts/Timer');
 
         const taskPopUp = document.createElement('task-popup');
         taskPopUp.shadowRoot.getElementById('add-task-popup').setAttribute('style', 'display:inline');

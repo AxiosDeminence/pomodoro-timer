@@ -40,7 +40,7 @@ jobs:
       - name: Build docs
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: source/src
+          source_dir: src
           output_dir: build/docs
           template: minami
           front_page: README.md
@@ -58,8 +58,8 @@ jobs:
 
       - name: Prepare build
         run: |
-          rsync -a --exclude=html_fragments --exclude=.eslintrc source/src/ build
-          mv source/coverage build
+          rsync -a --exclude=html_fragments --exclude=.eslintrc src build
+          mv coverage build
 
       - name: Deploy build on gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.0

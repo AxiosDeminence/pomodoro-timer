@@ -3,21 +3,21 @@ import { addTemplates } from '../utils.js';
 
 let pageTemplate;
 
-beforeAll(async () => {
-    const templates = await addTemplates([
-        TASK_POPUP_TEMPLATE,
-    ], __dirname);
-
-    pageTemplate = `
-        ${templates}
-        <ul id="task-list-elements">
-        </ul>
-        <div id="popup-button">
-            <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
-        </div>
-        <button id="completed" data-selected="false">Up Next</button>
-    `;
+beforeAll(() => {
     window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+    return addTemplates([
+        TASK_POPUP_TEMPLATE,
+    ], __dirname).then((templates) => {
+        pageTemplate = `
+            ${templates}
+            <ul id="task-list-elements">
+            </ul>
+            <div id="popup-button">
+                <button id="task-popup-btn"> <img src="../icons/plus.svg" id="plus"></button>
+            </div>
+            <button id="completed" data-selected="false">Up Next</button>
+        `;
+    });
 });
 
 // jest.mock('../src/components/TaskItem');
@@ -27,7 +27,7 @@ beforeEach(() => {
     localStorage.setItem('tasks', '[]');
     localStorage.setItem('id', '0');
     document.body.innerHTML = pageTemplate;
-    require('../src/components/TaskPopUp');
+    require('../../src/components/TaskPopUp');
 });
 
 afterEach(() => {

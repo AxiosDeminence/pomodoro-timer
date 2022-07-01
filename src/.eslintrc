@@ -1,3 +1,3 @@
 {
-    "extends": ["../.eslintrc.json", "plugin:compat/recommended"]
+    "extends": ["plugin:compat/recommended", "../.eslintrc.json"]
 }

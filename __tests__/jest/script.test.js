@@ -6,26 +6,27 @@ import { TASK_ITEM_TEMPLATE } from '../Constants.js';
 
 let pageTemplate;
 
-beforeAll(async () => {
-    const templates = await addTemplates([
-        TASK_ITEM_TEMPLATE,
-    ], __dirname);
-
-    // Page template to be used for every test
-    // Initialized here to prevent multiple string building
-    pageTemplate = `
-        ${templates}
-        <main id="main"></main>
-        <button id="up-next"> Up Next </button>
-        <button id="completed"> Completed </button>
-        <ul id="task-list-elements">
-        </ul>
-        <div id='focus-task'>
-            <h2 id='select-focus'></h2>
-        </div>
-        <audio id="click-snd" src="#"></audio>
-    `;
+beforeAll(() => {
     window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+
+    return addTemplates([
+        TASK_ITEM_TEMPLATE,
+    ], __dirname).then((templates) => {
+        // Page template to be used for every test
+        // Initialized here to prevent multiple string building
+        pageTemplate = `
+            ${templates}
+            <main id="main"></main>
+            <button id="up-next"> Up Next </button>
+            <button id="completed"> Completed </button>
+            <ul id="task-list-elements">
+            </ul>
+            <div id='focus-task'>
+                <h2 id='select-focus'></h2>
+            </div>
+            <audio id="click-snd" src="#"></audio>
+        `;
+    });
 });
 
 beforeEach(() => {

@@ -19,7 +19,7 @@
         "indent": ["error", 4],
         "no-underscore-dangle": ["error", {"allowAfterThis": true}],
         "jest/prefer-to-have-length": "warn",
-        "jest/valid-expect": "error",
+        "jest/expect-expect": ["warn", {"assertFunctionNames": ["expect", "checkTimerFunction"]}],
         "global-require": 0,
         "import/extensions": 0, // Keep this since node expects file extensions without customized resolvers
         "comma-dangle": ["error", {

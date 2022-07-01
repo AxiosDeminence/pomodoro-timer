@@ -1,6 +1,8 @@
 {
-    "include": ["./source/src/"],
+    "include": ["./src/**/*"],
     "compilerOptions": {
-        "lib": ["ES6"]
+        "lib": ["ES6"],
+        "allowJs": true,
+        "outDir": "./ts-build"
     }
 }

@@ -10,7 +10,7 @@ const path = require('path');
  * @param {string} templates[].relpath - Relative path to file containing html fragment
  * @param {string} cwd - Directory where relpath gets resolved from
  */
-export async function addTemplates(templates, cwd = process.cwd) {
+export function addTemplates(templates, cwd = process.cwd) {
     // String of html fragments from templates
 
     // Promises to keep track of finished file reads
@@ -21,11 +21,11 @@ export async function addTemplates(templates, cwd = process.cwd) {
         promises.push(
             fs.readFile(filepath)
                 .then((data) => `<template id="${template.id}">${data}</template>`)
-                .catch((err) => { throw err; }),
+                .catch((err) => { throw err; })
         );
     });
 
-    const str = await Promise.all(promises)
+    const str = Promise.all(promises)
         .then((results) => results.reduce((acc, templateContent) => acc + templateContent))
         .catch((err) => { throw err; });
 

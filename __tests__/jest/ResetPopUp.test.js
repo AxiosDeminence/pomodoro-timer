@@ -4,26 +4,25 @@ import '../../src/components/TaskItem.js';
 
 let pageTemplate;
 
-beforeAll(async () => {
-    const templates = await addTemplates([
-        RESET_POPUP_TEMPLATE, TASK_ITEM_TEMPLATE,
-    ], __dirname);
-
-    // Create page template here to prevent multiple string builds
-    pageTemplate = `
-        ${templates}
-        <button class="top-buttons" id="reset-button">
-            <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
-            <p class="top-button-text">Reset</p>
-        </button>
-        <ul id="task-list-elements">
-        </ul>
-        <div id="focus-task">
-            <h2 id="select-focus"></h2>
-        </div>
-    `;
-
+beforeAll(() => {
     window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+    return addTemplates([
+        RESET_POPUP_TEMPLATE, TASK_ITEM_TEMPLATE,
+    ], __dirname).then((templates) => {
+        // Create page template here to prevent multiple string builds
+        pageTemplate = `
+            ${templates}
+            <button class="top-buttons" id="reset-button">
+                <img src="../icons/reset.svg" id="reset" class="top-button-img" alt=git "reset">
+                <p class="top-button-text">Reset</p>
+            </button>
+            <ul id="task-list-elements">
+            </ul>
+            <div id="focus-task">
+                <h2 id="select-focus"></h2>
+            </div>
+        `;
+    });
 });
 
 beforeEach(() => {
@@ -47,7 +46,7 @@ beforeEach(() => {
         list.appendChild(taskItemNode);
     });
     localStorage.setItem('volume', 50);
-    require('../src/components/ResetPopUp');
+    require('../../src/components/ResetPopUp');
 });
 
 afterEach(() => [
