@@ -1,3 +1,4 @@
+import getTimerFactory from './Timer/TimerAbstractFactory.mjs';
 import Toolbox from './Toolbox.mjs';
 
 (function initializeLocalStorage() {
@@ -23,12 +24,15 @@ import Toolbox from './Toolbox.mjs';
 }());
 
 const toolbox = new Toolbox();
+const timerFactory = getTimerFactory();
 
-if (typeof Worker !== 'undefined') {
-    toolbox.registerComponent()
-} else {
-    toolbox.registerComponent()
-}
+const timer = timerFactory.getTimer();
+const startCmd = timerFactory.getStartCommand(timer);
+const stopCmd = timerFactory.getStopCommand(timer);
+
+toolbox.registerComponent('timer', timer);
+toolbox.registerComponent('startCmd', startCmd);
+toolbox.registerComponent('stopCmd', stopCmd);
 
 function getTasks() {
     return JSON.parse(localStorage.getItem('tasks'));
