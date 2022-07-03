@@ -16,11 +16,30 @@ import CountdownTimer from './CountdownTimer.mjs';
  * @callback TimerStopCommand
  */
 
+
 /**
- * @extends TimerAbstractFactory
+ * 
  */
-class TimerWorkerAbstractFactory {
+export class TimerAbstractFactory {
     constructor() {}
+
+    getTimer() {}
+
+    getStartCommand(timer) {}
+
+    getStopCommand(timer) {}
+}
+
+/**
+ * @implements TimerAbstractFactory
+ */
+export class TimerWorkerAbstractFactory extends TimerAbstractFactory {
+    constructor() {
+        super();
+        // Workaround to enforce polymorphism. Inspired by: https://github.com/microsoft/TypeScript/issues/17498#issuecomment-399439654
+        // eslint-disable-next-line no-unused-vars
+        const /** @type {TimerAbstractFactory} */ instance = this;
+    }
 
     /**
      * 
@@ -58,7 +77,7 @@ class TimerWorkerAbstractFactory {
 /**
  * @extends TimerAbstractFactory
  */
-class CountdownTimerAbstractFactory {
+export class CountdownTimerAbstractFactory {
     constructor() {}
 
     getTimer() {
