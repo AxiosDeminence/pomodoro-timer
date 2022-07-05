@@ -169,8 +169,8 @@ test('Show completed task on button click', () => {
     expect(taskItem1.style.display).toBe('flex');
 });
 
-// test(('save dark theme'), () => {
-//     localStorage.setItem('theme', 'dark');
-//     dispatchEvent(new Event('DOMContentLoaded'));
-//     expect(document.body.classList).toContain('dark-theme');
-// });
+test.skip(('save dark theme'), () => {
+    localStorage.setItem('theme', 'dark');
+    dispatchEvent(new Event('DOMContentLoaded'));
+    expect(document.body.classList).toContain('dark-theme');
+});

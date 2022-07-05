@@ -5,10 +5,12 @@
 import { ACCEPTABLE_DRIFT, SECOND, TIMER_WORKER_URL } from '../Constants.mjs';
 import CountdownTimer from './CountdownTimer.mjs';
 
+// We add some weird typechecking for interfaces for polymorphism.
+
 /**
  * Start command for timers
  * @callback TimerStartCommand
- * @param {number} Minutes the timer should run for
+ * @param {number} time Minutes the timer should run for
  */
 
 /**
@@ -16,9 +18,8 @@ import CountdownTimer from './CountdownTimer.mjs';
  * @callback TimerStopCommand
  */
 
-
 /**
- * 
+ * @interface
  */
 export class TimerAbstractFactory {
     constructor() {}
@@ -42,7 +43,7 @@ export class TimerWorkerAbstractFactory extends TimerAbstractFactory {
     }
 
     /**
-     * 
+     * Gets a worker-based timer.
      * @returns {Worker}
      */
     getTimer() {
@@ -58,8 +59,8 @@ export class TimerWorkerAbstractFactory extends TimerAbstractFactory {
      */
     getStartCommand(timer) {
         return (time) => {
-            timer.postMessage(time);
-        }
+            timer.postMessage(time.toString());
+        };
     }
 
     /**
@@ -75,11 +76,18 @@ export class TimerWorkerAbstractFactory extends TimerAbstractFactory {
 }
 
 /**
- * @extends TimerAbstractFactory
+ * @implements TimerAbstractFactory
  */
-export class CountdownTimerAbstractFactory {
-    constructor() {}
+export class CountdownTimerAbstractFactory extends TimerAbstractFactory {
+    constructor() {
+        super();
+        // eslint-disable-next-line no-unused-vars
+        const /** @type {TimerAbstractFactory} */ instance = this;
+    }
 
+    /**
+     * @returns {CountdownTimer}
+     */
     getTimer() {
         return new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT);
     }
@@ -93,7 +101,7 @@ export class CountdownTimerAbstractFactory {
         return (time) => {
             timer.stop();
             timer.start(time);
-        }
+        };
     }
 
     /**

@@ -60,7 +60,8 @@
     "lint-staged": "^10.5.4",
     "nyc": "^15.1.0",
     "svg-sprite": "^1.5.4",
-    "watch": "^1.0.2"
+    "watch": "^1.0.2",
+    "web-worker": "github:Silic0nS0ldier/web-worker"
   },
   "jest": {
     "verbose": true,

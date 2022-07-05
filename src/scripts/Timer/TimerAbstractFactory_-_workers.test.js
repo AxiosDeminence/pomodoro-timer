@@ -1,26 +1,32 @@
+/**
+ * @jest-environment ../../../__tests__/environments/workers.mjs
+ */
+
 // @ts-check
 
-import CountdownTimer from './CountdownTimer.mjs';
-import getTimerFactory, { CountdownTimerAbstractFactory } from './TimerAbstractFactory.mjs';
+import getTimerFactory, { TimerWorkerAbstractFactory } from './TimerAbstractFactory.mjs';
 
-// Technically not JSDoc but we'll just use it to allow type-safety and prevent unused imports.
 /** @typedef {import('./TimerAbstractFactory.mjs').TimerAbstractFactory} TimerAbstractFactory */
 
-describe('Workers not allowed', () => {
+describe('Workers allowed', () => {
     /** @type {TimerAbstractFactory} */
     let factory;
 
-    /** @type {CountdownTimer} */
+    /** @type {Worker} */
     let timer;
+
+    afterAll(() => {
+        timer.terminate();
+    });
 
     it('Factory creation', () => {
         factory = getTimerFactory();
-        expect(factory).toBeInstanceOf(CountdownTimerAbstractFactory);
+        expect(factory).toBeInstanceOf(TimerWorkerAbstractFactory);
     });
 
     it('Creates proper timer', () => {
-        timer = (/** @type {CountdownTimerAbstractFactory} */ (factory)).getTimer();
-        expect(timer).toBeInstanceOf(CountdownTimer);
+        timer = (/** @type {TimerWorkerAbstractFactory} */ (factory)).getTimer();
+        expect(timer).toBeInstanceOf(Worker);
     });
 
     it('Returns a function for the start command', () => {

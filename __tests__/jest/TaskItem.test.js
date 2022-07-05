@@ -134,23 +134,23 @@ describe(('focus task'), () => {
         expect(task0.parentElement).toBe(focus);
     });
 
-    // test(('focusing a task that does not exist in localStorage does nothing'), () => {
-    //     document.body.innerHTML = `
-    //         <div id='focus-task'>
-    //             <h2 id='select-focus'></h2>
-    //         </div>
-    //         <ul id="task-list-elements">
-    //             <task-item id="0" checked="false" text="First Item" focused="false"></task-item>
-    //             <task-item id="1" checked="false" text="Second Item" focused="false"></task-item>
-    //             <task-item id="3" checked="false" text="Third Item" focused="false"></task-item>
-    //         </ul>
-    //     `;
-    //     const task0 = document.getElementById('3');
-    //     task0.shadowRoot.querySelector('img.focus-icon').click();
+    test.skip(('focusing a task that does not exist in localStorage does nothing'), () => {
+        document.body.innerHTML = `
+            <div id='focus-task'>
+                <h2 id='select-focus'></h2>
+            </div>
+            <ul id="task-list-elements">
+                <task-item id="0" checked="false" text="First Item" focused="false"></task-item>
+                <task-item id="1" checked="false" text="Second Item" focused="false"></task-item>
+                <task-item id="3" checked="false" text="Third Item" focused="false"></task-item>
+            </ul>
+        `;
+        const task0 = document.getElementById('3');
+        task0.shadowRoot.querySelector('img.focus-icon').click();
 
-    //     const taskList = document.getElementById('task-list-elements');
-    //     expect(taskList.childElementCount).toBe(2);
-    // });
+        const taskList = document.getElementById('task-list-elements');
+        expect(taskList.childElementCount).toBe(2);
+    });
 
     test(('change focus task'), () => {
         const task0 = document.getElementById('0');
@@ -170,25 +170,25 @@ describe(('focus task'), () => {
         expect(task1.parentElement).toBe(focus);
     });
 
-    // test.only(('change focus task to task does not exist in localStorage does nothing'), () => {
-    //     const task0 = document.getElementById('0');
-    //     task0.shadowRoot.querySelector('img.focus-icon').click();
+    test.skip(('change focus task to task does not exist in localStorage does nothing'), () => {
+        const task0 = document.getElementById('0');
+        task0.shadowRoot.querySelector('img.focus-icon').click();
 
-    //     const focusDiv = document.getElementById('focus-task');
-    //     const focusTask = focusDiv.querySelector('task-item');
-    //     focusTask.setAttribute('id', '3');
+        const focusDiv = document.getElementById('focus-task');
+        const focusTask = focusDiv.querySelector('task-item');
+        focusTask.setAttribute('id', '3');
 
-    //     const task1 = document.getElementById('1');
-    //     task1.shadowRoot.querySelector('img.focus-icon').click();
-    //     expect(task0.getAttribute('focused')).toBe('false');
-    //     expect(task1.getAttribute('focused')).toBe('true');
+        const task1 = document.getElementById('1');
+        task1.shadowRoot.querySelector('img.focus-icon').click();
+        expect(task0.getAttribute('focused')).toBe('false');
+        expect(task1.getAttribute('focused')).toBe('true');
 
-    //     // task1 is moved to focus section and task 1 is in task list
-    //     const taskList = document.getElementById('task-list-elements');
-    //     const focuse = document.getElementById('focus-task');
-    //     expect(task0.parentElement).toBe(taskList);
-    //     expect(task1.parentElement).toBe(focuse);
-    // });
+        // task1 is moved to focus section and task 1 is in task list
+        const taskList = document.getElementById('task-list-elements');
+        const focuse = document.getElementById('focus-task');
+        expect(task0.parentElement).toBe(taskList);
+        expect(task1.parentElement).toBe(focuse);
+    });
 
     test(('remove a focus task by deletion'), () => {
         const task0 = document.getElementById('0');

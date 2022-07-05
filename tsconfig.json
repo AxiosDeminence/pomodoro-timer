@@ -1,8 +1,11 @@
 {
     "include": ["./src/**/*"],
     "compilerOptions": {
-        "lib": ["ES6"],
+        "target": "ES6",
+        "noEmit": true,
+        "checkJs": true,
         "allowJs": true,
-        "outDir": "./ts-build"
+        "outDir": "./ts-build",
+        "moduleResolution": "node"
     }
 }
