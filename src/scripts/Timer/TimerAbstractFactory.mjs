@@ -20,15 +20,35 @@ import CountdownTimer from './CountdownTimer.mjs';
 
 /**
  * @interface
+ * @template T
  */
 export class TimerAbstractFactory {
     constructor() {}
 
-    getTimer() {}
+    /**
+     * @return {T}
+     */
+    getTimer() {
+        throw new Error('Not implemented');
+    }
 
-    getStartCommand(timer) {}
+    /**
+     * 
+     * @param {T} timer
+     * @return {function}
+     */
+    getStartCommand(timer) {
+        throw new Error('Not implemented');
+    }
 
-    getStopCommand(timer) {}
+    /**
+     * 
+     * @param {T} timer
+     * @return {function}
+     */
+    getStopCommand(timer) {
+        throw new Error('Not implemented');
+    }
 }
 
 /**
@@ -48,7 +68,9 @@ export class TimerWorkerAbstractFactory extends TimerAbstractFactory {
      */
     getTimer() {
         /** @type {Worker} */
-        return new Worker(TIMER_WORKER_URL, {type: 'module'});
+        const worker = new Worker(TIMER_WORKER_URL, {type: 'module'});
+
+        return worker;
     }
 
 
@@ -89,7 +111,10 @@ export class CountdownTimerAbstractFactory extends TimerAbstractFactory {
      * @returns {CountdownTimer}
      */
     getTimer() {
-        return new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT);
+        /** @type {CountdownTimer} */
+        const timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT);
+
+        return timer;
     }
 
     /**

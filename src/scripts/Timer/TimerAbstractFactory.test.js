@@ -6,6 +6,8 @@ import getTimerFactory, { CountdownTimerAbstractFactory } from './TimerAbstractF
 // Technically not JSDoc but we'll just use it to allow type-safety and prevent unused imports.
 /** @typedef {import('./TimerAbstractFactory.mjs').TimerAbstractFactory} TimerAbstractFactory */
 
+jest.useFakeTimers();
+
 describe('Workers not allowed', () => {
     /** @type {TimerAbstractFactory} */
     let factory;
@@ -29,5 +31,11 @@ describe('Workers not allowed', () => {
 
     it('Returns a function for the stop command', () => {
         expect(typeof factory.getStopCommand(timer)).toBe('function');
+    });
+
+    it('Internal testing', () => {
+        /** @type {Function} */
+        const cmd = (/** @type {CountdownTimerAbstractFactory} */ (factory)).getStartCommand(timer);
+        jest.advanceTimersByTime(1000);
     });
 });

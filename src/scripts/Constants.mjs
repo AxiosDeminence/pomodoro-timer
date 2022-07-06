@@ -12,4 +12,6 @@ export const ACCEPTABLE_DRIFT = 50;
 /** @type {string} */
 export const TIMER_FACTORY = 'timer_factory';
 
-/** @type {} */
+// AccurateInterval constants
+
+/** */

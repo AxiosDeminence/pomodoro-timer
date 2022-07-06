@@ -1,5 +1,10 @@
+import CountdownTimer from './Timer/CountdownTimer.mjs';
 import getTimerFactory from './Timer/TimerAbstractFactory.mjs';
 import Toolbox from './Toolbox.mjs';
+
+/** @typedef {import('./Timer/TimerAbstractFactory.mjs').TimerAbstractFactory} TimerAbstractFactory */
+/** @typedef {import('./Timer/TimerAbstractFactory.mjs').CountdownTimerAbstractFactory} CountdownTimerAbstractFactory */
+/** @typedef {import('./Timer/TimerAbstractFactory.mjs').TimerWorkerAbstractFactory} TimerWorkerAbstractFactory */
 
 (function initializeLocalStorage() {
     const defaults = {
@@ -24,10 +29,17 @@ import Toolbox from './Toolbox.mjs';
 }());
 
 const toolbox = new Toolbox();
+
+/** @type {TimerAbstractFactory} */
 const timerFactory = getTimerFactory();
 
+/** @type {unknown} */
 const timer = timerFactory.getTimer();
+
+/** @type {Function} */
 const startCmd = timerFactory.getStartCommand(timer);
+
+/** @type {Function} */
 const stopCmd = timerFactory.getStopCommand(timer);
 
 toolbox.registerComponent('timer', timer);
@@ -43,6 +55,8 @@ function getTasks() {
  */
 function showInComplete() {
     // Reference task list, upnext, and completed buttons in the DOM
+
+    /** @type {HTMLCollection} */
     const tasks = document.getElementById('task-list-elements').children;
     const upNextBtn = document.getElementById('up-next');
     const completedBtn = document.getElementById('completed');
