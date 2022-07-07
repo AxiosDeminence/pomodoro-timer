@@ -1,5 +1,7 @@
 // @ts-check
 
+import * as ERRORS from "./AccurateInterval.constants.mjs";
+
 /**
  * Errors for the @see {@link AccurateInterval} class.
  */
@@ -15,37 +17,46 @@ export class AccurateIntervalError extends Error {
 
 /**
  * Class representing a self-correcting interval.
- * @property {(timeoutID|intervalID)} timer - Maintains timeouts/intervals and checks it
+ * @property {(timeoutID|intervalID)} timer Maintains timeouts/intervals and checks it
  *     against the drift.
- * @property {number} expectedTime - Expected tiemstamp the next tick would be run
+ * @property {number} expectedTime Expected tiemstamp the next tick would be run
  */
 export default class AccurateInterval {
     /**
      * Creates an accurate interval with an acceptable drift.
-     * @param {!function} cb - Callback function
-     * @param {any[]} args - Arguments to the callback function
-     * @param {!number} interval - Interval in milliseconds
-     * @param {!number} [acceptableDrift=50] - Allowed drift in milliseconds
+     * @param {function} cb Callback function
+     * @param {any[]} args Arguments to the callback function
+     * @param {number} interval Interval in milliseconds
+     * @param {number} [acceptableDrift=50] Allowed drift in milliseconds
      */
-    constructor(cb, args, interval, acceptableDrift) {
+    constructor(cb, args, interval, acceptableDrift=50) {
         if (typeof cb !== 'function') {
-            throw new TypeError('Callback is not a function');
+            throw new TypeError(ERRORS.INVALID_CB_ERR_MSG);
         }
 
         // Coerce to number and see if these are safe.
         const coercedInterval = Number(interval);
         if (!Number.isSafeInteger(coercedInterval) || Number(coercedInterval) <= 0) {
-            throw new RangeError('Interval must be larger than 0');
+            throw new RangeError(ERRORS.INVALID_INTERVAL_ERR_MSG);
         }
         const coercedDrift = Number(acceptableDrift);
         if (!Number.isSafeInteger(coercedDrift) || Number(coercedDrift) < 0) {
-            throw new RangeError('acceptableDrift cannot be less than 0');
+            throw new RangeError(ERRORS.INVALID_DRIFT_ERR_MSG);
         }
 
+        /** @type {function} Callback function ran at every tick */
         this.cb = cb;
+
+        /** @type {any[]} Arguments to the callback function */
         this.args = args;
+
+        /** @type {number} Time between each tick in milliseconds */
         this.interval = coercedInterval;
+
+        /** @type {number} Maximum drift between each tick in milliseconds */
         this.acceptableDrift = coercedDrift;
+
+        /** @type {boolean} The status of the interval */
         this.running = false;
     }
 
@@ -56,7 +67,7 @@ export default class AccurateInterval {
     start(zeroTick=false) {
         // Prevent it from multiple starts without stopping
         if (this.running) {
-            throw new AccurateIntervalError('AccurateInterval already started.')
+            throw new AccurateIntervalError(ERRORS.ALREADY_STARTED_ERR_MSG);
         } else {
             this.running = true;
         }
@@ -102,7 +113,7 @@ export default class AccurateInterval {
      */
     stop() {
         if (!this.running) {
-            throw new AccurateIntervalError('AccurateInterval has not started.');
+            throw new AccurateIntervalError(ERRORS.NOT_STARTED_ERR_MSG);
         } else {
             this.running = false;
         }
