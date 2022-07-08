@@ -79,7 +79,10 @@
       "jest-localstorage-mock"
     ],
     "modulePathIgnorePatterns": [
-      "/cypress/"
+      "/cypress/",
+      "__tests__/jest/Timer.test.js",
+      "__tests__/Constants.js",
+      "__tests__/utils.js"
     ]
   },
   "dependencies": {
