@@ -43,6 +43,6 @@ it('Message the worker to restart the timer', () => {
 
 it('Invalid message passed to the timer', () => {
     const invalidPayload = 'happy';
-    expect(processMessages.bind(null, new MessageEvent('message', { data: invalidPayload })))
+    expect(() => processMessages(new MessageEvent('message', { data: invalidPayload })))
         .toThrowError(`Unknown message ${invalidPayload}`);
 });

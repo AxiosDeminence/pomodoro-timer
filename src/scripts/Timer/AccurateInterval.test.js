@@ -29,50 +29,54 @@ describe('Proper construction required', () => {
     });
 
     it('Callback must be a function', () => {
-        expect(getIntervalController.bind(null, { cb: 1 }))
-            .toThrowError(TypeError);
+        // @ts-expect-error
+        expect(() => getIntervalController({ cb: 1 })).toThrowError(TypeError);
     });
 
     describe('Interval value', () => {
         it('Not coerable to Number', () => {
-            expect(getIntervalController.bind(null, { interval: 'happy' }))
+            // @ts-expect-error
+            expect(() => getIntervalController({ interval: 'happy' }))
                 .toThrowError(RangeError);
         });
 
         it('Below acceptable range', () => {
-            expect(getIntervalController.bind(null, { interval: 0 }))
+            expect(() => getIntervalController({ interval: 0 }))
                 .toThrowError(RangeError);
         });
 
         it('Unsafe value', () => {
-            expect(getIntervalController.bind(null, { interval: Infinity }))
+            expect(() => getIntervalController({ interval: Infinity }))
                 .toThrowError(RangeError);
         });
 
         it('Coercable to Number, safe, and within range', () => {
-            expect(getIntervalController.bind(null, { interval: BigInt(24) }))
+            // @ts-expect-error
+            expect(() => getIntervalController({ interval: BigInt(24) }))
                 .not.toThrowError(RangeError);
         });
     });
 
     describe('Acceptable drift value', () => {
         it('Not coerable to Number', () => {
-            expect(getIntervalController.bind(null, { acceptableDrift: 'happy' }))
+            // @ts-expect-error
+            expect(() => getIntervalController({ acceptableDrift: 'happy' }))
                 .toThrowError(RangeError);
         });
 
         it('Below acceptable range', () => {
-            expect(getIntervalController.bind(null, { acceptableDrift: -1 }))
+            expect(() => getIntervalController({ acceptableDrift: -1 }))
                 .toThrowError(RangeError);
         });
 
         it('Unsafe value', () => {
-            expect(getIntervalController.bind(null, { acceptableDrift: Infinity }))
+            expect(() => getIntervalController({ acceptableDrift: Infinity }))
                 .toThrowError(RangeError);
         });
 
         it('Coercable to Number, safe, and within range', () => {
-            expect(getIntervalController.bind(null, { acceptableDrift: BigInt(24) }))
+            // @ts-expect-error
+            expect(() => getIntervalController({ acceptableDrift: BigInt(24) }))
                 .not.toThrowError(RangeError);
         });
     });
@@ -91,14 +95,12 @@ describe('AccurateInterval starting and stopping behavior', () => {
 
         it('Prevent starting twice', () => {
             intervalController.start();
-            expect(intervalController.start.bind(intervalController))
-                .toThrowError(AccurateIntervalError);
+            expect(() => intervalController.start()).toThrowError(AccurateIntervalError);
             intervalController.stop();
         });
 
         it('Prevent stopping when not yet started', () => {
-            expect(intervalController.stop.bind(intervalController))
-                .toThrowError(AccurateIntervalError);
+            expect(() => intervalController.stop()).toThrowError(AccurateIntervalError);
         });
     });
 

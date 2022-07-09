@@ -34,8 +34,8 @@ describe('Pub/sub behavior', () => {
     });
 
     it('Subscriptions must provide a valid callback', () => {
-        expect(pubsub.subscribe.bind(null, SAMPLE_EVENT_1, 1))
-            .toThrowError(TypeError);
+        // @ts-expect-error
+        expect(() => pubsub.subscribe(SAMPLE_EVENT_1, 1)).toThrowError(TypeError);
     });
 
     it('Single subscription gets notified', () => {
@@ -69,12 +69,11 @@ describe('Pub/sub behavior', () => {
         expect(spy).toHaveBeenCalledTimes(0);
     });
 
-    // eslint-disable-next-line jest/expect-expect
     it('Subscription removal is idempotent', () => {
         const uid = pubsub.subscribe(SAMPLE_EVENT_1, spy);
         pubsub.unsubscribe(uid);
         // Does not throw
-        pubsub.unsubscribe(uid);
+        expect(() => pubsub.unsubscribe(uid)).not.toThrow();
     });
 
     it('Unsubscribing does not remove other subscriptions for same event', () => {

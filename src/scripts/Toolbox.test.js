@@ -11,28 +11,28 @@ describe('Construction', () => {
 
     it('Singleton', () => {
         const temp_toolbox = new Toolbox();
-        expect(toolbox).toStrictEqual(temp_toolbox);
+        expect(toolbox).toBe(temp_toolbox);
     });
 });
 
 describe('Component usage', () => {
     const symbol = 'mock';
 
-    let toolbox = new Toolbox();
+    const toolbox = new Toolbox();
 
     it('Get a component that does not exist', () => {
-        expect(toolbox.getComponent.bind(null, symbol)).toThrow();
+        expect(() => toolbox.getComponent(symbol)).toThrow();
     });
 
     it('Register a component that does not exist', () => {
-        expect(toolbox.registerComponent.bind(null, symbol, symbol)).not.toThrow();
+        expect(() => toolbox.registerComponent(symbol, symbol)).not.toThrow();
     });
 
     it('Get a component that exists', () => {
-        expect(toolbox.getComponent.bind(null, symbol)).toEqual(symbol);
+        expect(toolbox.getComponent(symbol)).toEqual(symbol);
     });
 
     it('Register a component that already exists', () => {
-        expect(toolbox.registerComponent.bind(null, symbol, symbol)).toThrow();
+        expect(() => toolbox.registerComponent(symbol, symbol)).toThrow();
     });
 });

@@ -5,14 +5,13 @@ let toolbox;
 
 export default class Toolbox {
     constructor() {
-        if (typeof toolbox === 'undefined') {
-            toolbox = this;
+        if (typeof toolbox !== 'undefined') {
+            return toolbox;
         }
+        toolbox = this;
 
         /** @type {Map<string, Object>} */
         this.components = new Map();
-
-        return toolbox;
     }
 
     getComponent(key) {
