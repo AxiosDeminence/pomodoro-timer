@@ -1,5 +1,11 @@
 // @ts-check
 
+/**
+ * @file Module for a self-correcting interval
+ * @author Juhmer Tena <juhmertena@gmail.com>
+ * @module AccurateInterval
+ */
+
 import * as ERRORS from "./AccurateInterval.constants.mjs";
 
 /**
@@ -19,13 +25,13 @@ export class AccurateIntervalError extends Error {
  * Class representing a self-correcting interval.
  * @property {(timeoutID|intervalID)} timer Maintains timeouts/intervals and checks it
  *     against the drift.
- * @property {number} expectedTime Expected tiemstamp the next tick would be run
+ * @property {number} expectedTime Expected timestamp the next tick would be run
  */
 export default class AccurateInterval {
     /**
      * Creates an accurate interval with an acceptable drift.
      * @param {function} cb Callback function
-     * @param {any[]} args Arguments to the callback function
+     * @param {?any[]} args Arguments to the callback function
      * @param {number} interval Interval in milliseconds
      * @param {number} [acceptableDrift=50] Allowed drift in milliseconds
      */
@@ -47,7 +53,7 @@ export default class AccurateInterval {
         /** @type {function} Callback function ran at every tick */
         this.cb = cb;
 
-        /** @type {any[]} Arguments to the callback function */
+        /** @type {?any[]} Arguments to the callback function */
         this.args = args;
 
         /** @type {number} Time between each tick in milliseconds */
@@ -62,7 +68,8 @@ export default class AccurateInterval {
 
     /**
      * Starts the accurate interval
-     * @param {boolean} zeroTick - Checks to see if we want a zerotick callback run.
+     * @param {boolean} zeroTick Checks to see if we want a zerotick callback run.
+     * @throws {AccurateIntervalError} Timer should not already be running
      */
     start(zeroTick=false) {
         // Prevent it from multiple starts without stopping
@@ -103,8 +110,7 @@ export default class AccurateInterval {
             // This is a bit counterintuitive but resetting the interval to counteract the drift
             // results in less drift by predicting future delays.
             // Over 2 minutes: results in 6 drift corrections instead of 22 on Firefox
-            this.timer = setInterval(this.tick.bind(this),
-                Math.max(0, this.interval - drift), false);
+            this.timer = setInterval(this.tick.bind(this), Math.max(0, this.interval - drift), false);
         }
     }
 

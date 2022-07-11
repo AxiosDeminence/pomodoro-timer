@@ -1,7 +1,16 @@
 // @ts-check
 
+/**
+ * @file 
+ * @author Juhmer Tena <juhmertena@gmail.com>
+ * @module CountdownTimer
+ */
+
 import AccurateInterval from './AccurateInterval.mjs';
 
+/**
+ * Countdown timer. timerFunction should be decorated to bind it to an element.
+ */
 export default class CountdownTimer {
     /**
      * @param {boolean} runAtStart Have the first callback run happen when the
@@ -19,7 +28,7 @@ export default class CountdownTimer {
         
         /**
          * Remaining time in seconds
-         * @type {number}
+         * @type {number | undefined}
          */
         this.remainingTime = undefined;
     }
@@ -50,6 +59,10 @@ export default class CountdownTimer {
      * @returns {string} Remaining time formatted as a MM:SS string
      */
     timerFunction() {
+        if (typeof this.remainingTime === 'undefined') {
+            throw new Error('timerFunction called when timer is not running');
+        }
+
         const remainingMinutes = Math.floor(this.remainingTime / 60);
         const remainingSeconds = this.remainingTime % 60;
 
@@ -58,4 +71,11 @@ export default class CountdownTimer {
 
         return timerString;
     }
+}
+
+/**
+ * 
+ */
+export class CountdownTimerHTMLElementDecorator {
+    
 }

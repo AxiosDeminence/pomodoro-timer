@@ -30,7 +30,7 @@ describe('Pub/sub behavior', () => {
     beforeEach(() => {
         spy.mockClear();
         pubsub = new EventBus();
-        passedArgs = undefined;
+        passedArgs = [];
     });
 
     it('Subscriptions must provide a valid callback', () => {

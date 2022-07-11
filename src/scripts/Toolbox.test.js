@@ -3,20 +3,22 @@
 import Toolbox from './Toolbox.mjs';
 
 describe('Construction', () => {
+    /** @type {Toolbox} */
     let toolbox;
 
     it('Succeeds', () => {
-        toolbox = new Toolbox();
+        expect(() => { toolbox = new Toolbox(); }).not.toThrow();
     });
 
     it('Singleton', () => {
-        const temp_toolbox = new Toolbox();
-        expect(toolbox).toBe(temp_toolbox);
+        const tempToolbox = new Toolbox();
+        expect(toolbox).toBe(tempToolbox);
     });
 });
 
 describe('Component usage', () => {
     const symbol = 'mock';
+    const value = {};
 
     const toolbox = new Toolbox();
 
@@ -25,14 +27,14 @@ describe('Component usage', () => {
     });
 
     it('Register a component that does not exist', () => {
-        expect(() => toolbox.registerComponent(symbol, symbol)).not.toThrow();
+        expect(() => toolbox.registerComponent(symbol, value)).not.toThrow();
     });
 
     it('Get a component that exists', () => {
-        expect(toolbox.getComponent(symbol)).toEqual(symbol);
+        expect(toolbox.getComponent(symbol)).toBe(value);
     });
 
     it('Register a component that already exists', () => {
-        expect(() => toolbox.registerComponent(symbol, symbol)).toThrow();
+        expect(() => toolbox.registerComponent(symbol, value)).toThrow();
     });
 });

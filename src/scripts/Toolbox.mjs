@@ -10,18 +10,28 @@ export default class Toolbox {
         }
         toolbox = this;
 
-        /** @type {Map<string, Object>} */
+        /** @type {Map<string, object>} */
         this.components = new Map();
     }
 
+    /**
+     * 
+     * @param {string} key 
+     * @returns {object}
+     */
     getComponent(key) {
         if (!this.components.has(key)) {
             throw new Error(`Component ${key} not registered`);
         }
 
-        return this.components.get(key);
+        return /** @type {object} */ (this.components.get(key));
     }
 
+    /**
+     * 
+     * @param {string} key 
+     * @param {object} component 
+     */
     registerComponent(key, component) {
         if (this.components.has(key)) {
             throw new Error(`Component ${key} already registered`);

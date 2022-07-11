@@ -1,5 +1,9 @@
 // @ts-check
 
+/**
+ * @file Constants for the {@link module:AccurateInterval} module.
+ */
+
 /** @type {string} */
 export const INVALID_CB_ERR_MSG = 'Callback is not a function';
 

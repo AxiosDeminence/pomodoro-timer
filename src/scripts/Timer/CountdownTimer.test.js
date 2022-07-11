@@ -52,12 +52,17 @@ it('Remove remaining time on stop', () => {
 });
 
 describe('Timer callback functionality', () => {
-    const timer = getCountdownTimer();
+    const timer = getCountdownTimer({zeroTick: true});
 
     afterEach(() => {
         timer.stop();
     });
 
+    /**
+     * 
+     * @param {number} remainingTime 
+     * @param {*} expectedString 
+     */
     function checkTimerFunction(remainingTime, expectedString) {
         timer.start(remainingTime);
         expect(timer.timerFunction()).toBe(expectedString);

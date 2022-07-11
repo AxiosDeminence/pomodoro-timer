@@ -6,10 +6,13 @@
 
 import getTimerFactory, { TimerWorkerAbstractFactory } from './TimerAbstractFactory.mjs';
 
-/** @typedef {import('./TimerAbstractFactory.mjs').TimerAbstractFactory} TimerAbstractFactory */
+/** @typedef {import('./TimerAbstractFactory.mjs').TimerAbstractFactory<unknown>} TimerAbstractFactory */
 
 describe('Workers allowed', () => {
-    /** @type {TimerAbstractFactory} */
+    /**
+     * @template T
+     * @type {TimerAbstractFactory}
+     */
     let factory;
 
     /** @type {Worker} */
@@ -20,7 +23,7 @@ describe('Workers allowed', () => {
     });
 
     it('Factory creation', () => {
-        factory = getTimerFactory();
+        factory = /** @type {TimerAbstractFactory} */ (getTimerFactory());
         expect(factory).toBeInstanceOf(TimerWorkerAbstractFactory);
     });
 

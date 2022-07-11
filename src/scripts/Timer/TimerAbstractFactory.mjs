@@ -28,39 +28,28 @@ export class TimerAbstractFactory {
     /**
      * @return {T}
      */
-    getTimer() {
-        throw new Error('Not implemented');
-    }
+    getTimer() { throw new Error('Not implemented') }
 
     /**
      * 
      * @param {T} timer
      * @return {function}
      */
-    getStartCommand(timer) {
-        throw new Error('Not implemented');
-    }
+    getStartCommand(timer) { throw new Error('Not implemented'); }
 
     /**
      * 
      * @param {T} timer
      * @return {function}
      */
-    getStopCommand(timer) {
-        throw new Error('Not implemented');
-    }
+    getStopCommand(timer) { throw new Error('Not implemented'); }
 }
 
 /**
- * @implements TimerAbstractFactory
+ * @implements {TimerAbstractFactory<Worker>}
  */
-export class TimerWorkerAbstractFactory extends TimerAbstractFactory {
-    constructor() {
-        super();
-        // Workaround to enforce polymorphism. Inspired by: https://github.com/microsoft/TypeScript/issues/17498#issuecomment-399439654
-        // eslint-disable-next-line no-unused-vars
-        const /** @type {TimerAbstractFactory} */ instance = this;
-    }
+export class TimerWorkerAbstractFactory {
+    constructor() {}
 
     /**
      * Gets a worker-based timer.
@@ -72,7 +61,6 @@ export class TimerWorkerAbstractFactory extends TimerAbstractFactory {
 
         return worker;
     }
-
 
     /**
      * Get the start command for the timer-based web worker.
@@ -98,14 +86,10 @@ export class TimerWorkerAbstractFactory extends TimerAbstractFactory {
 }
 
 /**
- * @implements TimerAbstractFactory
+ * @implements {TimerAbstractFactory<CountdownTimer>}
  */
-export class CountdownTimerAbstractFactory extends TimerAbstractFactory {
-    constructor() {
-        super();
-        // eslint-disable-next-line no-unused-vars
-        const /** @type {TimerAbstractFactory} */ instance = this;
-    }
+export class CountdownTimerAbstractFactory {
+    constructor() { }
 
     /**
      * @returns {CountdownTimer}
@@ -131,6 +115,7 @@ export class CountdownTimerAbstractFactory extends TimerAbstractFactory {
 
     /**
      * Get the stop command for the inline countdown timer.
+     * @param {CountdownTimer} timer
      * @returns {TimerStopCommand}
      */
     getStopCommand(timer) {
@@ -140,6 +125,9 @@ export class CountdownTimerAbstractFactory extends TimerAbstractFactory {
     }
 }
 
+/**
+ * @return {TimerAbstractFactory<unknown>}
+ */
 export default function getTimerFactory() {
     if (typeof Worker !== 'undefined') {
         return new TimerWorkerAbstractFactory();

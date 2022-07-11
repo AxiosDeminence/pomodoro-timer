@@ -36,7 +36,7 @@ export default class EventBus {
             if (!subscriptions.has(eventType)) {
                 subscriptions.set(eventType, new Set());
             }
-            subscriptions.get(eventType).add(subscriberUID);
+            /** @type {Set<number>} */ (subscriptions.get(eventType)).add(subscriberUID);
 
             callbacks.set(subscriberUID, cb);
 
@@ -77,9 +77,12 @@ export default class EventBus {
                 return;
             }
 
-            const subscribers = subscriptions.get(eventType);
+            const subscribers = /** @type {Set<number>} */ (subscriptions.get(eventType));
 
-            subscribers.forEach((uid) => callbacks.get(uid)(...args));
+            subscribers.forEach((uid) => {
+                const callback = /** @type {function} */ (callbacks.get(uid));
+                callback(...args);
+            });
         };
     }
 }
