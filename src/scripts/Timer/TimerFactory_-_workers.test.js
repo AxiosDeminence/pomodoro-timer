@@ -27,7 +27,7 @@ describe('Workers allowed', () => {
     });
 
     it('Creates proper timer', () => {
-        timer = factory.getTimer();
+        timer = /** @type {TimerWorkerFactory} */ (factory).getTimer(() => {});
         expect(timer).toBeInstanceOf(Worker);
     });
 

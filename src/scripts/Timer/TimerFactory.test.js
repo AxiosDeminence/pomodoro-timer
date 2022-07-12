@@ -21,7 +21,7 @@ describe('Workers not allowed', () => {
     });
 
     it('Creates proper timer', () => {
-        timer = factory.getTimer();
+        timer =  /** @type {CountdownTimerFactory} */ (factory).getTimer(() => {});
         expect(timer).toBeInstanceOf(CountdownTimer);
     });
 

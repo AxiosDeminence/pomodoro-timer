@@ -7,6 +7,8 @@ import CountdownTimer from './CountdownTimer.mjs';
 
 // We add some weird typechecking for interfaces for polymorphism.
 
+/** @typedef {import('./CountdownTimer.mjs').timerFunctionCallback} timerFunctionCallback */
+
 /**
  * Start command for timers
  * @callback TimerStartCommand
@@ -26,9 +28,10 @@ export class TimerFactory {
     constructor() {}
 
     /**
+     * @param {timerFunctionCallback} callback Callback to be run at every decrement
      * @return {Timer}
      */
-    getTimer() { throw new Error('Not implemented') }
+    getTimer(callback) { throw new Error('Not implemented') }
 
     /**
      * 
@@ -53,10 +56,15 @@ export class TimerWorkerFactory {
 
     /**
      * Gets a worker-based timer.
+     * @param {timerFunctionCallback} callback Callback to be run at every decrement
      * @returns {Worker}
      */
-    getTimer() {
+    getTimer(callback) {
         const worker = new Worker(TIMER_WORKER_URL, { type: 'module' });
+        worker.addEventListener('message', (event) => {
+            const timerString = event.data;
+            callback(timerString);
+        });
 
         return worker;
     }
@@ -91,10 +99,11 @@ export class CountdownTimerFactory {
     constructor() { }
 
     /**
+     * @param {timerFunctionCallback} callback Callback to be run when the timer changes
      * @returns {CountdownTimer}
      */
-    getTimer() {
-        const timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT);
+    getTimer(callback) {
+        const timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT, callback);
 
         return timer;
     }
@@ -106,7 +115,6 @@ export class CountdownTimerFactory {
      */
     getStartCommand(timer) {
         return (time) => {
-            timer.stop();
             timer.start(time);
         };
     }
