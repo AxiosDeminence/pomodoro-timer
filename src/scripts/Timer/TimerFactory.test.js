@@ -1,15 +1,15 @@
 // @ts-check
 
 import CountdownTimer from './CountdownTimer.mjs';
-import getTimerFactory, { CountdownTimerAbstractFactory } from './TimerAbstractFactory.mjs';
+import getTimerFactory, { CountdownTimerFactory } from './TimerFactory.mjs';
 
 // Technically not JSDoc but we'll just use it to allow type-safety and prevent unused imports.
-/** @typedef {import('./TimerAbstractFactory.mjs').TimerAbstractFactory} TimerAbstractFactory */
+/** @typedef {import('./TimerFactory.mjs').TimerFactory<object>} TimerFactory */
 
 jest.useFakeTimers();
 
 describe('Workers not allowed', () => {
-    /** @type {TimerAbstractFactory} */
+    /** @type {TimerFactory} */
     let factory;
 
     /** @type {CountdownTimer} */
@@ -17,11 +17,11 @@ describe('Workers not allowed', () => {
 
     it('Factory creation', () => {
         factory = getTimerFactory();
-        expect(factory).toBeInstanceOf(CountdownTimerAbstractFactory);
+        expect(factory).toBeInstanceOf(CountdownTimerFactory);
     });
 
     it('Creates proper timer', () => {
-        timer = (/** @type {CountdownTimerAbstractFactory} */ (factory)).getTimer();
+        timer = factory.getTimer();
         expect(timer).toBeInstanceOf(CountdownTimer);
     });
 
@@ -35,7 +35,7 @@ describe('Workers not allowed', () => {
 
     it('Internal testing', () => {
         /** @type {Function} */
-        const cmd = (/** @type {CountdownTimerAbstractFactory} */ (factory)).getStartCommand(timer);
+        const cmd = (/** @type {CountdownTimerFactory} */ (factory)).getStartCommand(timer);
         jest.advanceTimersByTime(1000);
     });
 });

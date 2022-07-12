@@ -10,7 +10,7 @@ import CountdownTimer from './CountdownTimer.mjs';
 /**
  * Start command for timers
  * @callback TimerStartCommand
- * @param {number} time Minutes the timer should run for
+ * @param {!number} time Minutes the timer should run for
  */
 
 /**
@@ -20,35 +20,35 @@ import CountdownTimer from './CountdownTimer.mjs';
 
 /**
  * @interface
- * @template T
+ * @template {object} Timer
  */
-export class TimerAbstractFactory {
+export class TimerFactory {
     constructor() {}
 
     /**
-     * @return {T}
+     * @return {Timer}
      */
     getTimer() { throw new Error('Not implemented') }
 
     /**
      * 
-     * @param {T} timer
+     * @param {Timer} timer
      * @return {function}
      */
     getStartCommand(timer) { throw new Error('Not implemented'); }
 
     /**
      * 
-     * @param {T} timer
+     * @param {Timer} timer
      * @return {function}
      */
     getStopCommand(timer) { throw new Error('Not implemented'); }
 }
 
 /**
- * @implements {TimerAbstractFactory<Worker>}
+ * @implements {TimerFactory<Worker>}
  */
-export class TimerWorkerAbstractFactory {
+export class TimerWorkerFactory {
     constructor() {}
 
     /**
@@ -56,8 +56,7 @@ export class TimerWorkerAbstractFactory {
      * @returns {Worker}
      */
     getTimer() {
-        /** @type {Worker} */
-        const worker = new Worker(TIMER_WORKER_URL, {type: 'module'});
+        const worker = new Worker(TIMER_WORKER_URL, { type: 'module' });
 
         return worker;
     }
@@ -86,16 +85,15 @@ export class TimerWorkerAbstractFactory {
 }
 
 /**
- * @implements {TimerAbstractFactory<CountdownTimer>}
+ * @implements {TimerFactory<CountdownTimer>}
  */
-export class CountdownTimerAbstractFactory {
+export class CountdownTimerFactory {
     constructor() { }
 
     /**
      * @returns {CountdownTimer}
      */
     getTimer() {
-        /** @type {CountdownTimer} */
         const timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT);
 
         return timer;
@@ -126,12 +124,12 @@ export class CountdownTimerAbstractFactory {
 }
 
 /**
- * @return {TimerAbstractFactory<unknown>}
+ * @return {TimerFactory<object>}
  */
 export default function getTimerFactory() {
     if (typeof Worker !== 'undefined') {
-        return new TimerWorkerAbstractFactory();
+        return new TimerWorkerFactory();
     } else {
-        return new CountdownTimerAbstractFactory();
+        return new CountdownTimerFactory();
     }
 }

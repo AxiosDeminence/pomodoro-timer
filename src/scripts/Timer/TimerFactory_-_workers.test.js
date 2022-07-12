@@ -4,14 +4,13 @@
 
 // @ts-check
 
-import getTimerFactory, { TimerWorkerAbstractFactory } from './TimerAbstractFactory.mjs';
+import getTimerFactory, { TimerWorkerFactory } from './TimerFactory.mjs';
 
-/** @typedef {import('./TimerAbstractFactory.mjs').TimerAbstractFactory<unknown>} TimerAbstractFactory */
+/** @typedef {import('./TimerFactory.mjs').TimerFactory<object>} TimerFactory */
 
 describe('Workers allowed', () => {
     /**
-     * @template T
-     * @type {TimerAbstractFactory}
+     * @type {TimerFactory}
      */
     let factory;
 
@@ -23,12 +22,12 @@ describe('Workers allowed', () => {
     });
 
     it('Factory creation', () => {
-        factory = /** @type {TimerAbstractFactory} */ (getTimerFactory());
-        expect(factory).toBeInstanceOf(TimerWorkerAbstractFactory);
+        factory = getTimerFactory();
+        expect(factory).toBeInstanceOf(TimerWorkerFactory);
     });
 
     it('Creates proper timer', () => {
-        timer = (/** @type {TimerWorkerAbstractFactory} */ (factory)).getTimer();
+        timer = factory.getTimer();
         expect(timer).toBeInstanceOf(Worker);
     });
 
