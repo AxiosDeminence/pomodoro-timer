@@ -68,10 +68,9 @@ export default class AccurateInterval {
 
     /**
      * Starts the accurate interval
-     * @param {boolean} zeroTick Checks to see if we want a zerotick callback run.
      * @throws {AccurateIntervalError} Timer should not already be running
      */
-    start(zeroTick=false) {
+    start() {
         // Prevent it from multiple starts without stopping
         if (this.running) {
             throw new AccurateIntervalError(ERRORS.ALREADY_STARTED_ERR_MSG);
@@ -79,24 +78,23 @@ export default class AccurateInterval {
             this.running = true;
         }
 
-        // If we want a zerotick, then we want to immediately
-        if (zeroTick) {
-            this.tick(true);
-        } else {
-            this.expectedTime = Date.now() + this.interval;
-            this.timer = setInterval(this.tick.bind(this), this.interval);
-        }
+        this.expectedTime = Date.now() + this.interval;
+        this.timer = setInterval(this.tick.bind(this), this.interval);
     }
 
     /**
      * Each run of the accurate interval
      * @param {boolean} attemptedCorrection
+     * @private
      */
     tick(attemptedCorrection=false) {
+        if (!this.running || typeof this.expectedTime === 'undefined') {
+            throw new AccurateIntervalError(ERRORS.NOT_STARTED_ERR_MSG);
+        }
+
         this.cb(...(this.args || []));
 
         const currentTime = Date.now();
-        if (typeof this.expectedTime === 'undefined') this.expectedTime = currentTime;
         const drift = currentTime - this.expectedTime;
 
         this.expectedTime += this.interval;

@@ -3,7 +3,10 @@
 import AccurateInterval from './AccurateInterval.mjs';
 import CountdownTimer from './CountdownTimer.mjs';
 
-// Pattern adopted from https://stackoverflow.com/a/52366601
+/**
+ * @typedef {import('./CountdownTimer.mjs').timerFunctionCallback} timerFunctionCallback
+ */
+
 jest.mock('./AccurateInterval.mjs');
 
 /**
@@ -12,9 +15,15 @@ jest.mock('./AccurateInterval.mjs');
  * @param {boolean} [obj.zeroTick=true]
  * @param {number} [obj.interval=10]
  * @param {number} [obj.acceptableDrift=10]
+ * @param {timerFunctionCallback} [obj.cb=jest.fn((remainingTime => { return; }))]
  */
-function getCountdownTimer({ zeroTick = true, interval = 10, acceptableDrift = 10 } = {}) {
-    return new CountdownTimer(zeroTick, interval, acceptableDrift);
+function getCountdownTimer({
+    zeroTick = true,
+    interval = 10,
+    acceptableDrift = 10,
+    cb = jest.fn(() => { }),
+} = {}) {
+    return new CountdownTimer(zeroTick, interval, acceptableDrift, cb);
 }
 
 beforeEach(() => {
@@ -52,23 +61,32 @@ it('Remove remaining time on stop', () => {
 });
 
 describe('Timer callback functionality', () => {
-    const timer = getCountdownTimer({zeroTick: true});
+    /** @type {string} */
+    let timerString;
+
+    // TODO: Ideally use done() but cannot find a way to use it with an assertion function
+    const cb = jest.fn((remainingTime) => { timerString = remainingTime; });
+
+    const timer = getCountdownTimer({ zeroTick: true, cb });
 
     afterEach(() => {
         timer.stop();
     });
 
+    it('Calls callback function', () => {
+        timer.start(1);
+        expect(cb).toHaveBeenCalledTimes(1);
+    });
+
     /**
-     * 
-     * @param {number} remainingTime 
-     * @param {*} expectedString 
+     * @param {number} remainingTime
+     * @param {*} expectedString
      */
     function checkTimerFunction(remainingTime, expectedString) {
         timer.start(remainingTime);
-        expect(timer.timerFunction()).toBe(expectedString);
+        expect(timerString).toBe(expectedString);
     }
 
-    // eslint-disable jest/expect-expect
     it('Single-digit seconds only', () => {
         checkTimerFunction(1, '0:01');
     });

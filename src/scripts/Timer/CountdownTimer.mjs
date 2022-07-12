@@ -9,7 +9,13 @@
 import AccurateInterval from './AccurateInterval.mjs';
 
 /**
+ * @callback timerFunctionCallback
+ * @param {string} remainingTimeStr The remaining time formatted in MM:SS
+ */
+
+/**
  * Countdown timer. timerFunction should be decorated to bind it to an element.
+ * Should be decorated with the only override 
  */
 export default class CountdownTimer {
     /**
@@ -17,12 +23,20 @@ export default class CountdownTimer {
      *     timer gets started
      * @param {number} interval Milliseconds between each callback run
      * @param {number} acceptableDrift Allowed drift in milliseconds
+     * @param {!timerFunctionCallback} cb 
      */
-    constructor(runAtStart, interval, acceptableDrift) {
-        /** @type {boolean} */
+    constructor(runAtStart, interval, acceptableDrift, cb) {
+        /** 
+         * Whether to immediately run the timerFunction on start
+         * @type {boolean}
+         */
         this.zeroTickEnabled = runAtStart;
 
-        /** @type {AccurateInterval} */
+        /**
+         * @readonly
+         * @private
+         * @type {AccurateInterval}
+         */
         this.intervalController = new AccurateInterval(this.timerFunction, null,
             interval, acceptableDrift);
         
@@ -31,6 +45,8 @@ export default class CountdownTimer {
          * @type {number | undefined}
          */
         this.remainingTime = undefined;
+
+        this.cb = cb;
     }
 
     /**
@@ -42,8 +58,12 @@ export default class CountdownTimer {
         if (typeof this.remainingTime !== 'undefined') {
             this.intervalController.stop();
         }
-        this.intervalController.start(this.zeroTickEnabled);
+        this.intervalController.start();
         this.remainingTime = totalTime;
+
+        if (this.zeroTickEnabled) {
+            this.cb(this.timerString);
+        }
     }
 
     /**
@@ -55,27 +75,32 @@ export default class CountdownTimer {
     }
 
     /**
-     * Callback function to be run at every interval
-     * @returns {string} Remaining time formatted as a MM:SS string
+     * @private
+     * @return {string}
      */
-    timerFunction() {
+    get timerString() {
         if (typeof this.remainingTime === 'undefined') {
-            throw new Error('timerFunction called when timer is not running');
+            throw new Error('Remaining time is not defined for countdown timer');
         }
 
         const remainingMinutes = Math.floor(this.remainingTime / 60);
         const remainingSeconds = this.remainingTime % 60;
 
         const timerString = `${remainingMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-        this.remainingTime -= 1;
-
         return timerString;
     }
-}
 
-/**
- * 
- */
-export class CountdownTimerHTMLElementDecorator {
-    
+    /**
+     * Callback function to be run at every interval.
+     * @protected
+     */
+    timerFunction() {
+        if (typeof this.remainingTime === 'undefined') {
+            throw new Error('timerFunction called when timer is not running');
+        }
+
+        this.remainingTime -= 1;
+
+        this.cb(this.timerString);
+    }
 }

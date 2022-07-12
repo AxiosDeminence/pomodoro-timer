@@ -12,7 +12,7 @@ import { ACCEPTABLE_DRIFT, SECOND } from '../Constants.mjs';
 import CountdownTimer from './CountdownTimer.mjs';
 
 /** @type {CountdownTimer} */
-let timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT);
+let timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT, self.postMessage.bind(self));
 
 /**
  * Listen to messages for the timer webworker to control the CountdownTimer.

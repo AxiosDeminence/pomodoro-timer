@@ -1,5 +1,10 @@
 // @ts-check
 
+/**
+ * @file Test for AccurateInterval module
+ * @author Juhmer Tena <juhmertena@gmail.com>
+ */
+
 import AccurateInterval, { AccurateIntervalError } from './AccurateInterval.mjs';
 
 const mockedCallback = jest.fn(() => {});
@@ -7,14 +12,13 @@ const mockedCallback = jest.fn(() => {});
 /**
 *
 * @param {object} [obj={}]
-* @param {function} [obj.cb=mockedCallback]
 * @param {number} [obj.interval=10]
 * @param {number} [obj.acceptableDrift=10]
 * @returns {{spy: jest.SpyInstance, intervalController: AccurateInterval}}
 */
-function getIntervalController({ cb = mockedCallback, interval = 10, acceptableDrift = 10 } = {}) {
-    const intervalController = new AccurateInterval(cb, null, interval, acceptableDrift);
-    const spy = jest.spyOn(intervalController, 'tick');
+function getIntervalController({ interval = 10, acceptableDrift = 10 } = {}) {
+    const spy = jest.fn(() => { });
+    const intervalController = new AccurateInterval(spy, null, interval, acceptableDrift);
     return { spy, intervalController };
 }
 
@@ -30,7 +34,7 @@ describe('Proper construction required', () => {
 
     it('Callback must be a function', () => {
         // @ts-expect-error
-        expect(() => getIntervalController({ cb: 1 })).toThrowError(TypeError);
+        expect(() => { new AccurateInterval(1, null, 1, 1); }).toThrowError(TypeError);
     });
 
     describe('Interval value', () => {
@@ -104,30 +108,10 @@ describe('AccurateInterval starting and stopping behavior', () => {
         });
     });
 
-    describe('Does not tick on start', () => {
+    it('Does not tick on start', () => {
         const { spy, intervalController } = getIntervalController();
-
-        afterEach(() => {
-            intervalController.stop();
-            spy.mockClear();
-        });
-
-        it('if configured', () => {
-            intervalController.start(false);
-            expect(spy).not.toHaveBeenCalled();
-        });
-
-        it('if not configured', () => {
-            intervalController.start();
-            expect(spy).not.toHaveBeenCalled();
-        });
-    });
-
-    it('Tick on start if configured', () => {
-        const { spy, intervalController } = getIntervalController();
-
-        intervalController.start(true);
-        expect(spy).toHaveBeenCalled();
+        intervalController.start();
+        expect(spy).not.toHaveBeenCalled();
         intervalController.stop();
     });
 });
@@ -154,13 +138,14 @@ describe('AccurateInterval ticking behavior', () => {
             }
         }
 
+        const spy = jest.fn(() => { });
+
         const intervalController = new PausableController(
-            mockedCallback,
+            spy,
             null,
             interval,
             acceptableDrift
         );
-        const spy = jest.spyOn(intervalController, 'tick');
 
         beforeEach(() => {
             intervalController.start();
@@ -187,6 +172,7 @@ describe('AccurateInterval ticking behavior', () => {
             jest.advanceTimersByTime(acceptableDrift + 1);
             runningCount += 1;
 
+            // @ts-expect-error: Access private function to simulate late run
             intervalController.tick();
             expect(spy).toHaveBeenCalledTimes(runningCount);
 
@@ -216,6 +202,7 @@ describe('AccurateInterval ticking behavior', () => {
             jest.advanceTimersByTime(interval + 1);
             runningCount += 1;
 
+            // @ts-expect-error: Access private function to simulate late run
             intervalController.tick(true);
             expect(spy).toHaveBeenCalledTimes(runningCount);
 
