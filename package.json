@@ -2,6 +2,7 @@
   "name": "horrible-timer",
   "version": "1.0.0",
   "description": "A horrible Pomodoro timer",
+  "type": "module",
   "files": [
     "src/**/*"
   ],
@@ -11,10 +12,10 @@
   "scripts": {
     "start": "npm run bundle:icons && http-server src -p=5500 -g -c-1",
     "watch": "watch 'npm run instrument' src/components src/scripts",
-    "test": "cross-env NODE_ENV=jest jest",
+    "test": "cross-env NODE_ENV=jest NODE_OPTIONS=\"--experimental-vm-modules\" jest",
     "test:watch": "npm run test -- --watch",
-    "lint:fix": "eslint --fix --fix-type layout src __tests__",
-    "lint:verify": "eslint src __tests__",
+    "lint:fix": "eslint --fix --fix-type layout src __tests__ --ext=.js,.mjs",
+    "lint:verify": "eslint src __tests__ --ext=.js,.mjs",
     "instrument": "nyc instrument --delete --complete-copy src cypress_build",
     "cy:build": "npm run instrument & npm run bundle:icons",
     "cy:start": "npm run cy:build && http-server cypress_build -p=5500",
