@@ -10,7 +10,8 @@
     "extends": [
         "airbnb-base",
         "plugin:jest/recommended",
-        "plugin:cypress/recommended"
+        "plugin:cypress/recommended",
+        "plugin:jsdoc/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": 2020
@@ -30,10 +31,13 @@
             "functions": "never" // Overrides airbnb-base since we use ES6 and function comma dangling only supported in ES8
         }]
     },
-    "plugins": ["jest", "cypress"],
+    "plugins": ["jest", "cypress", "jsdoc"],
     "settings": {
         "jest": {
             "version": 28
+        },
+        "jsdoc": {
+            "mode": "typescript"
         }
     }
 }
