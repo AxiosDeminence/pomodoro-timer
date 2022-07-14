@@ -1,0 +1,14 @@
+{
+  "source": {
+    "include": ["./src"],
+    "includePattern": ".+\\.(js(doc|x)?|mjs)$",
+    "excludePattern": "test"
+  },
+  "plugins": [
+    "jsdoc-ts-utils"
+  ],
+  "opts": {
+    "recurse": true,
+    "destination": "./docs"
+  }
+}

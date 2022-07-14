@@ -29,7 +29,8 @@
             "imports": "always-multiline",
             "exports": "always-multiline",
             "functions": "never" // Overrides airbnb-base since we use ES6 and function comma dangling only supported in ES8
-        }]
+        }],
+        "jsdoc/check-tag-names": ["warn", {"definedTags": ["jest-environment"]}]
     },
     "plugins": ["jest", "cypress", "jsdoc"],
     "settings": {
