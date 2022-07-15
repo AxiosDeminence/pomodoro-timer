@@ -14,7 +14,7 @@ export default class EventBus {
         /** @type {Map<string, Set<number>>} */
         const subscriptions = new Map();
 
-        /** @type {Map<number, function>} */
+        /** @type {Map<number, Function>} */
         const callbacks = new Map();
 
         /** @type {number} */
@@ -22,9 +22,10 @@ export default class EventBus {
 
         /**
          * Adds a subscriber for an event dispatched through the EventBus.
+         *
          * @param {string} eventType Event the callback is now listening for
-         * @param {function} cb Callback when the event is published
-         * @return {number} uuid for the subscription
+         * @param {Function} cb Callback when the event is published
+         * @returns {number} uid for the subscription
          */
         this.subscribe = (eventType, cb) => {
             // Prevent non-callbacks from being added
@@ -45,6 +46,7 @@ export default class EventBus {
 
         /**
          * Removes a subscriber for an event dispatched through the EventBus.
+         *
          * @param {number} uid Token for the subscriber to be removed
          */
         this.unsubscribe = (uid) => {
@@ -67,8 +69,9 @@ export default class EventBus {
 
         /**
          * Publish an event dispatched to the EventBus to all subscribers.
-         * @param {string} eventType
-         * @param {...any} args
+         *
+         * @param {string} eventType Event to be published
+         * @param {...any} args Args to be pushed to all subscriber callbacks
          */
         this.publish = (eventType, ...args) => {
             // If the event has no listeners, don't publish it but begin preparation for subscribers
@@ -80,7 +83,7 @@ export default class EventBus {
             const subscribers = /** @type {Set<number>} */ (subscriptions.get(eventType));
 
             subscribers.forEach((uid) => {
-                const callback = /** @type {function} */ (callbacks.get(uid));
+                const callback = /** @type {Function} */ (callbacks.get(uid));
                 callback(...args);
             });
         };

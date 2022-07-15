@@ -2,13 +2,12 @@ const fs = require('fs').promises;
 const path = require('path');
 
 /**
- *
  * Grab html fragments from files and create templates for them
- *
  * @param {Object[]} templates - Templates to be added
  * @param {string} templates[].id - Id of the template node
  * @param {string} templates[].relpath - Relative path to file containing html fragment
  * @param {string} cwd - Directory where relpath gets resolved from
+ * @returns {string} String containing all of the template tags
  */
 export function addTemplates(templates, cwd = process.cwd) {
     // String of html fragments from templates

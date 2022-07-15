@@ -1,47 +1,53 @@
 // @ts-check
 
 /**
- * @file 
+ * @file
  * @author Juhmer Tena <juhmertena@gmail.com>
  * @module CountdownTimer
  */
 
-import AccurateInterval from './AccurateInterval.mjs';
+import { AccurateInterval } from './AccurateInterval.mjs';
 
 /**
- * @callback timerFunctionCallback
+ * @callback TimerFunctionCallback
  * @param {string} remainingTimeStr The remaining time formatted in MM:SS
  */
 
 /**
  * Countdown timer. timerFunction should be decorated to bind it to an element.
- * Should be decorated with the only override 
+ * Should be decorated with the only override
  */
-export default class CountdownTimer {
+export class CountdownTimer {
     /**
      * @param {boolean} runAtStart Have the first callback run happen when the
      *     timer gets started
      * @param {number} interval Milliseconds between each callback run
      * @param {number} acceptableDrift Allowed drift in milliseconds
-     * @param {!timerFunctionCallback} cb 
+     * @param {!TimerFunctionCallback} cb Callback to run at every interval
+     *     of the CountdownTimer
      */
     constructor(runAtStart, interval, acceptableDrift, cb) {
-        /** 
+        /**
          * Whether to immediately run the timerFunction on start
+         *
          * @type {boolean}
          */
         this.zeroTickEnabled = runAtStart;
 
         /**
          * @readonly
-         * @private
          * @type {AccurateInterval}
          */
-        this.intervalController = new AccurateInterval(this.timerFunction, null,
-            interval, acceptableDrift);
-        
+        this.intervalController = new AccurateInterval(
+            this.timerFunction.bind(this),
+            null,
+            interval,
+            acceptableDrift
+        );
+
         /**
          * Remaining time in seconds
+         *
          * @type {number | undefined}
          */
         this.remainingTime = undefined;
@@ -52,6 +58,7 @@ export default class CountdownTimer {
     /**
      * Starts the countdown timer. Will restart the timer with the new time if
      *     currently running.
+     *
      * @param {number} totalTime Time in minutes that should elapse
      */
     start(totalTime) {
@@ -76,7 +83,7 @@ export default class CountdownTimer {
 
     /**
      * @private
-     * @return {string}
+     * @returns {string} Remaining time formatted in HH:MM format
      */
     get timerString() {
         if (typeof this.remainingTime === 'undefined') {
@@ -91,8 +98,9 @@ export default class CountdownTimer {
     }
 
     /**
-     * Callback function to be run at every interval.
-     * @protected
+     * Callback function to be run at every interval. Do not run manually.
+     * Exposed as a public function since we create a binding to pass to the
+     * interval controller and bindings should not modify the access scope.
      */
     timerFunction() {
         if (typeof this.remainingTime === 'undefined') {
@@ -102,5 +110,11 @@ export default class CountdownTimer {
         this.remainingTime -= 1;
 
         this.cb(this.timerString);
+
+        if (this.remainingTime === 0) {
+            this.stop();
+        }
     }
 }
+
+export default CountdownTimer;

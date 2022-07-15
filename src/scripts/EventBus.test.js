@@ -10,11 +10,11 @@ describe('Token behavior', () => {
     const pubsub = new EventBus();
 
     it('Subscriptions are bound to a token', () => {
-        expect(pubsub.subscribe(SAMPLE_EVENT_1, () => { })).toBe(0);
+        expect(pubsub.subscribe(SAMPLE_EVENT_1, () => { })).toEqual(0);
     });
 
     it('Each token is unique', () => {
-        expect(pubsub.subscribe(SAMPLE_EVENT_2, () => { })).toBe(1);
+        expect(pubsub.subscribe(SAMPLE_EVENT_2, () => { })).toEqual(1);
     });
 });
 

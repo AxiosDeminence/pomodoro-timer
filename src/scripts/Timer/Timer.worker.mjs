@@ -1,5 +1,5 @@
 // @ts-check
-// eslint-disable no-restricted-globals
+/* eslint-disable no-restricted-globals */
 
 /**
  * @file Webworker for the pomodoro timer. Used when browser/environment supports
@@ -9,13 +9,14 @@
  */
 
 import { ACCEPTABLE_DRIFT, SECOND } from '../Constants.mjs';
-import CountdownTimer from './CountdownTimer.mjs';
+import { CountdownTimer } from './CountdownTimer.mjs';
 
 /** @type {CountdownTimer} */
-let timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT, self.postMessage.bind(self));
+const timer = new CountdownTimer(true, SECOND, ACCEPTABLE_DRIFT, self.postMessage.bind(self));
 
 /**
  * Listen to messages for the timer webworker to control the CountdownTimer.
+ *
  * @listens Worker#message
  * @param {MessageEvent} ev - Message event from main JavaScript thread
  */

@@ -1,6 +1,6 @@
 // @ts-check
 
-import CountdownTimer from './CountdownTimer.mjs';
+import { CountdownTimer } from './CountdownTimer.mjs';
 import processMessages from './Timer.worker.mjs';
 
 jest.mock('./CountdownTimer.mjs');
