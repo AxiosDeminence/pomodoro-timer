@@ -5,17 +5,18 @@
  * @author Juhmer Tena <juhmertena@gmail.com>
  */
 
-import AccurateInterval, { AccurateIntervalError } from './AccurateInterval.mjs';
-
-const mockedCallback = jest.fn(() => {});
+import { AccurateInterval } from './AccurateInterval.mjs';
+import AccurateIntervalError from './AccurateIntervalError.mjs';
 
 /**
-*
-* @param {object} [obj={}]
-* @param {number} [obj.interval=10]
-* @param {number} [obj.acceptableDrift=10]
-* @returns {{spy: jest.SpyInstance, intervalController: AccurateInterval}}
-*/
+ *
+ * @param {object} [obj = {}] Settings object
+ * @param {number} [obj.interval = 10] Time in milliseconds between each tick
+ * @param {number} [obj.acceptableDrift = 10]
+ *     Acceptable drift between each tick before correction
+ * @returns {{spy: jest.SpyInstance, intervalController: AccurateInterval}}
+ *     Spy and AccurateInterval
+ */
 function getIntervalController({ interval = 10, acceptableDrift = 10 } = {}) {
     const spy = jest.fn(() => { });
     const intervalController = new AccurateInterval(spy, null, interval, acceptableDrift);
@@ -34,7 +35,7 @@ describe('Proper construction required', () => {
 
     it('Callback must be a function', () => {
         // @ts-expect-error
-        expect(() => { new AccurateInterval(1, null, 1, 1); }).toThrowError(TypeError);
+        expect(() => new AccurateInterval(1, null, 1, 1)).toThrowError(TypeError);
     });
 
     describe('Interval value', () => {

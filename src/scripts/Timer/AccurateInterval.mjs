@@ -6,36 +6,25 @@
  * @module AccurateInterval
  */
 
-import * as ERRORS from "./AccurateInterval.constants.mjs";
-
-/**
- * Errors for the @see {@link AccurateInterval} class.
- */
-export class AccurateIntervalError extends Error {
-    /**
-     * Creates an error for the @see {@link AccurateInterval} class.
-     * @param {ConstructorParameters<typeof Error>} args
-     */
-    constructor(...args) {
-        super(...args);
-    }
-}
+import * as ERRORS from './AccurateInterval.constants.mjs';
+import AccurateIntervalError from './AccurateIntervalError.mjs';
 
 /**
  * Class representing a self-correcting interval.
- * @property {(timeoutID|intervalID)} timer Maintains timeouts/intervals and checks it
- *     against the drift.
+ *
+ * @property {number} timer Timeout/interval ID
  * @property {number} expectedTime Expected timestamp the next tick would be run
  */
-export default class AccurateInterval {
+export class AccurateInterval {
     /**
-     * Creates an accurate interval with an acceptable drift.
-     * @param {function} cb Callback function
+     * Creates an accurate interval with an acceptable drift.\
+     *
+     * @param {Function} cb Callback function
      * @param {?any[]} args Arguments to the callback function
      * @param {number} interval Interval in milliseconds
-     * @param {number} [acceptableDrift=50] Allowed drift in milliseconds
+     * @param {number} [acceptableDrift = 50] Allowed drift in milliseconds
      */
-    constructor(cb, args, interval, acceptableDrift=50) {
+    constructor(cb, args, interval, acceptableDrift = 50) {
         if (typeof cb !== 'function') {
             throw new TypeError(ERRORS.INVALID_CB_ERR_MSG);
         }
@@ -50,24 +39,25 @@ export default class AccurateInterval {
             throw new RangeError(ERRORS.INVALID_DRIFT_ERR_MSG);
         }
 
-        /** @type {function} Callback function ran at every tick */
+        /** @type {Function} */
         this.cb = cb;
 
-        /** @type {?any[]} Arguments to the callback function */
+        /** @type {?any[]} */
         this.args = args;
 
-        /** @type {number} Time between each tick in milliseconds */
+        /** @type {number} */
         this.interval = coercedInterval;
 
-        /** @type {number} Maximum drift between each tick in milliseconds */
+        /** @type {number} */
         this.acceptableDrift = coercedDrift;
 
-        /** @type {boolean} The status of the interval */
+        /** @type {boolean} */
         this.running = false;
     }
 
     /**
      * Starts the accurate interval
+     *
      * @throws {AccurateIntervalError} Timer should not already be running
      */
     start() {
@@ -84,10 +74,12 @@ export default class AccurateInterval {
 
     /**
      * Each run of the accurate interval
-     * @param {boolean} attemptedCorrection
+     *
+     * @param {boolean} [attemptedCorrection = false] If the previous tick
+     *     attempted to correct the drift
      * @private
      */
-    tick(attemptedCorrection=false) {
+    tick(attemptedCorrection = false) {
         if (!this.running || typeof this.expectedTime === 'undefined') {
             throw new AccurateIntervalError(ERRORS.NOT_STARTED_ERR_MSG);
         }
@@ -103,12 +95,20 @@ export default class AccurateInterval {
         if (Math.abs(drift) > this.acceptableDrift) {
             // If the drift was still larger, then clearing a used setTimeout does nothing
             clearInterval(this.timer);
-            this.timer = setTimeout(this.tick.bind(this), Math.max(0, this.interval - drift), true);
+            this.timer = setTimeout(
+                this.tick.bind(this),
+                Math.max(0, this.interval - drift),
+                true
+            );
         } else if (attemptedCorrection) {
             // This is a bit counterintuitive but resetting the interval to counteract the drift
             // results in less drift by predicting future delays.
             // Over 2 minutes: results in 6 drift corrections instead of 22 on Firefox
-            this.timer = setInterval(this.tick.bind(this), Math.max(0, this.interval - drift), false);
+            this.timer = setInterval(
+                this.tick.bind(this),
+                Math.max(0, this.interval - drift),
+                false
+            );
         }
     }
 
@@ -127,3 +127,5 @@ export default class AccurateInterval {
         this.expectedTime = undefined;
     }
 }
+
+export default AccurateInterval;
