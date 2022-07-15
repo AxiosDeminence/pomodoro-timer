@@ -1,7 +1,7 @@
 // @ts-check
 
 /** @type {string} */
-export const TIMER_WORKER_URL = './AccurateInterval.mjs';
+export const TIMER_WORKER_URL = './Timer.worker.mjs';
 
 /** @type {number} */
 export const SECOND = 1000;
