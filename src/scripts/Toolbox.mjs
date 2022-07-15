@@ -1,23 +1,24 @@
 // @ts-check
 
-/** @type {Toolbox} */
-let toolbox;
-
-export default class Toolbox {
+/**
+ * Toolbox to register and retrieve components for lifecycle management
+ */
+export class Toolbox {
     constructor() {
-        if (typeof toolbox !== 'undefined') {
-            return toolbox;
-        }
-        toolbox = this;
-
-        /** @type {Map<string, object>} */
+        /**
+         * Map maintaining all components in the toolbox
+         *
+         * @type {Map<string, object>}
+         * @private
+         */
         this.components = new Map();
     }
 
     /**
-     * 
-     * @param {string} key 
-     * @returns {object}
+     * Retrieve a component from the toolbox
+     *
+     * @param {string} key The key the component is registered with
+     * @returns {object} The retrieved component
      */
     getComponent(key) {
         if (!this.components.has(key)) {
@@ -28,9 +29,10 @@ export default class Toolbox {
     }
 
     /**
-     * 
-     * @param {string} key 
-     * @param {object} component 
+     * Add a component into the toolbox
+     *
+     * @param {string} key The key to register the component with
+     * @param {object} component The component to register
      */
     registerComponent(key, component) {
         if (this.components.has(key)) {
@@ -40,3 +42,7 @@ export default class Toolbox {
         this.components.set(key, component);
     }
 }
+
+/** Application level toolbox to be passed around and used */
+const toolbox = new Toolbox();
+export default toolbox;

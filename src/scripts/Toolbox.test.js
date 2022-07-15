@@ -1,18 +1,14 @@
 // @ts-check
 
-import Toolbox from './Toolbox.mjs';
+import exportedToolbox, { Toolbox } from './Toolbox.mjs';
 
 describe('Construction', () => {
-    /** @type {Toolbox} */
-    let toolbox;
-
     it('Succeeds', () => {
-        expect(() => { toolbox = new Toolbox(); }).not.toThrow();
+        expect(() => new Toolbox()).not.toThrow();
     });
 
-    it('Singleton', () => {
-        const tempToolbox = new Toolbox();
-        expect(toolbox).toBe(tempToolbox);
+    it('Singleton at application-level', () => {
+        expect(exportedToolbox).toBeInstanceOf(Toolbox);
     });
 });
 
